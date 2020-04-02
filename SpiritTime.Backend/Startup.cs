@@ -1,15 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using SpiritTime.Backend.Infrastructure.Jwt;
+using SpiritTime.Backend.Services;
+using SpiritTime.Core;
+using SpiritTime.Core.Entities;
+using SpiritTime.Persistence;
 
 namespace SpiritTime.Backend
 {
@@ -22,9 +34,47 @@ namespace SpiritTime.Backend
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddOptions();
+            services.AddDbContext<ApplicationDbContext>();
+
+            services.Configure<Settings>(Configuration.GetSection("Settings"));
+            services.Configure<JwtSettings>(Configuration.GetSection("Jwt"));
+            
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<JwtAuthentication, JwtAuthentication>();
+
+            //services
+            //    .AddMvc()
+            //    .AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services
+                .AddAuthentication(GetAuthenticationOptions)
+                .AddJwtBearer(GetJwtBearerOptions);
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    // Default Lockout settings.
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                    options.Lockout.MaxFailedAccessAttempts = 5;
+                    options.Lockout.AllowedForNewUsers = true;
+                    options.SignIn.RequireConfirmedEmail = true;
+                    options.User.RequireUniqueEmail = true;
+                })
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "VocaDrill",
+                    Version = "v1"
+                });
+            });
+
             services.AddControllers();
         }
 
@@ -36,16 +86,38 @@ namespace SpiritTime.Backend
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "VocaDrill"); });
+        }
+        private void GetAuthenticationOptions(AuthenticationOptions options)
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }
+
+        private void GetJwtBearerOptions(JwtBearerOptions options)
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+
+                ValidIssuer = Configuration["Jwt:ValidIssuer"],
+                ValidAudience = Configuration["Jwt:ValidAudience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecurityKey"]))
+            };
         }
     }
 }
