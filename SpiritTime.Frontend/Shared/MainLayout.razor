@@ -1,12 +1,29 @@
 ﻿@inherits LayoutComponentBase
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+
+<BaseOverlay />
 
 <div class="sidebar">
     <NavMenu />
 </div>
 
 <div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+    <div class="top-row px-5 auth">
+        <div>
+            @*<AuthorizeView>
+                    <NotAuthorized>
+                        <NavLink class="nav-link main" href="">
+                            VocaDrill
+                        </NavLink>
+                    </NotAuthorized>
+                </AuthorizeView>*@
+        </div>
+        <div>
+            <LoginMenu />
+        </div>
+
+        @* <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a> *@
     </div>
 
     <div class="content px-4">

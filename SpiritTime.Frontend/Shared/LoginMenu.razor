@@ -1,0 +1,16 @@
+﻿@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<AuthorizeView>
+    <Authorized>
+        <a>Hallo, @context.User.Identity.Name!</a>
+        <a href="LogOut">Log out</a>
+    </Authorized>
+    <Authorizing>
+        <a href="Register">Register</a>
+        <a href="Login">Login</a>
+    </Authorizing>
+    <NotAuthorized>
+        <a href="Register">Register</a>
+        <a href="Login">Login</a>
+    </NotAuthorized>
+</AuthorizeView>

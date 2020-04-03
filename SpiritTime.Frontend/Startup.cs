@@ -1,15 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpiritTime.Frontend.Data;
+using SpiritTime.Frontend.Services;
+using SpiritTime.Frontend.Services.AuthService;
+using SpiritTime.Frontend.Services.OverlayModalService;
+using SpiritTime.Frontend.Services.TableService;
 
 namespace SpiritTime.Frontend
 {
@@ -28,7 +35,35 @@ namespace SpiritTime.Frontend
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+
+            var appSettingSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingSection);
+
+            services.AddTransient<ValidateHeaderHandler>();
+
+            services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+            services.AddBlazoredLocalStorage();
+            services.AddHttpClient<IAuthServices, AuthServices>();
+
+            services.AddScoped<IOverlayModalService, OverlayModalService>();
+            services.AddScoped(typeof(ITableService<>), typeof(TableService<>));
+
+            
+
+            services.AddSingleton<HttpClient>();
+
+            services.AddAuthorization();
+            //services.AddOptions();
+            //services.AddAuthorizationCore();
+            //services.AddHttpClient();
+            //services.AddHttpContextAccessor();
+            //services.AddScoped<IAuthServices, AuthServices>();
+
+            //services.AddScoped<ApiAuthenticationStateProvider>();
+            //services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<ApiAuthenticationStateProvider>());
+            //services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +84,8 @@ namespace SpiritTime.Frontend
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();
