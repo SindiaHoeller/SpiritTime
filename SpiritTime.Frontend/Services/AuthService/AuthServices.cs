@@ -25,13 +25,13 @@ namespace SpiritTime.Frontend.Services.AuthService
         public AppSettings _appSettings { get; }
         public AuthenticationStateProvider _authenticationStateProvider { get; set; }
 
-        public AuthServices(HttpClient httpClient, IOptions<AppSettings> appSettings)
+        public AuthServices(HttpClient httpClient, IOptions<AppSettings> appSettings, AuthenticationStateProvider provider)
         {
             _appSettings = appSettings.Value;
 
             httpClient.BaseAddress = new Uri(_appSettings.BookStoresBaseAddress);
             httpClient.DefaultRequestHeaders.Add("User-Agent", "BlazorServer");
-
+            _authenticationStateProvider = provider;
             _httpClient = httpClient;
         }
 
@@ -44,12 +44,8 @@ namespace SpiritTime.Frontend.Services.AuthService
 
                 if (result.Successful)
                 {
-                    ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(user.Email);
+                    await ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(result.Token, user.Email);
                     ((ApiAuthenticationStateProvider)_authenticationStateProvider).StateChanged();
-                    //await _localStorage.SetItemAsync("authToken", result.Token);
-                    //((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(user.Email);
-                    //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", result.Token);
-                    //((ApiAuthenticationStateProvider)_authenticationStateProvider).StateChanged();
                 }
 
                 return result;
@@ -58,87 +54,60 @@ namespace SpiritTime.Frontend.Services.AuthService
             {
                 return new AuthenticationResult { Successful = false, Error = ex.Message };
             }
-
-            //user.Password = Crypt.Encrypt(user.Password);
-            //string serializedUser = JsonConvert.SerializeObject(user);
-
-            //var requestMessage = new HttpRequestMessage(HttpMethod.Post, "Users/Login");
-            //requestMessage.Content = new StringContent(serializedUser);
-
-            //requestMessage.Content.Headers.ContentType
-            //    = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
-            //var response = await _httpClient.SendAsync(requestMessage);
-
-            //var responseStatusCode = response.StatusCode;
-            //var responseBody = await response.Content.ReadAsStringAsync();
-
-            //var returnedUser = JsonConvert.DeserializeObject<AuthenticationResult>(responseBody);
-
-            //return await Task.FromResult(returnedUser);
-
         }
 
         public async Task<RegisterResult> RegisterUserAsync(RegisterResource user)
         {
-            user.Password = Crypt.Encrypt(user.Password);
-            string serializedUser = JsonConvert.SerializeObject(user);
-
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, "Users/RegisterUser");
-            requestMessage.Content = new StringContent(serializedUser);
-
-            requestMessage.Content.Headers.ContentType
-                = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
-            var response = await _httpClient.SendAsync(requestMessage);
-
-            var responseStatusCode = response.StatusCode;
-            var responseBody = await response.Content.ReadAsStringAsync();
-
-            var returnedUser = JsonConvert.DeserializeObject<RegisterResult>(responseBody);
-
-            return await Task.FromResult(returnedUser);
+            try
+            {
+                var result = await _httpClient.PostJsonAsync<RegisterResult>(Paths.RegisterPath, user);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new RegisterResult { Successful = false, Error = ex.Message };
+            }
         }
 
-        public async Task<AuthenticationResult> RefreshTokenAsync(AuthenticationResource refreshRequest)
-        {
-            string serializedUser = JsonConvert.SerializeObject(refreshRequest);
+        //public async Task<AuthenticationResult> RefreshTokenAsync(AuthenticationResource refreshRequest)
+        //{
+        //    string serializedUser = JsonConvert.SerializeObject(refreshRequest);
 
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, "Users/RefreshToken");
-            requestMessage.Content = new StringContent(serializedUser);
+        //    var requestMessage = new HttpRequestMessage(HttpMethod.Post, "Users/RefreshToken");
+        //    requestMessage.Content = new StringContent(serializedUser);
 
-            requestMessage.Content.Headers.ContentType
-                = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+        //    requestMessage.Content.Headers.ContentType
+        //        = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await _httpClient.SendAsync(requestMessage);
+        //    var response = await _httpClient.SendAsync(requestMessage);
 
-            var responseStatusCode = response.StatusCode;
-            var responseBody = await response.Content.ReadAsStringAsync();
+        //    var responseStatusCode = response.StatusCode;
+        //    var responseBody = await response.Content.ReadAsStringAsync();
 
-            var returnedUser = JsonConvert.DeserializeObject<AuthenticationResult>(responseBody);
+        //    var returnedUser = JsonConvert.DeserializeObject<AuthenticationResult>(responseBody);
 
-            return await Task.FromResult(returnedUser);
-        }
+        //    return await Task.FromResult(returnedUser);
+        //}
 
-        public async Task<AuthenticationResult> GetUserByAccessTokenAsync(string accessToken)
-        {
-            string serializedRefreshRequest = JsonConvert.SerializeObject(accessToken);
+        //public async Task<AuthenticationResult> GetUserByAccessTokenAsync(string accessToken)
+        //{
+        //    string serializedRefreshRequest = JsonConvert.SerializeObject(accessToken);
 
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, "Users/GetUserByAccessToken");
-            requestMessage.Content = new StringContent(serializedRefreshRequest);
+        //    var requestMessage = new HttpRequestMessage(HttpMethod.Post, "Users/GetUserByAccessToken");
+        //    requestMessage.Content = new StringContent(serializedRefreshRequest);
 
-            requestMessage.Content.Headers.ContentType
-                = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+        //    requestMessage.Content.Headers.ContentType
+        //        = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await _httpClient.SendAsync(requestMessage);
+        //    var response = await _httpClient.SendAsync(requestMessage);
 
-            var responseStatusCode = response.StatusCode;
-            var responseBody = await response.Content.ReadAsStringAsync();
+        //    var responseStatusCode = response.StatusCode;
+        //    var responseBody = await response.Content.ReadAsStringAsync();
 
-            var returnedUser = JsonConvert.DeserializeObject<AuthenticationResult>(responseBody);
+        //    var returnedUser = JsonConvert.DeserializeObject<AuthenticationResult>(responseBody);
 
-            return await Task.FromResult(returnedUser);
-        }
+        //    return await Task.FromResult(returnedUser);
+        //}
 
 
 

@@ -32,16 +32,16 @@ namespace SpiritTime.Frontend.Services
     public class ApiAuthenticationStateProvider : AuthenticationStateProvider
     {
         public ILocalStorageService _localStorage { get; }
-        public IAuthServices _userService { get; set; }
+        //public IAuthServices _userService { get; set; }
         private readonly HttpClient _httpClient;
 
         public ApiAuthenticationStateProvider(ILocalStorageService localStorageService,
-            IAuthServices userService,
+            //IAuthServices userService,
             HttpClient httpClient)
         {
             //throw new Exception("CustomAuthenticationStateProviderException");
             _localStorage = localStorageService;
-            _userService = userService;
+            //_userService = userService;
             _httpClient = httpClient;
         }
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
