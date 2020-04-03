@@ -11,8 +11,8 @@ namespace SpiritTime.Frontend.Services.AuthService
     {
         Task<AuthenticationResult> LoginAsync(AuthenticationResource user);
         Task<RegisterResult> RegisterUserAsync(RegisterResource user);
-        Task<AuthenticationResult> RefreshTokenAsync(AuthenticationResource refreshRequest);
-        Task<AuthenticationResult> GetUserByAccessTokenAsync(string accessToken);
+        //Task<AuthenticationResult> RefreshTokenAsync(AuthenticationResource refreshRequest);
+        //Task<AuthenticationResult> GetUserByAccessTokenAsync(string accessToken);
         Task Logout();
     }
 }

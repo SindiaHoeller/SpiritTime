@@ -13,7 +13,6 @@ namespace SpiritTime.Frontend.Pages.Account
     {
         [Inject] private IAuthServices AuthService { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
-        [Inject] public IJSRuntime JsRuntime { get; set; }
         private AuthenticationResource loginModel = new AuthenticationResource();
         private bool ShowErrors;
         private string Error = "";
@@ -23,6 +22,7 @@ namespace SpiritTime.Frontend.Pages.Account
             ShowErrors = false;
 
             var result = await AuthService.LoginAsync(loginModel);
+            
 
             if (result.Successful)
             {
