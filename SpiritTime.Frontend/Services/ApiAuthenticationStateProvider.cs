@@ -26,6 +26,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Text.Json;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using SpiritTime.Frontend.Services.StaticDetails;
 
 namespace SpiritTime.Frontend.Services
 {
@@ -46,33 +47,33 @@ namespace SpiritTime.Frontend.Services
         }
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var accessToken = await _localStorage.GetItemAsync<string>("accessToken");
+            var accessToken = await _localStorage.GetItemAsync<string>(SD.AccessToken);
 
             if (string.IsNullOrWhiteSpace(accessToken))
             {
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", accessToken);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SD.Bearer, accessToken);
 
             return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(accessToken), "jwt")));
         }
 
         public async Task MarkUserAsAuthenticated(string token, string email)
         {
-            await _localStorage.SetItemAsync("accessToken", token);
-            await _localStorage.SetItemAsync("refreshToken", token);
+            await _localStorage.SetItemAsync(SD.AccessToken, token);
+            await _localStorage.SetItemAsync(SD.RefreshToken, token);
 
             var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, email) }, "apiauth"));
             var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SD.Bearer, token);
             NotifyAuthenticationStateChanged(authState);
         }
 
         public async Task MarkUserAsLoggedOut()
         {
-            await _localStorage.RemoveItemAsync("refreshToken");
-            await _localStorage.RemoveItemAsync("accessToken");
+            await _localStorage.RemoveItemAsync(SD.RefreshToken);
+            await _localStorage.RemoveItemAsync(SD.AccessToken);
 
             var anonymousUser = new ClaimsPrincipal(new ClaimsIdentity());
             var authState = Task.FromResult(new AuthenticationState(anonymousUser));

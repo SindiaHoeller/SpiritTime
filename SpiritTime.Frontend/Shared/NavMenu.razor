@@ -1,8 +1,15 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">SpiritTime.Frontend</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+﻿<div class="top-row-custom pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href=""><h3>SpiritTime</h3></a>
+    <div class="full-center">
+        <div class="custom-top-row pr-3">
+            <LoginMenu />
+        </div>
+        
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">

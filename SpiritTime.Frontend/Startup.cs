@@ -48,22 +48,9 @@ namespace SpiritTime.Frontend
             services.AddScoped<IOverlayModalService, OverlayModalService>();
             services.AddScoped(typeof(ITableService<>), typeof(TableService<>));
 
-            
-
             services.AddSingleton<HttpClient>();
 
             services.AddAuthorization();
-            //services.AddOptions();
-            //services.AddAuthorizationCore();
-            //services.AddHttpClient();
-            //services.AddHttpContextAccessor();
-            //services.AddScoped<IAuthServices, AuthServices>();
-
-            //services.AddScoped<ApiAuthenticationStateProvider>();
-            //services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<ApiAuthenticationStateProvider>());
-            //services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
