@@ -15,5 +15,6 @@ namespace SpiritTime.Persistence.Repositories
         {
             _dbContext = dbContext;
         }
+        
     }
 }

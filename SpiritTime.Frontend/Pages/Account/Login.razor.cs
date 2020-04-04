@@ -4,14 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using SpiritTime.Frontend.Services.AuthService;
+using SpiritTime.Frontend.Services.AuthServices;
 using SpiritTime.Shared.Models.Account.Authentication;
 
 namespace SpiritTime.Frontend.Pages.Account
 {
     public partial class Login
     {
-        [Inject] private IAuthServices AuthService { get; set; }
+        [Inject] private IAuthService AuthService { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
         private AuthenticationResource loginModel = new AuthenticationResource();
         private bool ShowErrors;

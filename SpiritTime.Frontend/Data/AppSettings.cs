@@ -7,7 +7,7 @@ namespace SpiritTime.Frontend.Data
 {
     public class AppSettings
     {
-        public string BookStoresBaseAddress { get; set; }
+        public string BackendBaseAddress { get; set; }
     }
 }
 

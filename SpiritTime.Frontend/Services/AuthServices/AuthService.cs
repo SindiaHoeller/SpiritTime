@@ -1,36 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using SpiritTime.Frontend.Data;
 using SpiritTime.Frontend.Services.StaticDetails;
 using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.Account.Registration;
-using SpiritTime.Shared.Helper;
 
-namespace SpiritTime.Frontend.Services.AuthService
+namespace SpiritTime.Frontend.Services.AuthServices
 {
-    public class AuthServices : IAuthServices
+    public class AuthService : IAuthService
     {
         public HttpClient _httpClient { get; }
-        public AppSettings _appSettings { get; }
+        //public AppSettings _appSettings { get; }
+        private Paths Path;
         public AuthenticationStateProvider _authenticationStateProvider { get; set; }
 
-        public AuthServices(HttpClient httpClient, IOptions<AppSettings> appSettings, AuthenticationStateProvider provider)
+        public AuthService(HttpClient httpClient, IOptions<AppSettings> appSettings, AuthenticationStateProvider provider)
         {
-            _appSettings = appSettings.Value;
-
-            httpClient.BaseAddress = new Uri(_appSettings.BookStoresBaseAddress);
+            var appSetting = appSettings.Value;
+            Path = new Paths(appSetting.BackendBaseAddress);
+            httpClient.BaseAddress = new Uri(appSetting.BackendBaseAddress);
             httpClient.DefaultRequestHeaders.Add("User-Agent", "BlazorServer");
+            
             _authenticationStateProvider = provider;
             _httpClient = httpClient;
         }
@@ -40,7 +35,7 @@ namespace SpiritTime.Frontend.Services.AuthService
 
             try
             {
-                var result = await _httpClient.PostJsonAsync<AuthenticationResult>(Paths.LoginPath, user);
+                var result = await _httpClient.PostJsonAsync<AuthenticationResult>(Path.Login, user);
 
                 if (result.Successful)
                 {
@@ -60,7 +55,7 @@ namespace SpiritTime.Frontend.Services.AuthService
         {
             try
             {
-                var result = await _httpClient.PostJsonAsync<RegisterResult>(Paths.RegisterPath, user);
+                var result = await _httpClient.PostJsonAsync<RegisterResult>(Path.Register, user);
                 return result;
             }
             catch (Exception ex)

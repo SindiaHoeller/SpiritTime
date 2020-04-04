@@ -5,11 +5,20 @@ using System.Threading.Tasks;
 
 namespace SpiritTime.Frontend.Services.StaticDetails
 {
-    public static class Paths
+    public class Paths
     {
-        private const string ServerPath = "https://localhost:5003";
-        public const string RegisterPath = ServerPath + "/Account/Register";
-        public const string LoginPath = ServerPath + "/Account/Login";
+        public string Register => _register;
+        private readonly string _register;
+        public string Login => _login;
+        private readonly string _login;
 
+        private readonly string _workspaceGetall;
+        public string WorkspaceGetAll => _workspaceGetall;
+        public Paths(string basepath)
+        {
+            _register = basepath + "/Account/Register";
+            _login = basepath + "/Account/Login";
+            _workspaceGetall = basepath + "/Workspace/Getall";
+        }
     }
 }
