@@ -4,14 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using SpiritTime.Frontend.Services.AuthService;
+using SpiritTime.Frontend.Services.AuthServices;
 using SpiritTime.Shared.Models.Account.Registration;
 
 namespace SpiritTime.Frontend.Pages.Account
 {
     public partial class Register
     {
-        [Inject] private IAuthServices AuthService { get; set; }
+        [Inject] private IAuthService AuthService { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] public IJSRuntime JsRuntime { get; set; }
         private RegisterResource RegisterResource = new RegisterResource();

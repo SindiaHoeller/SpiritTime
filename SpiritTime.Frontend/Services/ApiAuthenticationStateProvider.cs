@@ -18,7 +18,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Net.Http;
-using SpiritTime.Frontend.Services.AuthService;
 using SpiritTime.Shared.Models.Account.Authentication;
 using System.Net.Http.Headers;
 using Blazored.LocalStorage;
@@ -27,6 +26,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using SpiritTime.Frontend.Services.StaticDetails;
+using SpiritTime.Shared.Helper;
 
 namespace SpiritTime.Frontend.Services
 {

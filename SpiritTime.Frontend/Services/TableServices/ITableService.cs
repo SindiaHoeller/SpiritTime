@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace SpiritTime.Frontend.Services.TableService
+namespace SpiritTime.Frontend.Services.TableServices
 {
     public interface ITableService<T> where T : class
     {

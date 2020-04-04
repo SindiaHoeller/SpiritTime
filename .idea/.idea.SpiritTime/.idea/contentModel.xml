@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="SpiritTime.Backend" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="Account" t="Include">
+            <e p="AccountController.cs" t="Include" />
+          </e>
+          <e p="Workspace" t="Include">
+            <e p="WorkspaceController.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Infrastructure" t="Include">
+          <e p="Jwt" t="Include">
+            <e p="JwtAuthentication.cs" t="Include" />
+            <e p="JwtSettings.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="SpiritTime.Backend.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="Settings.cs" t="Include" />
+        </e>
+        <e p="SpiritTime.Backend.csproj" t="IncludeRecursive" />
+        <e p="Startup.cs" t="Include" />
+      </e>
+      <e p="SpiritTime.Core" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Contracts" t="Include">
+          <e p="IEntityObject.cs" t="Include" />
+          <e p="IRepository.cs" t="Include" />
+          <e p="ITagRepository.cs" t="Include" />
+          <e p="ITagRuleRepository.cs" t="Include" />
+          <e p="ITaskRepository.cs" t="Include" />
+          <e p="IWorkspaceRepository.cs" t="Include" />
+        </e>
+        <e p="Entities" t="Include">
+          <e p="ApplicationUser.cs" t="Include" />
+          <e p="EntityObject.cs" t="Include" />
+          <e p="Tag.cs" t="Include" />
+          <e p="Tasks.cs" t="Include" />
+          <e p="TaskTag.cs" t="Include" />
+          <e p="TaskTagRule.cs" t="Include" />
+          <e p="Workspace.cs" t="Include" />
+        </e>
+        <e p="IUnitOfWork.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="SpiritTime.Core.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="SpiritTime.Core.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="SpiritTime.Frontend" t="IncludeRecursive">
+        <e p="_Imports.razor" t="Include" />
+        <e p="App.razor" t="Include" />
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Data" t="Include">
+          <e p="AppSettings.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="SpiritTime.Frontend.AssemblyInfo.cs" t="Include" />
+              <e p="SpiritTime.Frontend.RazorAssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Pages" t="Include">
+          <e p="_Host.cshtml" t="Include" />
+          <e p="Account" t="Include">
+            <e p="Login.razor" t="Include" />
+            <e p="Login.razor.cs" t="Include" />
+            <e p="Logout.razor" t="Include" />
+            <e p="Register.razor" t="Include" />
+            <e p="Register.razor.cs" t="Include" />
+          </e>
+          <e p="Counter.razor" t="Include" />
+          <e p="Error.razor" t="Include" />
+          <e p="Index.razor" t="Include" />
+          <e p="Overlays" t="Include">
+            <e p="BaseOverlay.razor" t="Include" />
+            <e p="BaseOverlay.razor.cs" t="Include" />
+            <e p="ConfirmOverlay.razor" t="Include" />
+            <e p="ConfirmOverlay.razor.cs" t="Include" />
+            <e p="DeleteOverlay.razor" t="Include" />
+            <e p="DeleteOverlay.razor.cs" t="Include" />
+            <e p="ResultModal.razor" t="Include" />
+            <e p="ResultModal.razor.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="ApiAuthenticationStateProvider.cs" t="Include" />
+          <e p="AuthServices" t="Include">
+            <e p="AuthService.cs" t="Include" />
+            <e p="IAuthService.cs" t="Include" />
+          </e>
+          <e p="OverlayModalService" t="Include">
+            <e p="IOverlayModalService.cs" t="Include" />
+            <e p="OverlayModalOptions.cs" t="Include" />
+            <e p="OverlayModalParameters.cs" t="Include" />
+            <e p="OverlayModalResult.cs" t="Include" />
+            <e p="OverlayModalService.cs" t="Include" />
+          </e>
+          <e p="StaticDetails" t="Include">
+            <e p="Page.cs" t="Include" />
+            <e p="Paths.cs" t="Include" />
+          </e>
+          <e p="TableServices" t="Include">
+            <e p="ITableService.cs" t="Include" />
+            <e p="TableService.cs" t="Include" />
+          </e>
+          <e p="TagRuleServices" t="Include">
+            <e p="ITagRuleService.cs" t="Include" />
+            <e p="TagRuleService.cs" t="Include" />
+          </e>
+          <e p="TagServices" t="Include">
+            <e p="ITagService.cs" t="Include" />
+            <e p="TagService.cs" t="Include" />
+          </e>
+          <e p="TaskServices" t="Include">
+            <e p="ITaskService.cs" t="Include" />
+            <e p="TaskService.cs" t="Include" />
+          </e>
+          <e p="ValidateHeaderHandler.cs" t="Include" />
+          <e p="WorkspaceServices" t="Include">
+            <e p="IWorkspaceService.cs" t="Include" />
+            <e p="WorkspaceService.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Shared" t="Include">
+          <e p="LoginMenu.razor" t="Include" />
+          <e p="MainLayout.razor" t="Include" />
+          <e p="NavMenu.razor" t="Include" />
+          <e p="SurveyPrompt.razor" t="Include" />
+        </e>
+        <e p="SpiritTime.Frontend.csproj" t="IncludeRecursive" />
+        <e p="Startup.cs" t="Include" />
+        <e p="wwwroot" t="Include">
+          <e p="css" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p="bootstrap.min.css" t="Include" />
+              <e p="bootstrap.min.css.map" t="Include" />
+            </e>
+            <e p="index.css" t="Include" />
+            <e p="index.css.map" t="Include" />
+            <e p="index.min.css" t="Include" />
+            <e p="index.min.css.map" t="Include" />
+            <e p="open-iconic" t="Include">
+              <e p="font" t="Include">
+                <e p="css" t="Include">
+                  <e p="open-iconic-bootstrap.min.css" t="Include" />
+                </e>
+                <e p="fonts" t="Include">
+                  <e p="open-iconic.eot" t="Include" />
+                  <e p="open-iconic.otf" t="Include" />
+                  <e p="open-iconic.svg" t="Include" />
+                  <e p="open-iconic.ttf" t="Include" />
+                  <e p="open-iconic.woff" t="Include" />
+                </e>
+              </e>
+              <e p="FONT-LICENSE" t="Include" />
+              <e p="ICON-LICENSE" t="Include" />
+              <e p="README.md" t="Include" />
+            </e>
+            <e p="site.css" t="Include" />
+          </e>
+          <e p="favicon.ico" t="Include" />
+          <e p="sass" t="Include">
+            <e p="_blazored-modal.sass" t="Include" />
+            <e p="_general.sass" t="Include" />
+            <e p="index.sass" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="SpiritTime.Persistence" t="IncludeRecursive">
+        <e p="ApplicationDbContext.cs" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Migrations" t="Include">
+          <e p="20200404193523_Init.cs" t="Include" />
+          <e p="20200404193523_Init.Designer.cs" t="Include" />
+          <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="SpiritTime.Persistence.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="Repository.cs" t="Include" />
+          <e p="TagRepository.cs" t="Include" />
+          <e p="TagRuleRepository.cs" t="Include" />
+          <e p="TaskRepository.cs" t="Include" />
+          <e p="WorkspaceRepository.cs" t="Include" />
+        </e>
+        <e p="SpiritTime.Persistence.csproj" t="IncludeRecursive" />
+        <e p="UnitOfWork.cs" t="Include" />
+      </e>
+      <e p="SpiritTime.Shared" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Helper" t="Include">
+          <e p="Crypt.cs" t="Include" />
+          <e p="SD.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="Account" t="Include">
+            <e p="Authentication" t="Include">
+              <e p="AuthenticationResource.cs" t="Include" />
+              <e p="AuthenticationResult.cs" t="Include" />
+              <e p="User.cs" t="Include" />
+            </e>
+            <e p="ChangeUserEmail" t="Include">
+              <e p="ChangeUserEmailResource.cs" t="Include" />
+              <e p="ChangeUserEmailResult.cs" t="Include" />
+            </e>
+            <e p="ChangeUserPassword" t="Include">
+              <e p="ChangeUserPasswordResource.cs" t="Include" />
+              <e p="ChangeUserPasswordResult.cs" t="Include" />
+            </e>
+            <e p="DeleteUser" t="Include">
+              <e p="DeleteUserResource.cs" t="Include" />
+              <e p="DeleteUserResult.cs" t="Include" />
+            </e>
+            <e p="Registration" t="Include">
+              <e p="RegisterResource.cs" t="Include" />
+              <e p="RegisterResult.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Workspace" t="Include">
+            <e p="WorkspaceResource.cs" t="Include" />
+            <e p="WorkspaceResult.cs" t="Include" />
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="SpiritTime.Shared.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="SpiritTime.Shared.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="SpiritTime.sln" t="IncludeFlat" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_SpiritTime.1628037071.00" t="ExcludeRecursive" />
+  </component>
+</project>

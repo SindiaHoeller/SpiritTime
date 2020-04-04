@@ -10,6 +10,10 @@ namespace SpiritTime.Core
     public interface IUnitOfWork : IDisposable
     {
         ITaskRepository TaskRepository { get; }
+        ITagRepository TagRepository { get; }
+        ITagRuleRepository TagRuleRepository { get; }
+        IWorkspaceRepository WorkspaceRepository { get; }
+        
         Task SaveAsync();
     }
 }

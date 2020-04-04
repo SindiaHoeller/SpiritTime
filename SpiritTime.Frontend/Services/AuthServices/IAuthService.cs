@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.Account.Registration;
 
-namespace SpiritTime.Frontend.Services.AuthService
+namespace SpiritTime.Frontend.Services.AuthServices
 {
-    public interface IAuthServices
+    public interface IAuthService
     {
         Task<AuthenticationResult> LoginAsync(AuthenticationResource user);
         Task<RegisterResult> RegisterUserAsync(RegisterResource user);
