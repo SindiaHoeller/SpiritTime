@@ -43,17 +43,17 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
             }            
         }
 
-        public async Task<ResultModel> Add(WorkspaceResourceNew workspace)
+        public async Task<WorkspaceResult> Add(WorkspaceResourceNew workspace)
         {
             await SetAuthenticationHeader();
 
             try
             {
-                return await _httpClient.PostJsonAsync<ResultModel>(Path.WorkspaceAdd, workspace);
+                return await _httpClient.PostJsonAsync<WorkspaceResult>(Path.WorkspaceAdd, workspace);
             }
             catch (Exception ex)
             {
-                return new ResultModel { Error = ex.Message, Successful = false };
+                return new WorkspaceResult { Error = ex.Message, Successful = false };
             }
         }
         public async Task<ResultModel> Edit(WorkspaceResource workspace)
@@ -69,13 +69,13 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
                 return new ResultModel { Error = ex.Message, Successful = false };
             }
         }
-        public async Task<ResultModel> Delete(WorkspaceResource workspace)
+        public async Task<ResultModel> Delete(int id)
         {
             await SetAuthenticationHeader();
 
             try
             {
-                return await _httpClient.PostJsonAsync<ResultModel>(Path.WorkspaceDelete, workspace);
+                return await _httpClient.PostJsonAsync<ResultModel>(Path.WorkspaceDelete, id);
             }
             catch (Exception ex)
             {

@@ -1,1 +1,62 @@
-﻿
+﻿@page "/workspace/overview"
+
+<div class="center-and-highlight">
+    <div class="col-12 custom-background mt-5">
+        <div class="text-center">
+            <div class="text-right">
+                <button class="custom-small-button" @onclick="Add">Add Workspace</button>
+            </div>
+            <h1>Klassen</h1>
+
+        </div>
+        @if (TableService.Objects == null)
+        {
+            if (ShowError && ErrorMsg != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ErrorMsg
+                </div>
+            }
+            else
+            {
+                <p><em>Loading...</em></p>
+            }
+
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="oi @(TableService.GetSortStyle(nameof(WorkspaceDto.Name)))"
+                                  @onclick="@(() => TableService.SortTable(nameof(WorkspaceDto.Name)))"></span>
+                            <span class="pl-3">Name Klasse</span>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in TableService.Objects)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>
+                                @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
+                                    <span class="oi oi-info"></span>
+                                </a>*@
+                                <button class="custom-small-button" @onclick="@(async () => await Update(item))">
+                                    <span class="oi oi-pencil"></span>
+                                </button>
+                                <button class="custom-small-button trash" @onclick="@(async () => await Delete(item.Id))">
+                                    <span class="oi oi-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

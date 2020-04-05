@@ -7,6 +7,6 @@ namespace SpiritTime.Shared.Models.WorkspaceModels
     {
         public string Error { get; set; }
         public bool Successful { get; set; }
-        public List<Workspace> Workspaces { get; set; }
+        public List<WorkspaceDto> Workspaces { get; set; }
     }
 }

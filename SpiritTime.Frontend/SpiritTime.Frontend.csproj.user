@@ -6,4 +6,10 @@
   <PropertyGroup>
     <ActiveDebugProfile>SpiritTime.Frontend</ActiveDebugProfile>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <StartArguments>-watch</StartArguments>
+    <LaunchBrowser></LaunchBrowser>
+    <ApplicationURL>https://localhost:5011;http://localhost:5010</ApplicationURL>
+  </PropertyGroup>
 </Project>
