@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,6 +17,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
 {
     [ApiController]
     [Route("[controller]/[action]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class WorkspacesController : ControllerHelper 
     {
         private readonly JwtAuthentication _jwtAuthentication;
@@ -37,7 +40,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// <returns></returns>
         /// <response code="200">Returns a JsonWebToken</response>
         /// <response code="400">Invalid credentials</response>
-        //[Authorize]
+        
         [HttpGet]
         public async Task<IActionResult> GetallByUserId()
         {

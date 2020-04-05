@@ -18,7 +18,7 @@ namespace SpiritTime.Frontend.Services.StaticDetails
         {
             _register = basepath + "/Account/Register";
             _login = basepath + "/Account/Login";
-            _workspaceGetall = basepath + "/Workspace/Getall";
+            _workspaceGetall = basepath + "/Workspaces/GetallByUserId";
         }
     }
 }

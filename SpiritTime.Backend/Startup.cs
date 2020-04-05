@@ -51,9 +51,11 @@ namespace SpiritTime.Backend
             //services
             //    .AddMvc()
             //    .AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<Startup>());
+
             services
                 .AddAuthentication(GetAuthenticationOptions)
                 .AddJwtBearer(GetJwtBearerOptions);
+            
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     // Default Lockout settings.
