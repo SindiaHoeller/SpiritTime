@@ -9,6 +9,8 @@
     <PackageReference Include="EmbeddedBlazorContent" Version="1.10.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview3.20168.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,5 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\WorkspacePages\" />
+    <Folder Include="Pages\Tags\" />
+    <Folder Include="Profiles\" />
   </ItemGroup>
 </Project>

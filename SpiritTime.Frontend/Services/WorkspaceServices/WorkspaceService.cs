@@ -20,7 +20,9 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
     {
         private Paths Path;        
 
-        public WorkspaceService(HttpClient httpClient, IOptions<AppSettings> appSettings, ILocalStorageService localStorageService)
+        public WorkspaceService(HttpClient httpClient,
+            IOptions<AppSettings> appSettings,
+            ILocalStorageService localStorageService)
             : base(httpClient, appSettings, localStorageService)
         {
             var appSetting = appSettings.Value;
@@ -43,12 +45,13 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
             }            
         }
 
-        public async Task<WorkspaceResult> Add(WorkspaceResourceNew workspace)
+        public async Task<WorkspaceResult> Add(string name)
         {
             await SetAuthenticationHeader();
 
             try
             {
+                WorkspaceResourceNew workspace = new WorkspaceResourceNew { Name = name };
                 return await _httpClient.PostJsonAsync<WorkspaceResult>(Path.WorkspaceAdd, workspace);
             }
             catch (Exception ex)
