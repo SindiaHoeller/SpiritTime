@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Core.Entities;
+using SpiritTime.Frontend.Services.OverlayModalService;
 using SpiritTime.Frontend.Services.TableServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
+using SpiritTime.Shared.Helper;
+using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Frontend.Pages.WorkspacePages
@@ -12,6 +17,8 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
     {
         [Inject] private ITableService<WorkspaceDto> TableService { get; set; }
         [Inject] private IWorkspaceService Service { get; set; }
+        [Inject] private IOverlayModalService Modal { get; set; }
+        [Inject] private IMapper _mapper { get; set; }
         public bool ShowError { get; set; } = false;
         public string ErrorMsg { get; set; }
 
@@ -29,17 +36,73 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
             }
         }
 
-        private async Task Delete(int id)
+        private void Remove(int id)
         {
+            var parameters = new OverlayModalParameters();
+            parameters.Add(SD.Id, id);
 
+            Modal.OnClose += RemoveResult;
+            Modal.Show<Delete>(Text.WorkspaceRemove, parameters);
         }
-        private async Task Add()
+        private void RemoveResult(OverlayModalResult modalResult)
         {
+            if (!modalResult.Cancelled && modalResult.Data != null)
+            {
+                Int32.TryParse(modalResult.Data.ToString(), out int itemId);
+                var item = TableService.Objects.FirstOrDefault(x => x.Id == itemId);
+                if (itemId != 0)
+                {
+                    TableService.Objects.Remove(item);
+                    StateHasChanged();
+                }
+            }
 
+            Modal.OnClose -= RemoveResult;
         }
+
+        private void Add()
+        {
+            Modal.OnClose += AddResult;
+            Modal.Show<Add>(Text.AddWorkspace);
+        }
+        private void AddResult(OverlayModalResult modalResult)
+        {
+            if (!modalResult.Cancelled && modalResult.Data != null)
+            {
+                var item = (WorkspaceDto)modalResult.Data;
+                if (item != null)
+                {
+                    TableService.Objects.Add(item);
+                    StateHasChanged();
+                }
+            }
+
+            Modal.OnClose -= AddResult;
+        }
+
         private async Task Update(WorkspaceDto workspace)
         {
+            var parameters = new OverlayModalParameters();
+            parameters.Add(SD.Workspace, workspace);
 
+            Modal.OnClose += EditResult;
+            Modal.Show<Edit>(Text.WorkspaceEdit, parameters);
+        }
+        private void EditResult(OverlayModalResult modalResult)
+        {
+            if(!modalResult.Cancelled && modalResult.Data != null)
+            {
+                var item = (WorkspaceDto)modalResult.Data;
+                
+                if(item != null)
+                {
+                    var itemOld = TableService.Objects.FirstOrDefault(x => x.Id == item.Id);
+                    TableService.Objects.Remove(itemOld);
+                    TableService.Objects.Add(item);
+                    StateHasChanged();
+                }
+            }
+            Modal.OnClose -= EditResult;
         }
 
     }

@@ -4,24 +4,20 @@
     <div class="col-12 custom-background mt-5">
         <div class="text-center">
             <div class="text-right">
-                <button class="custom-small-button" @onclick="Add">Füge hinzu Workspace</button>
+                <button class="custom-small-button" @onclick="Add">@Text.AddWorkspace</button>
             </div>
-            <h1>Klassen</h1>
+            <h1>@Text.Workspace</h1>
 
         </div>
+        @if (ShowError && ErrorMsg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ErrorMsg
+            </div>
+        }
         @if (TableService.Objects == null)
         {
-            if (ShowError && ErrorMsg != null)
-            {
-                <div class="alert alert-danger" role="alert">
-                    @ErrorMsg
-                </div>
-            }
-            else
-            {
-                <p><em>Loading...</em></p>
-            }
-
+            <p><em>@Text.Loading</em></p>
         }
         else
         {
@@ -31,7 +27,7 @@
                         <th>
                             <span class="oi @(TableService.GetSortStyle(nameof(WorkspaceDto.Name)))"
                                   @onclick="@(() => TableService.SortTable(nameof(WorkspaceDto.Name)))"></span>
-                            <span class="pl-3">Name Klasse</span>
+                            <span class="pl-3">@nameof(WorkspaceDto.Name)</span>
                         </th>
                         <th></th>
                     </tr>
@@ -43,12 +39,12 @@
                             <td>@item.Name</td>
                             <td>
                                 @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
-                                    <span class="oi oi-info"></span>
-                                </a>*@
+                                        <span class="oi oi-info"></span>
+                                    </a>*@
                                 <button class="custom-small-button" @onclick="@(async () => await Update(item))">
                                     <span class="oi oi-pencil"></span>
                                 </button>
-                                <button class="custom-small-button trash" @onclick="@(async () => await Delete(item.Id))">
+                                <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
                                     <span class="oi oi-trash"></span>
                                 </button>
                             </td>

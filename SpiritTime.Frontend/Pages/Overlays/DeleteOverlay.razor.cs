@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Services.OverlayModalService;
+using SpiritTime.Shared.Messages;
 
 namespace SpiritTime.Frontend.Pages.Overlays
 {
@@ -20,7 +21,7 @@ namespace SpiritTime.Frontend.Pages.Overlays
         protected override void OnInitialized()
         {
             Id = Parameters.Get<int>("Id");
-            BaseOverlay.SetTitle("Bist du dir sicher?");
+            BaseOverlay.SetTitle(Text.ConfirmDeletion);
 
         }
         void SubmitForm()

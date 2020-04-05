@@ -7,5 +7,7 @@
         public const string Bearer = "bearer";
         public const string UserAgent = "User-Agent";
         public const string BlazorServer = "BlazorServer";
+        public const string Workspace = "Workspace";
+        public const string Id = "Id";
     }
 }

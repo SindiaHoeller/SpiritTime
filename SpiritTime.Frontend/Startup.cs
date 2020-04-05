@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using AutoMapper;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -36,6 +37,7 @@ namespace SpiritTime.Frontend
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddAutoMapper(typeof(Startup));
 
             var appSettingSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingSection);
