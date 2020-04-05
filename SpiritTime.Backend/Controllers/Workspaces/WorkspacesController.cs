@@ -36,11 +36,11 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// <summary>
         ///     Get's all Workspaces for current User
         /// </summary>
+        /// <remarks> Needs: nothing <br />  Returns: WorkspaceListResult </remarks>
         /// <param name="GetallByUserId"></param>
         /// <returns></returns>
-        /// <response code="200">Returns a JsonWebToken</response>
-        /// <response code="400">Invalid credentials</response>
-        
+        /// <response code="200">Returns a WorkspaceListResult</response>
+
         [HttpGet]
         public async Task<IActionResult> GetallByUserId()
         {
@@ -55,14 +55,14 @@ namespace SpiritTime.Backend.Controllers.Workspaces
                 return new JsonResult(new WorkspaceListResult{Error = ex.Message, Successful = false});
             }
         }
-        
+
         /// <summary>
-        ///     Get's all Workspaces for one User
+        ///     Creates a new Workspace
         /// </summary>
+        /// <remarks>Needs: WorkspaceResourceNew <br /> Returns: ResultModel</remarks>
         /// <param name="Create"></param>
         /// <returns></returns>
-        /// <response code="200">Returns a JsonWebToken</response>
-        /// <response code="400">Invalid credentials</response>
+        /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(WorkspaceResourceNew workspaceResource)
@@ -80,14 +80,14 @@ namespace SpiritTime.Backend.Controllers.Workspaces
                 return new JsonResult(new ResultModel{Error = ex.Message, Successful = false});
             }
         }
-        
+
         /// <summary>
-        ///     Get's all Workspaces for one User
+        ///     Updates a Workspace
         /// </summary>
+        /// <remarks>Needs: WorkspaceResource <br /> Returns: ResultModel</remarks>
         /// <param name="Update"></param>
         /// <returns></returns>
-        /// <response code="200">Returns a JsonWebToken</response>
-        /// <response code="400">Invalid credentials</response>
+        /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
         [HttpPost]
         public async Task<IActionResult> Update(WorkspaceResource workspaceResource)
@@ -111,15 +111,16 @@ namespace SpiritTime.Backend.Controllers.Workspaces
                 return new JsonResult(new ResultModel{Error = ex.Message, Successful = false});
             }
         }
-        
-        
+
+
         /// <summary>
-        ///     Get's all Workspaces for one User
+        ///     Deletes a Workspace
         /// </summary>
+        /// <remarks>Needs: Id \
+        /// Returns: ResultModel</remarks>
         /// <param name="Delete"></param>
         /// <returns></returns>
-        /// <response code="200">Returns a JsonWebToken</response>
-        /// <response code="400">Invalid credentials</response>
+        /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
