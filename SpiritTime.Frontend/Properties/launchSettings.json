@@ -15,20 +15,19 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "SpiritTime.Frontend": {
-      "commandName": "Project",
-      "launchBrowser": false,
-      "applicationUrl": "https://localhost:5011;http://localhost:5010",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "Electron.NET App": {
       "commandName": "Executable",
       "executablePath": "electronize",
       "commandLineArgs": "start",
-      "workingDirectory": "."
+      "workingDirectory": ".",
+      "environmentVariables": {}
+    },
+    "SpiritTime.Frontend": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5011;http://localhost:5010"
     }
-
   }
 }

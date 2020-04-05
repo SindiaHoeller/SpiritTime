@@ -12,6 +12,9 @@ using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models;
 using SpiritTime.Shared.Models.WorkspaceModels;
+using AutoMapper;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SpiritTime.Backend.Controllers.Workspaces
 {
@@ -23,14 +26,16 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         private readonly JwtAuthentication _jwtAuthentication;
         private readonly ILogger<WorkspacesController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
         public WorkspacesController(JwtAuthentication jwtAuthentication, 
             ILogger<WorkspacesController> logger,
             IHttpContextAccessor httpContextAccessor,
-            IUnitOfWork unitOfWork) : base(httpContextAccessor)
+            IUnitOfWork unitOfWork, IMapper mapper) : base(httpContextAccessor)
         {
             _logger = logger;
             _jwtAuthentication = jwtAuthentication;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -47,8 +52,10 @@ namespace SpiritTime.Backend.Controllers.Workspaces
             try
             {
                 var userId = GetUserId();
-                var workspaceList = await _unitOfWork.WorkspaceRepository.GetMultipleByAsync(x => x.UserId == userId);
-                return new JsonResult(new WorkspaceListResult{Workspaces = workspaceList, Successful = true});
+                List<Workspace> workspaceList = await _unitOfWork.WorkspaceRepository.GetMultipleByAsync(x => x.UserId == userId);
+                var list = _mapper.Map<List<WorkspaceDto>>(workspaceList);
+                //return new JsonResult(list);
+                return new JsonResult(new WorkspaceListResult{Workspaces = list, Successful = true});
             }
             catch (Exception ex)
             {
@@ -59,10 +66,10 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// <summary>
         ///     Creates a new Workspace
         /// </summary>
-        /// <remarks>Needs: WorkspaceResourceNew <br /> Returns: ResultModel</remarks>
+        /// <remarks>Needs: WorkspaceResourceNew <br /> Returns: WorkspaceResult</remarks>
         /// <param name="Create"></param>
         /// <returns></returns>
-        /// <response code="200">Returns a ResultModel</response>
+        /// <response code="200">Returns a WorkspaceResult</response>
         //[Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(WorkspaceResourceNew workspaceResource)
@@ -73,11 +80,15 @@ namespace SpiritTime.Backend.Controllers.Workspaces
                 var workspace = new Workspace {Name = workspaceResource.Name, UserId = userId};
                 await _unitOfWork.WorkspaceRepository.AddAsync(workspace);
                 await _unitOfWork.SaveAsync();
-                return new JsonResult(new ResultModel{Error = null, Successful = true});
+                var newWorkspace = await _unitOfWork.WorkspaceRepository.GetUniqueByAsync(x => x.Name == workspaceResource.Name && x.UserId == userId);
+                var workspaceResult = _mapper.Map<WorkspaceResult>(newWorkspace);
+                workspaceResult.Successful = true;
+
+                return new JsonResult(workspaceResult);
             }
             catch (Exception ex)
             {
-                return new JsonResult(new ResultModel{Error = ex.Message, Successful = false});
+                return new JsonResult(new WorkspaceResult{Error = ex.Message, Successful = false});
             }
         }
 

@@ -24,6 +24,7 @@ using SpiritTime.Core;
 using SpiritTime.Core.Entities;
 using SpiritTime.Persistence;
 using Swashbuckle.AspNetCore.Swagger;
+using AutoMapper;
 
 namespace SpiritTime.Backend
 {
@@ -49,6 +50,7 @@ namespace SpiritTime.Backend
             
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<JwtAuthentication, JwtAuthentication>();
+            services.AddAutoMapper(typeof(Startup));
 
             //services
             //    .AddMvc()

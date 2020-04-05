@@ -10,8 +10,10 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
 {
     public partial class Overview
     {
-        [Inject] private ITableService<Workspace> TableService { get; set; }
+        [Inject] private ITableService<WorkspaceDto> TableService { get; set; }
         [Inject] private IWorkspaceService Service { get; set; }
+        public bool ShowError { get; set; } = false;
+        public string ErrorMsg { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -20,7 +22,25 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
             {
                 TableService.Objects = result.Workspaces;
             }
+            else
+            {
+                ErrorMsg = result.Error;
+                ShowError = true;
+            }
+        }
+
+        private async Task Delete(int id)
+        {
 
         }
+        private async Task Add()
+        {
+
+        }
+        private async Task Update(WorkspaceDto workspace)
+        {
+
+        }
+
     }
 }
