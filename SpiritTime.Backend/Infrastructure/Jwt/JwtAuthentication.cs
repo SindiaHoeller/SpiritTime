@@ -40,6 +40,8 @@ namespace SpiritTime.Backend.Infrastructure.Jwt
             return GetJwtToken(claims);
         }
 
+
+
         private string GetJwtToken(IEnumerable<Claim> claims)
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_securityKey));
@@ -49,7 +51,7 @@ namespace SpiritTime.Backend.Infrastructure.Jwt
                 _validIssuer,
                 _validAudience,
                 claims,
-                expires: DateTime.UtcNow.AddHours(24),
+                expires: DateTime.UtcNow.AddDays(24),
                 signingCredentials: signinCredentials
             );
 

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 using SpiritTime.Frontend.Data;
 using SpiritTime.Frontend.Services.StaticDetails;
 using SpiritTime.Shared.Helper;
-using SpiritTime.Shared.Models.Workspace;
+using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Frontend.Services.WorkspaceServices
 {

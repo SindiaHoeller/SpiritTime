@@ -11,8 +11,9 @@
           <e p="Account" t="Include">
             <e p="AccountController.cs" t="Include" />
           </e>
-          <e p="Workspace" t="Include">
-            <e p="WorkspaceController.cs" t="Include" />
+          <e p="ControllerHelper.cs" t="Include" />
+          <e p="Workspaces" t="Include">
+            <e p="WorkspacesController.cs" t="Include" />
           </e>
         </e>
         <e p="Infrastructure" t="Include">
@@ -225,7 +226,11 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Helper" t="Include">
           <e p="Crypt.cs" t="Include" />
+          <e p="JwtHelper.cs" t="Include" />
           <e p="SD.cs" t="Include" />
+        </e>
+        <e p="Messages" t="Include">
+          <e p="ErrorMsg.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="Account" t="Include">
@@ -251,8 +256,11 @@
               <e p="RegisterResult.cs" t="Include" />
             </e>
           </e>
-          <e p="Workspace" t="Include">
+          <e p="ResultModel.cs" t="Include" />
+          <e p="WorkspaceModels" t="Include">
+            <e p="WorkspaceListResult.cs" t="Include" />
             <e p="WorkspaceResource.cs" t="Include" />
+            <e p="WorkspaceResourceNew.cs" t="Include" />
             <e p="WorkspaceResult.cs" t="Include" />
           </e>
         </e>
