@@ -1,4 +1,4 @@
-namespace SpiritTime.Shared.Models.Workspace
+namespace SpiritTime.Shared.Models.WorkspaceModels
 {
     public class WorkspaceResource
     {

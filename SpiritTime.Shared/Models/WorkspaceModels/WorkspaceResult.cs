@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SpiritTime.Shared.Models.Workspace
+namespace SpiritTime.Shared.Models.WorkspaceModels
 {
     public class WorkspaceResult
     {

@@ -56,7 +56,7 @@ namespace SpiritTime.Frontend.Services
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SD.Bearer, accessToken);
 
-            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(accessToken), "jwt")));
+            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(JwtHelper.ParseClaimsFromJwt(accessToken), "jwt")));
         }
 
         public async Task MarkUserAsAuthenticated(string token, string email)
@@ -80,24 +80,6 @@ namespace SpiritTime.Frontend.Services
             NotifyAuthenticationStateChanged(authState);
         }
 
-        //private ClaimsPrincipal GetClaimsIdentity(AuthenticationResult user)
-        //{
-        //    var claimsIdentity = new ClaimsIdentity();
-        //    var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.) }, "apiauth"));
-
-        //    //if (user.Email != null)
-        //    //{
-        //    //    claimsIdentity = new ClaimsIdentity(new[]
-        //    //    {
-        //    //        new Claim(ClaimTypes.Name, user.EmailAddress),
-        //    //        new Claim(ClaimTypes.Role, user.Role.RoleDesc),
-        //    //        new Claim("IsUserEmployedBefore1990", IsUserEmployedBefore1990(user))
-        //    //    }, "apiauth_type");
-        //    //}
-
-        //    return authenticatedUser;
-        //}
-
 
         public void MarkUserAsAuthenticated(string email)
         {
@@ -119,53 +101,10 @@ namespace SpiritTime.Frontend.Services
             };
 
         }
-
-        private IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
-        {
-            var claims = new List<Claim>();
-            var payload = jwt.Split('.')[1];
-            var jsonBytes = ParseBase64WithoutPadding(payload);
-            var keyValuePairs = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);
-
-            keyValuePairs.TryGetValue(ClaimTypes.Role, out object roles);
-
-            if (roles != null)
-            {
-                if (roles.ToString().Trim().StartsWith("["))
-                {
-                    var parsedRoles = JsonSerializer.Deserialize<string[]>(roles.ToString());
-
-                    foreach (var parsedRole in parsedRoles)
-                    {
-                        claims.Add(new Claim(ClaimTypes.Role, parsedRole));
-                    }
-                }
-                else
-                {
-                    claims.Add(new Claim(ClaimTypes.Role, roles.ToString()));
-                }
-
-                keyValuePairs.Remove(ClaimTypes.Role);
-            }
-
-            claims.AddRange(keyValuePairs.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString())));
-
-            return claims;
-        }
         public void StateChanged()
         {
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync()); // <- Does nothing
         }
 
-
-        private byte[] ParseBase64WithoutPadding(string base64)
-        {
-            switch (base64.Length % 4)
-            {
-                case 2: base64 += "=="; break;
-                case 3: base64 += "="; break;
-            }
-            return Convert.FromBase64String(base64);
-        }
     }
 }
