@@ -8,8 +8,18 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <StartAction>Project</StartAction>
-    <StartArguments>-watch</StartArguments>
-    <LaunchBrowser></LaunchBrowser>
+    <StartArguments></StartArguments>
+    <ExternalConsole>true</ExternalConsole>
+    <LaunchBrowser>false</LaunchBrowser>
     <ApplicationURL>https://localhost:5011;http://localhost:5010</ApplicationURL>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'DotnetWatch' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>dotnet</StartProgram>
+    <StartArguments>watch run debug -nowarn</StartArguments>
+    <StartWorkingDirectory>.</StartWorkingDirectory>
+    <ExternalConsole>true</ExternalConsole>
+    <LaunchBrowser></LaunchBrowser>
+    <ApplicationURL>https://localhost:18676;http://localhost:41497</ApplicationURL>
   </PropertyGroup>
 </Project>
