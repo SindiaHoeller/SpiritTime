@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ using SpiritTime.Backend.Services;
 using SpiritTime.Core;
 using SpiritTime.Core.Entities;
 using SpiritTime.Persistence;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SpiritTime.Backend
 {
@@ -75,6 +77,7 @@ namespace SpiritTime.Backend
                     Title = "VocaDrill",
                     Version = "v1"
                 });
+                c.IncludeXmlComments(GetXmlCommentsPath());
             });
 
             services.AddControllers();
@@ -98,8 +101,14 @@ namespace SpiritTime.Backend
             {
                 endpoints.MapControllers();
             });
-            app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "VocaDrill"); });
+
+            var swaggerOptions = new Services.SwaggerOptions();
+            Configuration.GetSection(nameof(swaggerOptions)).Bind(swaggerOptions);
+            app.UseSwagger(option => { option.RouteTemplate = swaggerOptions.JsonRoute; });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description); });
+           
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpiritTime"); });
         }
         private void GetAuthenticationOptions(AuthenticationOptions options)
         {
@@ -120,6 +129,11 @@ namespace SpiritTime.Backend
                 ValidAudience = Configuration["Jwt:ValidAudience"],
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecurityKey"]))
             };
+        }
+
+        private string GetXmlCommentsPath()
+        {
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SpiritTime.Backend.xml");
         }
     }
 }
