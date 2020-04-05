@@ -18,9 +18,10 @@ namespace SpiritTime.Frontend.Services
             _localStorageService = localStorageService;
 
             var appSetting = appSettings.Value;
-            httpClient.BaseAddress = new Uri(appSetting.BackendBaseAddress);
-            httpClient.DefaultRequestHeaders.Add(SD.UserAgent, SD.BlazorServer);
             _httpClient = httpClient;
+            //_httpClient.BaseAddress = new Uri(appSetting.BackendBaseAddress);
+            //_httpClient.DefaultRequestHeaders.Add(SD.UserAgent, SD.BlazorServer);
+            
         }
 
 
