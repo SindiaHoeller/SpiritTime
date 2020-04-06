@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SpiritTime.Backend.Infrastructure.Jwt;
+using SpiritTime.Core;
 using SpiritTime.Core.Entities;
 using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.Account.ChangeUserEmail;
@@ -29,19 +30,22 @@ namespace SpiritTime.Backend.Controllers.Account
         private readonly ILogger<AccountController> _logger;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUnitOfWork _unitOfWork;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             JwtAuthentication jwtAuthentication,
             ILogger<AccountController> logger,
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _jwtAuthentication = jwtAuthentication;
             _logger = logger;
             _httpContextAccessor = httpContextAccessor;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -75,6 +79,9 @@ namespace SpiritTime.Backend.Controllers.Account
 
                 //TODO: Email Confirmation wirklich einbauen
                 await _userManager.ConfirmEmailAsync(user, emailConfirmationCode);
+                //Default Workspace for each User
+                await _unitOfWork.WorkspaceRepository.AddAsync(new Workspace {UserId = user.Id, Name = "Default"});
+                await _unitOfWork.SaveAsync();
                 //var callbackUrl = _httpContextAccessor.HttpContext.Request.Host.Value +
                 //                  $"/{Controller}/ConfirmEmail?email={user.Email}&token={HttpUtility.UrlEncode(emailConfirmationCode)}";
 
