@@ -23,28 +23,33 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
         public int Id { get; set; }
         protected override void OnInitialized()
         {
-            var idAsString = Parameters.Get<string>(SD.Id);
-            Id = Int32.Parse(idAsString);
+            Id = Parameters.TryGet<int>(SD.Id);
             Modal.SetTitle(Text.ConfirmDeletion);
         }
-        async void SubmitForm()
+        private async void SubmitForm()
         {
-            ShowForm = false;
+            
             var item = await Service.Delete(Id);
             if (!item.Successful)
             {
+                ShowForm = false;
                 Error = item.Error;
                 ShowErrorForm = true;
             }
+            else
+            {
+                ShowForm = false;
+            }
+            this.StateHasChanged();
         }
 
-        void Done()
+        private void Done()
         {
             ModalService.Close(OverlayModalResult.Ok(Id));
 
         }
 
-        void Cancel()
+        private void Cancel()
         {
             ModalService.Close(OverlayModalResult.Cancel());
         }

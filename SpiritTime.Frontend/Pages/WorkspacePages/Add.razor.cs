@@ -30,7 +30,7 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
         async void SubmitForm()
         {
             ShowForm = false;
-            if (!String.IsNullOrEmpty(Name))
+            if (String.IsNullOrEmpty(Name))
             {
                 Error = ErrorMsg.NameCanNotBeEmpty;
                 ShowErrorForm = true;

@@ -13,7 +13,7 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
     public partial class Edit
     {
         [Inject] private IOverlayModalService ModalService { get; set; }
-        [CascadingParameter] BaseOverlay Modal { get; set; }
+        [CascadingParameter] private BaseOverlay Modal { get; set; }
         [Inject] private IWorkspaceService Service { get; set; }
         [Inject] private IMapper _mapper { get; set; }
         [CascadingParameter] OverlayModalParameters Parameters { get; set; }
@@ -25,13 +25,13 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
 
         protected override void OnInitialized()
         {
-            Workspace = Parameters.Get<WorkspaceDto>(SD.Workspace);
-            Modal.SetTitle(Text.AddWorkspace);
+            Workspace = Parameters.TryGet<WorkspaceDto>(SD.Workspace);
+            Modal.SetTitle(Text.WorkspaceEdit);
         }
-        async void SubmitForm()
+        private async void SubmitForm()
         {
             ShowForm = false;
-            if (!String.IsNullOrEmpty(Workspace.Name))
+            if (string.IsNullOrEmpty(Workspace.Name))
             {
                 Error = ErrorMsg.NameCanNotBeEmpty;
                 ShowErrorForm = true;
@@ -39,14 +39,14 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
             else
             {
                 var itemResource = _mapper.Map<WorkspaceResource>(Workspace);
-                var item = await Service.Edit(itemResource);
-                if (item.Successful)
+                var result = await Service.Edit(itemResource);
+                if (result.Successful)
                 {
-                    Workspace = _mapper.Map<WorkspaceDto>(item);
+                    Workspace = _mapper.Map<WorkspaceDto>(itemResource);
                 }
                 else
                 {
-                    Error = item.Error;
+                    Error = result.Error;
                     ShowErrorForm = true;
                 }
                 if (Workspace == null)
@@ -55,15 +55,15 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
                     ShowErrorForm = true;
                 }
             }
+            this.StateHasChanged();
         }
 
-        void Done()
+        private void Done()
         {
             ModalService.Close(OverlayModalResult.Ok(Workspace));
 
         }
-
-        void Cancel()
+        private void Cancel()
         {
             ModalService.Close(OverlayModalResult.Cancel());
         }

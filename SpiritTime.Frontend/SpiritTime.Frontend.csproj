@@ -14,9 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpiritTime.Backend\SpiritTime.Backend.csproj" />
-    <ProjectReference Include="..\SpiritTime.Core\SpiritTime.Core.csproj" />
-    <ProjectReference Include="..\SpiritTime.Persistence\SpiritTime.Persistence.csproj" />
     <ProjectReference Include="..\SpiritTime.Shared\SpiritTime.Shared.csproj" />
   </ItemGroup>
 
