@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$PROJECT_DIR$" t="IncludeFlat">
+    <e p="C:\Development\SpiritTime" t="IncludeFlat">
+      <e p=".git\info\exclude" t="IncludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="SpiritTime.Backend" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
@@ -111,10 +112,24 @@
             <e p="ResultModal.razor" t="Include" />
             <e p="ResultModal.razor.cs" t="Include" />
           </e>
-          <e p="WorkspacePages" t="Include">
+          <e p="Tags" t="Include">
+            <e p="Add.razor" t="Include" />
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
           </e>
+          <e p="WorkspacePages" t="Include">
+            <e p="Add.razor" t="Include" />
+            <e p="Add.razor.cs" t="Include" />
+            <e p="Delete.razor" t="Include" />
+            <e p="Delete.razor.cs" t="Include" />
+            <e p="Edit.razor" t="Include" />
+            <e p="Edit.razor.cs" t="Include" />
+            <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Profiles" t="Include">
+          <e p="WorkspaceProfile.cs" t="Include" />
         </e>
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
@@ -240,6 +255,8 @@
         </e>
         <e p="Messages" t="Include">
           <e p="ErrorMsg.cs" t="Include" />
+          <e p="SuccessMsg.cs" t="Include" />
+          <e p="Text.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="Account" t="Include">
@@ -286,7 +303,7 @@
       </e>
       <e p="SpiritTime.sln" t="IncludeFlat" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_SpiritTime.1628037071.00" t="ExcludeRecursive" />
+    <e p="C:\Users\hoellers\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\hoellers\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_SpiritTime.1724596400.00" t="ExcludeRecursive" />
   </component>
 </project>

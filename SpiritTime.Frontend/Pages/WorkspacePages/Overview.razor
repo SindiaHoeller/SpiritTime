@@ -41,7 +41,7 @@
                                 @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
                                         <span class="oi oi-info"></span>
                                     </a>*@
-                                <button class="custom-small-button" @onclick="@(async () => await Update(item))">
+                                <button class="custom-small-button" @onclick="@(() => Update(item))">
                                     <span class="oi oi-pencil"></span>
                                 </button>
                                 <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">

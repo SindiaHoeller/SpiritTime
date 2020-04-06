@@ -80,7 +80,7 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
             Modal.OnClose -= AddResult;
         }
 
-        private async Task Update(WorkspaceDto workspace)
+        private void Update(WorkspaceDto workspace)
         {
             var parameters = new OverlayModalParameters();
             parameters.Add(SD.Workspace, workspace);

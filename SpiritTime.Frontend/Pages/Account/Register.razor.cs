@@ -40,6 +40,7 @@ namespace SpiritTime.Frontend.Pages.Account
                     Error = result.Error;
                     ShowErrors = true;
                 }
+                this.StateHasChanged();
             }
         }
     }
