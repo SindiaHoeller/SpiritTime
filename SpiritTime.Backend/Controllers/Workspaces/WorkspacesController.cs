@@ -21,13 +21,13 @@ namespace SpiritTime.Backend.Controllers.Workspaces
     [ApiController]
     [Route("[controller]/[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class WorkspacesController : ControllerHelper 
+    public class WorkspacesController : ControllerHelper
     {
         private readonly JwtAuthentication _jwtAuthentication;
         private readonly ILogger<WorkspacesController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public WorkspacesController(JwtAuthentication jwtAuthentication, 
+        public WorkspacesController(JwtAuthentication jwtAuthentication,
             ILogger<WorkspacesController> logger,
             IHttpContextAccessor httpContextAccessor,
             IUnitOfWork unitOfWork, IMapper mapper) : base(httpContextAccessor)
@@ -42,7 +42,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         ///     Get's all Workspaces for current User
         /// </summary>
         /// <remarks> Needs: nothing <br />  Returns: WorkspaceListResult </remarks>
-        /// <param name="GetallByUserId"></param>
+        /// <param name="WorkspaceListResult"></param>
         /// <returns></returns>
         /// <response code="200">Returns a WorkspaceListResult</response>
 
@@ -55,11 +55,11 @@ namespace SpiritTime.Backend.Controllers.Workspaces
                 List<Workspace> workspaceList = await _unitOfWork.WorkspaceRepository.GetMultipleByAsync(x => x.UserId == userId);
                 var list = _mapper.Map<List<WorkspaceDto>>(workspaceList);
                 //return new JsonResult(list);
-                return new JsonResult(new WorkspaceListResult{Workspaces = list, Successful = true});
+                return new JsonResult(new WorkspaceListResult { Workspaces = list, Successful = true });
             }
             catch (Exception ex)
             {
-                return new JsonResult(new WorkspaceListResult{Error = ex.Message, Successful = false});
+                return new JsonResult(new WorkspaceListResult { Error = ex.Message, Successful = false });
             }
         }
 
@@ -67,7 +67,8 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         ///     Creates a new Workspace
         /// </summary>
         /// <remarks>Needs: WorkspaceResourceNew <br /> Returns: WorkspaceResult</remarks>
-        /// <param name="Create"></param>
+        /// <param name="workspaceResource"></param>
+        /// <param name="workspaceResult"></param>
         /// <returns></returns>
         /// <response code="200">Returns a WorkspaceResult</response>
         //[Authorize]
@@ -77,7 +78,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
             try
             {
                 var userId = GetUserId();
-                var workspace = new Workspace {Name = workspaceResource.Name, UserId = userId};
+                var workspace = new Workspace { Name = workspaceResource.Name, UserId = userId };
                 await _unitOfWork.WorkspaceRepository.AddAsync(workspace);
                 await _unitOfWork.SaveAsync();
                 var newWorkspace = await _unitOfWork.WorkspaceRepository.GetUniqueByAsync(x => x.Name == workspaceResource.Name && x.UserId == userId);
@@ -88,7 +89,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
             }
             catch (Exception ex)
             {
-                return new JsonResult(new WorkspaceResult{Error = ex.Message, Successful = false});
+                return new JsonResult(new WorkspaceResult { Error = ex.Message, Successful = false });
             }
         }
 
@@ -96,7 +97,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         ///     Updates a Workspace
         /// </summary>
         /// <remarks>Needs: WorkspaceResource <br /> Returns: ResultModel</remarks>
-        /// <param name="Update"></param>
+        /// <param name="workspaceResource"></param>
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
@@ -110,16 +111,16 @@ namespace SpiritTime.Backend.Controllers.Workspaces
 
                 if (!CheckForPermissionById(workspace.UserId))
                     return new JsonResult(new ResultModel
-                        {Error = ErrorMsg.NotAuthorizedForAction, Successful = false});
-                
+                    { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
+
                 workspace.Name = workspaceResource.Name;
                 _unitOfWork.WorkspaceRepository.Update(workspace);
                 await _unitOfWork.SaveAsync();
-                return new JsonResult(new ResultModel{Error = null, Successful = true});
+                return new JsonResult(new ResultModel { Error = null, Successful = true });
             }
             catch (Exception ex)
             {
-                return new JsonResult(new ResultModel{Error = ex.Message, Successful = false});
+                return new JsonResult(new ResultModel { Error = ex.Message, Successful = false });
             }
         }
 
@@ -129,31 +130,40 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// </summary>
         /// <remarks>Needs: Id \
         /// Returns: ResultModel</remarks>
-        /// <param name="Delete"></param>
+        /// <param name="idString"></param>
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromBody]string idString)
         {
             try
             {
-                var workspace = await _unitOfWork.WorkspaceRepository
-                    .GetUniqueByAsync(x => x.Id == id);
+                Int32.TryParse(idString, out int id);
+                if (id != 0)
+                {
+                    var workspace = await _unitOfWork.WorkspaceRepository
+                        .GetUniqueByAsync(x => x.Id == id);
 
-                if (!CheckForPermissionById(workspace.UserId))
-                    return new JsonResult(new ResultModel
-                        {Error = ErrorMsg.NotAuthorizedForAction, Successful = false});
-                
-                _unitOfWork.WorkspaceRepository.Remove(workspace);
-                await _unitOfWork.SaveAsync();
-                return new JsonResult(new ResultModel{Error = null, Successful = true});
+                    if (!CheckForPermissionById(workspace.UserId))
+                        return new JsonResult(new ResultModel
+                        { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
+
+                    _unitOfWork.WorkspaceRepository.Remove(workspace);
+                    await _unitOfWork.SaveAsync();
+                    return new JsonResult(new ResultModel { Error = null, Successful = true });
+                }
+                else
+                {
+                    return new JsonResult(new ResultModel { Error = "ID was 0.", Successful = false });
+                }
+
             }
             catch (Exception ex)
             {
-                return new JsonResult(new ResultModel{Error = ex.Message, Successful = false});
+                return new JsonResult(new ResultModel { Error = ex.Message, Successful = false });
             }
         }
-        
+
     }
 }

@@ -78,7 +78,7 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
 
             try
             {
-                return await _httpClient.PostJsonAsync<ResultModel>(Path.WorkspaceDelete, id);
+                return await _httpClient.PostJsonAsync<ResultModel>(Path.WorkspaceDelete, id.ToString());
             }
             catch (Exception ex)
             {

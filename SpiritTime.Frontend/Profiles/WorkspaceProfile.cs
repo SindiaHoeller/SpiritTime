@@ -10,6 +10,8 @@ namespace SpiritTime.Frontend.Profiles
         {
             CreateMap<WorkspaceResult, WorkspaceDto>();
             CreateMap<WorkspaceDto, WorkspaceResult>();
+            CreateMap<WorkspaceDto, WorkspaceResource>();
+            CreateMap<WorkspaceResource, WorkspaceDto>();
         }
     }
 }
