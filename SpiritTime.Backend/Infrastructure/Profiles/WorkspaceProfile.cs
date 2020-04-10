@@ -6,8 +6,14 @@ using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Backend.Infrastructure.Profiles
 {
+    /// <summary>
+    /// WorkspaceProfile
+    /// </summary>
     public class WorkspaceProfile : Profile
     {
+        /// <summary>
+        /// WorkspaceProfile
+        /// </summary>
         public WorkspaceProfile()
         {
             CreateMap<Workspace, WorkspaceResult>();

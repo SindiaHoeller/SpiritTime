@@ -1,1 +1,73 @@
-﻿
+﻿@page "/tags/overview"
+
+<div class="center-and-highlight">
+    <div class="col-12 custom-background mt-5">
+        <div class="text-center">
+            <div class="text-right">
+                <button class="custom-small-button" @onclick="Add">@Text.TagAdd</button>
+            </div>
+            <h1>@SD.Tag</h1>
+
+        </div>
+        @if (ShowError && ErrorMsg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ErrorMsg
+            </div>
+        }
+        @if (TableService.Objects == null)
+        {
+            if (NoElements)
+            {
+                <p><em>@Text.NoElements</em></p>
+            }
+            else
+            {
+                <p><em>@Text.Loading</em></p>
+            }
+
+
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="oi @(TableService.GetSortStyle(nameof(TagDto.Name)))"
+                                  @onclick="@(() => TableService.SortTable(nameof(TagDto.Name)))"></span>
+                            <span class="pl-3">@nameof(TagDto.Name)</span>
+                        </th>
+                        <th>
+                            <span class="oi @(TableService.GetSortStyle(nameof(TagDto.WorkspaceName)))"
+                                  @onclick="@(() => TableService.SortTable(nameof(TagDto.WorkspaceName)))"></span>
+                            <span class="pl-3">@nameof(TagDto.WorkspaceName)</span>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in TableService.Objects)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.WorkspaceName</td>
+                            <td>
+                                @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
+                                    <span class="oi oi-info"></span>
+                                </a>*@
+                                <button class="custom-small-button" @onclick="@(() => Update(item))">
+                                    <span class="oi oi-pencil"></span>
+                                </button>
+                                <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
+                                    <span class="oi oi-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+

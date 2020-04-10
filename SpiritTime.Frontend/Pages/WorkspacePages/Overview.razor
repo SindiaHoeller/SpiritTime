@@ -17,7 +17,14 @@
         }
         @if (TableService.Objects == null)
         {
-            <p><em>@Text.Loading</em></p>
+            if (NoElements)
+            {
+                <p><em>@Text.NoElements</em></p>
+            }
+            else
+            {
+                <p><em>@Text.Loading</em></p>
+            }
         }
         else
         {
@@ -39,8 +46,8 @@
                             <td>@item.Name</td>
                             <td>
                                 @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
-                                        <span class="oi oi-info"></span>
-                                    </a>*@
+                                    <span class="oi oi-info"></span>
+                                </a>*@
                                 <button class="custom-small-button" @onclick="@(() => Update(item))">
                                     <span class="oi oi-pencil"></span>
                                 </button>

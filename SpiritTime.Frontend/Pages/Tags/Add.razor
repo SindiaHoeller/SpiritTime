@@ -1,1 +1,40 @@
-﻿
+﻿@if (ShowForm)
+{
+    <div class="simple-form">
+        <div class="form-group my-3">
+            <label for="unit-name">@Text.WorkspaceName:</label>
+            <input @bind="Item.Name" type="text" class="form-control" id="unit-name" placeholder="@Text.WorkspaceName" />
+        </div>
+
+        <div class="form-group my-3">
+            <label for="unit-name">@Text.WorkspaceName:</label>
+            <InputSelect Id="studentList" @bind-Value="@Item.WorkspaceId" class="form-control">
+                @foreach (var item in WorkspaceList)
+                {
+                    <option value="@item.Id">@item.Name </option>
+                }
+
+            </InputSelect>
+        </div>
+        <div class="text-center pt-5 mt-5">
+            <button @onclick="SubmitForm" class="custom-small-button">@Text.Confirm</button>
+            <button @onclick="Cancel" class="custom-small-button trash">@Text.Abort</button>
+        </div>
+        
+
+    </div>
+}
+else if (ShowErrorForm)
+{
+    <div class="alert alert-danger" role="alert">
+        @ErrorMsg.NameCanNotBeEmpty<br />
+        <button class="custom-small-button" @onclick="Cancel">@Text.Done</button>
+    </div>
+}
+else
+{
+    <div class="alert alert-success text-center" role="alert">
+        @SuccessMsg.TagAdded @Name <br />
+        <button class="custom-small-button" @onclick="Done">@Text.Done</button>
+    </div>
+}

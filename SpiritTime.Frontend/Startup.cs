@@ -18,6 +18,7 @@ using SpiritTime.Frontend.Services;
 using SpiritTime.Frontend.Services.AuthServices;
 using SpiritTime.Frontend.Services.OverlayModalService;
 using SpiritTime.Frontend.Services.TableServices;
+using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 
 namespace SpiritTime.Frontend
@@ -48,6 +49,7 @@ namespace SpiritTime.Frontend
             services.AddBlazoredLocalStorage();
             services.AddHttpClient<IAuthService, AuthService>();
             services.AddScoped<IWorkspaceService, WorkspaceService>();
+            services.AddScoped<ITagService, TagService>();
 
             services.AddScoped<IOverlayModalService, OverlayModalService>();
             services.AddScoped(typeof(ITableService<>), typeof(TableService<>));

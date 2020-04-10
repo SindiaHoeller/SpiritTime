@@ -16,9 +16,9 @@ using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Frontend.Services.WorkspaceServices
 {
-    public class WorkspaceService : ServiceBase, IWorkspaceService
+    public class WorkspaceService : ServiceBase<WorkspaceResource>, IWorkspaceService
     {
-        private Paths Path;        
+        private readonly Paths _path;        
 
         public WorkspaceService(HttpClient httpClient,
             IOptions<AppSettings> appSettings,
@@ -26,7 +26,9 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
             : base(httpClient, appSettings, localStorageService)
         {
             var appSetting = appSettings.Value;
-            Path = new Paths(appSetting.BackendBaseAddress);
+            _path = new Paths(appSetting.BackendBaseAddress);
+            EditPath = _path.TagEdit;
+            DeletePath = _path.TagDelete;
         }
 
         public async Task<WorkspaceListResult> GetAllAsync()
@@ -35,8 +37,7 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
 
             try
             {
-                return await _httpClient.GetJsonAsync<WorkspaceListResult>(Path.WorkspaceGetAll);
-
+                return await _httpClient.GetJsonAsync<WorkspaceListResult>(_path.WorkspaceGetAll);
             }
             catch (Exception e)
             {
@@ -52,39 +53,12 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
             try
             {
                 WorkspaceResourceNew workspace = new WorkspaceResourceNew { Name = name };
-                return await _httpClient.PostJsonAsync<WorkspaceResult>(Path.WorkspaceAdd, workspace);
+                return await _httpClient.PostJsonAsync<WorkspaceResult>(_path.WorkspaceAdd, workspace);
             }
             catch (Exception ex)
             {
                 return new WorkspaceResult { Error = ex.Message, Successful = false };
             }
         }
-        public async Task<ResultModel> Edit(WorkspaceResource workspace)
-        {
-            await SetAuthenticationHeader();
-
-            try
-            {
-                return await _httpClient.PostJsonAsync<ResultModel>(Path.WorkspaceEdit, workspace);
-            }
-            catch (Exception ex)
-            {
-                return new ResultModel { Error = ex.Message, Successful = false };
-            }
-        }
-        public async Task<ResultModel> Delete(int id)
-        {
-            await SetAuthenticationHeader();
-
-            try
-            {
-                return await _httpClient.PostJsonAsync<ResultModel>(Path.WorkspaceDelete, id.ToString());
-            }
-            catch (Exception ex)
-            {
-                return new ResultModel { Error = ex.Message, Successful = false };
-            }
-        }
-
     }
 }

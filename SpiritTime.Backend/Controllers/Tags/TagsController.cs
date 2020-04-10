@@ -1,44 +1,45 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SpiritTime.Backend.Controllers.Workspaces;
 using SpiritTime.Backend.Infrastructure.Jwt;
 using SpiritTime.Core;
 using SpiritTime.Core.Entities;
-using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models;
+using SpiritTime.Shared.Models.Tags;
 using SpiritTime.Shared.Models.WorkspaceModels;
-using AutoMapper;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace SpiritTime.Backend.Controllers.Workspaces
+namespace SpiritTime.Backend.Controllers.Tags
 {
     /// <summary>
-    /// WorkspaceController
+    /// TagController
     /// </summary>
     [ApiController]
     [Route("[controller]/[action]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class WorkspacesController : ControllerHelper
+    public class TagsController : ControllerHelper
     {
         private readonly JwtAuthentication _jwtAuthentication;
         private readonly ILogger<WorkspacesController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         /// <summary>
-        /// WorkspacesController
+        /// TagController
         /// </summary>
         /// <param name="jwtAuthentication"></param>
         /// <param name="logger"></param>
         /// <param name="httpContextAccessor"></param>
         /// <param name="unitOfWork"></param>
         /// <param name="mapper"></param>
-        public WorkspacesController(JwtAuthentication jwtAuthentication,
+        public TagsController(JwtAuthentication jwtAuthentication,
             ILogger<WorkspacesController> logger,
             IHttpContextAccessor httpContextAccessor,
             IUnitOfWork unitOfWork, IMapper mapper) : base(httpContextAccessor)
@@ -48,82 +49,83 @@ namespace SpiritTime.Backend.Controllers.Workspaces
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-
         /// <summary>
-        ///     Get's all Workspace for current User
+        ///     Get's all Tags
         /// </summary>
-        /// <remarks> Needs: nothing <br />  Returns: WorkspaceListResult </remarks>
+        /// <remarks> Needs: nothing <br />  Returns: TagListResult </remarks>
         /// <returns></returns>
-        /// <response code="200">Returns a WorkspaceListResult</response>
+        /// <response code="200">Returns a TagListResult</response>
 
         [HttpGet]
-        public async Task<IActionResult> GetallByUserId()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
-                var userId = GetUserId();
-                List<Workspace> workspaceList = await _unitOfWork.WorkspaceRepository.GetMultipleByAsync(x => x.UserId == userId);
-                var list = _mapper.Map<List<WorkspaceDto>>(workspaceList);
-                //return new JsonResult(list);
-                return new JsonResult(new WorkspaceListResult { Workspaces = list, Successful = true });
+                List<Tag> all = await _unitOfWork.TagRepository.GetAllAsync();
+                var list = _mapper.Map<List<TagDto>>(all);
+                
+                return new JsonResult(new TagListResult { ItemList = list, Successful = true });
             }
             catch (Exception ex)
             {
-                return new JsonResult(new WorkspaceListResult { Error = ex.Message, Successful = false });
+                return new JsonResult(new TagListResult { Error = ex.Message, Successful = false });
             }
         }
 
         /// <summary>
-        ///     Creates a new Workspace
+        ///     Creates a new Tag in the Workspace
         /// </summary>
-        /// <remarks>Needs: WorkspaceResourceNew <br /> Returns: WorkspaceResult</remarks>
-        /// <param name="workspaceResource"></param>
+        /// <remarks>Needs: TagResourceNew <br /> Returns: TagResult</remarks>
+        /// <param name="resource"></param>
         /// <returns></returns>
-        /// <response code="200">Returns a WorkspaceResult</response>
+        /// <response code="200">Returns a TagResult</response>
         //[Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create(WorkspaceResourceNew workspaceResource)
+        public async Task<IActionResult> Create(TagResourceNew resource)
         {
             try
             {
-                var userId = GetUserId();
-                var workspace = new Workspace { Name = workspaceResource.Name, UserId = userId };
-                await _unitOfWork.WorkspaceRepository.AddAsync(workspace);
-                await _unitOfWork.SaveAsync();
-                var newWorkspace = await _unitOfWork.WorkspaceRepository.GetUniqueByAsync(x => x.Name == workspaceResource.Name && x.UserId == userId);
-                var workspaceResult = _mapper.Map<WorkspaceResult>(newWorkspace);
-                workspaceResult.Successful = true;
+                if (!await CheckForPermissionByWorkspace(resource.WorkspaceId, _unitOfWork))
+                    return new JsonResult(new TagResult
+                    { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
 
-                return new JsonResult(workspaceResult);
+                var item = new Tag { Name = resource.Name, WorkspaceId = resource.WorkspaceId };
+                await _unitOfWork.TagRepository.AddAsync(item);
+                await _unitOfWork.SaveAsync();
+                var newItem = await _unitOfWork.TagRepository.GetUniqueByAsync(x => x.Name == resource.Name && x.WorkspaceId == resource.WorkspaceId);
+                var result = _mapper.Map<TagResult>(newItem);
+                result.Successful = true;
+
+                return new JsonResult(result);
             }
             catch (Exception ex)
             {
-                return new JsonResult(new WorkspaceResult { Error = ex.Message, Successful = false });
+                return new JsonResult(new TagResult { Error = ex.Message, Successful = false });
             }
         }
 
         /// <summary>
-        ///     Updates a Workspace
+        ///     Updates a Tag
         /// </summary>
-        /// <remarks>Needs: WorkspaceResource <br /> Returns: ResultModel</remarks>
-        /// <param name="workspaceResource"></param>
+        /// <remarks>Needs: TagResource <br /> Returns: ResultModel</remarks>
+        /// <param name="resource"></param>
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
         [HttpPost]
-        public async Task<IActionResult> Update(WorkspaceResource workspaceResource)
+        public async Task<IActionResult> Update(TagResource resource)
         {
             try
             {
-                var workspace = await _unitOfWork.WorkspaceRepository
-                    .GetUniqueByAsync(x => x.Id == workspaceResource.Id);
-
-                if (!CheckForPermissionById(workspace.UserId))
+                if (!await CheckForPermissionByWorkspace(resource.WorkspaceId, _unitOfWork))
                     return new JsonResult(new ResultModel
                     { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
+                var item = await _unitOfWork.TagRepository
+                    .GetUniqueByAsync(x => x.Id == resource.Id);
 
-                workspace.Name = workspaceResource.Name;
-                _unitOfWork.WorkspaceRepository.Update(workspace);
+                item.Name = resource.Name;
+                item.WorkspaceId = resource.WorkspaceId;
+                _unitOfWork.TagRepository.Update(item);
                 await _unitOfWork.SaveAsync();
                 return new JsonResult(new ResultModel { Error = null, Successful = true });
             }
@@ -135,7 +137,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
 
 
         /// <summary>
-        ///     Deletes a Workspace
+        ///     Deletes a Tag
         /// </summary>
         /// <remarks>Needs: Id \
         /// Returns: ResultModel</remarks>
@@ -151,14 +153,14 @@ namespace SpiritTime.Backend.Controllers.Workspaces
                 Int32.TryParse(idString, out int id);
                 if (id != 0)
                 {
-                    var workspace = await _unitOfWork.WorkspaceRepository
+                    var item = await _unitOfWork.TagRepository
                         .GetUniqueByAsync(x => x.Id == id);
-
-                    if (!CheckForPermissionById(workspace.UserId))
+                    if (!await CheckForPermissionByWorkspace(item.WorkspaceId, _unitOfWork))
                         return new JsonResult(new ResultModel
-                        { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
+                            { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
 
-                    _unitOfWork.WorkspaceRepository.Remove(workspace);
+
+                    _unitOfWork.TagRepository.Remove(item);
                     await _unitOfWork.SaveAsync();
                     return new JsonResult(new ResultModel { Error = null, Successful = true });
                 }

@@ -10,5 +10,8 @@ namespace SpiritTime.Shared.Messages
 
         public const string WorkspaceAdded = "Workspace successfully added: ";
         public const string WorkspaceEdited = "Workspace successfully edited: ";
+
+        public const string TagAdded = "Tag successfully added: ";
+        public const string TagEdited = "Tag successfully edited: ";
     }
 }
