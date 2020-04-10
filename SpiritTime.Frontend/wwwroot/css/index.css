@@ -12,6 +12,10 @@ h1 {
   font-family: "Merriweather", serif;
 }
 
+#components-reconnect-modal {
+  background-color: #313131 !important;
+}
+
 h2, h3, h4, h5 {
   color: #7b7b7b;
   font-family: "Merriweather", serif;

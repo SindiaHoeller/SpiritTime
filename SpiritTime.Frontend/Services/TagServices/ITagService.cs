@@ -7,7 +7,7 @@ namespace SpiritTime.Frontend.Services.TagServices
     public interface ITagService
     {
         Task<TagListResult> GetAllAsync();
-        Task<TagResult> Add(string name);
+        Task<TagResult> Add(TagDto item);
         Task<ResultModel> Edit(TagResource item);
         Task<ResultModel> Delete(int id);
     }

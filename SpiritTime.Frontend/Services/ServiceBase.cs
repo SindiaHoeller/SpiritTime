@@ -33,9 +33,11 @@ namespace SpiritTime.Frontend.Services
 
         protected async Task SetAuthenticationHeader()
         {
-            var token = await _localStorageService.GetItemAsync<string>(SD.AccessToken);
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SD.Bearer, token);
-
+            if (_httpClient.DefaultRequestHeaders.Authorization == null)
+            {
+                var token = await _localStorageService.GetItemAsync<string>(SD.AccessToken);
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SD.Bearer, token);
+            }
         }
 
         public async Task<ResultModel> Edit(T item)

@@ -1,7 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Pages.Overlays;
@@ -17,39 +15,51 @@ namespace SpiritTime.Frontend.Pages.Tags
     public partial class Add
     {
         [Inject] private IOverlayModalService ModalService { get; set; }
-        [CascadingParameter] OverlayModalParameters Parameters { get; set; }
         [CascadingParameter] BaseOverlay Modal { get; set; }
         [Inject] private ITagService Service { get; set; }
         [Inject] private IWorkspaceService WorkspaceService { get; set; }
         [Inject] private IMapper _mapper { get; set; }
-        
-        bool ShowForm { get; set; } = true;
-        private bool ShowErrorForm { get; set; } = false;
-        private string Name { get; set; }
+
+        private bool ShowForm { get; set; }
+        private bool ShowErrorForm { get; set; }
+        private bool ShowSuccessForm { get; set; }
         private TagDto Item { get; set; }
-        public string Error { get; set; }
-        public List<WorkspaceDto> WorkspaceList { get; set; }
+        private string Error { get; set; }
+        private string Id = string.Empty;
+        private List<WorkspaceDto> WorkspaceList { get; set; }
 
         protected override async void OnInitialized()
         {
             var result = await WorkspaceService.GetAllAsync();
-            WorkspaceList = result.Successful ? result.Workspaces : new List<WorkspaceDto>() ;
+            WorkspaceList = result.Successful ? result.Workspaces : new List<WorkspaceDto>();
+            Item = new TagDto();
             Modal.SetTitle(Text.TagAdd);
+            ShowForm = true;
+            StateHasChanged();
         }
+
         async void SubmitForm()
         {
+            Int32.TryParse(Id, out int id);
+            Item.WorkspaceId = id;
             ShowForm = false;
-            if (String.IsNullOrEmpty(Name))
+            if (String.IsNullOrEmpty(Item.Name))
             {
                 Error = ErrorMsg.NameCanNotBeEmpty;
                 ShowErrorForm = true;
             }
+            else if (Item.WorkspaceId <= 0)
+            {
+                Error = ErrorMsg.WorkspaceChoose;
+                ShowErrorForm = true;
+            }
             else
             {
-                var item = await Service.Add(Name);
+                var item = await Service.Add(Item);
                 if (item.Successful)
                 {
                     Item = _mapper.Map<TagDto>(item);
+                    ShowSuccessForm = true;
                 }
                 else
                 {
@@ -59,16 +69,17 @@ namespace SpiritTime.Frontend.Pages.Tags
 
                 if (Item == null)
                 {
-                    Error = ErrorMsg.WorkspaceNotAdded;
+                    Error = ErrorMsg.TagNotAdded;
                     ShowErrorForm = true;
                 }
             }
+
+            StateHasChanged();
         }
 
         void Done()
         {
             ModalService.Close(OverlayModalResult.Ok(Item));
-
         }
 
         void Cancel()

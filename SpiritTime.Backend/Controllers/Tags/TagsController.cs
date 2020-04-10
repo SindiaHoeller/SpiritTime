@@ -61,7 +61,7 @@ namespace SpiritTime.Backend.Controllers.Tags
         {
             try
             {
-                List<Tag> all = await _unitOfWork.TagRepository.GetAllAsync();
+                List<Tag> all = await _unitOfWork.TagRepository.GetAllIncludeAsync(x=>x.Workspace);
                 var list = _mapper.Map<List<TagDto>>(all);
                 
                 return new JsonResult(new TagListResult { ItemList = list, Successful = true });
@@ -92,7 +92,10 @@ namespace SpiritTime.Backend.Controllers.Tags
                 var item = new Tag { Name = resource.Name, WorkspaceId = resource.WorkspaceId };
                 await _unitOfWork.TagRepository.AddAsync(item);
                 await _unitOfWork.SaveAsync();
-                var newItem = await _unitOfWork.TagRepository.GetUniqueByAsync(x => x.Name == resource.Name && x.WorkspaceId == resource.WorkspaceId);
+                var newItem = await _unitOfWork.TagRepository
+                    .GetUniqueByIncludeAsync(x => x.Name == resource.Name 
+                                           && x.WorkspaceId == resource.WorkspaceId,
+                        x=>x.Workspace);
                 var result = _mapper.Map<TagResult>(newItem);
                 result.Successful = true;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -30,10 +31,14 @@ namespace SpiritTime.Frontend.Pages.Tags
             var result = await Service.GetAllAsync();
             if (result.Successful)
             {
-                if (result.ItemList.Count == 0)
-                    NoElements = true;
-                else
+                if (result.ItemList?.Count > 0)
                     TableService.Objects = result.ItemList;
+                else
+                {
+                    TableService.Objects = new List<TagDto>();
+                    NoElements = true;
+                }
+                    
             }
             else
             {

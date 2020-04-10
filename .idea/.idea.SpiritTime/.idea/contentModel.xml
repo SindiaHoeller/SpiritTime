@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Development\SpiritTime" t="IncludeFlat">
-      <e p=".git\info\exclude" t="IncludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
       <e p="SpiritTime.Backend" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
@@ -13,6 +12,9 @@
             <e p="AccountController.cs" t="Include" />
           </e>
           <e p="ControllerHelper.cs" t="Include" />
+          <e p="Tags" t="Include">
+            <e p="TagsController.cs" t="Include" />
+          </e>
           <e p="Workspaces" t="Include">
             <e p="WorkspacesController.cs" t="Include" />
           </e>
@@ -23,6 +25,7 @@
             <e p="JwtSettings.cs" t="Include" />
           </e>
           <e p="Profiles" t="Include">
+            <e p="TagProfile.cs" t="Include" />
             <e p="WorkspaceProfile.cs" t="Include" />
           </e>
         </e>
@@ -103,6 +106,7 @@
           <e p="Error.razor" t="Include" />
           <e p="Index.razor" t="Include" />
           <e p="Overlays" t="Include">
+            <e p="AddModel.cs" t="Include" />
             <e p="BaseOverlay.razor" t="Include" />
             <e p="BaseOverlay.razor.cs" t="Include" />
             <e p="ConfirmOverlay.razor" t="Include" />
@@ -114,6 +118,11 @@
           </e>
           <e p="Tags" t="Include">
             <e p="Add.razor" t="Include" />
+            <e p="Add.razor.cs" t="Include" />
+            <e p="Delete.razor" t="Include" />
+            <e p="Delete.razor.cs" t="Include" />
+            <e p="Edit.razor" t="Include" />
+            <e p="Edit.razor.cs" t="Include" />
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
           </e>
@@ -129,6 +138,7 @@
           </e>
         </e>
         <e p="Profiles" t="Include">
+          <e p="TagProfile.cs" t="Include" />
           <e p="WorkspaceProfile.cs" t="Include" />
         </e>
         <e p="Program.cs" t="Include" />
@@ -283,6 +293,13 @@
             </e>
           </e>
           <e p="ResultModel.cs" t="Include" />
+          <e p="Tags" t="Include">
+            <e p="TagDto.cs" t="Include" />
+            <e p="TagListResult.cs" t="Include" />
+            <e p="TagResource.cs" t="Include" />
+            <e p="TagResourceNew.cs" t="Include" />
+            <e p="TagResult.cs" t="Include" />
+          </e>
           <e p="WorkspaceModels" t="Include">
             <e p="WorkspaceDto.cs" t="Include" />
             <e p="WorkspaceListResult.cs" t="Include" />
@@ -303,7 +320,7 @@
       </e>
       <e p="SpiritTime.sln" t="IncludeFlat" />
     </e>
-    <e p="C:\Users\hoellers\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\hoellers\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_SpiritTime.1724596400.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_SpiritTime.1628037071.00" t="ExcludeRecursive" />
   </component>
 </project>

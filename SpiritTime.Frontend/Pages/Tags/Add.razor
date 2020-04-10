@@ -2,19 +2,20 @@
 {
     <div class="simple-form">
         <div class="form-group my-3">
-            <label for="unit-name">@Text.WorkspaceName:</label>
-            <input @bind="Item.Name" type="text" class="form-control" id="unit-name" placeholder="@Text.WorkspaceName" />
+            <label for="unit-name">@Text.TagName:</label>
+            <input @bind="Item.Name" type="text" class="form-control" id="unit-name" placeholder="@Text.TagName" />
         </div>
 
         <div class="form-group my-3">
-            <label for="unit-name">@Text.WorkspaceName:</label>
-            <InputSelect Id="studentList" @bind-Value="@Item.WorkspaceId" class="form-control">
-                @foreach (var item in WorkspaceList)
-                {
-                    <option value="@item.Id">@item.Name </option>
-                }
-
-            </InputSelect>
+            <label for="unit-name">@Text.Workspace:</label>
+            <EditForm Model="Item">
+                <InputSelect Id="list" @bind-Value="@Id" class="form-control">
+                    @foreach (var item in WorkspaceList)
+                    {
+                        <option value="@item.Id">@item.Name </option>
+                    }
+                </InputSelect>
+            </EditForm>
         </div>
         <div class="text-center pt-5 mt-5">
             <button @onclick="SubmitForm" class="custom-small-button">@Text.Confirm</button>
@@ -31,10 +32,10 @@ else if (ShowErrorForm)
         <button class="custom-small-button" @onclick="Cancel">@Text.Done</button>
     </div>
 }
-else
+else if(ShowSuccessForm)
 {
     <div class="alert alert-success text-center" role="alert">
-        @SuccessMsg.TagAdded @Name <br />
+        @SuccessMsg.TagAdded @Item.Name <br />
         <button class="custom-small-button" @onclick="Done">@Text.Done</button>
     </div>
 }

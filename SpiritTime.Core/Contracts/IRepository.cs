@@ -16,5 +16,18 @@ namespace SpiritTime.Core.Contracts
         void Update(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
+
+        Task<T> GetUniqueByIncludeAsync(Expression<Func<T, bool>> predicate,
+            Expression<Func<T, object>> included);
+        Task<List<T>> GetMultipleIncludeAsync(Expression<Func<T, bool>> predicate,
+            Expression<Func<T, object>> included);
+
+        Task<List<T>> GetAllIncludeAsync(Expression<Func<T, object>> predicate);
+
+        Task<object> SelectFromUniqueAsync(Expression<Func<T, bool>> predicate,
+            Expression<Func<T, object>> selection);
+
+        Task<List<object>> SelectMulitpleAsync(Expression<Func<T, bool>> predicate,
+            Expression<Func<T, object>> selection);
     }
 }
