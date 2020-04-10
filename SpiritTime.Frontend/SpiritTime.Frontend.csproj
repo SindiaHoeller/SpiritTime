@@ -19,7 +19,8 @@
 
   <ItemGroup>
     <Folder Include="Pages\WorkspacePages\" />
-    <Folder Include="Pages\Tags\" />
     <Folder Include="Profiles\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="http://json.schemastore.org/2.0.0-csd.2.beta.2018-10-10.json" /></VisualStudio></ProjectExtensions>
 </Project>

@@ -22,9 +22,4 @@
     <ProjectReference Include="..\SpiritTime.Persistence\SpiritTime.Persistence.csproj" />
     <ProjectReference Include="..\SpiritTime.Shared\SpiritTime.Shared.csproj" />
   </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Infrastructure\Profiles\" />
-  </ItemGroup>
 </Project>

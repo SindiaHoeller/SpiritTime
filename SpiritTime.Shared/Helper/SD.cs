@@ -8,6 +8,10 @@
         public const string UserAgent = "User-Agent";
         public const string BlazorServer = "BlazorServer";
         public const string Workspace = "Workspace";
+        public const string Tag = "Tag";
+        public const string Task = "Task";
+        public const string TagRule = "TagRule";
+        public const string Item = "Item";
         public const string Id = "Id";
     }
 }
