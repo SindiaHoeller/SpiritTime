@@ -15,7 +15,7 @@
                 @ErrorMsg
             </div>
         }
-        @if (TableService.Objects == null)
+        @if (TableService.Objects == null || !(bool)TableService.Objects?.Any())
         {
             if (NoElements)
             {

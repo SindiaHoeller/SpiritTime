@@ -23,8 +23,8 @@ namespace SpiritTime.Frontend.Services.TagServices
         {
             var appSetting = appSettings.Value;
             _path = new Paths(appSetting.BackendBaseAddress);
-            EditPath = _path.WorkspaceEdit;
-            DeletePath = _path.WorkspaceDelete;
+            EditPath = _path.TagEdit;
+            DeletePath = _path.TagDelete;
         }
 
         public async Task<TagListResult> GetAllAsync()
@@ -33,7 +33,7 @@ namespace SpiritTime.Frontend.Services.TagServices
 
             try
             {
-                return await _httpClient.GetJsonAsync<TagListResult>(_path.WorkspaceGetAll);
+                return await _httpClient.GetJsonAsync<TagListResult>(_path.TagGetAll);
 
             }
             catch (Exception e)
@@ -43,14 +43,14 @@ namespace SpiritTime.Frontend.Services.TagServices
             }
         }
 
-        public async Task<TagResult> Add(string name)
+        public async Task<TagResult> Add(TagDto item)
         {
             await SetAuthenticationHeader();
 
             try
             {
-                WorkspaceResourceNew workspace = new WorkspaceResourceNew { Name = name };
-                return await _httpClient.PostJsonAsync<TagResult>(_path.WorkspaceAdd, workspace);
+                TagResourceNew itemNew = new TagResourceNew { Name = item.Name, WorkspaceId = item.WorkspaceId};
+                return await _httpClient.PostJsonAsync<TagResult>(_path.TagAdd, itemNew);
             }
             catch (Exception ex)
             {

@@ -33,10 +33,9 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
 
         public async Task<WorkspaceListResult> GetAllAsync()
         {
-            await SetAuthenticationHeader();
-
             try
             {
+                await SetAuthenticationHeader();
                 return await _httpClient.GetJsonAsync<WorkspaceListResult>(_path.WorkspaceGetAll);
             }
             catch (Exception e)

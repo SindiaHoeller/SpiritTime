@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -28,10 +29,13 @@ namespace SpiritTime.Frontend.Pages.WorkspacePages
             var result = await Service.GetAllAsync();
             if (result.Successful)
             {
-                if (result.Workspaces.Count == 0)
-                    NoElements = true;
-                else
+                if (result.Workspaces?.Count > 0)
                     TableService.Objects = result.Workspaces;
+                else
+                {
+                    TableService.Objects = new List<WorkspaceDto>();
+                    NoElements = true;
+                }
             }
             else
             {
