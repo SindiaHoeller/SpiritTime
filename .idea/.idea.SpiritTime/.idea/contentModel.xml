@@ -15,6 +15,16 @@
           <e p="Tags" t="Include">
             <e p="TagsController.cs" t="Include" />
           </e>
+          <e p="Tasks" t="Include">
+            <e p="TaskController.cs" t="Include" />
+            <e p="TaskHelper.cs" t="Include" />
+          </e>
+          <e p="TaskTagRules" t="Include">
+            <e p="TaskTagRuleController.cs" t="Include" />
+          </e>
+          <e p="TaskTags" t="Include">
+            <e p="TaskTagController.cs" t="Include" />
+          </e>
           <e p="Workspaces" t="Include">
             <e p="WorkspacesController.cs" t="Include" />
           </e>
@@ -26,6 +36,8 @@
           </e>
           <e p="Profiles" t="Include">
             <e p="TagProfile.cs" t="Include" />
+            <e p="TaskProfile.cs" t="Include" />
+            <e p="TaskTagRuleProfile.cs" t="Include" />
             <e p="WorkspaceProfile.cs" t="Include" />
           </e>
         </e>
@@ -53,8 +65,9 @@
           <e p="IEntityObject.cs" t="Include" />
           <e p="IRepository.cs" t="Include" />
           <e p="ITagRepository.cs" t="Include" />
-          <e p="ITagRuleRepository.cs" t="Include" />
           <e p="ITaskRepository.cs" t="Include" />
+          <e p="ITaskTagRepository.cs" t="Include" />
+          <e p="ITaskTagRuleRepository.cs" t="Include" />
           <e p="IWorkspaceRepository.cs" t="Include" />
         </e>
         <e p="Entities" t="Include">
@@ -63,7 +76,7 @@
           <e p="Tag.cs" t="Include" />
           <e p="Tasks.cs" t="Include" />
           <e p="TaskTag.cs" t="Include" />
-          <e p="TaskTagRule.cs" t="Include" />
+          <e p="TaskTagRules.cs" t="Include" />
           <e p="Workspace.cs" t="Include" />
         </e>
         <e p="IUnitOfWork.cs" t="Include" />
@@ -249,8 +262,9 @@
         <e p="Repositories" t="Include">
           <e p="Repository.cs" t="Include" />
           <e p="TagRepository.cs" t="Include" />
-          <e p="TagRuleRepository.cs" t="Include" />
           <e p="TaskRepository.cs" t="Include" />
+          <e p="TaskTagRepository.cs" t="Include" />
+          <e p="TaskTagRuleRepository.cs" t="Include" />
           <e p="WorkspaceRepository.cs" t="Include" />
         </e>
         <e p="SpiritTime.Persistence.csproj" t="IncludeRecursive" />
@@ -293,12 +307,28 @@
             </e>
           </e>
           <e p="ResultModel.cs" t="Include" />
-          <e p="Tags" t="Include">
+          <e p="TagModels" t="Include">
             <e p="TagDto.cs" t="Include" />
+            <e p="TagInfo.cs" t="Include" />
             <e p="TagListResult.cs" t="Include" />
             <e p="TagResource.cs" t="Include" />
             <e p="TagResourceNew.cs" t="Include" />
             <e p="TagResult.cs" t="Include" />
+          </e>
+          <e p="TaskModels" t="Include">
+            <e p="TaskDto.cs" t="Include" />
+            <e p="TaskListResult.cs" t="Include" />
+            <e p="TaskNew.cs" t="Include" />
+            <e p="TaskResult.cs" t="Include" />
+          </e>
+          <e p="TaskTag" t="Include">
+            <e p="TaskTagDto.cs" t="Include" />
+          </e>
+          <e p="TaskTagRuleModels" t="Include">
+            <e p="TaskTagRuleDto.cs" t="Include" />
+            <e p="TaskTagRuleListResult.cs" t="Include" />
+            <e p="TaskTagRuleNew.cs" t="Include" />
+            <e p="TaskTagRuleResult.cs" t="Include" />
           </e>
           <e p="WorkspaceModels" t="Include">
             <e p="WorkspaceDto.cs" t="Include" />

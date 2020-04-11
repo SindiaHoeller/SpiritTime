@@ -1,9 +1,9 @@
-namespace SpiritTime.Core.Entities
+namespace SpiritTime.Shared.Models.TaskTagRuleModels
 {
-    public class TaskTagRule : EntityObject
+    public class TaskTagRuleNew
     {
         public int TagId { get; set; }
-        public Tag Tag { get; set; }
+        public string TagName { get; set; }
         public string TriggerText { get; set; }
         public bool TriggerName { get; set; }
         public bool TriggerDescription { get; set; }

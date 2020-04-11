@@ -9,6 +9,6 @@ namespace SpiritTime.Core.Entities
         public string Lastname { get; set; }
         
         public ICollection<Workspace> Workspaces { get; set; }
-        public ICollection<TaskTagRule> TagRules { get; set; }
+        public ICollection<TaskTagRules> TaskTagRules { get; set; }
     }
 }

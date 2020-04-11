@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SpiritTime.Shared.Models.Tags
+﻿namespace SpiritTime.Shared.Models.TagModels
 {
-    public class TagDto
+    public class TagResult : ResultModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using SpiritTime.Core.Entities;
-using SpiritTime.Shared.Models.Tags;
+using SpiritTime.Shared.Models.TagModels;
 
 namespace SpiritTime.Backend.Infrastructure.Profiles
 {
@@ -20,6 +20,7 @@ namespace SpiritTime.Backend.Infrastructure.Profiles
         {
             CreateMap<Tag, TagResult>();
             CreateMap<Tag, TagDto>();
+            CreateMap<Tag, TagInfo>();
         }
     }
 }

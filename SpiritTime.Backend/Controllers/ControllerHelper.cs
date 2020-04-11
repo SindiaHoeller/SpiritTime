@@ -49,6 +49,18 @@ namespace SpiritTime.Backend.Controllers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tagId"></param>
+        /// <param name="unitOfWork"></param>
+        /// <returns></returns>
+        protected async Task<bool> CheckForPermissionByTag(int tagId, IUnitOfWork unitOfWork)
+        {
+            var item = await unitOfWork.TagRepository.GetUniqueByAsync(x => x.Id == tagId);
+            return await CheckForPermissionByWorkspace(item.WorkspaceId, unitOfWork);
+        }
+
+        /// <summary>
         /// GetUserId
         /// </summary>
         /// <returns></returns>

@@ -13,7 +13,7 @@ namespace SpiritTime.Persistence
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Tasks> Tasks { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<TaskTagRule> TagRules { get; set; }
+        public DbSet<TaskTagRules> TaskTagRules { get; set; }
         public DbSet<Workspace> Workspaces { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -44,7 +44,7 @@ namespace SpiritTime.Persistence
                 .HasForeignKey(x=>x.WorkspaceId)
                 .OnDelete(DeleteBehavior.Cascade);
             
-            builder.Entity<TaskTagRule>()
+            builder.Entity<TaskTagRules>()
                 .HasOne(x=>x.Tag)
                 .WithMany()
                 .HasForeignKey(x=>x.TagId)

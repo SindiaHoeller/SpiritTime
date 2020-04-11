@@ -16,15 +16,17 @@ namespace SpiritTime.Persistence
 
         public ITaskRepository TaskRepository { get; set; }
         public ITagRepository TagRepository { get; }
-        public ITagRuleRepository TagRuleRepository { get; }
+        public ITaskTagRuleRepository TaskTagRuleRepository { get; }
         public IWorkspaceRepository WorkspaceRepository { get; }
+        public ITaskTagRepository TaskTagRepository { get;  }
 
         public UnitOfWork(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
             TaskRepository = new TaskRepository(_dbContext);
             TagRepository = new TagRepository(_dbContext);
-            TagRuleRepository = new TagRuleRepository(_dbContext);
+            TaskTagRuleRepository = new TaskTagRuleRepository(_dbContext);
+            TaskTagRepository = new TaskTagRepository(_dbContext);
             WorkspaceRepository = new WorkspaceRepository(_dbContext);
         }
         public async Task SaveAsync()
