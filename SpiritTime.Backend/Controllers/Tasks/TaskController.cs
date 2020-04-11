@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Logging;
 using SpiritTime.Backend.Controllers.Workspaces;
 using SpiritTime.Backend.Infrastructure.Jwt;
@@ -96,18 +97,16 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 var item = _mapper.Map<Core.Entities.Tasks>(resource);
                 await _unitOfWork.TaskRepository.AddAsync(item);
                 await _unitOfWork.SaveAsync();
-                var newItem = await _unitOfWork.TaskRepository
-                    .GetUniqueByAsync(x => x.Name == resource.Name 
-                                           && x.Description == resource.Description);
                 
-                var resultItem = _mapper.Map<TaskDto>(newItem);
+                var resultItem = _mapper.Map<TaskDto>(item);
                 resultItem = await Helper.AddTagsByRules(resource.WorkspaceId, resultItem);
                 var result = new TaskResult
                 {
                     Item = resultItem,
                     Successful = true
                 };
-
+                await Helper.CheckAndStopPreviousTask(resultItem);
+                await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
                 return new JsonResult(result);
             }
             catch (Exception ex)
@@ -138,6 +137,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 var updated = _mapper.Map<Core.Entities.Tasks>(resource);
                 updated.Id = item.Id;
                 _unitOfWork.TaskRepository.Update(updated);
+                await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
                 await _unitOfWork.SaveAsync();
                 return new JsonResult(new ResultModel { Error = null, Successful = true });
             }
@@ -171,7 +171,6 @@ namespace SpiritTime.Backend.Controllers.Tasks
                         return new JsonResult(new ResultModel
                             { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
 
-
                     _unitOfWork.TaskRepository.Remove(item);
                     await _unitOfWork.SaveAsync();
                     return new JsonResult(new ResultModel { Error = null, Successful = true });
@@ -180,7 +179,6 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 {
                     return new JsonResult(new ResultModel { Error = "ID was 0.", Successful = false });
                 }
-
             }
             catch (Exception ex)
             {

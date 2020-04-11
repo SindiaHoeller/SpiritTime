@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -25,6 +26,27 @@ namespace SpiritTime.Backend.Controllers.Tasks
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+
+        /// <summary>
+        /// CheckAndStopPreviousTask
+        /// </summary>
+        /// <param name="task"></param>
+        public async Task CheckAndStopPreviousTask(TaskDto task)
+        {
+            if (task.EndDate == DateTime.MinValue)
+            {
+                var taskNotEnded = await _unitOfWork.TaskRepository
+                    .GetUniqueByAsync(x => x.EndDate == DateTime.MinValue &&
+                                           x.Id != task.Id);
+                if (taskNotEnded != null)
+                {
+                    taskNotEnded.EndDate = task.StartDate;
+                    _unitOfWork.TaskRepository.Update(taskNotEnded);
+                    await _unitOfWork.SaveAsync();
+                }
+            }
+        }
+        
         /// <summary>
         /// Adds Tags to Tasks
         /// </summary>
@@ -66,7 +88,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// </summary>
         /// <param name="tagInfoList"></param>
         /// <param name="taskId"></param>
-        public async void AddRangeOfTagsToTask(List<TagInfo> tagInfoList, int taskId)
+        public async Task AddRangeOfTagsToTask(List<TagInfo> tagInfoList, int taskId)
         {
             var list = await GetAllCurrentLinkedTags(taskId);
             foreach (var item in tagInfoList)
