@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Components;
-using SpiritTime.Core.Entities;
 using SpiritTime.Frontend.Services.OverlayModalService;
 using SpiritTime.Frontend.Services.TableServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
@@ -12,7 +11,7 @@ using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models.WorkspaceModels;
 
-namespace SpiritTime.Frontend.Pages.WorkspacePages
+namespace SpiritTime.Frontend.Pages.Workspaces
 {
     public partial class Overview
     {

@@ -1,10 +1,12 @@
 ﻿<div class="top-row-custom pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href=""><h3>SpiritTime</h3></a>
+    <a class="navbar-brand" href="">
+        <h3>SpiritTime</h3>
+    </a>
     <div class="full-center">
         <div class="custom-top-row pr-3">
-            <LoginMenu />
+            <LoginMenu/>
         </div>
-        
+
         <button class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,8 +22,18 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
+            <NavLink class="nav-link" href="tasks/overview">
+                <span class="oi oi-task" aria-hidden="true"></span> Tasks
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
             <NavLink class="nav-link" href="tags/overview">
                 <span class="oi oi-bookmark" aria-hidden="true"></span> Tags
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="rules/overview">
+                <span class="oi oi-briefcase" aria-hidden="true"></span> Rules
             </NavLink>
         </li>
         <li class="nav-item px-3">
@@ -29,6 +41,18 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Workspaces
             </NavLink>
         </li>
+        <hr/>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="account/overview">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Account
+            </NavLink>
+        </li>
+        <hr/>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="options/overview">
+                        <span class="oi oi-cog" aria-hidden="true"></span> Options
+                    </NavLink>
+                </li>
     </ul>
 </div>
 
@@ -41,4 +65,5 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
 }

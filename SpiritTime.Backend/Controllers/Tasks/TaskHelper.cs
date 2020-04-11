@@ -162,6 +162,32 @@ namespace SpiritTime.Backend.Controllers.Tasks
 
             return text;
         }
+
+        /// <summary>
+        /// GetAllTagsForTask
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <returns></returns>
+        public async Task<List<TagInfo>> GetAllTagsForTask(int taskId)
+        {
+            var list = await _unitOfWork.TaskTagRepository.SelectMulitpleAsync(x => x.TaskId == taskId,
+                x => x.Tag);
+            return _mapper.Map<List<TagInfo>>(list);
+        }
         
+        /// <summary>
+        /// GetAllTagsForTaskList
+        /// </summary>
+        /// <param name="taskDtos"></param>
+        /// <returns></returns>
+        public async Task<List<TaskDto>> GetAllTagsForTaskList(List<TaskDto> taskDtos)
+        {
+            foreach (var item in taskDtos)
+            {
+                item.TagList = await GetAllTagsForTask(item.Id);
+            }
+
+            return taskDtos;
+        }
     }
 }

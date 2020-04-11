@@ -148,16 +148,16 @@ namespace SpiritTime.Backend.Controllers.TaskTagRules
         /// </summary>
         /// <remarks>Needs: Id \
         /// Returns: ResultModel</remarks>
-        /// <param name="idString"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Delete([FromBody]string idString)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                Int32.TryParse(idString, out int id);
+                //Int32.TryParse(idString, out int id);
                 if (id != 0)
                 {
                     var item = await _unitOfWork.TaskTagRuleRepository

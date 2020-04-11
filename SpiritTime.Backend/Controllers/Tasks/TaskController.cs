@@ -61,19 +61,56 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// <response code="200">Returns a TaskListResult</response>
 
         [HttpGet]
-        public async Task<IActionResult> GetAllByWorkspace([FromBody]string idString)
+        public async Task<IActionResult> GetAllByWorkspace(int id)
         {
             try
             {
-                Int32.TryParse(idString, out int id);
+                //Int32.TryParse(stringId, out int id);
                 var all = await _unitOfWork.TaskRepository.GetMultipleByAsync(x=>x.WorkspaceId == id);
+                
                 var list = _mapper.Map<List<TaskDto>>(all);
+                list = await Helper.GetAllTagsForTaskList(list);
                 
                 return new JsonResult(new TaskListResult { ItemList = list, Successful = true });
             }
             catch (Exception ex)
             {
                 return new JsonResult(new TaskListResult { Error = ex.Message, Successful = false });
+            }
+        }
+        
+        /// <summary>
+        ///     Get's one Task by its Id
+        /// </summary>
+        /// <remarks> Needs: Task Id <br />  Returns: TaskResult </remarks>
+        /// <returns></returns>
+        /// <response code="200">Returns a TaskResult</response>
+
+        [HttpGet]
+        public async Task<IActionResult> GetOneById(int id)
+        {
+            try
+            {
+
+                //Int32.TryParse(stringId, out int id);
+                if (!await CheckForPermissionByTask(id, _unitOfWork))
+                    return new JsonResult(new TaskResult
+                        { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
+
+                var task = _unitOfWork.TaskRepository.GetUniqueByAsync(x => x.Id == id);
+                var taskDto = _mapper.Map<TaskDto>(task);
+                taskDto.TagList = await Helper.GetAllTagsForTask(id);
+                var result = new TaskResult
+                {
+                    Successful = true,
+                    Item = taskDto
+                };
+                
+                return new JsonResult(result);
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new TaskResult { Error = ex.Message, Successful = false });
             }
         }
 
@@ -105,6 +142,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
                     Item = resultItem,
                     Successful = true
                 };
+                result.Item.TagList = await Helper.GetAllTagsForTask(item.Id);
                 await Helper.CheckAndStopPreviousTask(resultItem);
                 await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
                 return new JsonResult(result);
@@ -138,6 +176,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 updated.Id = item.Id;
                 _unitOfWork.TaskRepository.Update(updated);
                 await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
+                
                 await _unitOfWork.SaveAsync();
                 return new JsonResult(new ResultModel { Error = null, Successful = true });
             }
@@ -153,16 +192,16 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// </summary>
         /// <remarks>Needs: Id \
         /// Returns: ResultModel</remarks>
-        /// <param name="idString"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Delete([FromBody]string idString)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                Int32.TryParse(idString, out int id);
+                //Int32.TryParse(idString, out int id);
                 if (id != 0)
                 {
                     var item = await _unitOfWork.TaskRepository

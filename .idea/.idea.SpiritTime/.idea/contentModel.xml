@@ -112,12 +112,17 @@
             <e p="Login.razor" t="Include" />
             <e p="Login.razor.cs" t="Include" />
             <e p="Logout.razor" t="Include" />
+            <e p="Overview.razor" t="Include" />
             <e p="Register.razor" t="Include" />
             <e p="Register.razor.cs" t="Include" />
           </e>
           <e p="Counter.razor" t="Include" />
           <e p="Error.razor" t="Include" />
           <e p="Index.razor" t="Include" />
+          <e p="Options" t="Include">
+            <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
+          </e>
           <e p="Overlays" t="Include">
             <e p="AddModel.cs" t="Include" />
             <e p="BaseOverlay.razor" t="Include" />
@@ -129,6 +134,9 @@
             <e p="ResultModal.razor" t="Include" />
             <e p="ResultModal.razor.cs" t="Include" />
           </e>
+          <e p="Rules" t="Include">
+            <e p="Overview.razor" t="Include" />
+          </e>
           <e p="Tags" t="Include">
             <e p="Add.razor" t="Include" />
             <e p="Add.razor.cs" t="Include" />
@@ -139,7 +147,10 @@
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
           </e>
-          <e p="WorkspacePages" t="Include">
+          <e p="Tasks" t="Include">
+            <e p="Overview.razor" t="Include" />
+          </e>
+          <e p="Workspaces" t="Include">
             <e p="Add.razor" t="Include" />
             <e p="Add.razor.cs" t="Include" />
             <e p="Delete.razor" t="Include" />
@@ -180,10 +191,6 @@
             <e p="ITableService.cs" t="Include" />
             <e p="TableService.cs" t="Include" />
           </e>
-          <e p="TagRuleServices" t="Include">
-            <e p="ITagRuleService.cs" t="Include" />
-            <e p="TagRuleService.cs" t="Include" />
-          </e>
           <e p="TagServices" t="Include">
             <e p="ITagService.cs" t="Include" />
             <e p="TagService.cs" t="Include" />
@@ -191,6 +198,10 @@
           <e p="TaskServices" t="Include">
             <e p="ITaskService.cs" t="Include" />
             <e p="TaskService.cs" t="Include" />
+          </e>
+          <e p="TaskTagRuleServices" t="Include">
+            <e p="ITaskTagRuleService.cs" t="Include" />
+            <e p="TaskTagRuleService.cs" t="Include" />
           </e>
           <e p="ValidateHeaderHandler.cs" t="Include" />
           <e p="WorkspaceServices" t="Include">
@@ -321,7 +332,7 @@
             <e p="TaskNew.cs" t="Include" />
             <e p="TaskResult.cs" t="Include" />
           </e>
-          <e p="TaskTag" t="Include">
+          <e p="TaskTagModels" t="Include">
             <e p="TaskTagDto.cs" t="Include" />
           </e>
           <e p="TaskTagRuleModels" t="Include">

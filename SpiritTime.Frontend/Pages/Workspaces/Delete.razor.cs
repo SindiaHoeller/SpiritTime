@@ -1,14 +1,11 @@
-﻿using System;
-using AutoMapper;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Pages.Overlays;
 using SpiritTime.Frontend.Services.OverlayModalService;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
-using SpiritTime.Shared.Models.WorkspaceModels;
 
-namespace SpiritTime.Frontend.Pages.WorkspacePages
+namespace SpiritTime.Frontend.Pages.Workspaces
 {
     public partial class Delete
     {

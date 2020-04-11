@@ -14,7 +14,7 @@ using SpiritTime.Core;
 using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models;
 using SpiritTime.Shared.Models.TaskModels;
-using SpiritTime.Shared.Models.TaskTag;
+using SpiritTime.Shared.Models.TaskTagModels;
 
 namespace SpiritTime.Backend.Controllers.TaskTags
 {
