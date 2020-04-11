@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace SpiritTime.Shared.Models.Tags
+namespace SpiritTime.Shared.Models.TagModels
 {
     public class TagListResult : ResultModel
     {

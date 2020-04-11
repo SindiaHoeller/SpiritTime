@@ -9,5 +9,6 @@ namespace SpiritTime.Core.Contracts
 {
     public interface ITaskRepository : IRepository<Tasks>
     {
+        
     }
 }

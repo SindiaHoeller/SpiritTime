@@ -3,10 +3,10 @@ using SpiritTime.Core.Entities;
 
 namespace SpiritTime.Persistence.Repositories
 {
-    public class TagRuleRepository : Repository<TaskTagRule>, ITagRuleRepository
+    public class TaskTagRuleRepository : Repository<TaskTagRules>, ITaskTagRuleRepository
     {
         private readonly ApplicationDbContext _dbContext;
-        public TagRuleRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public TaskTagRuleRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }

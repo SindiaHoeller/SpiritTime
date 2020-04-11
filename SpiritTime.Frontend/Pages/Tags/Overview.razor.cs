@@ -11,7 +11,7 @@ using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
-using SpiritTime.Shared.Models.Tags;
+using SpiritTime.Shared.Models.TagModels;
 using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Frontend.Pages.Tags

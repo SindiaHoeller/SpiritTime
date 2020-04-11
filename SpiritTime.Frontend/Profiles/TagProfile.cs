@@ -1,5 +1,5 @@
 using AutoMapper;
-using SpiritTime.Shared.Models.Tags;
+using SpiritTime.Shared.Models.TagModels;
 
 namespace SpiritTime.Frontend.Profiles
 {

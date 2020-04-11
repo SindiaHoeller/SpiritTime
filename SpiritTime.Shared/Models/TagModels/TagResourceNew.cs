@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SpiritTime.Shared.Models.Tags
+﻿namespace SpiritTime.Shared.Models.TagModels
 {
     public class TagResourceNew
     {

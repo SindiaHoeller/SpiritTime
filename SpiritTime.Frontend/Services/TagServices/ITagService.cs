@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using SpiritTime.Shared.Models;
-using SpiritTime.Shared.Models.Tags;
+using SpiritTime.Shared.Models.TagModels;
 
 namespace SpiritTime.Frontend.Services.TagServices
 {
