@@ -144,7 +144,7 @@ namespace SpiritTime.Backend.Controllers.TaskTags
                         return new JsonResult(new ResultModel
                             { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
 
-                    Helper.AddRangeOfTagsToTask(task.TagList, task.Id);
+                    await Helper.AddRangeOfTagsToTask(task.TagList, task.Id);
                     return new JsonResult(new ResultModel { Error = null, Successful = true });
                 }
                 else
