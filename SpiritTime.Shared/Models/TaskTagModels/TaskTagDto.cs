@@ -1,4 +1,4 @@
-namespace SpiritTime.Shared.Models.TaskTag
+namespace SpiritTime.Shared.Models.TaskTagModels
 {
     public class TaskTagDto
     {

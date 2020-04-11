@@ -27,6 +27,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using SpiritTime.Frontend.Services.StaticDetails;
 using SpiritTime.Shared.Helper;
+using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Frontend.Services
 {
@@ -104,6 +105,16 @@ namespace SpiritTime.Frontend.Services
         public void StateChanged()
         {
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync()); // <- Does nothing
+        }
+        
+        public async Task SetCurrentWorkspace(int id, string workspacePath)
+        {
+            var name = await _localStorage.GetItemAsync<string>(SD.CurrentWorkspace);
+            if (id == 0 || string.IsNullOrEmpty(name))
+            {
+                var workspace = await _httpClient.GetJsonAsync<WorkspaceDto>(workspacePath);
+                await _localStorage.SetItemAsync(SD.CurrentWorkspace, workspace.Id);
+            }
         }
 
     }

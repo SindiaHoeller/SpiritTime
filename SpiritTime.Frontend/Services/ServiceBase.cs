@@ -58,7 +58,8 @@ namespace SpiritTime.Frontend.Services
 
             try
             {
-                return await _httpClient.PostJsonAsync<ResultModel>(DeletePath, id.ToString());
+                var path = DeletePath + "?id=" + id;
+                return await _httpClient.GetJsonAsync<ResultModel>(path);
             }
             catch (Exception ex)
             {

@@ -15,6 +15,7 @@ using SpiritTime.Shared.Models.WorkspaceModels;
 using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
+using SpiritTime.Shared.Models.TaskModels;
 
 namespace SpiritTime.Backend.Controllers.Workspaces
 {
@@ -70,6 +71,39 @@ namespace SpiritTime.Backend.Controllers.Workspaces
             catch (Exception ex)
             {
                 return new JsonResult(new WorkspaceListResult { Error = ex.Message, Successful = false });
+            }
+        }
+        
+        /// <summary>
+        /// GetOneById
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>WorkspaceResult</returns>
+        [HttpGet]
+        public async Task<IActionResult> GetOneById(int id)
+        {
+            try
+            {
+
+                //Int32.TryParse(stringId, out int id);
+                if (!await CheckForPermissionByWorkspace(id, _unitOfWork))
+                    return new JsonResult(new WorkspaceResult
+                        { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
+
+                var item = await _unitOfWork.WorkspaceRepository.GetUniqueByAsync(x => x.Id == id);
+
+                var result = new WorkspaceResult
+                {
+                    Successful = true,
+                    Name = item.Name,
+                    Id = item.Id
+                };
+                
+                return new JsonResult(result);
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new WorkspaceResult { Error = ex.Message, Successful = false });
             }
         }
 
@@ -143,12 +177,12 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Delete([FromBody]string idString)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                Int32.TryParse(idString, out int id);
+                //Int32.TryParse(idString, out int id);
                 if (id != 0)
                 {
                     var workspace = await _unitOfWork.WorkspaceRepository

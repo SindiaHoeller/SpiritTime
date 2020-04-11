@@ -41,6 +41,8 @@ namespace SpiritTime.Frontend.Services.AuthServices
                 {
                     await ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(result.Token, user.Email);
                     ((ApiAuthenticationStateProvider)_authenticationStateProvider).StateChanged();
+                    await ((ApiAuthenticationStateProvider) _authenticationStateProvider).SetCurrentWorkspace(0,
+                        Path.WorkspaceGetOne);
                 }
 
                 return result;
@@ -50,6 +52,8 @@ namespace SpiritTime.Frontend.Services.AuthServices
                 return new AuthenticationResult { Successful = false, Error = ex.Message };
             }
         }
+
+
 
         public async Task<RegisterResult> RegisterUserAsync(RegisterResource user)
         {

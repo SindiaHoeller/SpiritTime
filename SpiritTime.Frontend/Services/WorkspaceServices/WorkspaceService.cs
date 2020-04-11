@@ -27,8 +27,8 @@ namespace SpiritTime.Frontend.Services.WorkspaceServices
         {
             var appSetting = appSettings.Value;
             _path = new Paths(appSetting.BackendBaseAddress);
-            EditPath = _path.TagEdit;
-            DeletePath = _path.TagDelete;
+            EditPath = _path.WorkspaceEdit;
+            DeletePath = _path.WorkspaceDelete;
         }
 
         public async Task<WorkspaceListResult> GetAllAsync()
