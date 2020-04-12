@@ -2,7 +2,7 @@
 <div class="center-and-highlight">
     <div class="col-12 custom-background mt-5">
         <div class="text-center">
-            <h1>@Text.Workspace</h1>
+            <h1>@Text.Options</h1>
 
         </div>
         @if (ShowError && ErrMsg != null)
@@ -13,8 +13,8 @@
         }
         @if (ShowWorkspaces)
         {
-            <h3 >Default @Text.Workspace:</h3>
-            <div class="row">
+            <h3 >Current @Text.Workspace:</h3>
+            <div class="row center-and-highlight">
                 <div class="form-group my-3 col-lg-6 col-xs-12">
                     
                     <EditForm Model="WorkspaceList">
@@ -26,9 +26,9 @@
                         </InputSelect>
                     </EditForm>
                 </div>
-                <div class="form-group my-3 col-lg-2 col-xs-12">
+                <div class="form-group my-3 col-lg-1 col-xs-12">
                     <button class="custom-small-button" @onclick="@(() => SetWorkspace())">
-                        <span class="oi oi-check"></span>
+                        <span class="oi oi-check"></span> @Text.Save
                     </button>
                 </div>
             </div>

@@ -6,7 +6,7 @@ namespace SpiritTime.Frontend.Services.TaskServices
 {
     public interface ITaskService
     {
-        Task<TaskListResult> GetAllAsync(int workspaceId);
+        Task<TaskListResult> GetAllAsync();
         Task<TaskListResult> GetByIdAsync(int id);
         Task<TaskResult> Add(TaskDto item);
         Task<ResultModel> Edit(TaskDto item);

@@ -174,9 +174,13 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 var item = await _unitOfWork.TaskRepository
                     .GetUniqueByAsync(x => x.Id == resource.Id);
 
-                var updated = _mapper.Map<Core.Entities.Tasks>(resource);
-                updated.Id = item.Id;
-                _unitOfWork.TaskRepository.Update(updated);
+                item.Description = resource.Description;
+                item.Name = resource.Name;
+                item.EndDate = resource.EndDate;
+                item.StartDate = resource.StartDate;
+                item.IsBooked = resource.IsBooked;
+                item.WorkspaceId = resource.WorkspaceId;
+                _unitOfWork.TaskRepository.Update(item);
                 await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
                 
                 await _unitOfWork.SaveAsync();

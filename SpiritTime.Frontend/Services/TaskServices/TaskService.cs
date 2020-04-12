@@ -27,12 +27,12 @@ namespace SpiritTime.Frontend.Services.TaskServices
             EditPath = _path.TaskEdit;
             DeletePath = _path.TaskDelete;
         }
-        public async Task<TaskListResult> GetAllAsync(int workspaceId)
+        public async Task<TaskListResult> GetAllAsync()
         {
-            await SetAuthenticationHeader();
-
             try
             {
+                await SetAuthenticationHeader();
+                var workspaceId = await GetCurrentWorkspaceId();
                 return await _httpClient.GetJsonAsync<TaskListResult>(_path.TaskGetAllByWorkspace + "?id=" + workspaceId);
 
             }

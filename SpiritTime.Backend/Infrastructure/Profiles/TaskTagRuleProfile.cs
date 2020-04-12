@@ -13,7 +13,8 @@ namespace SpiritTime.Backend.Infrastructure.Profiles
         {
             CreateMap<TaskTagRules, TaskTagRuleDto>();
             CreateMap<TaskTagRules, TaskTagRuleNew>();
-            
+            CreateMap<TaskTagRuleNew, TaskTagRules>();
+            CreateMap<TaskTagRuleDto, TaskTagRules>();
         }
     }
 }

@@ -132,9 +132,12 @@ namespace SpiritTime.Backend.Controllers.TaskTagRules
                 var item = await _unitOfWork.TaskTagRuleRepository
                     .GetUniqueByAsync(x => x.Id == resource.Id);
 
-                var updated = _mapper.Map<Core.Entities.TaskTagRules>(resource);
-                updated.Id = item.Id;
-                _unitOfWork.TaskTagRuleRepository.Update(updated);
+                item.TagId = resource.TagId;
+                item.ReplaceTrigger = resource.ReplaceTrigger;
+                item.TriggerDescription = resource.TriggerDescription;
+                item.TriggerName = resource.TriggerName;
+                item.TriggerText = resource.TriggerText;
+                _unitOfWork.TaskTagRuleRepository.Update(item);
                 await _unitOfWork.SaveAsync();
                 return new JsonResult(new ResultModel { Error = null, Successful = true });
             }
