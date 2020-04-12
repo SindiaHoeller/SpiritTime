@@ -6,7 +6,7 @@ using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Options;
-using SpiritTime.Frontend.Data;
+using SpiritTime.Frontend.Config;
 using SpiritTime.Frontend.Services.StaticDetails;
 using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.Account.Registration;

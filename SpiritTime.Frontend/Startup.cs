@@ -14,11 +14,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpiritTime.Core.Contracts;
-using SpiritTime.Frontend.Data;
+using SpiritTime.Frontend.Config;
+using SpiritTime.Frontend.Partials.OverlayModalService;
+using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services;
 using SpiritTime.Frontend.Services.AuthServices;
 using SpiritTime.Frontend.Services.OptionsService;
-using SpiritTime.Frontend.Services.OverlayModalService;
 using SpiritTime.Frontend.Services.TableServices;
 using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.TaskServices;
@@ -52,6 +53,7 @@ namespace SpiritTime.Frontend
             services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             services.AddBlazoredLocalStorage();
             services.AddHttpClient<IAuthService, AuthService>();
+            services.AddScoped<IToastService, ToastService>();
             services.AddScoped<IOptionService, OptionService>();
             services.AddScoped<IOverlayModalService, OverlayModalService>();
             services.AddScoped<ITagService, TagService>();
@@ -60,6 +62,7 @@ namespace SpiritTime.Frontend
             services.AddScoped<IWorkspaceService, WorkspaceService>();
 
             services.AddScoped(typeof(ITableService<>), typeof(TableService<>));
+            
 
             services.AddSingleton<HttpClient>();
 

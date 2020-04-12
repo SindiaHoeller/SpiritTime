@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Components;
-using SpiritTime.Frontend.Pages.Overlays;
-using SpiritTime.Frontend.Services.OverlayModalService;
+using SpiritTime.Frontend.Partials.OverlayModalService;
+using SpiritTime.Frontend.Partials.Overlays;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 
-namespace SpiritTime.Frontend.Services.OverlayModalService
+namespace SpiritTime.Frontend.Partials.OverlayModalService
 {
     public interface IOverlayModalService
     {

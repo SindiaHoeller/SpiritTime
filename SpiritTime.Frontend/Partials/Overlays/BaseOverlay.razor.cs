@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using SpiritTime.Frontend.Services.OverlayModalService;
+using SpiritTime.Frontend.Partials.OverlayModalService;
 
-namespace SpiritTime.Frontend.Pages.Overlays
+namespace SpiritTime.Frontend.Partials.Overlays
 {
     public partial class BaseOverlay : IDisposable
     {
@@ -37,8 +34,8 @@ namespace SpiritTime.Frontend.Pages.Overlays
 
         protected override void OnInitialized()
         {
-            ((OverlayModalService)ModalService).OnShow += ShowModal;
-            ((OverlayModalService)ModalService).CloseModal += CloseModal;
+            ((OverlayModalService.OverlayModalService)ModalService).OnShow += ShowModal;
+            ((OverlayModalService.OverlayModalService)ModalService).CloseModal += CloseModal;
         }
 
         public void Dispose()
@@ -69,8 +66,8 @@ namespace SpiritTime.Frontend.Pages.Overlays
         {
             if (disposing)
             {
-                ((OverlayModalService)ModalService).OnShow -= ShowModal;
-                ((OverlayModalService)ModalService).CloseModal -= CloseModal;
+                ((OverlayModalService.OverlayModalService)ModalService).OnShow -= ShowModal;
+                ((OverlayModalService.OverlayModalService)ModalService).CloseModal -= CloseModal;
             }
         }
 
