@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using SpiritTime.Backend.Infrastructure.Jwt;
 using SpiritTime.Core;
 using SpiritTime.Core.Entities;
+using SpiritTime.Shared.Api;
+using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.Account.ChangeUserEmail;
 using SpiritTime.Shared.Models.Account.ChangeUserPassword;
@@ -20,8 +22,11 @@ using SpiritTime.Shared.Models.Account.Registration;
 
 namespace SpiritTime.Backend.Controllers.Account
 {
+    /// <summary>
+    /// AccountController
+    /// </summary>
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route(ControllerNames.Account + "/[action]")]
     public class AccountController : ControllerBase
     {
         private const string Controller = "Account";
@@ -60,7 +65,7 @@ namespace SpiritTime.Backend.Controllers.Account
         ///     uppercase)
         /// </response>
         /// <response code="409">Email is already taken</response>
-        [HttpPost]
+        [HttpPost(ApiMethod.Register)]
         public async Task<IActionResult> Register(RegisterResource registerResource)
         {
             try
@@ -124,7 +129,7 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <returns></returns>
         /// <response code="200">Returns a JsonWebToken</response>
         /// <response code="400">Invalid credentials</response>
-        [HttpPost]
+        [HttpPost(ApiMethod.Login)]
         public async Task<IActionResult> Login(AuthenticationResource authenticationResource)
         {
             var signInResult = await _signInManager.PasswordSignInAsync(authenticationResource.Email,
@@ -156,7 +161,7 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <returns></returns>
         /// <response code="200">Returns Confirmation done</response>
         /// <response code="404">Returns Something went wrong!</response>
-        [HttpGet]
+        [HttpGet(ApiMethod.ConfirmEmail)]
         public async Task<IActionResult> ConfirmEmail(string email, string token)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -176,7 +181,7 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <response code="400">Send email doesnt work</response>
         /// <response code="404">User not Fount</response>
         [Authorize]
-        [HttpGet]
+        [HttpGet(ApiMethod.ChangeUserEmail)]
         public async Task<IActionResult> ChangeUserEmail(ChangeUserEmailResource changeUserEmailResource)
         {
             var user = await _userManager.FindByEmailAsync(changeUserEmailResource.Email);
@@ -215,7 +220,7 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <returns></returns>
         /// <response code="200">Email and Username changed</response>
         /// <response code="400">Returns Something went wrong</response>
-        [HttpGet]
+        [HttpGet(ApiMethod.ConfirmEmailAfterChange)]
         public async Task<IActionResult> ConfirmEmailAfterChange(string email, string token, string newEmail)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -237,7 +242,7 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <response code="400">Invalid credentials</response>
         /// <response code="409">Password rules are broken</response>
         [Authorize]
-        [HttpPut]
+        [HttpPut(ApiMethod.ChangeUserPassword)]
         public async Task<IActionResult> ChangeUserPassword(ChangeUserPasswordResource changeUserPasswordResource)
         {
             var user = await _userManager.FindByEmailAsync(changeUserPasswordResource.Email);
@@ -265,7 +270,7 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <response code="200">User successfully deleted</response>
         /// <response code="400">Delete user failed</response>
         [Authorize]
-        [HttpDelete]
+        [HttpDelete(ApiMethod.DeleteUser)]
         public async Task<IActionResult> DeleteUser(DeleteUserResource deleteUserResource)
         {
             var user = await _userManager.FindByEmailAsync(deleteUserResource.Email);

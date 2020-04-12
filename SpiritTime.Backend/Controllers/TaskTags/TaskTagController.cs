@@ -11,6 +11,8 @@ using SpiritTime.Backend.Controllers.Tasks;
 using SpiritTime.Backend.Controllers.Workspaces;
 using SpiritTime.Backend.Infrastructure.Jwt;
 using SpiritTime.Core;
+using SpiritTime.Shared.Api;
+using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models;
 using SpiritTime.Shared.Models.TaskModels;
@@ -22,7 +24,7 @@ namespace SpiritTime.Backend.Controllers.TaskTags
     /// TaskTagController
     /// </summary>
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route(ControllerNames.TaskTag)]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class TaskTagController : ControllerHelper
     {
@@ -57,7 +59,7 @@ namespace SpiritTime.Backend.Controllers.TaskTags
         /// </summary>
         /// <param name="tasktag"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet(ApiMethod.AddTag)]
         public async Task<IActionResult> AddTag(TaskTagDto tasktag)
         {
             try
@@ -96,7 +98,7 @@ namespace SpiritTime.Backend.Controllers.TaskTags
         /// </summary>
         /// <param name="tasktag"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet(ApiMethod.RemoveTag)]
         public async Task<IActionResult> RemoveTag(TaskTagDto tasktag)
         {
             try
@@ -133,7 +135,7 @@ namespace SpiritTime.Backend.Controllers.TaskTags
         /// </summary>
         /// <param name="tasktag"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet(ApiMethod.CompareTags)]
         public async Task<IActionResult> CompareTags(TaskDto task)
         {
             try

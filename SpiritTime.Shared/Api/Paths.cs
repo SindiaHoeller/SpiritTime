@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SpiritTime.Frontend.Services.StaticDetails
+﻿namespace SpiritTime.Shared.Api
 {
     public class Paths
     {
@@ -80,46 +75,46 @@ namespace SpiritTime.Frontend.Services.StaticDetails
 
         public Paths(string basepath)
         {
-            var account = "/Account/";
-            _register = basepath + account + "Register";
-            _login = basepath + account + "Login";
-            _confirmEmail = basepath + account + "ConfirmEmail";
-            _changeUserEmail = basepath + account + "ChangeUserEmail";
-            _confirmEmailAfterChange = basepath + account + "ConfirmEmailAfterChange";
-            _changeUserPassword = basepath + account + "ChangeUserPassword";
-            _deleteUser = basepath + account + "DeleteUser";
+            var account = ControllerNames.Account + "/";
+            _register = basepath + account + ApiMethod.Register;
+            _login = basepath + account + ApiMethod.Login;
+            _confirmEmail = basepath + account + ApiMethod.ConfirmEmail;
+            _changeUserEmail = basepath + account + ApiMethod.ChangeUserEmail;
+            _confirmEmailAfterChange = basepath + account + ApiMethod.ConfirmEmailAfterChange;
+            _changeUserPassword = basepath + account + ApiMethod.ChangeUserPassword;
+            _deleteUser = basepath + account + ApiMethod.DeleteUser;
 
-            var workspace = "/Workspaces/";
-            _workspaceGetall = basepath + workspace + "GetallByUserId";
-            _workspaceGetOne = basepath + workspace + "GetOneById";
-            _workspaceAdd = basepath + workspace + "Create";
-            _workspaceDelete = basepath + workspace + "Delete";
-            _workspaceEdit = basepath + workspace + "Update";
-            _workspaceGetFirstOrDefault = basepath + workspace + "GetFirstOrDefault";
+            var workspace = ControllerNames.Workspaces + "/";;
+            _workspaceGetall = basepath + workspace + ApiMethod.GetallByUserId;
+            _workspaceGetOne = basepath + workspace + ApiMethod.GetOneById;
+            _workspaceAdd = basepath + workspace + ApiMethod.Create;
+            _workspaceDelete = basepath + workspace + ApiMethod.Delete;
+            _workspaceEdit = basepath + workspace + ApiMethod.Update;
+            _workspaceGetFirstOrDefault = basepath + workspace + ApiMethod.GetFirstOrDefault;
 
-            var tag = "/tags/";
-            _tagGetall = basepath + tag + "GetAll";
-            _tagAdd = basepath + tag + "Create";
-            _tagEdit = basepath + tag + "Update";
-            _tagDelete = basepath + tag + "Delete";
+            var tag = ControllerNames.Tags + "/";
+            _tagGetall = basepath + tag + ApiMethod.GetAll;
+            _tagAdd = basepath + tag + ApiMethod.Create;
+            _tagEdit = basepath + tag + ApiMethod.Update;
+            _tagDelete = basepath + tag + ApiMethod.Delete;
 
-            var task = "/task/";
-            _taskGetall = basepath + task + "GetAllByWorkspace";
-            _taskGetById = basepath + task + "GetOneById";
-            _taskAdd = basepath + task + "Create";
-            _taskEdit = basepath + task + "Update";
-            _taskDelete = basepath + task + "Delete";
+            var task = ControllerNames.Tasks + "/";
+            _taskGetall = basepath + task + ApiMethod.GetAllByWorkspace;
+            _taskGetById = basepath + task + ApiMethod.GetOneById;
+            _taskAdd = basepath + task + ApiMethod.Create;
+            _taskEdit = basepath + task + ApiMethod.Update;
+            _taskDelete = basepath + task + ApiMethod.Delete;
 
-            var taskTag = "/taskTag/";
-            _taskTagAddTag = basepath + taskTag + "AddTag";
-            _taskTagRemoveTag = basepath + taskTag + "RemoveTag";
-            _taskTagCompareTags = basepath + taskTag + "CompareTags";
+            var taskTag = ControllerNames.TaskTag + "/";
+            _taskTagAddTag = basepath + taskTag + ApiMethod.AddTag;
+            _taskTagRemoveTag = basepath + taskTag + ApiMethod.RemoveTag;
+            _taskTagCompareTags = basepath + taskTag + ApiMethod.CompareTags;
 
-            var taskTagRule = "/taskTagRule/";
-            _taskTagRuleGetall = basepath + taskTagRule + "GetAll";
-            _taskTagRuleAdd = basepath + taskTagRule + "Create";
-            _taskTagRuleEdit = basepath + taskTagRule + "Update";
-            _taskTagRuleDelete = basepath + taskTagRule + "Delete";
+            var taskTagRule = ControllerNames.TaskTagRules + "/";
+            _taskTagRuleGetall = basepath + taskTagRule + ApiMethod.GetAll;
+            _taskTagRuleAdd = basepath + taskTagRule + ApiMethod.Create;
+            _taskTagRuleEdit = basepath + taskTagRule + ApiMethod.Update;
+            _taskTagRuleDelete = basepath + taskTagRule + ApiMethod.Delete;
         }
     }
 }

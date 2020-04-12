@@ -12,6 +12,8 @@ using SpiritTime.Backend.Controllers.Workspaces;
 using SpiritTime.Backend.Infrastructure.Jwt;
 using SpiritTime.Core;
 using SpiritTime.Core.Entities;
+using SpiritTime.Shared.Api;
+using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models;
 using SpiritTime.Shared.Models.TagModels;
@@ -23,7 +25,7 @@ namespace SpiritTime.Backend.Controllers.Tags
     /// TagController
     /// </summary>
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route(ControllerNames.Tags)]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class TagsController : ControllerHelper
     {
@@ -56,7 +58,7 @@ namespace SpiritTime.Backend.Controllers.Tags
         /// <returns></returns>
         /// <response code="200">Returns a TagListResult</response>
 
-        [HttpGet]
+        [HttpGet(ApiMethod.GetAll)]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -80,7 +82,7 @@ namespace SpiritTime.Backend.Controllers.Tags
         /// <returns></returns>
         /// <response code="200">Returns a TagResult</response>
         //[Authorize]
-        [HttpPost]
+        [HttpPost(ApiMethod.Create)]
         public async Task<IActionResult> Create(TagResourceNew resource)
         {
             try
@@ -115,7 +117,7 @@ namespace SpiritTime.Backend.Controllers.Tags
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
-        [HttpPost]
+        [HttpPost(ApiMethod.Update)]
         public async Task<IActionResult> Update(TagResource resource)
         {
             try
@@ -148,7 +150,7 @@ namespace SpiritTime.Backend.Controllers.Tags
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
-        [HttpGet]
+        [HttpGet(ApiMethod.Delete)]
         public async Task<IActionResult> Delete(int id)
         {
             try
