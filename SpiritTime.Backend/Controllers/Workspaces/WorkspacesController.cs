@@ -106,6 +106,33 @@ namespace SpiritTime.Backend.Controllers.Workspaces
                 return new JsonResult(new WorkspaceResult { Error = ex.Message, Successful = false });
             }
         }
+        
+        /// <summary>
+        /// GetFirstOrDefault
+        /// </summary>
+        /// <returns>WorkspaceResult</returns>
+        [HttpGet]
+        public async Task<IActionResult> GetFirstOrDefault()
+        {
+            try
+            {
+                var itemList = await _unitOfWork.WorkspaceRepository.GetAllAsync();
+                var item = itemList.Count > 0 ?  itemList.FirstOrDefault() : new Workspace();
+
+                var result = new WorkspaceResult
+                {
+                    Successful = true,
+                    Name = item?.Name,
+                    Id = item?.Id ?? 0
+                };
+                
+                return new JsonResult(result);
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new WorkspaceResult { Error = ex.Message, Successful = false });
+            }
+        }
 
         /// <summary>
         ///     Creates a new Workspace

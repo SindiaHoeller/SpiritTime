@@ -14,15 +14,14 @@ namespace SpiritTime.Frontend.Services.AuthServices
 {
     public class AuthService : IAuthService
     {
-        public HttpClient _httpClient { get; }
-        //public AppSettings _appSettings { get; }
-        private Paths Path;
-        public AuthenticationStateProvider _authenticationStateProvider { get; set; }
+        private readonly HttpClient _httpClient;
+        private readonly Paths _path;
+        private readonly AuthenticationStateProvider _authenticationStateProvider;
 
         public AuthService(HttpClient httpClient, IOptions<AppSettings> appSettings, AuthenticationStateProvider provider)
         {
             var appSetting = appSettings.Value;
-            Path = new Paths(appSetting.BackendBaseAddress);
+            _path = new Paths(appSetting.BackendBaseAddress);
             httpClient.BaseAddress = new Uri(appSetting.BackendBaseAddress);
             httpClient.DefaultRequestHeaders.Add("User-Agent", "BlazorServer");
             
@@ -35,14 +34,14 @@ namespace SpiritTime.Frontend.Services.AuthServices
 
             try
             {
-                var result = await _httpClient.PostJsonAsync<AuthenticationResult>(Path.Login, user);
+                var result = await _httpClient.PostJsonAsync<AuthenticationResult>(_path.Login, user);
 
                 if (result.Successful)
                 {
                     await ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(result.Token, user.Email);
                     ((ApiAuthenticationStateProvider)_authenticationStateProvider).StateChanged();
                     await ((ApiAuthenticationStateProvider) _authenticationStateProvider).SetCurrentWorkspace(0,
-                        Path.WorkspaceGetOne);
+                        _path.WorkspaceGetFirstOrDefault);
                 }
 
                 return result;
@@ -59,7 +58,7 @@ namespace SpiritTime.Frontend.Services.AuthServices
         {
             try
             {
-                var result = await _httpClient.PostJsonAsync<RegisterResult>(Path.Register, user);
+                var result = await _httpClient.PostJsonAsync<RegisterResult>(_path.Register, user);
                 return result;
             }
             catch (Exception ex)

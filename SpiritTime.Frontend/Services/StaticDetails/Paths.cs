@@ -29,6 +29,8 @@ namespace SpiritTime.Frontend.Services.StaticDetails
         public string WorkspaceGetAll => _workspaceGetall;
         private readonly string _workspaceGetOne;
         public string WorkspaceGetOne => _workspaceGetOne;
+        private readonly string _workspaceGetFirstOrDefault;
+        public string WorkspaceGetFirstOrDefault => _workspaceGetFirstOrDefault;
         private readonly string _workspaceAdd;
         public string WorkspaceAdd => _workspaceAdd;
         private readonly string _workspaceDelete;
@@ -93,6 +95,7 @@ namespace SpiritTime.Frontend.Services.StaticDetails
             _workspaceAdd = basepath + workspace + "Create";
             _workspaceDelete = basepath + workspace + "Delete";
             _workspaceEdit = basepath + workspace + "Update";
+            _workspaceGetFirstOrDefault = basepath + workspace + "GetFirstOrDefault";
 
             var tag = "/tags/";
             _tagGetall = basepath + tag + "GetAll";
