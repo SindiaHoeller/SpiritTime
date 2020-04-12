@@ -1,3 +1,89 @@
 @page "/rules/overview" 
-<h1>Rules Overview</h1>
+@using SpiritTime.Shared.Models.TagModels
+@using SpiritTime.Shared.Models.TaskTagRuleModels
 
+<div class="center-and-highlight">
+    <div class="col-12 custom-background mt-5">
+        <div class="text-center">
+            <div class="text-right">
+                <button class="custom-small-button" @onclick="Add">@Text.TagRuleAdd</button>
+            </div>
+            <h1>@SD.TagRule</h1>
+
+        </div>
+        @if (ShowError && ErrorMsg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ErrorMsg
+            </div>
+        }
+        @if (TableService.Objects == null || !(bool) TableService.Objects?.Any())
+        {
+            if (NoElements)
+            {
+                <p>
+                    <em>@Text.NoElements</em>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <em>@Text.Loading</em>
+                </p>
+            }
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        <span class="oi @(TableService.GetSortStyle(nameof(TaskTagRuleDto.TriggerText)))"
+                              @onclick="@(() => TableService.SortTable(nameof(TaskTagRuleDto.TriggerText)))">
+                        </span>
+                        <span class="pl-3">@nameof(TaskTagRuleDto.TriggerText)</span>
+                    </th>
+                    <th>
+                        <span class="oi @(TableService.GetSortStyle(nameof(TaskTagRuleDto.TagName)))"
+                              @onclick="@(() => TableService.SortTable(nameof(TaskTagRuleDto.TagName)))">
+                        </span>
+                        <span class="pl-3">@nameof(TaskTagRuleDto.TagName)</span>
+                    </th>
+                    <th>@Text.TriggerOn</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in TableService.Objects)
+                {
+                    <tr>
+                        <td>@item.TriggerText</td>
+                        <td>@item.TagName</td>
+                        <td>
+                            @if (@item.TriggerDescription)
+                            {
+                                <p>@Text.DescriptionField</p>
+                            }
+                            @if (@item.TriggerName)
+                            {
+                                <p>@Text.NameField</p>
+                            }
+                        </td>
+                        <td>
+                            @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
+                                    <span class="oi oi-info"></span>
+                                </a>*@
+                            <button class="custom-small-button" @onclick="@(() => Update(item))">
+                                <span class="oi oi-pencil"></span>
+                            </button>
+                            <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
+                                <span class="oi oi-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

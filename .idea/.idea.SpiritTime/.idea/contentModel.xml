@@ -124,7 +124,14 @@
             <e p="Overview.razor.cs" t="Include" />
           </e>
           <e p="Rules" t="Include">
+            <e p="Add.razor" t="Include" />
+            <e p="Add.razor.cs" t="Include" />
+            <e p="Delete.razor" t="Include" />
+            <e p="Delete.razor.cs" t="Include" />
+            <e p="Edit.razor" t="Include" />
+            <e p="Edit.razor.cs" t="Include" />
             <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
           </e>
           <e p="Tags" t="Include">
             <e p="Add.razor" t="Include" />
@@ -137,7 +144,10 @@
             <e p="Overview.razor.cs" t="Include" />
           </e>
           <e p="Tasks" t="Include">
+            <e p="Edit.razor" t="Include" />
+            <e p="Edit.razor.cs" t="Include" />
             <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
           </e>
           <e p="Workspaces" t="Include">
             <e p="Add.razor" t="Include" />
@@ -186,6 +196,7 @@
         </e>
         <e p="Profiles" t="Include">
           <e p="TagProfile.cs" t="Include" />
+          <e p="TaskTagRuleProfile.cs" t="Include" />
           <e p="WorkspaceProfile.cs" t="Include" />
         </e>
         <e p="Program.cs" t="Include" />
@@ -268,8 +279,12 @@
             <e p="site.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
+          <e p="img" t="Include">
+            <e p="OK.png" t="Include" />
+          </e>
           <e p="sass" t="Include">
             <e p="_blazored-modal.sass" t="Include" />
+            <e p="_checkbox.sass" t="Include" />
             <e p="_general.sass" t="Include" />
             <e p="_toast.sass" t="Include" />
             <e p="index.sass" t="Include" />

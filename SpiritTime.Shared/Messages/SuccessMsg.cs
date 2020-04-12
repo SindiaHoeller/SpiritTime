@@ -13,6 +13,9 @@ namespace SpiritTime.Shared.Messages
 
         public const string TagAdded = "Tag successfully added: ";
         public const string TagEdited = "Tag successfully edited: ";
+        
+        public const string RuleAdded = "Rule successfully added";
+        public const string RuleEdited = "Rule successfully edited";
 
         public const string UpdatedOptions = "Successfully updated this Option";
     }

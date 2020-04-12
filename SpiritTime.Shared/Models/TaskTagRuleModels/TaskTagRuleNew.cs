@@ -7,5 +7,7 @@ namespace SpiritTime.Shared.Models.TaskTagRuleModels
         public string TriggerText { get; set; }
         public bool TriggerName { get; set; }
         public bool TriggerDescription { get; set; }
+        public bool ReplaceTrigger { get; set; }
+        
     }
 }
