@@ -34,7 +34,7 @@ namespace SpiritTime.Frontend.Services
 {
     public class ApiAuthenticationStateProvider : AuthenticationStateProvider
     {
-        public ILocalStorageService _localStorage { get; }
+        private readonly ILocalStorageService _localStorage;
 
         //public IAuthServices _userService { get; set; }
         private readonly HttpClient _httpClient;
@@ -113,21 +113,6 @@ namespace SpiritTime.Frontend.Services
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync()); // <- Does nothing
         }
 
-        public async Task SetCurrentWorkspace(int id, string workspacePath)
-        {
-            //var name = await _localStorage.GetItemAsync<string>(SD.CurrentWorkspace);
-            if (id == 0)
-            {
-                var workspace = await _httpClient.GetJsonAsync<WorkspaceDto>(workspacePath);
-                id = workspace.Id;
-            }
 
-            await _localStorage.SetItemAsync(SD.CurrentWorkspace, id);
-        }
-
-        public async Task<string> GetCurrentWorkspace()
-        {
-            return await _localStorage.GetItemAsync<string>(SD.CurrentWorkspace);
-        }
     }
 }
