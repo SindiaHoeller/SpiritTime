@@ -12,6 +12,7 @@
 //using SpiritTime.Core.Entities;
 //using SpiritTime.Frontend.Services.AuthService;
 //using SpiritTime.Shared.Models.Account.Authentication;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,7 @@ namespace SpiritTime.Frontend.Services
     public class ApiAuthenticationStateProvider : AuthenticationStateProvider
     {
         public ILocalStorageService _localStorage { get; }
+
         //public IAuthServices _userService { get; set; }
         private readonly HttpClient _httpClient;
 
@@ -46,6 +48,7 @@ namespace SpiritTime.Frontend.Services
             //_userService = userService;
             _httpClient = httpClient;
         }
+
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var accessToken = await _localStorage.GetItemAsync<string>(SD.AccessToken);
@@ -57,7 +60,8 @@ namespace SpiritTime.Frontend.Services
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SD.Bearer, accessToken);
 
-            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(JwtHelper.ParseClaimsFromJwt(accessToken), "jwt")));
+            return new AuthenticationState(
+                new ClaimsPrincipal(new ClaimsIdentity(JwtHelper.ParseClaimsFromJwt(accessToken), "jwt")));
         }
 
         public async Task MarkUserAsAuthenticated(string token, string email)
@@ -65,7 +69,8 @@ namespace SpiritTime.Frontend.Services
             await _localStorage.SetItemAsync(SD.AccessToken, token);
             await _localStorage.SetItemAsync(SD.RefreshToken, token);
 
-            var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, email) }, "apiauth"));
+            var authenticatedUser =
+                new ClaimsPrincipal(new ClaimsIdentity(new[] {new Claim(ClaimTypes.Name, email)}, "apiauth"));
             var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SD.Bearer, token);
             NotifyAuthenticationStateChanged(authState);
@@ -84,7 +89,8 @@ namespace SpiritTime.Frontend.Services
 
         public void MarkUserAsAuthenticated(string email)
         {
-            var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, email) }, "apiauth"));
+            var authenticatedUser =
+                new ClaimsPrincipal(new ClaimsIdentity(new[] {new Claim(ClaimTypes.Name, email)}, "apiauth"));
             var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
             NotifyAuthenticationStateChanged(authState);
         }
@@ -100,22 +106,28 @@ namespace SpiritTime.Frontend.Services
                 Email = emailClaim.Value,
                 Id = Int32.Parse(idClaim.Value),
             };
-
         }
+
         public void StateChanged()
         {
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync()); // <- Does nothing
         }
-        
+
         public async Task SetCurrentWorkspace(int id, string workspacePath)
         {
-            var name = await _localStorage.GetItemAsync<string>(SD.CurrentWorkspace);
-            if (id == 0 || string.IsNullOrEmpty(name))
+            //var name = await _localStorage.GetItemAsync<string>(SD.CurrentWorkspace);
+            if (id == 0)
             {
                 var workspace = await _httpClient.GetJsonAsync<WorkspaceDto>(workspacePath);
-                await _localStorage.SetItemAsync(SD.CurrentWorkspace, workspace.Id);
+                id = workspace.Id;
             }
+
+            await _localStorage.SetItemAsync(SD.CurrentWorkspace, id);
         }
 
+        public async Task<string> GetCurrentWorkspace()
+        {
+            return await _localStorage.GetItemAsync<string>(SD.CurrentWorkspace);
+        }
     }
 }
