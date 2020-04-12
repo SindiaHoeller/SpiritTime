@@ -1,8 +1,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Components;
-using SpiritTime.Frontend.Services.OverlayModalService;
+using SpiritTime.Frontend.Partials.OverlayModalService;
 
-namespace SpiritTime.Frontend.Pages.Overlays
+namespace SpiritTime.Frontend.Partials.Overlays
 {
     public partial class AddModel : ComponentBase
     {

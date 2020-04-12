@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using SpiritTime.Frontend.Services.OverlayModalService;
+using SpiritTime.Frontend.Partials.OverlayModalService;
 
-namespace SpiritTime.Frontend.Pages.Overlays
+namespace SpiritTime.Frontend.Partials.Overlays
 {
-    public partial class ResultModal
+    public partial class ConfirmOverlay
     {
         [Inject] private IOverlayModalService ModalService { get; set; }
         [CascadingParameter] public OverlayModalParameters Parameters { get; set; }
@@ -16,16 +13,16 @@ namespace SpiritTime.Frontend.Pages.Overlays
         bool ShowForm { get; set; } = true;
         public bool ShowErrorForm { get; set; } = false;
         public int Id { get; set; }
-        public string Answer { get; set; }
 
         protected override void OnInitialized()
         {
+
             Id = Parameters.Get<int>("Id");
-            Answer = Parameters.Get<string>("Answer");
             Console.WriteLine(Id);
         }
         void SubmitForm()
         {
+            Parameters = new OverlayModalParameters();
             ModalService.Close(OverlayModalResult.Ok(Id));
         }
 

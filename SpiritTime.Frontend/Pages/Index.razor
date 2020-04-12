@@ -1,4 +1,6 @@
-﻿@page "/"
+﻿@* @inject IToastService ToastService *@
+
+@page "/"
 <div class="center-and-highlight">
     <div class="text-center custom-background mt-lg-5 mt-sm-0">
         <h1>Willkommen</h1>
@@ -9,6 +11,9 @@
             Beschreibung der Applikation und Informationen über die Entwickler.
         </p>
         @*<button @onclick="@LogUsername">Log username</button>*@
+        
+        @* <button class="btn btn-warning" @onclick="@(() => ToastService.ShowWarning("I'm a Warning Message"))">Warning Toast</button> *@
+        @* <button class="btn btn-danger" @onclick="@(() => ToastService.ShowError("I'm a Error Message"))">Error Toast</button> *@
     </div>
 
 </div>

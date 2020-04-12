@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Components;
-using SpiritTime.Frontend.Services.OverlayModalService;
+using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Services.TableServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 using SpiritTime.Shared.Helper;

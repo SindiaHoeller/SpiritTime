@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using SpiritTime.Core.Entities;
-using SpiritTime.Frontend.Data;
+using SpiritTime.Frontend.Config;
 using SpiritTime.Frontend.Services.StaticDetails;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models;

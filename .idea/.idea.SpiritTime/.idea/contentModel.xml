@@ -95,7 +95,7 @@
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Data" t="Include">
+        <e p="Config" t="Include">
           <e p="AppSettings.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -122,17 +122,6 @@
           <e p="Options" t="Include">
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
-          </e>
-          <e p="Overlays" t="Include">
-            <e p="AddModel.cs" t="Include" />
-            <e p="BaseOverlay.razor" t="Include" />
-            <e p="BaseOverlay.razor.cs" t="Include" />
-            <e p="ConfirmOverlay.razor" t="Include" />
-            <e p="ConfirmOverlay.razor.cs" t="Include" />
-            <e p="DeleteOverlay.razor" t="Include" />
-            <e p="DeleteOverlay.razor.cs" t="Include" />
-            <e p="ResultModal.razor" t="Include" />
-            <e p="ResultModal.razor.cs" t="Include" />
           </e>
           <e p="Rules" t="Include">
             <e p="Overview.razor" t="Include" />
@@ -161,6 +150,40 @@
             <e p="Overview.razor.cs" t="Include" />
           </e>
         </e>
+        <e p="Partials" t="Include">
+          <e p="OverlayModalService" t="Include">
+            <e p="IOverlayModalService.cs" t="Include" />
+            <e p="OverlayModalOptions.cs" t="Include" />
+            <e p="OverlayModalParameters.cs" t="Include" />
+            <e p="OverlayModalResult.cs" t="Include" />
+            <e p="OverlayModalService.cs" t="Include" />
+          </e>
+          <e p="Overlays" t="Include">
+            <e p="AddModel.cs" t="Include" />
+            <e p="BaseOverlay.razor" t="Include" />
+            <e p="BaseOverlay.razor.cs" t="Include" />
+            <e p="ConfirmOverlay.razor" t="Include" />
+            <e p="ConfirmOverlay.razor.cs" t="Include" />
+            <e p="DeleteOverlay.razor" t="Include" />
+            <e p="DeleteOverlay.razor.cs" t="Include" />
+            <e p="ResultModal.razor" t="Include" />
+            <e p="ResultModal.razor.cs" t="Include" />
+          </e>
+          <e p="ToastModal" t="Include">
+            <e p="IToastService.cs" t="Include" />
+            <e p="ToastInstance.cs" t="Include" />
+            <e p="ToastLevel.cs" t="Include" />
+            <e p="ToastPosition.cs" t="Include" />
+            <e p="ToastService.cs" t="Include" />
+            <e p="ToastSettings.cs" t="Include" />
+          </e>
+          <e p="Toasts" t="Include">
+            <e p="BlazoredToast.razor" t="Include" />
+            <e p="BlazoredToast.razor.cs" t="Include" />
+            <e p="BlazoredToasts.razor" t="Include" />
+            <e p="BlazoredToasts.razor.cs" t="Include" />
+          </e>
+        </e>
         <e p="Profiles" t="Include">
           <e p="TagProfile.cs" t="Include" />
           <e p="WorkspaceProfile.cs" t="Include" />
@@ -179,13 +202,6 @@
             <e p="IOptionService.cs" t="Include" />
             <e p="OptionService.cs" t="Include" />
             <e p="WorkspaceOption.cs" t="Include" />
-          </e>
-          <e p="OverlayModalService" t="Include">
-            <e p="IOverlayModalService.cs" t="Include" />
-            <e p="OverlayModalOptions.cs" t="Include" />
-            <e p="OverlayModalParameters.cs" t="Include" />
-            <e p="OverlayModalResult.cs" t="Include" />
-            <e p="OverlayModalService.cs" t="Include" />
           </e>
           <e p="ServiceBase.cs" t="Include" />
           <e p="ServiceHelper.cs" t="Include" />
@@ -256,6 +272,7 @@
           <e p="sass" t="Include">
             <e p="_blazored-modal.sass" t="Include" />
             <e p="_general.sass" t="Include" />
+            <e p="_toast.sass" t="Include" />
             <e p="index.sass" t="Include" />
           </e>
         </e>

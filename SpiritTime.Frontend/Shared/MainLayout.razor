@@ -1,8 +1,16 @@
 ﻿@inherits LayoutComponentBase
 @inject AuthenticationStateProvider AuthenticationStateProvider
-
+@using SpiritTime.Frontend.Partials.Toasts
+@using SpiritTime.Frontend.Partials.ToastModal
 
 <BaseOverlay />
+
+<BlazoredToasts Position="@ToastPosition.TopRight"
+                Timeout="10"
+                SuccessClass="success-toast-override"
+                SuccessIconClass="oi oi-circle-check"
+                ErrorIconClass="oi oi-circle-x"
+                WarningIconClass="oi oi-warning"/>
 
 <div class="sidebar">
     <NavMenu />
