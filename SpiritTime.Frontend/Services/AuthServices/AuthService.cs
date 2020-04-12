@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Options;
@@ -12,13 +13,15 @@ using SpiritTime.Shared.Models.Account.Registration;
 
 namespace SpiritTime.Frontend.Services.AuthServices
 {
-    public class AuthService : IAuthService
+    public class AuthService : ServiceBase<AuthenticationResource>, IAuthService
     {
-        private readonly HttpClient _httpClient;
         private readonly Paths _path;
         private readonly AuthenticationStateProvider _authenticationStateProvider;
 
-        public AuthService(HttpClient httpClient, IOptions<AppSettings> appSettings, AuthenticationStateProvider provider)
+        public AuthService(HttpClient httpClient, 
+            IOptions<AppSettings> appSettings, 
+            AuthenticationStateProvider provider,
+            ILocalStorageService localStorageService) : base(httpClient, appSettings, localStorageService)
         {
             var appSetting = appSettings.Value;
             _path = new Paths(appSetting.BackendBaseAddress);
@@ -26,7 +29,6 @@ namespace SpiritTime.Frontend.Services.AuthServices
             httpClient.DefaultRequestHeaders.Add("User-Agent", "BlazorServer");
             
             _authenticationStateProvider = provider;
-            _httpClient = httpClient;
         }
 
         public async Task<AuthenticationResult> LoginAsync(AuthenticationResource user)
@@ -40,8 +42,7 @@ namespace SpiritTime.Frontend.Services.AuthServices
                 {
                     await ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(result.Token, user.Email);
                     ((ApiAuthenticationStateProvider)_authenticationStateProvider).StateChanged();
-                    await ((ApiAuthenticationStateProvider) _authenticationStateProvider).SetCurrentWorkspace(0,
-                        _path.WorkspaceGetFirstOrDefault);
+                    await SetCurrentWorkspace();
                 }
 
                 return result;

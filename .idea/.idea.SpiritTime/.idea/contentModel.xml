@@ -175,6 +175,11 @@
             <e p="AuthService.cs" t="Include" />
             <e p="IAuthService.cs" t="Include" />
           </e>
+          <e p="OptionsService" t="Include">
+            <e p="IOptionService.cs" t="Include" />
+            <e p="OptionService.cs" t="Include" />
+            <e p="WorkspaceOption.cs" t="Include" />
+          </e>
           <e p="OverlayModalService" t="Include">
             <e p="IOverlayModalService.cs" t="Include" />
             <e p="OverlayModalOptions.cs" t="Include" />
@@ -183,6 +188,7 @@
             <e p="OverlayModalService.cs" t="Include" />
           </e>
           <e p="ServiceBase.cs" t="Include" />
+          <e p="ServiceHelper.cs" t="Include" />
           <e p="StaticDetails" t="Include">
             <e p="Page.cs" t="Include" />
             <e p="Paths.cs" t="Include" />

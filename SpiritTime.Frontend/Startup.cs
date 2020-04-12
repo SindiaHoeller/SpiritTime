@@ -13,12 +13,16 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SpiritTime.Core.Contracts;
 using SpiritTime.Frontend.Data;
 using SpiritTime.Frontend.Services;
 using SpiritTime.Frontend.Services.AuthServices;
+using SpiritTime.Frontend.Services.OptionsService;
 using SpiritTime.Frontend.Services.OverlayModalService;
 using SpiritTime.Frontend.Services.TableServices;
 using SpiritTime.Frontend.Services.TagServices;
+using SpiritTime.Frontend.Services.TaskServices;
+using SpiritTime.Frontend.Services.TaskTagRuleServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 
 namespace SpiritTime.Frontend
@@ -48,10 +52,13 @@ namespace SpiritTime.Frontend
             services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             services.AddBlazoredLocalStorage();
             services.AddHttpClient<IAuthService, AuthService>();
-            services.AddScoped<IWorkspaceService, WorkspaceService>();
-            services.AddScoped<ITagService, TagService>();
-
+            services.AddScoped<IOptionService, OptionService>();
             services.AddScoped<IOverlayModalService, OverlayModalService>();
+            services.AddScoped<ITagService, TagService>();
+            services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<ITaskTagRuleService, TaskTagRuleService>();
+            services.AddScoped<IWorkspaceService, WorkspaceService>();
+
             services.AddScoped(typeof(ITableService<>), typeof(TableService<>));
 
             services.AddSingleton<HttpClient>();

@@ -19,9 +19,9 @@ namespace SpiritTime.Frontend.Pages.Workspaces
         [Inject] private IWorkspaceService Service { get; set; }
         [Inject] private IOverlayModalService Modal { get; set; }
         [Inject] private IMapper _mapper { get; set; }
-        public bool ShowError { get; set; } = false;
-        public string ErrorMsg { get; set; }
-        public bool NoElements { get; set; }
+        private bool ShowError { get; set; } = false;
+        private string ErrorMsg { get; set; }
+        private bool NoElements { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

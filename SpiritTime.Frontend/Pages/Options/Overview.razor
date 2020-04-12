@@ -1,3 +1,38 @@
 @page "/options/overview" 
-<h1>Options Overview</h1>
+<div class="center-and-highlight">
+    <div class="col-12 custom-background mt-5">
+        <div class="text-center">
+            <h1>@Text.Workspace</h1>
 
+        </div>
+        @if (ShowError && ErrMsg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ErrMsg
+            </div>
+        }
+        @if (ShowWorkspaces)
+        {
+            <h3 >Default @Text.Workspace:</h3>
+            <div class="row">
+                <div class="form-group my-3 col-lg-6 col-xs-12">
+                    
+                    <EditForm Model="WorkspaceList">
+                        <InputSelect Id="list" @bind-Value="@CurrentWorkspaceStringId" class="form-control">
+                            @foreach (var item in WorkspaceList)
+                            {
+                                <option value="@item.Id">@item.Name </option>
+                            }
+                        </InputSelect>
+                    </EditForm>
+                </div>
+                <div class="form-group my-3 col-lg-2 col-xs-12">
+                    <button class="custom-small-button" @onclick="@(() => SetWorkspace())">
+                        <span class="oi oi-check"></span>
+                    </button>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
