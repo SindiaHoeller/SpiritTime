@@ -15,6 +15,7 @@ using SpiritTime.Shared.Models.WorkspaceModels;
 using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
+using SpiritTime.Shared.Api;
 using SpiritTime.Shared.Models.TaskModels;
 
 namespace SpiritTime.Backend.Controllers.Workspaces
@@ -23,7 +24,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
     /// WorkspaceController
     /// </summary>
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route(ControllerNames.Workspaces)]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class WorkspacesController : ControllerHelper
     {
@@ -57,7 +58,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// <returns></returns>
         /// <response code="200">Returns a WorkspaceListResult</response>
 
-        [HttpGet]
+        [HttpGet(ApiMethod.GetallByUserId)]
         public async Task<IActionResult> GetallByUserId()
         {
             try
@@ -79,7 +80,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns>WorkspaceResult</returns>
-        [HttpGet]
+        [HttpGet(ApiMethod.GetOneById)]
         public async Task<IActionResult> GetOneById(int id)
         {
             try
@@ -111,7 +112,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// GetFirstOrDefault
         /// </summary>
         /// <returns>WorkspaceResult</returns>
-        [HttpGet]
+        [HttpGet(ApiMethod.GetFirstOrDefault)]
         public async Task<IActionResult> GetFirstOrDefault()
         {
             try
@@ -142,7 +143,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// <returns></returns>
         /// <response code="200">Returns a WorkspaceResult</response>
         //[Authorize]
-        [HttpPost]
+        [HttpPost(ApiMethod.Create)]
         public async Task<IActionResult> Create(WorkspaceResourceNew workspaceResource)
         {
             try
@@ -171,7 +172,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
-        [HttpPost]
+        [HttpPost(ApiMethod.Update)]
         public async Task<IActionResult> Update(WorkspaceResource workspaceResource)
         {
             try
@@ -204,7 +205,7 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
-        [HttpGet]
+        [HttpGet(ApiMethod.Delete)]
         public async Task<IActionResult> Delete(int id)
         {
             try

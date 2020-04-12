@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using SpiritTime.Core.Entities;
 using SpiritTime.Frontend.Config;
 using SpiritTime.Frontend.Services.StaticDetails;
+using SpiritTime.Shared.Api;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models;
 using SpiritTime.Shared.Models.WorkspaceModels;

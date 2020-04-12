@@ -11,6 +11,8 @@ using SpiritTime.Backend.Controllers.Workspaces;
 using SpiritTime.Backend.Infrastructure.Jwt;
 using SpiritTime.Core;
 using SpiritTime.Core.Entities;
+using SpiritTime.Shared.Api;
+using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models;
 using SpiritTime.Shared.Models.TagModels;
@@ -22,7 +24,7 @@ namespace SpiritTime.Backend.Controllers.TaskTagRules
     /// TaskTagRuleController
     /// </summary>
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route(ControllerNames.TaskTagRules)]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class TaskTagRuleController : ControllerHelper
     {
@@ -56,7 +58,7 @@ namespace SpiritTime.Backend.Controllers.TaskTagRules
         /// <returns></returns>
         /// <response code="200">Returns a TagListResult</response>
 
-        [HttpGet]
+        [HttpGet(ApiMethod.GetAll)]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -80,7 +82,7 @@ namespace SpiritTime.Backend.Controllers.TaskTagRules
         /// <returns></returns>
         /// <response code="200">Returns a TaskTagRuleResult</response>
         //[Authorize]
-        [HttpPost]
+        [HttpPost(ApiMethod.Create)]
         public async Task<IActionResult> Create(TaskTagRuleNew resource)
         {
             try
@@ -119,7 +121,7 @@ namespace SpiritTime.Backend.Controllers.TaskTagRules
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
-        [HttpPost]
+        [HttpPost(ApiMethod.Update)]
         public async Task<IActionResult> Update(TaskTagRuleDto resource)
         {
             try
@@ -152,7 +154,7 @@ namespace SpiritTime.Backend.Controllers.TaskTagRules
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]
-        [HttpGet]
+        [HttpGet(ApiMethod.Delete)]
         public async Task<IActionResult> Delete(int id)
         {
             try

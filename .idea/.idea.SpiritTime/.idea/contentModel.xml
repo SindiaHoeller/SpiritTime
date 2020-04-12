@@ -207,7 +207,6 @@
           <e p="ServiceHelper.cs" t="Include" />
           <e p="StaticDetails" t="Include">
             <e p="Page.cs" t="Include" />
-            <e p="Paths.cs" t="Include" />
           </e>
           <e p="TableServices" t="Include">
             <e p="ITableService.cs" t="Include" />
@@ -305,6 +304,11 @@
         <e p="UnitOfWork.cs" t="Include" />
       </e>
       <e p="SpiritTime.Shared" t="IncludeRecursive">
+        <e p="Api" t="Include">
+          <e p="ApiMethod.cs" t="Include" />
+          <e p="ControllerNames.cs" t="Include" />
+          <e p="Paths.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Helper" t="Include">
           <e p="Crypt.cs" t="Include" />
