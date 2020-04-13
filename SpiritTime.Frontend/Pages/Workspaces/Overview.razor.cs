@@ -49,7 +49,7 @@ namespace SpiritTime.Frontend.Pages.Workspaces
             parameters.Add(SD.Id, id);
 
             Modal.OnClose += RemoveResult;
-            Modal.Show<Delete>(Text.WorkspaceRemove, parameters);
+            Modal.Show<Delete>(TextMsg.WorkspaceRemove, parameters);
         }
         private void RemoveResult(OverlayModalResult modalResult)
         {
@@ -70,7 +70,7 @@ namespace SpiritTime.Frontend.Pages.Workspaces
         private void Add()
         {
             Modal.OnClose += AddResult;
-            Modal.Show<Add>(Text.AddWorkspace);
+            Modal.Show<Add>(TextMsg.AddWorkspace);
         }
         private void AddResult(OverlayModalResult modalResult)
         {
@@ -93,7 +93,7 @@ namespace SpiritTime.Frontend.Pages.Workspaces
             parameters.Add(SD.Workspace, workspace);
 
             Modal.OnClose += EditResult;
-            Modal.Show<Edit>(Text.WorkspaceEdit, parameters);
+            Modal.Show<Edit>(TextMsg.WorkspaceEdit, parameters);
         }
         private void EditResult(OverlayModalResult modalResult)
         {

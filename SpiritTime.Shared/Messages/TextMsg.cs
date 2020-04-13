@@ -3,7 +3,7 @@ using SpiritTime.Shared.Helper;
 
 namespace SpiritTime.Shared.Messages
 {
-    public static class Text
+    public static class TextMsg
     {
         public const string Loading = "... Loading ...";
         public const string Done = "Done";

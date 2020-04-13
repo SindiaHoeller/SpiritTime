@@ -282,6 +282,13 @@
           <e p="img" t="Include">
             <e p="OK.png" t="Include" />
           </e>
+          <e p="js" t="Include">
+            <e p="index.js" t="Include" />
+          </e>
+          <e p="node_modules/@fortawesome/fontawesome-free" t="IncludeRecursive" />
+          <e p="node_modules/bootstrap" t="IncludeRecursive" />
+          <e p="package-lock.json" t="Include" />
+          <e p="package.json" t="Include" />
           <e p="sass" t="Include">
             <e p="_blazored-modal.sass" t="Include" />
             <e p="_checkbox.sass" t="Include" />
@@ -333,7 +340,7 @@
         <e p="Messages" t="Include">
           <e p="ErrorMsg.cs" t="Include" />
           <e p="SuccessMsg.cs" t="Include" />
-          <e p="Text.cs" t="Include" />
+          <e p="TextMsg.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="Account" t="Include">

@@ -60,7 +60,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
             parameters.Add(SD.Item, item);
 
             Modal.OnClose += EditResult;
-            Modal.Show<Edit>(Text.TaskEdit, parameters);
+            Modal.Show<Edit>(TextMsg.TaskEdit, parameters);
         }
         private void EditResult(OverlayModalResult modalResult)
         {

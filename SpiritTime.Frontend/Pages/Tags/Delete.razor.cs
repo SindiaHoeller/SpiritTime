@@ -25,7 +25,7 @@ namespace SpiritTime.Frontend.Pages.Tags
         protected override void OnInitialized()
         {
             Id = Parameters.TryGet<int>(SD.Id);
-            Modal.SetTitle(Text.ConfirmDeletion);
+            Modal.SetTitle(TextMsg.ConfirmDeletion);
         }
         private async void SubmitForm()
         {

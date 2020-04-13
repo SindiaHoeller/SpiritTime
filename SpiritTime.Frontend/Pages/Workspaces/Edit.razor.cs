@@ -25,7 +25,7 @@ namespace SpiritTime.Frontend.Pages.Workspaces
         protected override void OnInitialized()
         {
             Workspace = Parameters.TryGet<WorkspaceDto>(SD.Workspace);
-            Modal.SetTitle(Text.WorkspaceEdit);
+            Modal.SetTitle(TextMsg.WorkspaceEdit);
         }
         private async void SubmitForm()
         {
