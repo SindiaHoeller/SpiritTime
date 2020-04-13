@@ -52,10 +52,22 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// </summary>
         /// <param name="taskId"></param>
         /// <param name="tagId"></param>
-        private async void AddTagToTask(int taskId, int tagId)
+        private async Task AddTagToTask(int taskId, int tagId)
         {
-            await _unitOfWork.TaskTagRepository.AddAsync(new TaskTag {TaskId = taskId, TagId = tagId});
-            await _unitOfWork.SaveAsync();
+            try
+            {
+                var exists = await _unitOfWork.TaskTagRepository.ExistAsync(x => x.TaskId == taskId && x.TagId == tagId);
+                if (!exists)
+                {
+                    await _unitOfWork.TaskTagRepository.AddAsync(new TaskTag {TaskId = taskId, TagId = tagId});
+                    await _unitOfWork.SaveAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
         /// <summary>
         /// Removes Tags from Tasks
@@ -97,7 +109,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
                     list.Remove(item);
                 else
                 {
-                    AddTagToTask(taskId, item.Id);
+                    await AddTagToTask(taskId, item.Id);
                 }
             }
 
@@ -131,12 +143,12 @@ namespace SpiritTime.Backend.Controllers.Tasks
             {
                 if (item.TriggerName)
                 {
-                    task.Name = ExecuteTrigger(item, task.Id, task.Name);
+                    task.Name = await ExecuteTrigger(item, task.Id, task.Name);
                 }
 
                 if (item.TriggerDescription)
                 {
-                    task.Description = ExecuteTrigger(item, task.Id, task.Description);
+                    task.Description = await ExecuteTrigger(item, task.Id, task.Description);
                 }
             }
 
@@ -151,11 +163,11 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// <param name="taskId"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        private string ExecuteTrigger(Core.Entities.TaskTagRules item, int taskId, string text)
+        private async Task<string> ExecuteTrigger(Core.Entities.TaskTagRules item, int taskId, string text)
         {
             if (text.Contains(item.TriggerText))
             {
-                AddTagToTask(taskId, item.TagId);
+                await AddTagToTask(taskId, item.TagId);
                 if (item.ReplaceTrigger)
                     text = text.Replace(item.TriggerText, "");
             }

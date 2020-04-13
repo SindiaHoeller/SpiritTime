@@ -5,6 +5,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using Blazored.LocalStorage;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -67,6 +70,12 @@ namespace SpiritTime.Frontend
             services.AddSingleton<HttpClient>();
 
             services.AddAuthorization();
+            services.AddBlazorise( options =>
+                {
+                    options.ChangeTextOnKeyPress = true; // optional
+                } )
+                .AddBootstrapProviders()
+                .AddFontAwesomeIcons();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,6 +94,9 @@ namespace SpiritTime.Frontend
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.ApplicationServices
+                .UseBootstrapProviders()
+                .UseFontAwesomeIcons();
 
             app.UseRouting();
             app.UseAuthentication();

@@ -26,7 +26,7 @@ namespace SpiritTime.Backend.Controllers.Account
     /// AccountController
     /// </summary>
     [ApiController]
-    [Route(ControllerNames.Account + "/[action]")]
+    [Route(ControllerNames.Account)]
     public class AccountController : ControllerBase
     {
         private const string Controller = "Account";

@@ -11,6 +11,7 @@ using SpiritTime.Backend.Controllers.Tasks;
 using SpiritTime.Backend.Controllers.Workspaces;
 using SpiritTime.Backend.Infrastructure.Jwt;
 using SpiritTime.Core;
+using SpiritTime.Core.Entities;
 using SpiritTime.Shared.Api;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
@@ -59,7 +60,7 @@ namespace SpiritTime.Backend.Controllers.TaskTags
         /// </summary>
         /// <param name="tasktag"></param>
         /// <returns></returns>
-        [HttpGet(ApiMethod.AddTag)]
+        [HttpPost(ApiMethod.AddTag)]
         public async Task<IActionResult> AddTag(TaskTagDto tasktag)
         {
             try
@@ -74,8 +75,11 @@ namespace SpiritTime.Backend.Controllers.TaskTags
                         x.TagId == tasktag.TagId && x.TaskId == tasktag.TaskId);
                     if (item == null)
                     {
-                        item.TagId = tasktag.TagId;
-                        item.TaskId = tasktag.TaskId;
+                        item = new TaskTag
+                        {
+                            TagId = tasktag.TagId,
+                            TaskId = tasktag.TaskId
+                        };
                         await _unitOfWork.TaskTagRepository.AddAsync(item);
                         await _unitOfWork.SaveAsync();
                     }
@@ -98,7 +102,7 @@ namespace SpiritTime.Backend.Controllers.TaskTags
         /// </summary>
         /// <param name="tasktag"></param>
         /// <returns></returns>
-        [HttpGet(ApiMethod.RemoveTag)]
+        [HttpPost(ApiMethod.RemoveTag)]
         public async Task<IActionResult> RemoveTag(TaskTagDto tasktag)
         {
             try
@@ -135,7 +139,7 @@ namespace SpiritTime.Backend.Controllers.TaskTags
         /// </summary>
         /// <param name="tasktag"></param>
         /// <returns></returns>
-        [HttpGet(ApiMethod.CompareTags)]
+        [HttpPost(ApiMethod.CompareTags)]
         public async Task<IActionResult> CompareTags(TaskDto task)
         {
             try
