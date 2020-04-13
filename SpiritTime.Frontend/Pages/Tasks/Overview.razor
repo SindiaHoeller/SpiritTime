@@ -1,3 +1,52 @@
 @page "/tasks/overview" 
-<h1>Tasks Overview</h1>
+@using Blazorise.DataGrid
+@using SpiritTime.Shared.Models.TaskModels
 
+<div class="center-and-highlight">
+    <div class="col-12 custom-background mt-5">
+        <div class="text-center">
+            <div class="text-right">
+                <button class="custom-small-button" @onclick="AddAndStartTimer"></button>
+            </div>
+            <h1>@TextMsg.Task</h1>
+
+        </div>
+        @if (ShowError && ErrorMsg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ErrorMsg
+            </div>
+        }
+        @if (TaskDtoList == null)
+        {
+            if (NoElements)
+            {
+                <p><em>@TextMsg.NoElements</em></p>
+            }
+            else
+            {
+                <p><em>@TextMsg.Loading</em></p>
+            }
+        }
+        else
+        {
+            <DataGrid TItem="TaskDto" Data="@TaskDtoList" @bind-SelectedRow="@SelectedItem" Sortable="true" Editable="true" EditMode="DataGridEditMode.Inline">
+                <DataGridColumn TItem="TaskDto" Field="@nameof(TaskDto.Name)" Caption="Name" Editable="true" />
+                <DataGridColumn TItem="TaskDto" Field="@nameof(TaskDto.Description)" Caption="Description" Editable="true" />
+                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.StartDate)" Caption="StartDate" Editable="true" />
+                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.EndDate)" Caption="EndDate" Editable="true" />
+                <DataGridCommandColumn TItem="TaskDto">
+                    <NewCommandTemplate>
+                        <Button Color="Color.Success" Clicked="@context.Clicked">New</Button>
+                    </NewCommandTemplate>
+                    <EditCommandTemplate>
+                        <Button Color="Color.Primary" Clicked="@context.Clicked">Edit</Button>
+                    </EditCommandTemplate>
+                    <DeleteCommandTemplate>
+                        <Button Color="Color.Danger" Clicked="@context.Clicked">Delete</Button>
+                    </DeleteCommandTemplate>
+                </DataGridCommandColumn>
+            </DataGrid>
+        }
+    </div>
+</div>

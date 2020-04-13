@@ -14,6 +14,7 @@ namespace SpiritTime.Shared.Messages
         public const string Save = "Save";
 
         public const string Options = "Options";
+        public const string Task = "Task";
 
         public const string Workspace = "Workspace";
         public const string AddWorkspace = "Add " + SD.Workspace;

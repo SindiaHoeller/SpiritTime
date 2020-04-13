@@ -16,7 +16,6 @@ namespace SpiritTime.Frontend.Pages.Tasks
 {
     public partial class Overview
     {
-        [Inject] private ITableService<TaskDto> TableService { get; set; }
         [Inject] private ITaskService Service { get; set; }
         [Inject] private IOverlayModalService Modal { get; set; }
         [Inject] private IMapper _mapper { get; set; }
@@ -24,20 +23,22 @@ namespace SpiritTime.Frontend.Pages.Tasks
         private string ErrorMsg { get; set; }
         private bool NoElements { get; set; }
         public TaskDto CurrentItem { get; set; }
-
+        public TaskDto SelectedItem { get; set; }
+        
+        private List<TaskDto> TaskDtoList { get; set; }
         protected override async Task OnInitializedAsync()
         {
+            TaskDtoList = new List<TaskDto>();
             var result = await Service.GetAllAsync();
             if (result.Successful)
             {
                 if (result.ItemList?.Count > 0)
                 {
-                    TableService.Objects = result.ItemList;
+                    TaskDtoList = result.ItemList;
                     CurrentItem = result.ItemList.FirstOrDefault(x => x.EndDate == DateTime.MinValue);
                 }
                 else
                 {
-                    TableService.Objects = new List<TaskDto>();
                     CurrentItem = new TaskDto();
                     NoElements = true;
                 }
@@ -70,9 +71,9 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 
                 if(item != null)
                 {
-                    var itemOld = TableService.Objects.FirstOrDefault(x => x.Id == item.Id);
-                    TableService.Objects.Remove(itemOld);
-                    TableService.Objects.Add(item);
+                    var itemOld = TaskDtoList.FirstOrDefault(x => x.Id == item.Id);
+                    TaskDtoList.Remove(itemOld);
+                    TaskDtoList.Add(item);
                     StateHasChanged();
                 }
             }

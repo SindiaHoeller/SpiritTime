@@ -14,6 +14,7 @@ namespace SpiritTime.Persistence
         public DbSet<Tasks> Tasks { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<TaskTagRules> TaskTagRules { get; set; }
+        public DbSet<TaskTag> TaskTags { get; set; }
         public DbSet<Workspace> Workspaces { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
