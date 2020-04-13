@@ -52,7 +52,7 @@ namespace SpiritTime.Frontend.Pages.Tags
             parameters.Add(SD.Id, id);
 
             Modal.OnClose += RemoveResult;
-            Modal.Show<Delete>(Text.TagRemove, parameters);
+            Modal.Show<Delete>(TextMsg.TagRemove, parameters);
         }
         private void RemoveResult(OverlayModalResult modalResult)
         {
@@ -73,7 +73,7 @@ namespace SpiritTime.Frontend.Pages.Tags
         private void Add()
         {
             Modal.OnClose += AddResult;
-            Modal.Show<Add>(Text.TagAdd);
+            Modal.Show<Add>(TextMsg.TagAdd);
         }
         private void AddResult(OverlayModalResult modalResult)
         {
@@ -96,7 +96,7 @@ namespace SpiritTime.Frontend.Pages.Tags
             parameters.Add(SD.Item, item);
 
             Modal.OnClose += EditResult;
-            Modal.Show<Edit>(Text.TagEdit, parameters);
+            Modal.Show<Edit>(TextMsg.TagEdit, parameters);
         }
 
         private void EditResult(OverlayModalResult modalResult)

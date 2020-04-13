@@ -17,7 +17,7 @@ namespace SpiritTime.Frontend.Partials.Overlays
         protected override void OnInitialized()
         {
             Id = Parameters.Get<int>("Id");
-            BaseOverlay.SetTitle(Text.ConfirmDeletion);
+            BaseOverlay.SetTitle(TextMsg.ConfirmDeletion);
 
         }
         void SubmitForm()

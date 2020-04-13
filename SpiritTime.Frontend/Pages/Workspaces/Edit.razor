@@ -2,12 +2,12 @@
 {
     <div class="simple-form">
         <div class="form-group my-3">
-            <label for="unit-name">@Text.WorkspaceName:</label>
-            <input @bind="@Workspace.Name" type="text" class="form-control" id="unit-name" placeholder="@Text.WorkspaceName" />
+            <label for="unit-name">@TextMsg.WorkspaceName:</label>
+            <input @bind="@Workspace.Name" type="text" class="form-control" id="unit-name" placeholder="@TextMsg.WorkspaceName" />
         </div>
         <div class="text-center pt-5 mt-5">
-            <button @onclick="SubmitForm" class="custom-small-button">@Text.Confirm</button>
-            <button @onclick="Cancel" class="custom-small-button trash">@Text.Abort</button>
+            <button @onclick="SubmitForm" class="custom-small-button">@TextMsg.Confirm</button>
+            <button @onclick="Cancel" class="custom-small-button trash">@TextMsg.Abort</button>
         </div>
 
     </div>
@@ -16,13 +16,13 @@ else if (ShowErrorForm)
 {
     <div class="alert alert-danger" role="alert">
         @ErrorMsg.NameCanNotBeEmpty<br />
-        <button class="custom-small-button" @onclick="Done">@Text.Done</button>
+        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
     </div>
 }
 else
 {
     <div class="alert alert-success text-center" role="alert">
         @SuccessMsg.WorkspaceEdited @Workspace.Name <br />
-        <button class="custom-small-button" @onclick="Done">@Text.Done</button>
+        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
     </div>
 }

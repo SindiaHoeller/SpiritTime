@@ -33,7 +33,7 @@ namespace SpiritTime.Frontend.Pages.Tags
             var result = await WorkspaceService.GetAllAsync();
             WorkspaceList = result.Successful ? result.Workspaces : new List<WorkspaceDto>();
             Item = new TagDto();
-            Modal.SetTitle(Text.TagAdd);
+            Modal.SetTitle(TextMsg.TagAdd);
             ShowForm = true;
             StateHasChanged();
         }

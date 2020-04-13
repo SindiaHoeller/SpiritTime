@@ -36,7 +36,7 @@ namespace SpiritTime.Frontend.Pages.Rules
             var result = await TagService.GetAllAsync();
             TagList = result.Successful ? result.ItemList : new List<TagDto>();
             Item = new TaskTagRuleDto();
-            Modal.SetTitle(Text.TagRuleAdd);
+            Modal.SetTitle(TextMsg.TagRuleAdd);
             ShowForm = true;
             StateHasChanged();
         }

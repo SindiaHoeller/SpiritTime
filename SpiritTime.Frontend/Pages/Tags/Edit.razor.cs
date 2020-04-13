@@ -37,7 +37,7 @@ namespace SpiritTime.Frontend.Pages.Tags
             WorkspaceList = result.Successful ? result.Workspaces : new List<WorkspaceDto>();
             Item = Parameters.TryGet<TagDto>(SD.Item);
             Id = Item.WorkspaceId.ToString();
-            Modal.SetTitle(Text.WorkspaceEdit);
+            Modal.SetTitle(TextMsg.WorkspaceEdit);
             ShowForm = true;
             StateHasChanged();
         }

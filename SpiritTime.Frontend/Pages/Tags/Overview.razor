@@ -5,7 +5,7 @@
     <div class="col-12 custom-background mt-5">
         <div class="text-center">
             <div class="text-right">
-                <button class="custom-small-button" @onclick="Add">@Text.TagAdd</button>
+                <button class="custom-small-button" @onclick="Add">@TextMsg.TagAdd</button>
             </div>
             <h1>@SD.Tag</h1>
 
@@ -20,11 +20,11 @@
         {
             if (NoElements)
             {
-                <p><em>@Text.NoElements</em></p>
+                <p><em>@TextMsg.NoElements</em></p>
             }
             else
             {
-                <p><em>@Text.Loading</em></p>
+                <p><em>@TextMsg.Loading</em></p>
             }
 
 

@@ -2,11 +2,11 @@
 {
     <div class="simple-form">
         <div class="form-group my-3">
-            <label for="unit-name">@Text.TagName:</label>
-            <input @bind="@Item.Name" type="text" class="form-control" id="unit-name" placeholder="@Text.WorkspaceName" />
+            <label for="unit-name">@TextMsg.TagName:</label>
+            <input @bind="@Item.Name" type="text" class="form-control" id="unit-name" placeholder="@TextMsg.WorkspaceName" />
         </div>
                 <div class="form-group my-3">
-                    <label for="unit-name">@Text.Workspace:</label>
+                    <label for="unit-name">@TextMsg.Workspace:</label>
                     <EditForm Model="Item">
                         <InputSelect Id="list" @bind-Value="@Id" class="form-control">
                             @foreach (var item in WorkspaceList)
@@ -18,8 +18,8 @@
                     </EditForm>
                 </div>
         <div class="text-center pt-5 mt-5">
-            <button @onclick="SubmitForm" class="custom-small-button">@Text.Confirm</button>
-            <button @onclick="Cancel" class="custom-small-button trash">@Text.Abort</button>
+            <button @onclick="SubmitForm" class="custom-small-button">@TextMsg.Confirm</button>
+            <button @onclick="Cancel" class="custom-small-button trash">@TextMsg.Abort</button>
         </div>
 
     </div>
@@ -28,13 +28,13 @@ else if (ShowErrorForm)
 {
     <div class="alert alert-danger" role="alert">
         @ErrorMsg.NameCanNotBeEmpty<br />
-        <button class="custom-small-button" @onclick="Done">@Text.Done</button>
+        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
     </div>
 }
 else if(ShowSuccessForm)
 {
     <div class="alert alert-success text-center" role="alert">
         @SuccessMsg.WorkspaceEdited @Item.Name <br />
-        <button class="custom-small-button" @onclick="Done">@Text.Done</button>
+        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
     </div>
 }

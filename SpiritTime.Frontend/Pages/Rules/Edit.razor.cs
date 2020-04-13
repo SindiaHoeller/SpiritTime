@@ -39,7 +39,7 @@ namespace SpiritTime.Frontend.Pages.Rules
             TagList = result.Successful ? result.ItemList : new List<TagDto>();
             Item = Parameters.TryGet<TaskTagRuleDto>(SD.Item);
             Id = Item.TagId.ToString();
-            Modal.SetTitle(Text.TagRuleEdit);
+            Modal.SetTitle(TextMsg.TagRuleEdit);
             ShowForm = true;
             StateHasChanged();
         }

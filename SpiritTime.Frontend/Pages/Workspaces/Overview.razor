@@ -4,9 +4,9 @@
     <div class="col-12 custom-background mt-5">
         <div class="text-center">
             <div class="text-right">
-                <button class="custom-small-button" @onclick="Add">@Text.AddWorkspace</button>
+                <button class="custom-small-button" @onclick="Add">@TextMsg.AddWorkspace</button>
             </div>
-            <h1>@Text.Workspace</h1>
+            <h1>@TextMsg.Workspace</h1>
 
         </div>
         @if (ShowError && ErrorMsg != null)
@@ -19,11 +19,11 @@
         {
             if (NoElements)
             {
-                <p><em>@Text.NoElements</em></p>
+                <p><em>@TextMsg.NoElements</em></p>
             }
             else
             {
-                <p><em>@Text.Loading</em></p>
+                <p><em>@TextMsg.Loading</em></p>
             }
         }
         else

@@ -6,7 +6,7 @@
     <div class="col-12 custom-background mt-5">
         <div class="text-center">
             <div class="text-right">
-                <button class="custom-small-button" @onclick="Add">@Text.TagRuleAdd</button>
+                <button class="custom-small-button" @onclick="Add">@TextMsg.TagRuleAdd</button>
             </div>
             <h1>@SD.TagRule</h1>
 
@@ -22,13 +22,13 @@
             if (NoElements)
             {
                 <p>
-                    <em>@Text.NoElements</em>
+                    <em>@TextMsg.NoElements</em>
                 </p>
             }
             else
             {
                 <p>
-                    <em>@Text.Loading</em>
+                    <em>@TextMsg.Loading</em>
                 </p>
             }
         }
@@ -49,7 +49,7 @@
                         </span>
                         <span class="pl-3">@nameof(TaskTagRuleDto.TagName)</span>
                     </th>
-                    <th>@Text.TriggerOn</th>
+                    <th>@TextMsg.TriggerOn</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -62,11 +62,11 @@
                         <td>
                             @if (@item.TriggerDescription)
                             {
-                                <p>@Text.DescriptionField</p>
+                                <p>@TextMsg.DescriptionField</p>
                             }
                             @if (@item.TriggerName)
                             {
-                                <p>@Text.NameField</p>
+                                <p>@TextMsg.NameField</p>
                             }
                         </td>
                         <td>

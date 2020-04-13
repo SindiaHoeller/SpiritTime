@@ -2,8 +2,8 @@
 {
     <div class="simple-form">
         <div class="text-center pt-5 mt-5">
-            <button @onclick="SubmitForm" class="custom-small-button">@Text.Confirm</button>
-            <button @onclick="Cancel" class="custom-small-button trash">@Text.Abort</button>
+            <button @onclick="SubmitForm" class="custom-small-button">@TextMsg.Confirm</button>
+            <button @onclick="Cancel" class="custom-small-button trash">@TextMsg.Abort</button>
         </div>
 
     </div>
@@ -12,13 +12,13 @@ else if (ShowErrorForm)
 {
     <div class="alert alert-danger" role="alert">
         @Error<br />
-        <button class="custom-small-button" @onclick="Cancel">@Text.Done</button>
+        <button class="custom-small-button" @onclick="Cancel">@TextMsg.Done</button>
     </div>
 }
 else
 {
     <div class="alert alert-success text-center" role="alert">
         @SuccessMsg.SuccessedDeletion <br />
-        <button class="custom-small-button" @onclick="Done">@Text.Done</button>
+        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
     </div>
 }
