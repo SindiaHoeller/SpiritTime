@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Services.TableServices;
@@ -54,7 +55,12 @@ namespace SpiritTime.Frontend.Pages.Tasks
         {
             
         }
-
+        void OnRowUpdating(SavedRowItem<TaskDto, Dictionary<string, object>> e) {
+            //await TaskDtoList.Update(dataItem, newValue);
+            var item = e.Item;
+            var name = item.Name;
+            Console.WriteLine("Dataitem: " + name);
+        }
         private void Update(TaskDto item)
         {
             var parameters = new OverlayModalParameters();
