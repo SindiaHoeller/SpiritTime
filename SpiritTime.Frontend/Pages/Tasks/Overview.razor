@@ -21,30 +21,53 @@
         {
             if (NoElements)
             {
-                <p><em>@TextMsg.NoElements</em></p>
+                <p>
+                    <em>@TextMsg.NoElements</em>
+                </p>
             }
             else
             {
-                <p><em>@TextMsg.Loading</em></p>
+                <p>
+                    <em>@TextMsg.Loading</em>
+                </p>
             }
         }
         else
         {
-            <DataGrid TItem="TaskDto" Data="@TaskDtoList" @bind-SelectedRow="@SelectedItem" Sortable="true" Editable="true" EditMode="DataGridEditMode.Inline">
-                <DataGridColumn TItem="TaskDto" Field="@nameof(TaskDto.Name)" Caption="Name" Editable="true" />
-                <DataGridColumn TItem="TaskDto" Field="@nameof(TaskDto.Description)" Caption="Description" Editable="true" />
-                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.StartDate)" Caption="StartDate" Editable="true" />
-                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.EndDate)" Caption="EndDate" Editable="true" />
+            <DataGrid TItem="TaskDto" Data="@TaskDtoList" @bind-SelectedRow="@SelectedItem"
+                      Sortable="true" Editable="true" EditMode="DataGridEditMode.Inline"
+                      RowUpdated="@OnRowUpdating">
+                <DataGridColumn TItem="TaskDto" Field="@nameof(TaskDto.Name)" Caption="Name" Editable="true"/>
+                <DataGridColumn TItem="TaskDto" Field="@nameof(TaskDto.Description)" Caption="Description" Editable="true"/>
+                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.StartDate)" Caption="StartDate" Editable="true"/>
+                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.EndDate)" Caption="EndDate" Editable="true"/>
+                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.TagList)" Caption="EndDate" Editable="true"/>
                 <DataGridCommandColumn TItem="TaskDto">
                     <NewCommandTemplate>
-                        <Button Color="Color.Success" Clicked="@context.Clicked">New</Button>
+                        <Button Color="Color.Success" Clicked="@context.Clicked">
+                            <i class="far fa-plus-square"></i>
+                        </Button>
                     </NewCommandTemplate>
                     <EditCommandTemplate>
-                        <Button Color="Color.Primary" Clicked="@context.Clicked">Edit</Button>
+                        <Button Color="Color.Primary" Clicked="@context.Clicked">
+                            <i class="fas fa-edit"></i>
+                        </Button>
                     </EditCommandTemplate>
                     <DeleteCommandTemplate>
-                        <Button Color="Color.Danger" Clicked="@context.Clicked">Delete</Button>
+                        <Button Color="Color.Danger" Clicked="@context.Clicked">
+                            <i class="far fa-trash-alt"></i>
+                        </Button>
                     </DeleteCommandTemplate>
+                    <SaveCommandTemplate>
+                        <Button Color="Color.Primary" Clicked="@context.Clicked">
+                            <i class="far fa-save"></i>
+                        </Button>
+                    </SaveCommandTemplate>
+                    <CancelCommandTemplate>
+                        <Button Color="Color.Secondary" Clicked="@context.Clicked">
+                            <i class="far fa-window-close"></i>
+                        </Button>
+                    </CancelCommandTemplate>
                 </DataGridCommandColumn>
             </DataGrid>
         }
