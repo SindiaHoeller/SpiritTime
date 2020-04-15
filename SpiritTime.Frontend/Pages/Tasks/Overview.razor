@@ -17,7 +17,7 @@
                 @ErrorMsg
             </div>
         }
-        @if (TaskDtoList == null)
+        @if (!TaskDailyLists.Any())
         {
             if (NoElements)
             {
@@ -34,42 +34,59 @@
         }
         else
         {
-            <DataGrid TItem="TaskDto" Data="@TaskDtoList" @bind-SelectedRow="@SelectedItem"
-                      Sortable="true" Editable="true" EditMode="DataGridEditMode.Inline"
-                      RowUpdated="@OnRowUpdating">
-                <DataGridColumn TItem="TaskDto" Field="@nameof(TaskDto.Name)" Caption="Name" Editable="true"/>
-                <DataGridColumn TItem="TaskDto" Field="@nameof(TaskDto.Description)" Caption="Description" Editable="true"/>
-                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.StartDate)" Caption="StartDate" Editable="true"/>
-                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.EndDate)" Caption="EndDate" Editable="true"/>
-                <DataGridDateColumn TItem="TaskDto" Field="@nameof(TaskDto.TagList)" Caption="EndDate" Editable="true"/>
-                <DataGridCommandColumn TItem="TaskDto">
-                    <NewCommandTemplate>
-                        <Button Color="Color.Success" Clicked="@context.Clicked">
-                            <i class="far fa-plus-square"></i>
-                        </Button>
-                    </NewCommandTemplate>
-                    <EditCommandTemplate>
-                        <Button Color="Color.Primary" Clicked="@context.Clicked">
-                            <i class="fas fa-edit"></i>
-                        </Button>
-                    </EditCommandTemplate>
-                    <DeleteCommandTemplate>
-                        <Button Color="Color.Danger" Clicked="@context.Clicked">
-                            <i class="far fa-trash-alt"></i>
-                        </Button>
-                    </DeleteCommandTemplate>
-                    <SaveCommandTemplate>
-                        <Button Color="Color.Primary" Clicked="@context.Clicked">
-                            <i class="far fa-save"></i>
-                        </Button>
-                    </SaveCommandTemplate>
-                    <CancelCommandTemplate>
-                        <Button Color="Color.Secondary" Clicked="@context.Clicked">
-                            <i class="far fa-window-close"></i>
-                        </Button>
-                    </CancelCommandTemplate>
-                </DataGridCommandColumn>
-            </DataGrid>
+            if (CurrentItem != null)
+            {
+                <div class="d-flex justify-content-around">
+                    <input @bind="@CurrentItem.Name" type="text" class="form-control" placeholder="Name"/>
+                    <input @bind="@CurrentItem.Description" type="text" class="form-control" placeholder="Description"/>
+                    <input @bind="@CurrentItem.StartDate" type="time" class="form-control" placeholder="StartDate"/>
+                    <input @bind-value="@CurrentTime" type="text" class="form-control" readonly/>
+                    @* <label>@CurrentTime</label> *@
+                    <button class="custom-small-button" @onclick="@(() => Update(CurrentItem))">
+                        <span class="oi oi-pencil"></span>
+                    </button>
+                    <button class="custom-small-button red ml-3" @onclick="@(() => Stop(CurrentItem))">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                </div>
+            }
+
+            foreach (var item in TaskDailyLists)
+            {
+                <div class="custom-task-background mb-4">
+                    <div class="d-flex justify-content-between task-header">
+                        <h3>@item.Date.ToString("dd.MM.yyyy")</h3>
+                        <h4>Total: @GetTimSpanByTimeSpan(item.TimeSpan, false)</h4>
+                    </div>
+
+                    @foreach (var task in item.ItemList)
+                    {
+                        if (task != CurrentItem)
+                        {
+                            <div class="d-flex justify-content-between mb-1">
+                                <div class="d-flex justify-content-around expand">
+                                    @* <label for="unit-name">@TextMsg.WorkspaceName:</label> *@
+                                    <input @bind="@task.Name" type="text" class="form-control" placeholder="Name"/>
+                                    <input @bind="@task.Description" type="text" class="form-control" placeholder="Description"/>
+                                    <input @bind="@task.StartDate" type="time" class="form-control" placeholder="StartDate"/>
+                                    <input @bind="@task.EndDate" type="time" class="form-control" placeholder="EndDate"/>
+                                    <label class="form-control"> @GetTimeSpanByDates(task.StartDate, task.EndDate, false) </label>
+
+                                </div>
+                                <div class="d-flex justify-content-around">
+                                    <button class="custom-small-button" @onclick="@(() => Update(task))">
+                                        <span class="oi oi-pencil"></span>
+                                    </button>
+                                    <button class="custom-small-button green ml-3" @onclick="@(() => Start(task))">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        }
+                    }
+                </div>
+            }
         }
     </div>
 </div>

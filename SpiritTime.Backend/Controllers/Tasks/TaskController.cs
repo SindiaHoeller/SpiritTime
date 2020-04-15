@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -74,6 +75,36 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 list = await Helper.GetAllTagsForTaskList(list);
                 
                 return new JsonResult(new TaskListResult { ItemList = list, Successful = true });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new TaskListResult { Error = ex.Message, Successful = false });
+            }
+        }
+        
+        
+        /// <summary>
+        ///     Get's all Tasks Limited by Days for Workplace Id, needs Days
+        /// </summary>
+        /// <remarks> Needs: WorkspaceId and Days <br />  Returns: TaskListResult </remarks>
+        /// <returns></returns>
+        /// <response code="200">Returns a TaskListResult</response>
+
+        [HttpGet(ApiMethod.GetAllByWorkspaceLimitedByDays)]
+        public async Task<IActionResult> GetAllByWorkspaceLimitedByDays(int id, int days)
+        {
+            try
+            {
+                var date = DateTime.Now.AddDays(-days);
+                //Int32.TryParse(stringId, out int id);
+                var all = days < 100 && days > 0 
+                    ? await _unitOfWork.TaskRepository.GetMultipleByAsync(x=>x.WorkspaceId == id && x.StartDate.Date > date.Date)
+                    : await _unitOfWork.TaskRepository.GetMultipleByAsync(x=>x.WorkspaceId == id);
+                
+                var list = _mapper.Map<List<TaskDto>>(all);
+                list = await Helper.GetAllTagsForTaskList(list);
+                
+                return new JsonResult(new TaskListResult { ItemList = list.OrderByDescending(x=>x.StartDate).ToList(), Successful = true });
             }
             catch (Exception ex)
             {

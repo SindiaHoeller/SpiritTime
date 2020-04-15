@@ -74,12 +74,23 @@ table th span.oi:hover {
   color: #D4C19C;
   box-shadow: rgba(213, 213, 213, 0.1) 0.05rem 0.05rem;
 }
-.custom-small-button.trash {
+.custom-small-button.trash, .custom-small-button.red {
   background-color: rgba(255, 0, 0, 0.3);
 }
-.custom-small-button.trash:hover {
+.custom-small-button.trash:hover, .custom-small-button.red:hover {
+  color: rgba(255, 140, 0, 0.3);
+}
+.custom-small-button.orange {
   background-color: rgba(255, 140, 0, 0.3);
-  color: #313131;
+}
+.custom-small-button.orange:hover {
+  color: #7b7b7b;
+}
+.custom-small-button.green {
+  background-color: rgba(0, 180, 0, 0.3);
+}
+.custom-small-button.green:hover {
+  color: #7b7b7b;
 }
 
 a.custom-small-button {
@@ -195,9 +206,48 @@ button.custom-primary:hover {
   border-color: #cf9946;
 }
 
-input.form-control {
+input, input.form-control, input.form-control[readonly] {
+  background-color: transparent;
+  border: 1px solid #7b7b7b;
+  color: #f7f7f7;
+  width: 100%;
+}
+input:focus, input.form-control:focus, input.form-control[readonly]:focus {
+  background-color: #393939;
+  color: #f7f7f7;
+}
+
+label.form-control {
   background-color: transparent;
   color: #f7f7f7;
+  border-color: transparent;
+}
+
+div.expand {
+  width: 100%;
+}
+
+div.task-header {
+  border: 1px solid #7b7b7b;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+div.custom-task-background {
+  background-color: #393939;
+  padding: 2em;
+  border-radius: 1em;
+  box-shadow: rgba(213, 213, 213, 0.1) 0.3rem 0.3rem;
+}
+div.custom-task-background h1, div.custom-task-background h2, div.custom-task-background h3, div.custom-task-background h4 {
+  margin: 0.5rem;
+}
+div.custom-task-background .custom-small-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .blazored-modal-container {
