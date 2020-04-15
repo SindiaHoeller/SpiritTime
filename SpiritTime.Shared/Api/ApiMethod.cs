@@ -19,9 +19,11 @@ namespace SpiritTime.Shared.Api
         public const string GetOneById = "GetOneById";
         public const string GetFirstOrDefault = "GetFirstOrDefault";
         public const string GetallByUserId = "GetallByUserId";
+        public const string GetAllByWorkspaceLimitedByDays = "GetAllByWorkspaceLimitedByDays";
         
         public const string AddTag = "AddTag";
         public const string RemoveTag = "RemoveTag";
         public const string CompareTags = "CompareTags";
+        
     }
 }

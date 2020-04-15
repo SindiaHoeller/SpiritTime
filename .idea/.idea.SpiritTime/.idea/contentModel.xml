@@ -461,6 +461,7 @@
             <e p="TagResult.cs" t="Include" />
           </e>
           <e p="TaskModels" t="Include">
+            <e p="TaskDailyList.cs" t="Include" />
             <e p="TaskDto.cs" t="Include" />
             <e p="TaskListResult.cs" t="Include" />
             <e p="TaskNew.cs" t="Include" />

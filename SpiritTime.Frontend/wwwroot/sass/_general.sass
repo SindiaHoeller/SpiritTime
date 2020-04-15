@@ -13,6 +13,7 @@ $color2: #D4C19C
 $color3: #7b7b7b
 $color4: #f7f7f7
 $color5: #313131
+$color6: rgb(57, 57, 57)
 
 $red: rgba(255, 0, 0, 0.3)
 $green: rgba(0, 180, 0, 0.3)
@@ -75,11 +76,19 @@ table
     background-color: $color1
     color: $color2
     box-shadow: $shadow-color 0.05rem 0.05rem
-  &.trash
+  &.trash, &.red
     background-color: $red
     &:hover
-      background-color: $orange
-      color: $color5
+      color: $orange
+  &.orange
+    background-color: $orange
+    &:hover
+      color: $color3
+  &.green
+    background-color: $green
+    &:hover
+      color: $color3
+    
 a.custom-small-button
   padding: 10px
 
@@ -180,6 +189,34 @@ button
       color: $color4
       border-color: $color1
       
-input.form-control
+input, input.form-control, input.form-control[readonly]
+  background-color: transparent
+  border: 1px solid $color3
+  color: $color4
+  width: 100%
+  &:focus
+    background-color: $color6
+    color: $color4
+label.form-control
   background-color: transparent
   color: $color4
+  border-color: transparent
+div.expand
+  width: 100%
+div.task-header
+  border: 1px solid $color3
+  justify-content: center
+  align-items: center
+  display: flex
+  border-radius: 10px
+  margin-bottom: .5rem
+div.custom-task-background
+  background-color: $color6
+  padding: 2em
+  border-radius: 1em
+  box-shadow: $shadow-color 0.3rem 0.3rem
+  h1, h2, h3, h4
+    margin: .5rem
+  .custom-small-button
+    margin-top: 5px
+    margin-bottom: 5px

@@ -46,6 +46,8 @@
         // Tasks
         private readonly string _taskGetall;
         public string TaskGetAllByWorkspace => _taskGetall;
+        private readonly string _taskGetAllByWorkspaceLimitedByDays;
+        public string TaskGetAllByWorkspaceLimitedByDays => _taskGetAllByWorkspaceLimitedByDays;
         private readonly string _taskGetById;
         public string TaskGetById => _taskGetById;
         private readonly string _taskAdd;
@@ -100,10 +102,12 @@
 
             var task = ControllerNames.Tasks + "/";
             _taskGetall = basepath + task + ApiMethod.GetAllByWorkspace;
+            _taskGetAllByWorkspaceLimitedByDays = basepath + task + ApiMethod.GetAllByWorkspaceLimitedByDays;
             _taskGetById = basepath + task + ApiMethod.GetOneById;
             _taskAdd = basepath + task + ApiMethod.Create;
             _taskEdit = basepath + task + ApiMethod.Update;
             _taskDelete = basepath + task + ApiMethod.Delete;
+            
 
             var taskTag = ControllerNames.TaskTag + "/";
             _taskTagAddTag = basepath + taskTag + ApiMethod.AddTag;
