@@ -147,6 +147,7 @@
           <e p="Tasks" t="Include">
             <e p="Edit.razor" t="Include" />
             <e p="Edit.razor.cs" t="Include" />
+            <e p="Helper.cs" t="Include" />
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
           </e>
@@ -217,9 +218,6 @@
           </e>
           <e p="ServiceBase.cs" t="Include" />
           <e p="ServiceHelper.cs" t="Include" />
-          <e p="StaticDetails" t="Include">
-            <e p="Page.cs" t="Include" />
-          </e>
           <e p="TableServices" t="Include">
             <e p="ITableService.cs" t="Include" />
             <e p="TableService.cs" t="Include" />

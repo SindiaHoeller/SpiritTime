@@ -167,17 +167,23 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 var item = _mapper.Map<Core.Entities.Tasks>(resource);
                 await _unitOfWork.TaskRepository.AddAsync(item);
                 await _unitOfWork.SaveAsync();
-                
                 var resultItem = _mapper.Map<TaskDto>(item);
+                
+                // adds Tags by defined rules
                 resultItem = await Helper.AddTagsByRules(resource.WorkspaceId, resultItem);
+                //stops the previous task
+                await Helper.CheckAndStopPreviousTask(resultItem);
+                // if the previous template had some tags, add those tags to the new task aswell
+                await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
+                // gets a list of all current tags for the task
+                resultItem.TagList = await Helper.GetAllTagsForTask(item.Id);
+                
                 var result = new TaskResult
                 {
                     Item = resultItem,
                     Successful = true
                 };
-                result.Item.TagList = await Helper.GetAllTagsForTask(item.Id);
-                await Helper.CheckAndStopPreviousTask(resultItem);
-                await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
+                
                 return new JsonResult(result);
             }
             catch (Exception ex)
@@ -212,6 +218,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 item.IsBooked = resource.IsBooked;
                 item.WorkspaceId = resource.WorkspaceId;
                 _unitOfWork.TaskRepository.Update(item);
+                
                 await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
                 
                 await _unitOfWork.SaveAsync();

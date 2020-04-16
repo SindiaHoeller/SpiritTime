@@ -7,11 +7,8 @@ using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using SpiritTime.Frontend.Config;
-using SpiritTime.Frontend.Services.StaticDetails;
 using SpiritTime.Shared.Api;
-using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models;
-using SpiritTime.Shared.Models.TagModels;
 using SpiritTime.Shared.Models.TaskModels;
 
 namespace SpiritTime.Frontend.Services.TaskServices
@@ -68,7 +65,15 @@ namespace SpiritTime.Frontend.Services.TaskServices
 
             try
             {
-                return await _httpClient.PostJsonAsync<TaskResult>(_path.TaskAdd, item);
+                var newItem = new TaskNew
+                {
+                    Name = item.Name,
+                    Description = item.Description,
+                    IsBooked = false,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.MinValue
+                };
+                return await _httpClient.PostJsonAsync<TaskResult>(_path.TaskAdd, newItem);
             }
             catch (Exception ex)
             {
@@ -99,13 +104,7 @@ namespace SpiritTime.Frontend.Services.TaskServices
                         dailyList.Add(new TaskDailyList
                         {
                             Date = list.Select(x=>x.StartDate).FirstOrDefault(),
-                            ItemList = list.OrderByDescending(x=>x.StartDate).ToList(),
-                            TimeSpan = list
-                                .Where(x=>x.EndDate != DateTime.MinValue)
-                                .Select(x=>x.EndDate.Subtract(x.StartDate))
-                                .Aggregate(TimeSpan.Zero,
-                                    (sumSoFar, nextTimeSpan) => sumSoFar + nextTimeSpan.Duration())
-                            
+                            ItemList = list.OrderByDescending(x=>x.StartDate).ToList()
                         });
                     }
                     return (dailyList, new ResultModel{Successful = true});

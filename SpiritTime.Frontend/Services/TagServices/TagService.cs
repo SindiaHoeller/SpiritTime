@@ -5,12 +5,8 @@ using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using SpiritTime.Frontend.Config;
-using SpiritTime.Frontend.Services.StaticDetails;
 using SpiritTime.Shared.Api;
-using SpiritTime.Shared.Helper;
-using SpiritTime.Shared.Models;
 using SpiritTime.Shared.Models.TagModels;
-using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Frontend.Services.TagServices
 {

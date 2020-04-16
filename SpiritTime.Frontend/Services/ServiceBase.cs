@@ -1,16 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using SpiritTime.Frontend.Config;
-using SpiritTime.Frontend.Services.StaticDetails;
-using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models;
-using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Frontend.Services
 {

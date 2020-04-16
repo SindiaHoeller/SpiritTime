@@ -1,20 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Net.Http;
-//using System.Net.Http.Headers;
-//using System.Security.Claims;
-//using System.Text.Json;
-//using System.Threading.Tasks;
-//using Blazored.LocalStorage;
-//using Microsoft.AspNetCore.Components.Authorization;
-//using Microsoft.AspNetCore.Http;
-//using SpiritTime.Core.Entities;
-//using SpiritTime.Frontend.Services.AuthService;
-//using SpiritTime.Shared.Models.Account.Authentication;
-
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -23,12 +7,7 @@ using SpiritTime.Shared.Models.Account.Authentication;
 using System.Net.Http.Headers;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
-using System.Text.Json;
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-using SpiritTime.Frontend.Services.StaticDetails;
 using SpiritTime.Shared.Helper;
-using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Frontend.Services
 {
