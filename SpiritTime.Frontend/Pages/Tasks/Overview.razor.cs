@@ -7,6 +7,7 @@ using AutoMapper;
 using Blazorise.DataGrid;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.OverlayModalService;
+using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.TableServices;
 using SpiritTime.Frontend.Services.TaskServices;
 using SpiritTime.Shared.Helper;
@@ -21,21 +22,24 @@ namespace SpiritTime.Frontend.Pages.Tasks
         [Inject] private ITaskService Service { get; set; }
         [Inject] private IOverlayModalService Modal { get; set; }
         [Inject] private IMapper _mapper { get; set; }
+        [Inject] private IToastService ToastService { get; set; }
         
         private bool ShowError { get; set; } = false;
         private string ErrorMsg { get; set; }
         private bool NoElements { get; set; }
-        public TaskDto CurrentItem { get; set; }
-        public TaskDto SelectedItem { get; set; }
+        private TaskDto CurrentItem { get; set; }
+        public TaskDto NewItem { get; set; }
         
         //private List<TaskDto> TaskDtoList { get; set; }
         private List<TaskDailyList> TaskDailyLists { get; set; }
         private int DayCount { get; set; } = 15;
-        public string CurrentTime { get; set; } = "";
+        private string CurrentTime { get; set; } = "";
+        private static Timer _timer;
 
-        [Parameter] public EventCallback<string> TimeChanged { get; set; }
+        private bool ValueChanged { get; set; }
         protected override async Task OnInitializedAsync()
         {
+            NewItem = new TaskDto();
             TaskDailyLists = new List<TaskDailyList>();
             var result = await Service.GetTaskDailyList(DayCount);
             
@@ -44,10 +48,15 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 if (result.Item1?.Count > 0)
                 {
                     TaskDailyLists = result.Item1.OrderByDescending(x=>x.Date).ToList();
+                    // Sets the timespan text for Dailylist AND the single tasks
+                    TaskDailyLists.ForEach(x=>x.TimeSpanText = Helper.GetTimSpanByTimeSpan(x.TimeSpan, false));
+                    TaskDailyLists.ForEach(x=>x.ItemList.ForEach(y=>y.TimeSpanText = Helper.GetTimeSpanByDates(y.StartDate, y.EndDate, false)));
+                    
+                    // Selects the currently running task, if available - selected by the Datetime not being specified
                     CurrentItem  = TaskDailyLists.Select(x=>x.ItemList.FirstOrDefault(x=>x.EndDate == DateTime.MinValue)).FirstOrDefault();
                     if (CurrentItem != null)
                     {
-                        CurrentTime = GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
+                        CurrentTime = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
                         StartTimer();
                     }
                         
@@ -65,46 +74,135 @@ namespace SpiritTime.Frontend.Pages.Tasks
             }
         }
 
-        private async Task AddAndStartTimer()
+        private void OnValueChanged()
         {
-            
+            ValueChanged = true;
         }
-        void OnRowUpdating(SavedRowItem<TaskDto, Dictionary<string, object>> e) {
-            //await TaskDtoList.Update(dataItem, newValue);
-            var item = e.Item;
-            var name = item.Name;
-            Console.WriteLine("Dataitem: " + name);
+        
+        
+
+        private async Task Update(TaskDto item)
+        {
+            if (ValueChanged)
+            {
+                ValueChanged = false;
+                try
+                {
+                    // Update the task
+                    var result = await Service.Edit(item);
+                    if (result.Successful)
+                    {
+                        // If not currently active item
+                        if (item.EndDate != DateTime.MinValue)
+                        {
+                            // Update the task timespan text
+                            item.TimeSpanText = Helper.UpdateTimeSpanText(item);
+                            // Update the dailylist timespan text
+                            Helper.UpdateTimeSpanTextForList(TaskDailyLists);
+                        }
+                
+                        ToastService.ShowSuccess(SuccessMsg.SuccessedUpdate);
+                    }
+                    else
+                    {
+                        ToastService.ShowError(result.Error);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    ToastService.ShowError(exception.Message);
+                }
+                
+            }
         }
 
-        private void Update(TaskDto item)
+        private async Task Start(TaskDto item)
         {
-            
+            try
+            {
+                StopTimer();
+                var result = await Service.Add(item);
+                if (result.Successful)
+                {
+                    await InvokeAsync(() =>
+                    {
+                        Helper.CheckAndAddCurrentItem(result.Item, CurrentItem, TaskDailyLists);
+
+                        CurrentItem = result.Item;
+                        NewItem = new TaskDto();
+                    
+                        StartTimer();
+                        ToastService.ShowSuccess(SuccessMsg.TimerStarted);
+                        StateHasChanged();
+                    });
+                }
+                else
+                {
+                    ToastService.ShowError(result.Error);
+                }
+            }
+            catch (Exception exception)
+            {
+                ToastService.ShowError(exception.Message);
+            }
         }
 
-        private void Start(TaskDto item)
+
+        
+        private async Task Stop()
         {
-            StartTimer();
+            try
+            {
+                if (CurrentItem == null) return;
+                
+                StopTimer();
+                CurrentItem.EndDate = DateTime.Now;
+                var result = await Service.Edit(CurrentItem);
+                if (result.Successful)
+                {
+                    await InvokeAsync(() =>
+                    {
+                        Helper.AddCurrentItemToDailyList(CurrentItem, TaskDailyLists);
+
+                        CurrentItem = null;
+                        NewItem = new TaskDto();
+                    
+                        ToastService.ShowSuccess(SuccessMsg.TimerStopped);
+                        StateHasChanged();
+                    });
+                }
+                else
+                {
+                    ToastService.ShowError(result.Error);
+                }
+            }
+            catch (Exception exception)
+            {
+                ToastService.ShowError(exception.Message);
+            }
+            // Set enddate for item and add it to the dailylist - create one if not available yet
         }
-        private void Stop(TaskDto item)
+
+        private void StopTimer()
         {
-            aTimer.Stop();
-            aTimer.Dispose();
+            _timer.Stop();
+            _timer.Dispose();
         }
 
         private void StartTimer()
         {
             SetTimer();
-            Console.WriteLine("Timer started");
+            // Console.WriteLine("Timer started");
         }
 
-        private static Timer aTimer;
+        
         private void SetTimer()
         {
-            aTimer = new Timer(1000);
-            Console.WriteLine("Timer initiated");
-            aTimer.Elapsed += OnTimeEvent;
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
+            _timer = new Timer(1000);
+            // Console.WriteLine("Timer initiated");
+            _timer.Elapsed += OnTimeEvent;
+            _timer.AutoReset = true;
+            _timer.Enabled = true;
         }
 
         private async void OnTimeEvent(Object source, ElapsedEventArgs e)
@@ -113,37 +211,21 @@ namespace SpiritTime.Frontend.Pages.Tasks
             {
                 await InvokeAsync(() =>
                 {
-                    CurrentTime = GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
-                    Console.WriteLine(CurrentTime);
+                    CurrentTime = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
+                    // Console.WriteLine(CurrentTime);
                     StateHasChanged();
                 });
-                // await TimeChanged.InvokeAsync(CurrentTime);
-                
             }
                 
             else
             {
-                aTimer.Stop();
-                aTimer.Dispose();
+                _timer.Stop();
+                _timer.Dispose();
             }
                 
         }
 
-        private string GetTimeSpanByDates(DateTime prev, DateTime after, bool includeSecs)
-        {
-            var span = after.Subtract(prev);
-            return GetTimSpanByTimeSpan(span, includeSecs);
-        }
 
-        private string GetTimSpanByTimeSpan(TimeSpan span, bool includeSecs)
-        {
-            var timeSpanString = span.Days > 0 ? span.Days + " days - " : "";
-            timeSpanString += span.Hours > 9 ? span.Hours + ":" : "0" + span.Hours + ":";
-            timeSpanString += span.Minutes > 9 ? span.Minutes.ToString() : "0" + span.Minutes;
-            if(includeSecs)
-                timeSpanString += span.Seconds > 9 ? ":" + span.Seconds : ":0" + span.Seconds;
-            return timeSpanString;
-        }
         // private void Update(TaskDto item)
         // {
         //     var parameters = new OverlayModalParameters();
