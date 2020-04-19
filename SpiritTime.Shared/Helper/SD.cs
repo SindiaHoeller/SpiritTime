@@ -12,6 +12,7 @@
         public const string Task = "Task";
         public const string TagRule = "TagRule";
         public const string Item = "Item";
+        public const string ItemList = "ItemList";
         public const string Id = "Id";
         public const string CurrentWorkspace = "CurrentWorkspace";
     }

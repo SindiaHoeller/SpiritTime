@@ -9,6 +9,8 @@ namespace SpiritTime.Shared.Messages
         public const string WorkspaceChoose = "Please choose a workspace first.";
         public const string ChooseOption = "Please choose an Option first.";
 
+        public const string TagsCouldNotLoaded = "Could not load Tags";
+
         public const string TagNotAdded = "The Tag could not be added.";
         public const string TagNotEdited = "The Tag could not be edited";
     }

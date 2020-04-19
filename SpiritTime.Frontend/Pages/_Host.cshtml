@@ -17,6 +17,7 @@
     <link href="lib/font-awesome/css/all.css" rel="stylesheet"/>
     <link href="_content/Blazorise/blazorise.css" rel="stylesheet"/>
     <link href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" rel="stylesheet"/>
+    <link href="_content/Blazored.Typeahead/blazored-typeahead.css" rel="stylesheet"/>
     <link href="css/site.css" rel="stylesheet"/>
     <link href="css/index.css" rel="stylesheet"/>
 </head>
@@ -42,7 +43,17 @@
 
 <script src="_content/Blazorise/blazorise.js"></script>
 <script src="_content/Blazorise.Bootstrap/blazorise.bootstrap.js"></script>
+<script src="_content/Blazored.Typeahead/blazored-typeahead.js"></script>
 <script src="_framework/blazor.server.js"></script>
+<environment include="Development">
+    <script>
+        window.Blazor.defaultReconnectionHandler.onConnectionDown = function () {
+            setTimeout(function () {
+                location.reload();
+            }, 7000);
+        }
+    </script>
+</environment>
 <script src="js/index.js"></script>
 </body>
 </html>
