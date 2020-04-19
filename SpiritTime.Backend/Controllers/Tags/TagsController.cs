@@ -91,7 +91,7 @@ namespace SpiritTime.Backend.Controllers.Tags
                     return new JsonResult(new TagResult
                     { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
 
-                var item = new Tag { Name = resource.Name, WorkspaceId = resource.WorkspaceId };
+                var item = new Tag { Name = resource.Name, ColorCode = resource.ColorCode,WorkspaceId = resource.WorkspaceId };
                 await _unitOfWork.TagRepository.AddAsync(item);
                 await _unitOfWork.SaveAsync();
                 var newItem = await _unitOfWork.TagRepository
@@ -130,6 +130,7 @@ namespace SpiritTime.Backend.Controllers.Tags
 
                 item.Name = resource.Name;
                 item.WorkspaceId = resource.WorkspaceId;
+                item.ColorCode = resource.ColorCode;
                 _unitOfWork.TagRepository.Update(item);
                 await _unitOfWork.SaveAsync();
                 return new JsonResult(new ResultModel { Error = null, Successful = true });

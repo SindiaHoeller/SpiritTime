@@ -22,15 +22,34 @@ $blue: rgba(0,180,255,0.3)
 
 $gradient2: linear-gradient(0deg, $color5, $color3)
 
-html, body
-  height: 100%
+html
   color: $color4
+  background: $main-background no-repeat center center fixed
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
 body
-  background: $main-background no-repeat
+  background-color: transparent
+  color: $color4
+  //position: absolute
+  //top: 0
+  //right: 0
+//body
+//  background: $main-background no-repeat
+//  height: 100vh
 h1
   color: $color1
   font-family: $font1
-  
+//.main-background
+//  height: 100%
+//  width: 100%
+//  position: absolute
+//  top: 0
+//  right: 0
+//  z-index: -10
+//  background: $main-background no-repeat scroll
+
 #components-reconnect-modal
   background-color: $color5 !important
   
@@ -231,7 +250,7 @@ div.custom-task-background
     padding-right: 2px
     
 .tags
-  overflow: hidden
+  //overflow: hidden
   margin: 0
   padding: 0
   display: flex
@@ -245,17 +264,17 @@ div.custom-task-background
     border: 0
     background: $color2
     border-radius: 3px 0 0 3px
-    color: $color5
+    color: $color4
     display: inline-block
     height: 20px
     line-height: 20px
-    padding: 0 5px 0 15px
+    padding: 0 15px 0 15px
     position: relative
     margin: 0 10px 5px 0
     text-decoration: none
     -webkit-transition: color 0.2s
     &::before 
-      background: $color1
+      background: $color4
       border-radius: 10px
       box-shadow: inset 0 1px rgba(0, 0, 0, 0.25)
       content: ''
@@ -266,6 +285,79 @@ div.custom-task-background
       top: 7.5px
     &::after       
       background: transparent
+      border-bottom: 10px solid $color6
+      border-left: 10px solid transparent
+      border-top: 10px solid $color6
+      content: ''
+      position: absolute
+      right: 0
+      top: 0
+    &:hover 
+      background-color: $color1
+      color: $color4
+.tag-container
+  display: flex
+  align-content: center
+  flex-wrap: wrap
+
+
+.multiselect
+  position: absolute
+  background: $color6
+  left: 56px
+  width: 120px
+  height: 150px
+  overflow: auto
+  z-index: 5
+  border-radius: 10px
+  border-bottom: 1px solid $color5
+  border-right: 1px solid $color5  
+  .custom-checkbox
+    height: 20px
+    margin-bottom: 5px
+    display: flex
+    align-items: center
+    &:first-child
+      margin-top: 7px
+    
+    input
+      cursor: pointer
+      z-index: 6
+      width: 20%
+      &:hover + label
+        background-color: $color1
+        color: $color4
+        &::after
+          border-left-color: $color1
+    
+  label    
+    cursor: pointer
+    float: left
+    border: 0
+    background: $color2
+    border-radius: 3px 0 0 3px
+    color: $color5
+    display: inline-block
+    height: 20px
+    line-height: 20px
+    padding: 0 5px 0 25px
+    position: absolute
+    left: 0
+    margin: 0 10px 5px 0
+    text-decoration: none
+    -webkit-transition: color 0.2s
+    //&::before
+    //  background: $color1
+    //  border-radius: 10px
+    //  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25)
+    //  content: ''
+    //  height: 6px
+    //  left: 5px
+    //  position: absolute
+    //  width: 6px
+    //  top: 7.5px
+    &::after
+      background: transparent
       border-bottom: 10px solid transparent
       border-left: 10px solid $color2
       border-top: 10px solid transparent
@@ -273,20 +365,8 @@ div.custom-task-background
       position: absolute
       right: -10px
       top: 0
-    &:hover 
+    &:hover
       background-color: $color1
       color: $color4
-      &::after 
+      &::after
         border-left-color: $color1
-      //&::before
-      //  background: transparent
-      //  content: 'x'
-      //  color: $red
-      //  top: auto
-      //  left: 4px
-      //  bottom: 15px
-      //  box-shadow: none
-.tag-container
-  display: flex
-  align-content: center
-  flex-wrap: wrap
