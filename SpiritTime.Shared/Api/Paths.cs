@@ -54,6 +54,8 @@
         public string TaskAdd => _taskAdd;
         private readonly string _taskEdit;
         public string TaskEdit => _taskEdit;
+        private readonly string _taskUpdateTags;
+        public string TaskUpdateTags => _taskUpdateTags;
         private readonly string _taskDelete;
         public string TaskDelete => _taskDelete;
 
@@ -106,6 +108,7 @@
             _taskGetById = basepath + task + ApiMethod.GetOneById;
             _taskAdd = basepath + task + ApiMethod.Create;
             _taskEdit = basepath + task + ApiMethod.Update;
+            _taskUpdateTags = basepath + task + ApiMethod.UpdateTagsForTask;
             _taskDelete = basepath + task + ApiMethod.Delete;
             
 

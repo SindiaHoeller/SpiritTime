@@ -259,6 +259,67 @@ div.custom-task-background .custom-small-button {
   padding-right: 2px;
 }
 
+.tags {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: start;
+}
+.tags button {
+  margin-right: 10px;
+}
+.tags .tag {
+  cursor: default;
+  float: left;
+  border: 0;
+  background: #D4C19C;
+  border-radius: 3px 0 0 3px;
+  color: #313131;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 5px 0 15px;
+  position: relative;
+  margin: 0 10px 5px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+.tags .tag::before {
+  background: #cf9946;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: "";
+  height: 6px;
+  left: 5px;
+  position: absolute;
+  width: 6px;
+  top: 7.5px;
+}
+.tags .tag::after {
+  background: transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #D4C19C;
+  border-top: 10px solid transparent;
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 0;
+}
+.tags .tag:hover {
+  background-color: #cf9946;
+  color: #f7f7f7;
+}
+.tags .tag:hover::after {
+  border-left-color: #cf9946;
+}
+
+.tag-container {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
 .blazored-modal-container {
   display: none;
   position: fixed;

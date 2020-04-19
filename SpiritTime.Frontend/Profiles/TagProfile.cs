@@ -10,6 +10,8 @@ namespace SpiritTime.Frontend.Profiles
             CreateMap<TagResult, TagDto>();
             CreateMap<TagDto, TagResource>();
             CreateMap<TagResource, TagDto>();
+            CreateMap<TagInfo, TagDto>();
+            CreateMap<TagDto, TagInfo>();
         }
     }
 }

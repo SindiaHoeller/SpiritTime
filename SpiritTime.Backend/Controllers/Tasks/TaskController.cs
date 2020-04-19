@@ -229,6 +229,34 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 return new JsonResult(new ResultModel { Error = ex.Message, Successful = false });
             }
         }
+        
+        /// <summary>
+        ///     Updates all Tags associated with a Task
+        /// </summary>
+        /// <remarks>Needs: TaskDto <br /> Returns: ResultModel</remarks>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        /// <response code="200">Returns a ResultModel</response>
+        //[Authorize]
+        [HttpPost(ApiMethod.UpdateTagsForTask)]
+        public async Task<IActionResult> UpdateTagsForTask(TaskDto resource)
+        {
+            try
+            {
+                if (!await CheckForPermissionByWorkspace(resource.WorkspaceId, _unitOfWork))
+                    return new JsonResult(new ResultModel
+                        { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
+                
+                await Helper.AddRangeOfTagsToTask(resource.TagList, resource.Id);
+                
+                await _unitOfWork.SaveAsync();
+                return new JsonResult(new ResultModel { Error = null, Successful = true });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new ResultModel { Error = ex.Message, Successful = false });
+            }
+        }
 
 
         /// <summary>
