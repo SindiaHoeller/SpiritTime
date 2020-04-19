@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
+    <e p="$USER_HOME$/.nuget/packages/blazorise/0.9.0/contentFiles/any/netstandard2.1/compilerconfig.json" t="Include" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
       <e p="SpiritTime.Backend" t="IncludeRecursive">
@@ -150,6 +151,9 @@
             <e p="Helper.cs" t="Include" />
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
+            <e p="TagSearch.razor" t="Include" />
+            <e p="TagSearch.razor.cs" t="Include" />
+            <e p="TaskTimer.razor" t="Include" />
           </e>
           <e p="Workspaces" t="Include">
             <e p="Add.razor" t="Include" />
@@ -211,6 +215,7 @@
             <e p="AuthService.cs" t="Include" />
             <e p="IAuthService.cs" t="Include" />
           </e>
+          <e p="NotifierService.cs" t="Include" />
           <e p="OptionsService" t="Include">
             <e p="IOptionService.cs" t="Include" />
             <e p="OptionService.cs" t="Include" />

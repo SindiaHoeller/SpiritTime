@@ -1,0 +1,32 @@
+@using System.Timers
+@using SpiritTime.Frontend.Services
+@inject NotifierService Notifier
+@implements IDisposable
+<label>@CurrentTime</label>
+
+@code{
+    [Parameter]
+    public string CurrentTime { get; set; } = "";
+    private static Timer _timer;
+    
+    protected override void OnInitialized()
+    {
+        Notifier.Notify += OnNotify;
+    }
+
+    public async Task OnNotify(string key)
+    {
+        await InvokeAsync(() =>
+        {
+            CurrentTime = key;
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        Notifier.Notify -= OnNotify;
+    }
+    
+    
+}

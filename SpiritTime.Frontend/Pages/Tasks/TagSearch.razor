@@ -1,0 +1,34 @@
+@if (ShowForm)
+{
+    <div class="simple-form">
+        <BlazoredTypeahead @onfocusin="@OnFocusInStopTimer" SearchMethod="@SearchTag" @bind-Value="@SelectedTag" @onfocusout="@(SelectedTask)">
+            <SelectedTemplate>
+                @context.Name
+            </SelectedTemplate>
+            <ResultTemplate>
+                @context.Name
+            </ResultTemplate>
+            <NotFoundTemplate>
+                Sorry, there weren't any search results.
+            </NotFoundTemplate>
+        </BlazoredTypeahead>
+                <div class="text-center pt-5 mt-5">
+                    <button @onclick="SubmitForm" class="custom-small-button">@TextMsg.Confirm</button>
+                    <button @onclick="Cancel" class="custom-small-button trash">@TextMsg.Abort</button>
+                </div>
+    </div>
+}
+else if (ShowErrorForm)
+{
+    <div class="alert alert-danger" role="alert">
+        @ErrorMsg.TagsCouldNotLoaded<br/>
+        <button class="custom-small-button" @onclick="Cancel">@TextMsg.Done</button>
+    </div>
+}
+else if (ShowSuccessForm)
+{
+    <div class="alert alert-success text-center" role="alert">
+        @SuccessMsg.SuccessedUpdate <br/>
+        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
+    </div>
+}

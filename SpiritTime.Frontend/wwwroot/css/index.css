@@ -250,6 +250,15 @@ div.custom-task-background .custom-small-button {
   margin-bottom: 5px;
 }
 
+.task-main-view .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+.task-main-view .col-lg-12, .task-main-view .col-lg-11, .task-main-view .col-lg-10, .task-main-view .col-lg-9, .task-main-view .col-lg-8, .task-main-view .col-lg-7, .task-main-view .col-lg-6, .task-main-view .col-lg-5, .task-main-view .col-lg-4, .task-main-view .col-lg-3, .task-main-view .col-lg-2, .task-main-view .col-lg-1 {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 .blazored-modal-container {
   display: none;
   position: fixed;

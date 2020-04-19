@@ -9,27 +9,33 @@ using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.TableServices;
+using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.TaskServices;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
+using SpiritTime.Shared.Models.TagModels;
 using SpiritTime.Shared.Models.TaskModels;
 using SpiritTime.Shared.Models.WorkspaceModels;
+using Blazored.Typeahead;
+
 
 namespace SpiritTime.Frontend.Pages.Tasks
 {
     public partial class Overview
     {
         [Inject] private ITaskService Service { get; set; }
+        [Inject] private ITagService TagService { get; set; }
         [Inject] private IOverlayModalService Modal { get; set; }
         [Inject] private IMapper _mapper { get; set; }
         [Inject] private IToastService ToastService { get; set; }
-        
+        [Parameter] public List<TagDto> TagList { get; set; }
+
         private bool ShowError { get; set; } = false;
-        private string ErrorMsg { get; set; }
+        private string ErrorMessage { get; set; }
         private bool NoElements { get; set; }
         private TaskDto CurrentItem { get; set; }
         public TaskDto NewItem { get; set; }
-        
+
         //private List<TaskDto> TaskDtoList { get; set; }
         private List<TaskDailyList> TaskDailyLists { get; set; }
         private int DayCount { get; set; } = 15;
@@ -37,29 +43,45 @@ namespace SpiritTime.Frontend.Pages.Tasks
         private static Timer _timer;
 
         private bool ValueChanged { get; set; }
+
+        public TagDto SelectedTag { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
+            SelectedTag = new TagDto();
             NewItem = new TaskDto();
             TaskDailyLists = new List<TaskDailyList>();
             var result = await Service.GetTaskDailyList(DayCount);
-            
+            var result2 = await TagService.GetAllAsync();
+
             if (result.Item2.Successful)
             {
+                if (result2.Successful)
+                {
+                    TagList = result2.ItemList;
+                }
+                else
+                {
+                    ToastService.ShowError(ErrorMsg.TagsCouldNotLoaded);
+                }
+
                 if (result.Item1?.Count > 0)
                 {
-                    TaskDailyLists = result.Item1.OrderByDescending(x=>x.Date).ToList();
+                    TaskDailyLists = result.Item1.OrderByDescending(x => x.Date).ToList();
                     // Sets the timespan text for Dailylist AND the single tasks
-                    TaskDailyLists.ForEach(x=>x.TimeSpanText = Helper.GetTimSpanByTimeSpan(x.TimeSpan, false));
-                    TaskDailyLists.ForEach(x=>x.ItemList.ForEach(y=>y.TimeSpanText = Helper.GetTimeSpanByDates(y.StartDate, y.EndDate, false)));
-                    
+                    TaskDailyLists.ForEach(x => x.TimeSpanText = Helper.GetTimSpanByTimeSpan(x.TimeSpan, false));
+                    TaskDailyLists.ForEach(x =>
+                        x.ItemList.ForEach(y =>
+                            y.TimeSpanText = Helper.GetTimeSpanByDates(y.StartDate, y.EndDate, false)));
+
                     // Selects the currently running task, if available - selected by the Datetime not being specified
-                    CurrentItem  = TaskDailyLists.Select(x=>x.ItemList.FirstOrDefault(x=>x.EndDate == DateTime.MinValue)).FirstOrDefault();
+                    CurrentItem = TaskDailyLists
+                        .Select(x => x.ItemList.FirstOrDefault(x => x.EndDate == DateTime.MinValue)).FirstOrDefault();
                     if (CurrentItem != null)
                     {
                         CurrentTime = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
                         StartTimer();
                     }
-                        
                 }
                 else
                 {
@@ -69,17 +91,21 @@ namespace SpiritTime.Frontend.Pages.Tasks
             }
             else
             {
-                ErrorMsg = result.Item2.Error;
+                ErrorMessage = result.Item2.Error;
                 ShowError = true;
             }
+        }
+
+        private async Task<IEnumerable<TagDto>> SearchTag(string searchText)
+        {
+            return await Task.FromResult(TagList.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList());
         }
 
         private void OnValueChanged()
         {
             ValueChanged = true;
         }
-        
-        
+
 
         private async Task Update(TaskDto item)
         {
@@ -100,7 +126,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                             // Update the dailylist timespan text
                             Helper.UpdateTimeSpanTextForList(TaskDailyLists);
                         }
-                
+
                         ToastService.ShowSuccess(SuccessMsg.SuccessedUpdate);
                     }
                     else
@@ -112,7 +138,6 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 {
                     ToastService.ShowError(exception.Message);
                 }
-                
             }
         }
 
@@ -130,7 +155,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
 
                         CurrentItem = result.Item;
                         NewItem = new TaskDto();
-                    
+
                         StartTimer();
                         ToastService.ShowSuccess(SuccessMsg.TimerStarted);
                         StateHasChanged();
@@ -148,13 +173,12 @@ namespace SpiritTime.Frontend.Pages.Tasks
         }
 
 
-        
         private async Task Stop()
         {
             try
             {
                 if (CurrentItem == null) return;
-                
+
                 StopTimer();
                 CurrentItem.EndDate = DateTime.Now;
                 var result = await Service.Edit(CurrentItem);
@@ -166,7 +190,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
 
                         CurrentItem = null;
                         NewItem = new TaskDto();
-                    
+
                         ToastService.ShowSuccess(SuccessMsg.TimerStopped);
                         StateHasChanged();
                     });
@@ -180,6 +204,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
             {
                 ToastService.ShowError(exception.Message);
             }
+
             // Set enddate for item and add it to the dailylist - create one if not available yet
         }
 
@@ -191,15 +216,16 @@ namespace SpiritTime.Frontend.Pages.Tasks
 
         private void StartTimer()
         {
+            if(_timer != null)
+                StopTimer();
             SetTimer();
             // Console.WriteLine("Timer started");
         }
 
-        
+
         private void SetTimer()
         {
             _timer = new Timer(1000);
-            // Console.WriteLine("Timer initiated");
             _timer.Elapsed += OnTimeEvent;
             _timer.AutoReset = true;
             _timer.Enabled = true;
@@ -212,43 +238,52 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 await InvokeAsync(() =>
                 {
                     CurrentTime = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
-                    // Console.WriteLine(CurrentTime);
+                    Console.WriteLine(CurrentTime);
                     StateHasChanged();
                 });
             }
-                
+
             else
             {
                 _timer.Stop();
                 _timer.Dispose();
             }
-                
+        }
+
+        private void SelectedTask()
+        {
+            ToastService.ShowInfo(SelectedTag?.Name);
+            StartTimer();
+        }
+
+        private void OnFocusInStopTimer()
+        {
+            ToastService.ShowError("Stopped");
+            StopTimer();
         }
 
 
-        // private void Update(TaskDto item)
-        // {
-        //     var parameters = new OverlayModalParameters();
-        //     parameters.Add(SD.Item, item);
-        //
-        //     Modal.OnClose += EditResult;
-        //     Modal.Show<Edit>(TextMsg.TaskEdit, parameters);
-        // }
-        // private void EditResult(OverlayModalResult modalResult)
-        // {
-        //     if(!modalResult.Cancelled && modalResult.Data != null)
-        //     {
-        //         var item = (TaskDto)modalResult.Data;
-        //         
-        //         if(item != null)
-        //         {
-        //             var itemOld = TaskDtoList.FirstOrDefault(x => x.Id == item.Id);
-        //             TaskDtoList.Remove(itemOld);
-        //             TaskDtoList.Add(item);
-        //             StateHasChanged();
-        //         }
-        //     }
-        //     Modal.OnClose -= EditResult;
-        // }
+        private void AddTag(TaskDto item)
+        {
+            var parameters = new OverlayModalParameters();
+            parameters.Add(SD.ItemList, TagList);
+
+            Modal.OnClose += EditResult;
+            Modal.Show<TagSearch>(TextMsg.TagRuleEdit, parameters);
+        }
+
+        private void EditResult(OverlayModalResult modalResult)
+        {
+            if (!modalResult.Cancelled && modalResult.Data != null)
+            {
+                var item = (TagDto)modalResult.Data;
+
+                if (item != null)
+                {
+                    Console.WriteLine(item.Name);
+                }
+            }
+            Modal.OnClose -= EditResult;
+        }
     }
 }
