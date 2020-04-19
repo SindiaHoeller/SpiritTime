@@ -1,10 +1,9 @@
 @page "/tasks/overview" 
 
 <div class="center-and-highlight task-main-view">
-    <div class="col-12 custom-background mt-5">
+    <div class="col-12 custom-background">
         <div class="text-center">
             <h1>@TextMsg.Task</h1>
-
         </div>
         @if (ShowError && ErrorMessage != null)
         {
@@ -14,33 +13,38 @@
         }
         @if (!TaskDailyLists.Any())
         {
-            if (NoElements)
-            {
-                <p>
-                    <em>@TextMsg.NoElements</em>
-                </p>
-            }
-            else
-            {
-                <p>
-                    <em>@TextMsg.Loading</em>
-                </p>
-            }
+            <NoElementsPage NoElements="@NoElements"></NoElementsPage>
         }
         else
         {
             if (CurrentItem != null)
             {
-                <div class="d-flex justify-content-around">
-                    <input @bind-value="@CurrentItem.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control" placeholder="Name"/>
-                    <input @bind-value="@CurrentItem.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control" placeholder="Description"/>
-                    <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="datetime" class="form-control" placeholder="StartDate"/>
-                    @* <TaskTimer></TaskTimer> *@
-                    <label>@CurrentTime</label>
-
-                    <button class="custom-small-button red ml-3" @onclick="@(() => Stop())">
-                        <i class="fas fa-stop"></i>
-                    </button>
+                <div class="row">
+                    <div class="col-lg-1">
+                        <input @bind-value="@CurrentItem.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control" placeholder="Name"/>
+                    </div>
+                    <div class="col-lg-4">
+                        <input @bind-value="@CurrentItem.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control" placeholder="Description"/>
+                    </div>
+                    <div class="col-lg-2">
+                        <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="datetime" class="form-control" placeholder="StartDate"/>
+                    </div>
+                    <div class="col-lg-2 tags">
+                        <MultiSelectPartial
+                            CurrentItem="@CurrentItem"
+                            TaskItem="@CurrentItem"
+                            CurrentSelectListId="@CurrentSelectListId"
+                            TagList="@TagList">
+                        </MultiSelectPartial>
+                    </div>
+                    <div class="col-lg-2">
+                        <label>@CurrentTime</label>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="custom-small-button red ml-3" @onclick="@(() => Stop())">
+                            <i class="fas fa-stop"></i>
+                        </button>
+                    </div>
                 </div>
             }
             else
@@ -53,14 +57,11 @@
                     </button>
                 </div>
             }
-
-
             foreach (var item in TaskDailyLists)
             {
                 <div class="custom-task-background mb-4">
                     <div class="d-flex justify-content-between task-header">
                         <h3>@item.Date.ToString("dd.MM.yyyy")</h3>
-                        @* <h4 @bind-value="@item.TimeSpanText"></h4> *@
                         <h4>@item.TimeSpanText</h4>
                     </div>
 
@@ -84,52 +85,12 @@
                                         <input @bind-value="@task.EndDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="datetime" class="form-control" placeholder="EndDate"/>
                                     </div>
                                     <div class="col-lg-2 tags">
-
-
-                                        @if (ShowTagList && CurrentSelectListId == task.Id)
-                                        {
-                                            <button class="custom-small-button blue ml-3" @onclick="@(async () => await AddTags(task))">
-                                                <i class="fas fa-check"></i>
-                                            </button>
-                                            <div class="multiselect">
-                                                <div id="checkboxes">
-                                                    @foreach (var selectItem in MultiSelectList)
-                                                    {
-                                                        <div>
-                                                            @{ var id = selectItem.Value + "task" + task.Id; }
-                                                            <label for="@id">
-                                                                @if (selectItem.Selected)
-                                                                {
-                                                                    <input type="checkbox" id="@id" checked="checked" @onchange="@((e) => CheckboxChanged(e, selectItem.Value, task))"/>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <input type="checkbox" id="@id" @onchange="@((e) => CheckboxChanged(e, selectItem.Value, task))"/>
-                                                                }
-                                                                @selectItem.Text
-                                                            </label>
-                                                        </div>
-                                                    }
-                                                </div>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div>
-                                                <button class="custom-small-button orange ml-3" @onclick="@(() => OpenTagList(task))">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                            </div>
-
-                                            <div class="tag-container">
-                                                @foreach (var tag in task.TagList)
-                                                {
-                                                        <button class="tag">@tag.Name</button>
-                                                    
-                                                }
-                                            </div>
-                                        }
-
+                                        <MultiSelectPartial
+                                            CurrentItem="@CurrentItem"
+                                            TaskItem="@task"
+                                            CurrentSelectListId="@CurrentSelectListId"
+                                            TagList="@TagList">
+                                        </MultiSelectPartial>
                                     </div>
                                     <div class="col-lg-1">
                                         <div class="row">
@@ -140,18 +101,10 @@
                                                 <button class="custom-small-button green ml-3" @onclick="@(() => Start(task))">
                                                     <i class="fas fa-play"></i>
                                                 </button>
-
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    @* <input @bind-value="@task.TimeSpanText" type="text" class="form-control" readonly/> *@
-
-
                                 </div>
-
-
                             </div>
                         }
                     }

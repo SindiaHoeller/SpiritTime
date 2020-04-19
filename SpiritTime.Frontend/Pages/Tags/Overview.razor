@@ -16,59 +16,61 @@
                 @ErrorMsg
             </div>
         }
-        @if (TableService.Objects == null || !(bool)TableService.Objects?.Any())
+        @if (TableService.Objects == null || !(bool) TableService.Objects?.Any())
         {
-            if (NoElements)
-            {
-                <p><em>@TextMsg.NoElements</em></p>
-            }
-            else
-            {
-                <p><em>@TextMsg.Loading</em></p>
-            }
-
-
+            <NoElementsPage NoElements="@NoElements"></NoElementsPage>
         }
         else
         {
             <table class="table">
                 <thead>
-                    <tr>
-                        <th>
-                            <span class="oi @(TableService.GetSortStyle(nameof(TagDto.Name)))"
-                                  @onclick="@(() => TableService.SortTable(nameof(TagDto.Name)))"></span>
-                            <span class="pl-3">@nameof(TagDto.Name)</span>
-                        </th>
-                        <th>
-                            <span class="oi @(TableService.GetSortStyle(nameof(TagDto.WorkspaceName)))"
-                                  @onclick="@(() => TableService.SortTable(nameof(TagDto.WorkspaceName)))"></span>
-                            <span class="pl-3">@nameof(TagDto.WorkspaceName)</span>
-                        </th>
-                        <th></th>
-                    </tr>
+                <tr>
+                    <th>
+                        <span class="oi @(TableService.GetSortStyle(nameof(TagDto.Name)))"
+                              @onclick="@(() => TableService.SortTable(nameof(TagDto.Name)))">
+                        </span>
+                        <span class="pl-3">@nameof(TagDto.Name)</span>
+                    </th>
+                    <th>
+                        <span class="oi @(TableService.GetSortStyle(nameof(TagDto.WorkspaceName)))"
+                              @onclick="@(() => TableService.SortTable(nameof(TagDto.WorkspaceName)))">
+                        </span>
+                        <span class="pl-3">@nameof(TagDto.WorkspaceName)</span>
+                    </th>
+                    <th>
+                        <span class="oi @(TableService.GetSortStyle(nameof(TagDto.ColorCode)))"
+                              @onclick="@(() => TableService.SortTable(nameof(TagDto.ColorCode)))">
+                        </span>
+                        <span class="pl-3">@nameof(TagDto.ColorCode)</span>
+                    </th>
+                    <th></th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in TableService.Objects)
-                    {
-                        <tr>
-                            <td>@item.Name</td>
-                            <td>@item.WorkspaceName</td>
-                            <td>
-                                @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
+                @foreach (var item in TableService.Objects)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.WorkspaceName</td>
+                        <td>
+                            @{ var color = String.IsNullOrEmpty(item.ColorCode) ? "#D4C19C" : item.ColorCode;}
+                            <p style="background-color: @color">@item.ColorCode</p>
+                        </td>
+                        <td>
+                            @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
                                     <span class="oi oi-info"></span>
                                 </a>*@
-                                <button class="custom-small-button" @onclick="@(() => Update(item))">
-                                    <span class="oi oi-pencil"></span>
-                                </button>
-                                <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
-                                    <span class="oi oi-trash"></span>
-                                </button>
-                            </td>
-                        </tr>
-                    }
+                            <button class="custom-small-button" @onclick="@(() => Update(item))">
+                                <span class="oi oi-pencil"></span>
+                            </button>
+                            <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
+                                <span class="oi oi-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                }
                 </tbody>
             </table>
         }
     </div>
 </div>
-

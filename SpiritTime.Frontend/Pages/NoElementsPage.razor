@@ -1,0 +1,18 @@
+@if (NoElements)
+{
+    <p>
+        <em>@TextMsg.NoElements</em>
+    </p>
+}
+else
+{
+    <p>
+        <em>@TextMsg.Loading</em>
+    </p>
+}
+
+@code{
+
+    [Parameter]
+    public bool NoElements { get; set; }
+}

@@ -121,6 +121,7 @@
           <e p="Counter.razor" t="Include" />
           <e p="Error.razor" t="Include" />
           <e p="Index.razor" t="Include" />
+          <e p="NoElementsPage.razor" t="Include" />
           <e p="Options" t="Include">
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
@@ -146,14 +147,12 @@
             <e p="Overview.razor.cs" t="Include" />
           </e>
           <e p="Tasks" t="Include">
-            <e p="Edit.razor" t="Include" />
-            <e p="Edit.razor.cs" t="Include" />
             <e p="Helper.cs" t="Include" />
+            <e p="MultiSelectPartial.razor" t="Include" />
+            <e p="MultiSelectPartial.razor.cs" t="Include" />
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
-            <e p="TagSearch.razor" t="Include" />
-            <e p="TagSearch.razor.cs" t="Include" />
-            <e p="TaskTimer.razor" t="Include" />
+            <e p="TaskTimer.cs" t="Include" />
           </e>
           <e p="Workspaces" t="Include">
             <e p="Add.razor" t="Include" />
