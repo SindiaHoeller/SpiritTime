@@ -43,6 +43,20 @@ namespace SpiritTime.Frontend.Services.TaskServices
             }
         }
         
+        public async Task<ResultModel> UpdateTags(TaskDto item)
+        {
+            await SetAuthenticationHeader();
+
+            try
+            {
+                return await _httpClient.PostJsonAsync<ResultModel>(_path.TaskUpdateTags, item);
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel {Error = ex.Message, Successful = false};
+            }
+        }
+        
         public async Task<TaskListResult> GetByIdAsync(int id)
         {
             await SetAuthenticationHeader();

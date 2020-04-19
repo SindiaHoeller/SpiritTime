@@ -17,6 +17,7 @@ using SpiritTime.Shared.Models.TagModels;
 using SpiritTime.Shared.Models.TaskModels;
 using SpiritTime.Shared.Models.WorkspaceModels;
 using Blazored.Typeahead;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace SpiritTime.Frontend.Pages.Tasks
@@ -31,6 +32,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
         [Parameter] public List<TagDto> TagList { get; set; }
 
         private bool ShowError { get; set; } = false;
+        public bool ShowTagList { get; set; } = false;
         private string ErrorMessage { get; set; }
         private bool NoElements { get; set; }
         private TaskDto CurrentItem { get; set; }
@@ -45,6 +47,11 @@ namespace SpiritTime.Frontend.Pages.Tasks
         private bool ValueChanged { get; set; }
 
         public TagDto SelectedTag { get; set; }
+        private List<TagDto> CurrentTagList { get; set; }
+        [Parameter]
+        public MultiSelectList MultiSelectList { get; set; } = null!;
+
+        public int CurrentSelectListId { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -238,7 +245,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 await InvokeAsync(() =>
                 {
                     CurrentTime = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
-                    Console.WriteLine(CurrentTime);
+                    //Console.WriteLine(CurrentTime);
                     StateHasChanged();
                 });
             }
@@ -263,27 +270,70 @@ namespace SpiritTime.Frontend.Pages.Tasks
         }
 
 
-        private void AddTag(TaskDto item)
+        private void OpenTagList(TaskDto item)
         {
-            var parameters = new OverlayModalParameters();
-            parameters.Add(SD.ItemList, TagList);
+            MultiSelectList = new MultiSelectList(TagList, nameof(CurrentItem.Id), nameof(CurrentItem.Name),item.TagList?.Select(x=>x.Id).ToList());
 
-            Modal.OnClose += EditResult;
-            Modal.Show<TagSearch>(TextMsg.TagRuleEdit, parameters);
+            CurrentSelectListId = item.Id;
+            ValueChanged = false;
+            ShowTagList = true;
         }
 
-        private void EditResult(OverlayModalResult modalResult)
+        private async Task AddTags(TaskDto item)
         {
-            if (!modalResult.Cancelled && modalResult.Data != null)
+            ShowTagList = false;
+            if (ValueChanged)
             {
-                var item = (TagDto)modalResult.Data;
-
-                if (item != null)
+                ValueChanged = false;
+                try
                 {
-                    Console.WriteLine(item.Name);
+                    var result = await Service.UpdateTags(item);
+                    if (result.Successful)
+                    {
+                        ToastService.ShowSuccess(SuccessMsg.TagsForTaskEdited);
+                        foreach (var tag in item.TagList)
+                        {
+                            Console.WriteLine(tag.Name);
+                        }
+                    }
+                    else
+                    {
+                        ToastService.ShowError(result.Error);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    ToastService.ShowError(exception.Message);
                 }
             }
-            Modal.OnClose -= EditResult;
+
+        }
+        
+        
+        private void CheckboxChanged(ChangeEventArgs e, string key, TaskDto task)
+        {
+            ValueChanged = true;
+            var selectItem = MultiSelectList.FirstOrDefault(i => i.Value == key);
+            if (selectItem != null)
+            {
+                selectItem.Selected = (bool)e.Value;
+                
+                Int32.TryParse(key, out int id);
+                if (id == 0) { ToastService.ShowError("Id could not be read"); return; }
+                
+                var tag = TagList.FirstOrDefault(x => x.Id == id);
+                if (tag == null) { ToastService.ShowError("Tag could not be found"); return; }
+                
+                var tagInfo = _mapper.Map<TagInfo>(tag);
+                if (selectItem.Selected)
+                {
+                    task.TagList.Add(tagInfo);
+                }
+                else
+                {
+                    task.TagList.Remove(task.TagList.FirstOrDefault(x=>x.Id == id));
+                }
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http.Features;
@@ -74,12 +75,24 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// </summary>
         /// <param name="taskId"></param>
         /// <param name="tagId"></param>
-        private async void RemoveTagFromTask(int taskId, int tagId)
+        private async Task RemoveTagFromTask(int taskId, int tagId)
         {
-            var tasktag = await _unitOfWork.TaskTagRepository
-                .GetUniqueByAsync(x => x.TagId == tagId && x.TaskId == taskId);
-            _unitOfWork.TaskTagRepository.Remove(tasktag);
-            await _unitOfWork.SaveAsync();
+            try
+            {
+                var tasktag = await _unitOfWork.TaskTagRepository
+                    .GetUniqueByAsync(x => x.TagId == tagId && x.TaskId == taskId);
+                if (tasktag != null)
+                {
+                    _unitOfWork.TaskTagRepository.Remove(tasktag);
+                    await _unitOfWork.SaveAsync();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+
         }
 
         /// <summary>
@@ -87,7 +100,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// </summary>
         /// <param name="taskId"></param>
         /// <returns></returns>
-        private async Task<List<TagInfo>> GetAllCurrentLinkedTags(int taskId)
+        private async Task<List<TagInfo>> GetAllCurrentlyLinkedTags(int taskId)
         {
             var list =  await _unitOfWork.TaskTagRepository
                 .SelectMulitpleAsync(x => x.TaskId == taskId, 
@@ -102,12 +115,10 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// <param name="taskId"></param>
         public async Task AddRangeOfTagsToTask(List<TagInfo> tagInfoList, int taskId)
         {
-            var list = await GetAllCurrentLinkedTags(taskId);
+            var list = await GetAllCurrentlyLinkedTags(taskId);
             foreach (var item in tagInfoList)
             {
-                if (list.Contains(item))
-                    list.Remove(item);
-                else
+                if(!CheckIfTagIsCurrentlyConnected(list, item))
                 {
                     await AddTagToTask(taskId, item.Id);
                 }
@@ -115,8 +126,19 @@ namespace SpiritTime.Backend.Controllers.Tasks
 
             foreach (var item in list)
             {
-                RemoveTagFromTask(taskId, item.Id);
+                await RemoveTagFromTask(taskId, item.Id);
             }
+        }
+
+        private bool CheckIfTagIsCurrentlyConnected(List<TagInfo> tagDtos, TagInfo info)
+        {
+            var itemInList = tagDtos.FirstOrDefault(x => x.Id == info.Id);
+            
+            if (itemInList == null) return false;
+            
+            tagDtos.Remove(itemInList);
+            return true;
+
         }
 
         /// <summary>
@@ -152,7 +174,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 }
             }
 
-            task.TagList = await GetAllCurrentLinkedTags(task.Id);
+            task.TagList = await GetAllCurrentlyLinkedTags(task.Id);
             return task;
         }
 
@@ -201,5 +223,6 @@ namespace SpiritTime.Backend.Controllers.Tasks
 
             return taskDtos;
         }
+
     }
 }

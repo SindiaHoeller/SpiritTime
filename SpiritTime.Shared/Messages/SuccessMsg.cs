@@ -22,7 +22,7 @@ namespace SpiritTime.Shared.Messages
         public const string RuleEdited = "Rule successfully edited";
 
         public const string UpdatedOptions = "Successfully updated this Option";
-        
-        
+
+        public const string TagsForTaskEdited = "Tags for Task successfully edited.";
     }
 }
