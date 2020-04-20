@@ -52,8 +52,8 @@
                 <div class="d-flex justify-content-around">
                     <input @bind="@NewItem.Name" type="text" class="form-control" placeholder="Name"/>
                     <input @bind="@NewItem.Description" type="text" class="form-control" placeholder="Description"/>
-                    <button class="custom-small-button red ml-3" @onclick="@(() => Start(NewItem))">
-                        <i class="fas fa-stop"></i>
+                    <button class="custom-small-button green ml-3" @onclick="@(() => Start(NewItem))">
+                        <i class="fas fa-play"></i>
                     </button>
                 </div>
             }
@@ -69,12 +69,26 @@
                     {
                         if (task != CurrentItem)
                         {
-                            <div class="container mb-1">
+                            <div class=" mb-1">
                                 <div class="row">
+                                    <div class="col-lg-1 smiley-check">
+                                        @{ var buttonId = IsDisabled ? "" : "isBooked" + task.Id;}
+                                        @if (task.IsBooked)
+                                        {
+                                            <input  checked="checked" id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
+                                        }
+                                        else
+                                        {
+                                            <input id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
+                                        }
+                                        <label @onclick="@(async () => await UpdateCheckbox(task))" for="@buttonId">
+                                            <span>‼️</span><span>📁</span>
+                                        </label>
+                                    </div>
                                     <div class="col-lg-1">
                                         <input @bind-value="@task.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Name"/>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <input @bind-value="@task.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Description"/>
                                     </div>
                                     <div class="col-lg-2">
@@ -94,7 +108,7 @@
                                     </div>
                                     <div class="col-lg-1">
                                         <div class="row">
-                                            <div class="col-lg-6 center-and-highlight">
+                                            <div class="col-lg-6">
                                                 <label class="">@task.TimeSpanText</label>
                                             </div>
                                             <div class="col-lg-6">

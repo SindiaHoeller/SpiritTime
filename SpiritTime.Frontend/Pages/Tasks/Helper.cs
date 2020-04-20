@@ -15,7 +15,13 @@ namespace SpiritTime.Frontend.Pages.Tasks
 
         public static string GetTimSpanByTimeSpan(TimeSpan span, bool includeSecs)
         {
-            var timeSpanString = span.Days > 0 ? span.Days + " days - " : "";
+            var timeSpanString = "";
+            if (span.CompareTo(TimeSpan.Zero) < 0)
+            {
+                span = span.Duration();
+                timeSpanString += "MINUS ";
+            }
+            timeSpanString += span.Days > 0 ? span.Days + "days " : "";
             timeSpanString += span.Hours > 9 ? span.Hours + ":" : "0" + span.Hours + ":";
             timeSpanString += span.Minutes > 9 ? span.Minutes.ToString() : "0" + span.Minutes;
             if(includeSecs)

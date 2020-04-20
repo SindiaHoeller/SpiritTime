@@ -17,7 +17,6 @@
     transition: color 200ms ease-in
     overflow: hidden
     border-radius: 10px
-
     &:before
       width: 10px
       height: 10px
@@ -80,27 +79,37 @@
     cursor: pointer
     visibility: hidden
 
-//.form
-//  padding: 0 16px
-//  max-width: 550px
-//  margin: 50px auto
-//  font-size: 18px
-//  font-weight: 600
-//  line-height: 36px
-//
-//body
-//  background-color: #D1D7DC
-//  font-family: 'Fira Sans', sans-serif
-//
-//*
-//  box-sizing: inherit
-//
-//  &::before, &::after
-//    box-sizing: inherit
-//
-//html
-//  box-sizing: border-box
-//
-//code
-//  background-color: #9AA3AC
-//  padding: 0 8px
+.smiley-check
+  label    
+    border: 1px solid $color5
+    padding: 10px
+    width: 40px
+    height: 40px
+    text-align: center
+    font-size: 24px
+    margin-bottom: 10px
+    user-select: none
+    cursor: pointer
+    position: relative
+    display: flex
+    justify-content: center
+    background-color: $red
+    border-radius: 5px
+    box-shadow: $shadow-color 0.2rem 0.2rem
+    transition: .4s
+    &:hover
+      cursor: pointer
+      box-shadow: $shadow-color 0.05rem 0.05rem
+      background-color: $color1
+  input
+    display: none
+  label > *
+    top: 0
+    position: absolute
+    transition: opacity .2s ease
+  input:checked + label
+    background-color: $color3
+  input:checked + label > :first-child
+    display: none
+  input:not(:checked) + label > :last-child
+    display: none
