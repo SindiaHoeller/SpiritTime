@@ -33,7 +33,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
         private string CurrentTime { get; set; } = "";
         private static Timer _timer;
         private bool ValueChanged { get; set; }
-
+        private bool IsDisabled { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -126,8 +126,21 @@ namespace SpiritTime.Frontend.Pages.Tasks
         /// <summary>
         /// Tasks Update / Delete / Add
         /// </summary>
+
         #region Tasks Update & Delete & Add
 
+        private async Task UpdateCheckbox(TaskDto item)
+        {
+            if (!IsDisabled)
+            {
+                IsDisabled = true;
+                StateHasChanged();
+                item.IsBooked = !item.IsBooked;
+                ValueChanged = true;
+                await Update(item);
+            }
+        }
+        
         private async Task Update(TaskDto item)
         {
             if (ValueChanged)
@@ -149,17 +162,22 @@ namespace SpiritTime.Frontend.Pages.Tasks
                         }
 
                         ToastService.ShowSuccess(SuccessMsg.SuccessedUpdate);
+                        IsDisabled = false;
                     }
                     else
                     {
                         ToastService.ShowError(result.Error);
+                        IsDisabled = false;
                     }
                 }
                 catch (Exception exception)
                 {
                     ToastService.ShowError(exception.Message);
+                    IsDisabled = false;
                 }
             }
+
+            
         }
 
         private async Task Start(TaskDto item)

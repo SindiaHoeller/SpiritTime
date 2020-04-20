@@ -152,7 +152,6 @@
             <e p="MultiSelectPartial.razor.cs" t="Include" />
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
-            <e p="TaskTimer.cs" t="Include" />
           </e>
           <e p="Workspaces" t="Include">
             <e p="Add.razor" t="Include" />
@@ -378,8 +377,11 @@
           </e>
           <e p="sass" t="Include">
             <e p="_blazored-modal.sass" t="Include" />
+            <e p="_buttons.sass" t="Include" />
             <e p="_checkbox.sass" t="Include" />
+            <e p="_colors.sass" t="Include" />
             <e p="_general.sass" t="Include" />
+            <e p="_multiselect.sass" t="Include" />
             <e p="_toast.sass" t="Include" />
             <e p="index.sass" t="Include" />
           </e>
