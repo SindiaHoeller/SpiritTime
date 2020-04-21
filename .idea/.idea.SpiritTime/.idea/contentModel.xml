@@ -392,8 +392,8 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Migrations" t="Include">
-          <e p="20200404193523_Init.cs" t="Include" />
-          <e p="20200404193523_Init.Designer.cs" t="Include" />
+          <e p="20200421192726_Init.cs" t="Include" />
+          <e p="20200421192726_Init.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">

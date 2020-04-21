@@ -273,10 +273,10 @@ namespace SpiritTime.Persistence.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("TaskTag");
+                    b.ToTable("TaskTags");
                 });
 
-            modelBuilder.Entity("SpiritTime.Core.Entities.TaskTagRule", b =>
+            modelBuilder.Entity("SpiritTime.Core.Entities.TaskTagRules", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -285,6 +285,9 @@ namespace SpiritTime.Persistence.Migrations
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("ReplaceTrigger")
+                        .HasColumnType("bit");
 
                     b.Property<int>("TagId")
                         .HasColumnType("int");
@@ -309,7 +312,7 @@ namespace SpiritTime.Persistence.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("TagRules");
+                    b.ToTable("TaskTagRules");
                 });
 
             modelBuilder.Entity("SpiritTime.Core.Entities.Tasks", b =>
@@ -462,10 +465,10 @@ namespace SpiritTime.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SpiritTime.Core.Entities.TaskTagRule", b =>
+            modelBuilder.Entity("SpiritTime.Core.Entities.TaskTagRules", b =>
                 {
                     b.HasOne("SpiritTime.Core.Entities.ApplicationUser", null)
-                        .WithMany("TagRules")
+                        .WithMany("TaskTagRules")
                         .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("SpiritTime.Core.Entities.Tag", "Tag")
