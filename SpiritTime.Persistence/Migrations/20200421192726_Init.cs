@@ -224,7 +224,7 @@ namespace SpiritTime.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TagRules",
+                name: "TaskTagRules",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -234,19 +234,20 @@ namespace SpiritTime.Persistence.Migrations
                     TriggerText = table.Column<string>(nullable: true),
                     TriggerName = table.Column<bool>(nullable: false),
                     TriggerDescription = table.Column<bool>(nullable: false),
+                    ReplaceTrigger = table.Column<bool>(nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TagRules", x => x.Id);
+                    table.PrimaryKey("PK_TaskTagRules", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TagRules_AspNetUsers_ApplicationUserId",
+                        name: "FK_TaskTagRules_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TagRules_Tags_TagId",
+                        name: "FK_TaskTagRules_Tags_TagId",
                         column: x => x.TagId,
                         principalTable: "Tags",
                         principalColumn: "Id",
@@ -254,7 +255,7 @@ namespace SpiritTime.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TaskTag",
+                name: "TaskTags",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -265,14 +266,14 @@ namespace SpiritTime.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaskTag", x => x.Id);
+                    table.PrimaryKey("PK_TaskTags", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TaskTag_Tags_TagId",
+                        name: "FK_TaskTags_Tags_TagId",
                         column: x => x.TagId,
                         principalTable: "Tags",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_TaskTag_Tasks_TaskId",
+                        name: "FK_TaskTags_Tasks_TaskId",
                         column: x => x.TaskId,
                         principalTable: "Tasks",
                         principalColumn: "Id");
@@ -318,16 +319,6 @@ namespace SpiritTime.Persistence.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TagRules_ApplicationUserId",
-                table: "TagRules",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TagRules_TagId",
-                table: "TagRules",
-                column: "TagId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tags_WorkspaceId",
                 table: "Tags",
                 column: "WorkspaceId");
@@ -338,13 +329,23 @@ namespace SpiritTime.Persistence.Migrations
                 column: "WorkspaceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskTag_TagId",
-                table: "TaskTag",
+                name: "IX_TaskTagRules_ApplicationUserId",
+                table: "TaskTagRules",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskTagRules_TagId",
+                table: "TaskTagRules",
                 column: "TagId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskTag_TaskId",
-                table: "TaskTag",
+                name: "IX_TaskTags_TagId",
+                table: "TaskTags",
+                column: "TagId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskTags_TaskId",
+                table: "TaskTags",
                 column: "TaskId");
 
             migrationBuilder.CreateIndex(
@@ -371,10 +372,10 @@ namespace SpiritTime.Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "TagRules");
+                name: "TaskTagRules");
 
             migrationBuilder.DropTable(
-                name: "TaskTag");
+                name: "TaskTags");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

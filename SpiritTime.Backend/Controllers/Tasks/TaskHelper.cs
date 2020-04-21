@@ -116,11 +116,14 @@ namespace SpiritTime.Backend.Controllers.Tasks
         public async Task AddRangeOfTagsToTask(List<TagInfo> tagInfoList, int taskId)
         {
             var list = await GetAllCurrentlyLinkedTags(taskId);
-            foreach (var item in tagInfoList)
+            if (tagInfoList != null)
             {
-                if(!CheckIfTagIsCurrentlyConnected(list, item))
+                foreach (var item in tagInfoList)
                 {
-                    await AddTagToTask(taskId, item.Id);
+                    if(!CheckIfTagIsCurrentlyConnected(list, item))
+                    {
+                        await AddTagToTask(taskId, item.Id);
+                    }
                 }
             }
 
@@ -191,7 +194,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
             {
                 await AddTagToTask(taskId, item.TagId);
                 if (item.ReplaceTrigger)
-                    text = text.Replace(item.TriggerText, "");
+                    text = text.Replace(item.TriggerText, "").Trim();
             }
 
             return text;

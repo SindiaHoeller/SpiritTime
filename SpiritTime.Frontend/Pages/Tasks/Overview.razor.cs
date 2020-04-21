@@ -65,7 +65,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 }
                 else
                 {
-                    CurrentItem = new TaskDto();
+                    NewItem = new TaskDto();
                     NoElements = true;
                 }
             }
@@ -254,8 +254,12 @@ namespace SpiritTime.Frontend.Pages.Tasks
 
         private void StopTimer()
         {
-            _timer.Stop();
-            _timer.Dispose();
+            if (_timer != null)
+            {
+                _timer.Stop();
+                _timer.Dispose();
+            }
+
         }
 
         private void StartTimer()
