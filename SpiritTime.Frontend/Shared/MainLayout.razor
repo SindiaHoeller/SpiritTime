@@ -3,7 +3,7 @@
 @using SpiritTime.Frontend.Partials.Toasts
 @using SpiritTime.Frontend.Partials.ToastModal
 
-<BaseOverlay />
+<BaseOverlay/>
 
 <BlazoredToasts Position="@ToastPosition.BottomRight"
                 Timeout="10"
@@ -12,9 +12,14 @@
                 ErrorIconClass="oi oi-circle-x"
                 WarningIconClass="oi oi-warning"/>
 
-<div class="sidebar">
-    <NavMenu />
-</div>
+
+<AuthorizeView>
+    <Authorized>
+        <div class="sidebar">
+            <NavMenu/>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
 <div class="main">
     <div class="top-row px-5">
@@ -28,7 +33,7 @@
                 </AuthorizeView>*@
         </div>
         <div>
-            <LoginMenu />
+            <LoginMenu/>
         </div>
 
         @* <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a> *@

@@ -117,14 +117,19 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         {
             try
             {
-                var itemList = await _unitOfWork.WorkspaceRepository.GetAllAsync();
-                var item = itemList.Count > 0 ?  itemList.FirstOrDefault() : new Workspace();
-
+                var userId = GetUserId();
+                var item = await _unitOfWork.WorkspaceRepository.GetUniqueByAsync(x=>x.UserId == userId);
+                if(item == null)
+                {
+                    item = new Workspace {UserId = userId, Name = "Default"};
+                    await _unitOfWork.WorkspaceRepository.AddAsync(item);
+                    await _unitOfWork.SaveAsync();
+                }
                 var result = new WorkspaceResult
                 {
                     Successful = true,
-                    Name = item?.Name,
-                    Id = item?.Id ?? 0
+                    Name       = item.Name,
+                    Id         = item.Id 
                 };
                 
                 return new JsonResult(result);

@@ -147,9 +147,14 @@ namespace SpiritTime.Backend.Controllers.Account
             var user = await _userManager.Users.SingleOrDefaultAsync(r => r.Email == authenticationResource.Email);
 
             var jwt = _jwtAuthentication.GenerateToken(user);
+            var defaultWorkspace = await _unitOfWork.WorkspaceRepository.GetUniqueByAsync(x=>x.UserId == user.Id);
+            if (defaultWorkspace != null) return new JsonResult(new AuthenticationResult {Successful = true, Token = jwt, WorkspaceId = defaultWorkspace.Id});
+            
+            defaultWorkspace = new Workspace {UserId = user.Id, Name = "Default"};
+            await _unitOfWork.WorkspaceRepository.AddAsync(defaultWorkspace);
+            await _unitOfWork.SaveAsync();
 
-
-            return new JsonResult(new AuthenticationResult { Successful = true, Token = jwt });
+            return new JsonResult(new AuthenticationResult { Successful = true, Token = jwt, WorkspaceId = defaultWorkspace.Id});
             //return Ok(jwt);
         }
 

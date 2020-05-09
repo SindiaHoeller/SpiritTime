@@ -47,7 +47,7 @@ namespace SpiritTime.Backend
 
             services.Configure<Settings>(Configuration.GetSection("Settings"));
             services.Configure<JwtSettings>(Configuration.GetSection("Jwt"));
-            
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<JwtAuthentication, JwtAuthentication>();
             services.AddAutoMapper(typeof(Startup));
@@ -59,15 +59,15 @@ namespace SpiritTime.Backend
             services
                 .AddAuthentication(GetAuthenticationOptions)
                 .AddJwtBearer(GetJwtBearerOptions);
-            
+
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     // Default Lockout settings.
-                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                    options.Lockout.DefaultLockoutTimeSpan  = TimeSpan.FromMinutes(5);
                     options.Lockout.MaxFailedAccessAttempts = 5;
-                    options.Lockout.AllowedForNewUsers = true;
-                    options.SignIn.RequireConfirmedEmail = true;
-                    options.User.RequireUniqueEmail = true;
+                    options.Lockout.AllowedForNewUsers      = true;
+                    options.SignIn.RequireConfirmedEmail    = true;
+                    options.User.RequireUniqueEmail         = true;
                 })
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -76,7 +76,7 @@ namespace SpiritTime.Backend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "VocaDrill",
+                    Title   = "VocaDrill",
                     Version = "v1"
                 });
                 c.IncludeXmlComments(GetXmlCommentsPath());
@@ -98,37 +98,47 @@ namespace SpiritTime.Backend
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
             var swaggerOptions = new Services.SwaggerOptions();
+
+
             Configuration.GetSection(nameof(swaggerOptions)).Bind(swaggerOptions);
             app.UseSwagger(option => { option.RouteTemplate = swaggerOptions.JsonRoute; });
             app.UseSwaggerUI(c => { c.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description); });
-           
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("<div style=\"text-align: center;\">"                                                                    +
+                                                      "<h1 style=\"text-align: center; margin-top: 20px\">Landing Page -  SpiritTime API</h1>"                 +
+                                                      "<a style=\"text-align: center; border: 1px solid black; background-color: black; "                      +
+                                                      "border-radius: 5px; color: white; padding: 5px 15px; text-decoration: none; cursor: pointer;\" href=\"" +
+                                                      swaggerOptions.LandingPageRedirectUrl                                                                    +
+                                                      "\">Go to Swagger</a>"                                                                                   +
+                                                      "</div>");
+                });
+            });
             //app.UseSwagger();
             //app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpiritTime"); });
         }
+
         private void GetAuthenticationOptions(AuthenticationOptions options)
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
         }
 
         private void GetJwtBearerOptions(JwtBearerOptions options)
         {
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
+                ValidateIssuer           = true,
+                ValidateAudience         = true,
+                ValidateLifetime         = true,
                 ValidateIssuerSigningKey = true,
 
-                ValidIssuer = Configuration["Jwt:ValidIssuer"],
-                ValidAudience = Configuration["Jwt:ValidAudience"],
+                ValidIssuer      = Configuration["Jwt:ValidIssuer"],
+                ValidAudience    = Configuration["Jwt:ValidAudience"],
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecurityKey"]))
             };
         }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Options;
 using SpiritTime.Frontend.Config;
 using SpiritTime.Shared.Api;
+using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.Account.Registration;
 
@@ -30,18 +31,19 @@ namespace SpiritTime.Frontend.Services.AuthServices
             _authenticationStateProvider = provider;
         }
 
-        public async Task<AuthenticationResult> LoginAsync(AuthenticationResource user)
+        public async Task<AuthenticationResult> LoginAsync(AuthenticationResource userResource)
         {
 
             try
             {
-                var result = await _httpClient.PostJsonAsync<AuthenticationResult>(_path.Login, user);
+                var result = await _httpClient.PostJsonAsync<AuthenticationResult>(_path.Login, userResource);
 
                 if (result.Successful)
                 {
-                    await ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(result.Token, user.Email);
-                    ((ApiAuthenticationStateProvider)_authenticationStateProvider).StateChanged();
-                    await SetCurrentWorkspace();
+                    var (workspaceSet, error) = await SetCurrentWorkspace(result.WorkspaceId);
+                    if(workspaceSet)
+                        await ((ApiAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(result.Token, userResource.Email);
+                    return workspaceSet ? result : new AuthenticationResult{ Successful = false, Error = error };
                 }
 
                 return result;
