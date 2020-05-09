@@ -18,7 +18,6 @@ namespace SpiritTime.Backend.Infrastructure.Profiles
         /// </summary>
         public TagProfile()
         {
-            CreateMap<Tag, TagResult>();
             CreateMap<Tag, TagDto>();
             CreateMap<Tag, TagInfo>();
         }

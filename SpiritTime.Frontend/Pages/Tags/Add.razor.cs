@@ -58,7 +58,7 @@ namespace SpiritTime.Frontend.Pages.Tags
                 var item = await Service.Add(Item);
                 if (item.Successful)
                 {
-                    Item = _mapper.Map<TagDto>(item);
+                    Item = item.Item;
                     ShowSuccessForm = true;
                 }
                 else

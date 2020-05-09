@@ -92,15 +92,18 @@ namespace SpiritTime.Backend.Controllers.Tags
                     return new JsonResult(new TagResult
                     { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
 
-                var item = new Tag { Name = resource.Name, ColorCode = resource.ColorCode,WorkspaceId = resource.WorkspaceId };
+                var item = new Tag { Name = resource.Name, ColorCode = resource.ColorCode, WorkspaceId = resource.WorkspaceId };
                 await _unitOfWork.TagRepository.AddAsync(item);
                 await _unitOfWork.SaveAsync();
                 var newItem = await _unitOfWork.TagRepository
                     .GetUniqueByIncludeAsync(x => x.Name == resource.Name 
                                            && x.WorkspaceId == resource.WorkspaceId,
                         x=>x.Workspace);
-                var result = _mapper.Map<TagResult>(newItem);
-                result.Successful = true;
+                var result = new TagResult
+                {
+                    Item = _mapper.Map<TagDto>(newItem),
+                    Successful = true
+                };
 
                 return new JsonResult(result);
             }

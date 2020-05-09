@@ -47,7 +47,7 @@ namespace SpiritTime.Frontend.Services.TagServices
 
             try
             {
-                TagResourceNew itemNew = new TagResourceNew { Name = item.Name, WorkspaceId = item.WorkspaceId};
+                TagResourceNew itemNew = new TagResourceNew { Name = item.Name, WorkspaceId = item.WorkspaceId, ColorCode = item.ColorCode};
                 return await _httpClient.PostJsonAsync<TagResult>(_path.TagAdd, itemNew);
             }
             catch (Exception ex)
