@@ -14,5 +14,6 @@ namespace SpiritTime.Frontend.Services.TaskServices
         Task<TaskResult> Add(TaskDto item);
         Task<ResultModel> Edit(TaskDto item);
         Task<ResultModel> Delete(int id);
+        List<TaskDailyList> FullyPrepareList(List<TaskDto> itemList);
     }
 }

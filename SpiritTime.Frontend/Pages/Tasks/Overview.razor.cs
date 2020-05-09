@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using Microsoft.AspNetCore.Components;
+using SpiritTime.Frontend.Infrastructure;
 using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.TaskServices;
@@ -16,24 +17,24 @@ namespace SpiritTime.Frontend.Pages.Tasks
 {
     public partial class Overview
     {
-        [Inject] private ITaskService Service { get; set; }
-        [Inject] private ITagService TagService { get; set; }
-        [Inject] private IToastService ToastService { get; set; }
-        [Parameter] public List<TagDto> TagList { get; set; }
-        [Parameter] public TagDto SelectedTag { get; set; }
-        [Parameter] public int CurrentSelectListId { get; set; }
-        [Parameter] public TaskDto CurrentItem { get; set; }
-        private bool ShowError { get; set; } = false;
-        private string ErrorMessage { get; set; }
-        private bool NoElements { get; set; }
+        [Inject]    private ITaskService  Service             { get; set; }
+        [Inject]    private ITagService   TagService          { get; set; }
+        [Inject]    private IToastService ToastService        { get; set; }
+        [Parameter] public  List<TagDto>  TagList             { get; set; }
+        [Parameter] public  TagDto        SelectedTag         { get; set; }
+        [Parameter] public  int           CurrentSelectListId { get; set; }
+        [Parameter] public  TaskDto       CurrentItem         { get; set; }
+        private             bool          ShowError           { get; set; } = false;
+        private             string        ErrorMessage        { get; set; }
+        private             bool          NoElements          { get; set; }
 
-        private TaskDto NewItem { get; set; }
-        private List<TaskDailyList> TaskDailyLists { get; set; }
-        private int DayCount { get; set; } = 15;
-        private string CurrentTime { get; set; } = "";
-        private static Timer _timer;
-        private bool ValueChanged { get; set; }
-        private bool IsDisabled { get; set; }
+        private        TaskDto             NewItem        { get; set; }
+        private        List<TaskDailyList> TaskDailyLists { get; set; }
+        private        int                 DayCount       { get; set; } = 15;
+        private        string              CurrentTime    { get; set; } = "";
+        private static Timer               _timer;
+        private        bool                ValueChanged { get; set; }
+        private        bool                IsDisabled   { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -65,7 +66,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 }
                 else
                 {
-                    NewItem = new TaskDto();
+                    NewItem    = new TaskDto();
                     NoElements = true;
                 }
             }
@@ -104,15 +105,16 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 .Select(x => x.ItemList.FirstOrDefault(x => x.EndDate == DateTime.MinValue)).FirstOrDefault();
             if (CurrentItem != null)
             {
-                CurrentTime = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
+                TaskDailyLists = TaskDailyLists.Where(x => x.ItemList.Remove(CurrentItem)).ToList();
+                CurrentTime    = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
                 StartTimer();
             }
         }
 
         private void InitItems()
         {
-            SelectedTag = new TagDto();
-            NewItem = new TaskDto();
+            SelectedTag    = new TagDto();
+            NewItem        = new TaskDto();
             TaskDailyLists = new List<TaskDailyList>();
         }
 
@@ -136,11 +138,43 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 IsDisabled = true;
                 StateHasChanged();
                 item.IsBooked = !item.IsBooked;
-                ValueChanged = true;
+                ValueChanged  = true;
                 await Update(item);
             }
         }
-        
+
+        private async Task UpdateStartDate(TaskDto item)
+        {
+            
+            var list = TaskDailyLists.FirstOrDefault(x => x.ItemList.Contains(item));
+            if (item.StartDate.ToShortDateString() != list?.Date.ToShortDateString() && list != null)
+            {
+                var listContainsDate = TaskDailyLists.FirstOrDefault(x => x.Date.ToShortDateString() == item.StartDate.ToShortDateString());
+                list.ItemList.Remove(item);
+                if (listContainsDate != null)
+                {
+                    listContainsDate.ItemList.Add(item);
+                    listContainsDate.ItemList = listContainsDate.ItemList.OrderByDescending(x => x.StartDate).ToList();
+                }
+                else
+                {
+                    TaskDailyLists.Add(
+                        new TaskDailyList
+                        {
+                            Date     = item.StartDate,
+                            ItemList = new List<TaskDto>{item}
+                        }
+                    );
+                }
+
+                if (!list.ItemList.Any())
+                {
+                    TaskDailyLists.Remove(list);
+                }
+            }
+            await Update(item);
+        }
+
         private async Task Update(TaskDto item)
         {
             if (ValueChanged)
@@ -176,14 +210,18 @@ namespace SpiritTime.Frontend.Pages.Tasks
                     IsDisabled = false;
                 }
             }
-
-            
         }
 
         private async Task Start(TaskDto item)
         {
             try
             {
+                if (string.IsNullOrEmpty(item.Name) && string.IsNullOrEmpty(item.Description))
+                {
+                    ToastService.ShowError(ErrorMsg.TaskEmpty);
+                    return;
+                }
+
                 StopTimer();
                 var result = await Service.Add(item);
                 if (result.Successful)
@@ -193,6 +231,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                         Helper.CheckAndAddCurrentItem(result.Item, CurrentItem, TaskDailyLists);
 
                         CurrentItem = result.Item;
+                        //Helper.AddCurrentItemToDailyList(CurrentItem, TaskDailyLists);
                         NewItem = new TaskDto();
 
                         StartTimer();
@@ -228,7 +267,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                         Helper.AddCurrentItemToDailyList(CurrentItem, TaskDailyLists);
 
                         CurrentItem = null;
-                        NewItem = new TaskDto();
+                        NewItem     = new TaskDto();
 
                         ToastService.ShowSuccess(SuccessMsg.TimerStopped);
                         StateHasChanged();
@@ -250,6 +289,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
         /// <summary>
         /// Timer functions
         /// </summary>
+
         #region Timer funktions
 
         private void StopTimer()
@@ -259,7 +299,6 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 _timer.Stop();
                 _timer.Dispose();
             }
-
         }
 
         private void StartTimer()
@@ -272,10 +311,10 @@ namespace SpiritTime.Frontend.Pages.Tasks
 
         private void SetTimer()
         {
-            _timer = new Timer(1000);
-            _timer.Elapsed += OnTimeEvent;
-            _timer.AutoReset = true;
-            _timer.Enabled = true;
+            _timer           =  new Timer(1000);
+            _timer.Elapsed   += OnTimeEvent;
+            _timer.AutoReset =  true;
+            _timer.Enabled   =  true;
         }
 
         private async void OnTimeEvent(Object source, ElapsedEventArgs e)
