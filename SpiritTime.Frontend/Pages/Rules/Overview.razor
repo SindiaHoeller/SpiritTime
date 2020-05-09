@@ -68,6 +68,10 @@
                             {
                                 <p>@TextMsg.NameField</p>
                             }
+                            @if (@item.ReplaceTrigger)
+                            {
+                                <p>@TextMsg.ReplaceTrigger</p>
+                            }
                         </td>
                         <td>
                             @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
