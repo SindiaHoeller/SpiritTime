@@ -98,6 +98,10 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Config" t="Include">
           <e p="AppSettings.cs" t="Include" />
+          <e p="ColorCalc.cs" t="Include" />
+        </e>
+        <e p="Infrastructure" t="Include">
+          <e p="TaskComparer.cs" t="Include" />
         </e>
         <e p="libman.json" t="Include" />
         <e p="obj" t="ExcludeRecursive">

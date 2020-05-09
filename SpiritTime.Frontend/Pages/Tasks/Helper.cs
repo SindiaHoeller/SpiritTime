@@ -42,26 +42,28 @@ namespace SpiritTime.Frontend.Pages.Tasks
         
         public static void CheckAndAddCurrentItem(TaskDto newItem, TaskDto currentItem, List<TaskDailyList> taskDailyLists)
         {
-            if (currentItem == null) return;
-            
-            currentItem.EndDate = newItem.StartDate;
-            AddCurrentItemToDailyList(currentItem, taskDailyLists );
+            if (currentItem != null)
+            {
+                currentItem.EndDate = newItem.StartDate;
+                AddCurrentItemToDailyList(currentItem, taskDailyLists);
+            }
         }
 
-        public static void AddCurrentItemToDailyList(TaskDto currentItem, List<TaskDailyList> taskDailyLists)
+        public static void AddCurrentItemToDailyList(TaskDto item, List<TaskDailyList> taskDailyLists)
         {
-            var list = taskDailyLists.FirstOrDefault(x => x.Date.ToShortDateString() == currentItem.StartDate.ToShortDateString());
+            var list = taskDailyLists.FirstOrDefault(x => x.Date.ToShortDateString() == item.StartDate.ToShortDateString());
             if (list != null)
             {
-                list.ItemList.Add(currentItem);
+                item.TimeSpanText = GetTimeSpanByDates(item.StartDate, item.EndDate, false);
+                list.ItemList.Insert(0, item);
                 UpdateTimeSpanTextForList(taskDailyLists);
             }
             else
             {
                 var newDailyList = new TaskDailyList
                 {
-                    Date = currentItem.StartDate,
-                    ItemList = new List<TaskDto> {currentItem}
+                    Date = item.StartDate,
+                    ItemList = new List<TaskDto> {item}
                 };
                 newDailyList.TimeSpanText =  GetTimSpanByTimeSpan(newDailyList.TimeSpan, false);
                 taskDailyLists.Add(newDailyList);

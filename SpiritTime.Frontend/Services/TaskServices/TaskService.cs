@@ -105,23 +105,7 @@ namespace SpiritTime.Frontend.Services.TaskServices
                 var result =  await _httpClient.GetJsonAsync<TaskListResult>(_path.TaskGetAllByWorkspace + "?id=" + workspaceId);
                 if (result.Successful)
                 {
-                    List<TaskDto> itemList = result.ItemList;
-                    var grouped = itemList
-                        .GroupBy(x => x.StartDate.ToShortDateString())
-                        .Select(x => x.ToList())
-                        .ToList();
-                    
-                    
-                    var dailyList = new List<TaskDailyList>();
-
-                    foreach (var list in grouped)
-                    {
-                        dailyList.Add(new TaskDailyList
-                        {
-                            Date = list.Select(x=>x.StartDate).FirstOrDefault(),
-                            ItemList = list.OrderByDescending(x=>x.StartDate).ToList()
-                        });
-                    }
+                    var dailyList = FullyPrepareList(result.ItemList);
                     return (dailyList, new ResultModel{Successful = true});
                 }
                 return (new List<TaskDailyList>(), new ResultModel{Successful = false, Error = result.Error});
@@ -132,6 +116,28 @@ namespace SpiritTime.Frontend.Services.TaskServices
                 return (new List<TaskDailyList>(), new ResultModel{Successful = false, Error = e.Message});
             }
 
+        }
+
+        public List<TaskDailyList> FullyPrepareList(List<TaskDto> itemList)
+        {
+            var grouped = itemList
+                .GroupBy(x => x.StartDate.ToShortDateString())
+                .Select(x => x.ToList())
+                .ToList();
+                    
+                    
+            var dailyList = new List<TaskDailyList>();
+
+            foreach (var list in grouped)
+            {
+                dailyList.Add(new TaskDailyList
+                {
+                    Date     = list.Select(x=>x.StartDate).FirstOrDefault(),
+                    ItemList = list.OrderByDescending(x=>x.StartDate).ToList()
+                });
+            }
+
+            return dailyList;
         }
     }
 }
