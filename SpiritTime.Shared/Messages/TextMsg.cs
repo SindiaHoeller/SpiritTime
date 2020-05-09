@@ -40,6 +40,7 @@ namespace SpiritTime.Shared.Messages
         public const string DescriptionField = "Field 'description'";
         public const string NameField = "Field 'name'";
         public const string TriggerOn = "Triggers on this fields";
+        public const string ReplaceTrigger = "Trigger will get replaced.";
         
 
     }
