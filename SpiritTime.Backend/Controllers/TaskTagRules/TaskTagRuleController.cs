@@ -63,7 +63,8 @@ namespace SpiritTime.Backend.Controllers.TaskTagRules
         {
             try
             {
-                var all = await _unitOfWork.TaskTagRuleRepository.GetAllIncludeAsync(x=>x.Tag);
+                var userId = GetUserId();
+                var all = await _unitOfWork.TaskTagRuleRepository.GetMultipleIncludeAsync(x => x.Tag.Workspace.UserId == userId, x=>x.Tag);
                 var list = _mapper.Map<List<TaskTagRuleDto>>(all);
                 
                 return new JsonResult(new TaskTagRuleListResult { ItemList = list, Successful = true });

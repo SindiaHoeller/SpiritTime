@@ -63,7 +63,8 @@ namespace SpiritTime.Backend.Controllers.Tags
         {
             try
             {
-                List<Tag> all = await _unitOfWork.TagRepository.GetAllIncludeAsync(x=>x.Workspace);
+                var userId = GetUserId();
+                var all = await _unitOfWork.TagRepository.GetMultipleIncludeAsync(x=>x.Workspace.UserId == userId,x=>x.Workspace);
                 var list = _mapper.Map<List<TagDto>>(all);
                 
                 return new JsonResult(new TagListResult { ItemList = list, Successful = true });

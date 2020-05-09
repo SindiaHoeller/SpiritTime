@@ -60,7 +60,7 @@ namespace SpiritTime.Frontend.Pages.Rules
                 var item = await Service.Add(newItem);
                 if (item.Successful)
                 {
-                    Item = _mapper.Map<TaskTagRuleDto>(item);
+                    Item = _mapper.Map<TaskTagRuleDto>(item.Item);
                     ShowSuccessForm = true;
                 }
                 else
