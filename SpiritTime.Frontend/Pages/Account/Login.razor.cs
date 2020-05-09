@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
+using SpiritTime.Frontend.Services;
 using SpiritTime.Frontend.Services.AuthServices;
 using SpiritTime.Shared.Models.Account.Authentication;
 
@@ -13,26 +15,36 @@ namespace SpiritTime.Frontend.Pages.Account
     {
         [Inject] private IAuthService AuthService { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
-        private AuthenticationResource loginModel = new AuthenticationResource();
+        [Inject] private AuthenticationStateProvider AuthenticationProvider { get; set; }
+        private AuthenticationResource LoginModel { get; set; }
         private bool ShowErrors;
         private string Error = "";
 
-        private async Task HandleLogin()
+        protected override async Task OnInitializedAsync()
         {
-            ShowErrors = false;
-
-            var result = await AuthService.LoginAsync(loginModel);
-            
-
-            if (result.Successful)
+            LoginModel = new AuthenticationResource();
+            var authenticated = await AuthenticationProvider.GetAuthenticationStateAsync();
+            if (authenticated.User.Identity.IsAuthenticated)
             {
                 NavigationManager.NavigateTo("/");
             }
-            else
+        }
+        private async Task HandleLogin()
+        {
+            ShowErrors = false;
+            
+            var result = await AuthService.LoginAsync(LoginModel);
+            
+            if(!result.Successful)
             {
                 Error = result.Error;
                 ShowErrors = true;
             }
+            else
+            {
+                NavigationManager.NavigateTo("/");
+            }
         }
+
     }
 }

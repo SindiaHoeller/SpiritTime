@@ -8,7 +8,7 @@ namespace SpiritTime.Shared.Models.Account.Authentication
     public class User
     {
         public string Email { get; set; }
-        public int Id { get; set; }  
+        public string Id { get; set; }  
 
     }
 }

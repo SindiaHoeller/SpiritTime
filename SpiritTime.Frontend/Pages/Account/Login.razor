@@ -1,34 +1,49 @@
 ﻿@page "/login"
 <div class="center-and-highlight">
     <div class="col-xl-4 col-lg-6 col-md-8 col-xs-12 custom-background mt-5">
-        <div class="text-center">
+        <AuthorizeView>
+            <Authorized>
 
-            <h1 class="mb-3">Login</h1>
-            <h5>Melde dich mit deinem Account an.</h5>
-
-        </div>
-        <hr />
-        @if (ShowErrors)
-        {
-            <div class="alert alert-danger" role="alert">
-                <p>@Error</p>
-            </div>
-        }
-        <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
-            <DataAnnotationsValidator />
-            <div class="form-group">
-                <label for="email">Emailadresse</label>
-                <InputText Id="email" Class="form-control" @bind-Value="loginModel.Email" />
-                <ValidationMessage For="@(() => loginModel.Email)" />
-            </div>
-            <div class="form-group">
-                <label for="password">Passwort</label>
-                <InputText Id="password" type="password" Class="form-control" @bind-Value="loginModel.Password" />
-                <ValidationMessage For="@(() => loginModel.Password)" />
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn custom-primary">Anmelden</button>
-            </div>
-        </EditForm>
+                <div class="text-center">
+                    <h1 class="mb-3">Login</h1>
+                    <h5>Du bist angemeldet.</h5>
+                </div>
+            </Authorized>
+            <Authorizing>
+                <div class="text-center">
+                    <h1 class="mb-3">Login</h1>
+                    <h5>... authorizing ...</h5>
+                </div>
+            </Authorizing>
+            <NotAuthorized>
+                <div class="text-center">
+                    <h1 class="mb-3">Login</h1>
+                    <h5>Melde dich mit deinem Account an.</h5>
+                </div>
+                <hr/>
+                @if (ShowErrors)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <p>@Error</p>
+                    </div>
+                }
+                <EditForm Context="edit_context" Model="LoginModel" OnValidSubmit="HandleLogin">
+                    <DataAnnotationsValidator/>
+                    <div class="form-group">
+                        <label for="email">Emailadresse</label>
+                        <InputText Id="email" Class="form-control" @bind-Value="LoginModel.Email"/>
+                        <ValidationMessage For="@(() => LoginModel.Email)"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Passwort</label>
+                        <InputText Id="password" type="password" Class="form-control" @bind-Value="LoginModel.Password"/>
+                        <ValidationMessage For="@(() => LoginModel.Password)"/>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn custom-primary">Anmelden</button>
+                    </div>
+                </EditForm>
+            </NotAuthorized>
+        </AuthorizeView>
     </div>
 </div>

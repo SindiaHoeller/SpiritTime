@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using SpiritTime.Frontend.Config;
 using SpiritTime.Shared.Api;
 using SpiritTime.Shared.Helper;
+using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.WorkspaceModels;
 
 namespace SpiritTime.Frontend.Services
@@ -27,16 +28,24 @@ namespace SpiritTime.Frontend.Services
             GetFirstOrDefaultWorkspacePath = path.WorkspaceGetFirstOrDefault;
         }
 
-        protected async Task SetCurrentWorkspace(int id = 0)
+        protected async Task<(bool, string)> SetCurrentWorkspace(int id = 0)
         {
             //var name = await _localStorage.GetItemAsync<string>(SD.CurrentWorkspace);
-            if (id == 0)
+            try
             {
-                var workspace = await _httpClient.GetJsonAsync<WorkspaceDto>(GetFirstOrDefaultWorkspacePath);
-                id = workspace.Id;
+                if (id == 0)
+                {
+                    await SetAuthenticationHeader();
+                    var workspace = await _httpClient.GetJsonAsync<WorkspaceDto>(GetFirstOrDefaultWorkspacePath);
+                    id = workspace.Id;
+                }
+                await _localStorage.SetItemAsync(SD.CurrentWorkspace, id);
+                return (true, "");
             }
-
-            await _localStorage.SetItemAsync(SD.CurrentWorkspace, id);
+            catch (Exception exception)
+            {
+                return (false, exception.Message);
+            }
         }
 
         protected async Task<string> GetCurrentWorkspace()

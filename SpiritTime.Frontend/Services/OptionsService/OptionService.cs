@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Options;
 using SpiritTime.Frontend.Config;
 using SpiritTime.Shared.Api;
@@ -22,10 +23,10 @@ namespace SpiritTime.Frontend.Services.OptionsService
             _path = new Paths(appSettings.Value.BackendBaseAddress);
         }
 
-        public async Task SetCurrentWorkspaceOption(int id)
-        {
-            await SetCurrentWorkspace(id);
-        }
+        // public async Task SetCurrentWorkspaceOption(int id)
+        // {
+        //     await SetCurrentWorkspace(id);
+        // }
 
         public async Task<WorkspaceOption> GetCurrentWorkspaceAndList()
         {
@@ -60,8 +61,8 @@ namespace SpiritTime.Frontend.Services.OptionsService
         {
             try
             {
-                await SetCurrentWorkspace(id);
-                return new ResultModel{Successful = true};
+                var (setWorkspace, error) = await SetCurrentWorkspace(id);
+                return setWorkspace ? new ResultModel{Successful = true} : new ResultModel{Successful = false, Error = error};
             }
             catch (Exception e)
             {

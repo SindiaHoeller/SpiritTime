@@ -82,8 +82,8 @@ namespace SpiritTime.Frontend.Services
             var idClaim = user.Claims.Where(x => x.Type == "nameid").FirstOrDefault();
             return new User
             {
-                Email = emailClaim.Value,
-                Id = Int32.Parse(idClaim.Value),
+                Email = emailClaim?.Value,
+                Id = idClaim?.Value,
             };
         }
 
