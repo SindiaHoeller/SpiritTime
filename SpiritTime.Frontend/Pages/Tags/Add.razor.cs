@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.OverlayModalService;
@@ -18,7 +19,6 @@ namespace SpiritTime.Frontend.Pages.Tags
         [CascadingParameter] BaseOverlay Modal { get; set; }
         [Inject] private ITagService Service { get; set; }
         [Inject] private IWorkspaceService WorkspaceService { get; set; }
-        [Inject] private IMapper _mapper { get; set; }
 
         private bool ShowForm { get; set; }
         private bool ShowErrorForm { get; set; }
@@ -32,13 +32,14 @@ namespace SpiritTime.Frontend.Pages.Tags
         {
             var result = await WorkspaceService.GetAllAsync();
             WorkspaceList = result.Successful ? result.Workspaces : new List<WorkspaceDto>();
+            Id = WorkspaceList.FirstOrDefault()?.Id.ToString();
             Item = new TagDto();
             Modal.SetTitle(TextMsg.TagAdd);
             ShowForm = true;
             StateHasChanged();
         }
 
-        async void SubmitForm()
+        private async void SubmitForm()
         {
             Int32.TryParse(Id, out int id);
             Item.WorkspaceId = id;
@@ -77,12 +78,12 @@ namespace SpiritTime.Frontend.Pages.Tags
             StateHasChanged();
         }
 
-        void Done()
+        private void Done()
         {
             ModalService.Close(OverlayModalResult.Ok(Item));
         }
 
-        void Cancel()
+        private void Cancel()
         {
             ModalService.Close(OverlayModalResult.Cancel());
         }
