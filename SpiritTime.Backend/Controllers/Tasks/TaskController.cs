@@ -174,9 +174,15 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 //stops the previous task
                 await Helper.CheckAndStopPreviousTask(resultItem);
                 // if the previous template had some tags, add those tags to the new task aswell
-                await Helper.AddRangeOfTagsToTask(resultItem.TagList, item.Id);
+                await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
                 // gets a list of all current tags for the task
                 resultItem.TagList = await Helper.GetAllTagsForTask(item.Id);
+
+                //Update original Item in database
+                item.Name = resultItem.Name;
+                item.Description = resultItem.Description;
+                _unitOfWork.TaskRepository.Update(item);
+                await _unitOfWork.SaveAsync();
                 
                 var result = new TaskResult
                 {
