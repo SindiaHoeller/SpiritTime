@@ -105,7 +105,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 .Select(x => x.ItemList.FirstOrDefault(x => x.EndDate == DateTime.MinValue)).FirstOrDefault();
             if (CurrentItem != null)
             {
-                TaskDailyLists = TaskDailyLists.Where(x => x.ItemList.Remove(CurrentItem)).ToList();
+                TaskDailyLists.ForEach(x => x.ItemList.Remove(CurrentItem));
                 CurrentTime    = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
                 StartTimer();
             }

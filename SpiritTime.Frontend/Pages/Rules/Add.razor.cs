@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.OverlayModalService;
@@ -15,36 +16,37 @@ namespace SpiritTime.Frontend.Pages.Rules
 {
     public partial class Add
     {
-        [Inject] private IOverlayModalService ModalService { get; set; }
-        [CascadingParameter] BaseOverlay Modal { get; set; }
-        [CascadingParameter] OverlayModalParameters Parameters { get; set; }
-        [Inject] private ITaskTagRuleService Service { get; set; }
-        [Inject] private IMapper _mapper { get; set; }
-        [Inject] private ITagService TagService { get; set; }
-        [Inject] private IToastService ToastService { get; set; }
-        
-        private bool ShowForm { get; set; }
-        private bool ShowErrorForm { get; set; }
-        private bool ShowSuccessForm { get; set; }
-        private TaskTagRuleDto Item { get; set; }
-        private string Error { get; set; }
-        private string Id = string.Empty;
-        private List<TagDto> TagList { get; set; }
-        
+        [Inject] private     IOverlayModalService   ModalService { get; set; }
+        [CascadingParameter] BaseOverlay            Modal        { get; set; }
+        [Inject] private     ITaskTagRuleService    Service      { get; set; }
+        [Inject] private     IMapper                Mapper       { get; set; }
+        [Inject] private     ITagService            TagService   { get; set; }
+        [Inject] private     IToastService          ToastService { get; set; }
+
+        private bool           ShowForm        { get; set; }
+        private bool           ShowErrorForm   { get; set; }
+        private bool           ShowSuccessForm { get; set; }
+        private TaskTagRuleDto Item            { get; set; }
+        private string         Error           { get; set; }
+        private string         Id              { get; set; } = string.Empty;
+        private List<TagDto>   TagList         { get; set; }
+
         protected override async void OnInitialized()
         {
             var result = await TagService.GetAllAsync();
             TagList = result.Successful ? result.ItemList : new List<TagDto>();
-            Item = new TaskTagRuleDto();
+            Id      = TagList.FirstOrDefault()?.Id.ToString();
+            Item    = new TaskTagRuleDto();
             Modal.SetTitle(TextMsg.TagRuleAdd);
             ShowForm = true;
             StateHasChanged();
         }
-        async void SubmitForm()
+
+        private async void SubmitForm()
         {
             Int32.TryParse(Id, out int id);
             Item.TagId = id;
-            
+
             if (String.IsNullOrEmpty(Item.TriggerText))
             {
                 ToastService.ShowError(ErrorMsg.NameCanNotBeEmpty);
@@ -56,16 +58,16 @@ namespace SpiritTime.Frontend.Pages.Rules
             else
             {
                 ShowForm = false;
-                var newItem = _mapper.Map<TaskTagRuleNew>(Item);
-                var item = await Service.Add(newItem);
+                var newItem = Mapper.Map<TaskTagRuleNew>(Item);
+                var item    = await Service.Add(newItem);
                 if (item.Successful)
                 {
-                    Item = item.Item;
+                    Item            = item.Item;
                     ShowSuccessForm = true;
                 }
                 else
                 {
-                    Error = item.Error;
+                    Error         = item.Error;
                     ShowErrorForm = true;
                 }
             }
@@ -73,12 +75,12 @@ namespace SpiritTime.Frontend.Pages.Rules
             StateHasChanged();
         }
 
-        void Done()
+        private void Done()
         {
             ModalService.Close(OverlayModalResult.Ok(Item));
         }
 
-        void Cancel()
+        private void Cancel()
         {
             ModalService.Close(OverlayModalResult.Cancel());
         }
