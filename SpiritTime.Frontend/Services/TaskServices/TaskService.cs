@@ -86,7 +86,8 @@ namespace SpiritTime.Frontend.Services.TaskServices
                     IsBooked = false,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.MinValue,
-                    WorkspaceId = await GetCurrentWorkspaceId()
+                    WorkspaceId = await GetCurrentWorkspaceId(),
+                    TagList = item.TagList
                 };
                 return await _httpClient.PostJsonAsync<TaskResult>(_path.TaskAdd, newItem);
             }
