@@ -29,6 +29,11 @@ namespace SpiritTime.Frontend.Pages.Tasks
             return timeSpanString;
         }
 
+        public static TaskDto GetTaskById(List<TaskDailyList> taskDailyLists, int id)
+        {
+            return taskDailyLists.Select(dailyList => dailyList.ItemList.FirstOrDefault(x => x.Id == id)).FirstOrDefault(taskDto => taskDto != null);
+        }
+
         public static void UpdateTimeSpanTextForList(List<TaskDailyList> list)
         {
             

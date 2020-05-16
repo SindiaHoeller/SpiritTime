@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpiritTime.Core.Contracts;
 using SpiritTime.Frontend.Config;
+using SpiritTime.Frontend.Pages.Tasks;
 using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services;
@@ -68,6 +69,7 @@ namespace SpiritTime.Frontend
             
 
             services.AddSingleton<HttpClient>();
+            services.AddSingleton<SelectState>();
 
             services.AddAuthorization();
             services.AddBlazorise( options =>

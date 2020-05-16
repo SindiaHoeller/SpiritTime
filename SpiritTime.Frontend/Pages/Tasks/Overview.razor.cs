@@ -15,14 +15,14 @@ using SpiritTime.Shared.Models.TaskModels;
 
 namespace SpiritTime.Frontend.Pages.Tasks
 {
-    public partial class Overview
+    public partial class Overview : IDisposable
     {
         [Inject]    private ITaskService  Service             { get; set; }
         [Inject]    private ITagService   TagService          { get; set; }
         [Inject]    private IToastService ToastService        { get; set; }
+        [Inject]    private SelectState   SelectState         { get; set; }
         [Parameter] public  List<TagDto>  TagList             { get; set; }
         [Parameter] public  TagDto        SelectedTag         { get; set; }
-        [Parameter] public  int           CurrentSelectListId { get; set; }
         [Parameter] public  TaskDto       CurrentItem         { get; set; }
         private             bool          ShowError           { get; set; } = false;
         private             string        ErrorMessage        { get; set; }
@@ -43,6 +43,9 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 InitItems();
                 await GetDailyLists();
                 await GetTagListResult();
+                SelectState.OnChange += StateHasChanged;
+                SelectState.OnSaveAndCloseAll += AddTags;
+
             }
             catch (Exception ex)
             {
@@ -102,11 +105,11 @@ namespace SpiritTime.Frontend.Pages.Tasks
         {
             // Selects the currently running task, if available - selected by the Datetime not being specified
             CurrentItem = TaskDailyLists
-                .Select(x => x.ItemList.FirstOrDefault(x => x.EndDate == DateTime.MinValue)).FirstOrDefault();
+                .Select(x => x.ItemList.FirstOrDefault(x => x.EndDate == DateTime.MinValue)).FirstOrDefault(taskDto => taskDto != null);
             if (CurrentItem != null)
             {
                 TaskDailyLists.ForEach(x => x.ItemList.Remove(CurrentItem));
-                CurrentTime    = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
+                CurrentTime = Helper.GetTimeSpanByDates(CurrentItem.StartDate, DateTime.Now, true);
                 StartTimer();
             }
         }
@@ -145,7 +148,6 @@ namespace SpiritTime.Frontend.Pages.Tasks
 
         private async Task UpdateStartDate(TaskDto item)
         {
-            
             var list = TaskDailyLists.FirstOrDefault(x => x.ItemList.Contains(item));
             if (item.StartDate.ToShortDateString() != list?.Date.ToShortDateString() && list != null)
             {
@@ -162,7 +164,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                         new TaskDailyList
                         {
                             Date     = item.StartDate,
-                            ItemList = new List<TaskDto>{item}
+                            ItemList = new List<TaskDto> {item}
                         }
                     );
                 }
@@ -172,6 +174,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                     TaskDailyLists.Remove(list);
                 }
             }
+
             await Update(item);
         }
 
@@ -335,5 +338,42 @@ namespace SpiritTime.Frontend.Pages.Tasks
         }
 
         #endregion
+
+        public void Dispose()
+        {
+            SelectState.OnChange -= StateHasChanged;
+        }
+        
+        
+        private async void AddTags()
+        {
+            try
+            {
+                var item = CurrentItem?.Id == SelectState.CurrentSelectListId 
+                    ? CurrentItem 
+                    : Helper.GetTaskById(TaskDailyLists, SelectState.CurrentSelectListId);
+
+                if (item == null || !SelectState.ValueChanged) return;
+            
+                SelectState.ValueChanged = false;
+                var result = await Service.UpdateTags(item);
+                if (result.Successful)
+                {
+                    ToastService.ShowSuccess(SuccessMsg.TagsForTaskEdited);
+                    foreach (var tag in item.TagList)
+                    {
+                        Console.WriteLine(tag.Name);
+                    }
+                }
+                else
+                {
+                    ToastService.ShowError(result.Error);
+                }
+            }
+            catch (Exception exception)
+            {
+                ToastService.ShowError(exception.Message);
+            }
+        }
     }
 }
