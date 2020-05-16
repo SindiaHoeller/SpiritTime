@@ -1,47 +1,50 @@
 @using SpiritTime.Frontend.Config
-@if (ShowTagList)
+@if (SelectState.ShowTagLists.Any())
 {
-    <button class="custom-small-button blue ml-3" @onclick="@(async () => await AddTags(TaskItem))">
-        <i class="fas fa-check"></i>
-    </button>
-    <div class="multiselect">
-        @foreach (var selectItem in MultiSelectList)
-        {
-            <div class="custom-checkbox">
-                @{ var id = selectItem.Value + "task" + TaskItem.Id; }
-                @if (selectItem.Selected)
-                {
-                    <input type="checkbox" 
-                           id="@id" checked="checked"
-                           @onchange="@((e) => CheckboxChanged(e, selectItem.Value, TaskItem))"/>
-                }
-                else
-                {
-                    <input type="checkbox" 
-                           id="@id" 
-                           @onchange="@((e) => CheckboxChanged(e, selectItem.Value, TaskItem))"/>
-                }
-                <label for="@id">
-                    @selectItem.Text
-                </label>
-            </div>
-        }
-    </div>
-}
-else
-{
-    <div>
-        <button class="custom-small-button orange ml-3" @onclick="@(() => OpenTagList(TaskItem))">
-            <i class="fas fa-edit"></i>
-        </button>
-    </div>
+    if (SelectState.ShowTagLists[Id])
+    {
+         <button class="custom-small-button blue ml-3" @onclick="@(async () => await CloseTagList())">
+             <i class="fas fa-check"></i>
+         </button>
+        <div class="multiselect" >
+            @foreach (var selectItem in MultiSelectList)
+            {
+                <div class="custom-checkbox">
+                    @{ var id = selectItem.Value + "task" + TaskItem.Id; }
+                    @if (selectItem.Selected)
+                    {
+                        <input type="checkbox" 
+                               id="@id" checked="checked"
+                               @onchange="@((e) => CheckboxChanged(e, selectItem.Value))"/>
+                    }
+                    else
+                    {
+                        <input type="checkbox" 
+                               id="@id" 
+                               @onchange="@((e) => CheckboxChanged(e, selectItem.Value))"/>
+                    }
+                    <label for="@id">
+                        @selectItem.Text
+                    </label>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+@*     <div> *@
+@*         <button class="custom-small-button orange ml-3" @onclick="@(() => OpenTagList(TaskItem))"> *@
+@*             <i class="fas fa-edit"></i> *@
+@*         </button> *@
+@*     </div> *@
 
-    <div class="tag-container">
-        @foreach (var tag in TaskItem.TagList)
-        {
-            var backgroundColorCode = String.IsNullOrEmpty(tag.ColorCode) ? "#D4C19C" : tag.ColorCode;
-            var colorCode = String.IsNullOrEmpty(tag.ColorCode) ? ColorCalc.ContrastColorFromString("#D4C19C") : ColorCalc.ContrastColorFromString(tag.ColorCode);
-            <button style="background-color: @backgroundColorCode; color: @colorCode;" class="tag">@tag.Name</button>
-        }
-    </div>
+        <div class="tag-container" @onclick="@(() => OpenTagList(TaskItem))" style="width: 100%; height: 100%">
+            @foreach (var tag in TaskItem.TagList)
+            {
+                var backgroundColorCode = String.IsNullOrEmpty(tag.ColorCode) ? "#D4C19C" : tag.ColorCode;
+                var colorCode = String.IsNullOrEmpty(tag.ColorCode) ? ColorCalc.ContrastColorFromString("#D4C19C") : ColorCalc.ContrastColorFromString(tag.ColorCode);
+                <button  style="background-color: @backgroundColorCode; color: @colorCode;" class="tag">@tag.Name</button>
+            }
+        </div>
+    }
 }

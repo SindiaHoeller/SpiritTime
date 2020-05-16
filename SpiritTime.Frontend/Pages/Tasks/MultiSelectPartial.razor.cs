@@ -22,46 +22,54 @@ namespace SpiritTime.Frontend.Pages.Tasks
         
         [Parameter] public TaskDto CurrentItem { get; set; }
         [Parameter] public  TaskDto TaskItem { get; set; }
-        [Parameter] public  int CurrentSelectListId { get; set; }
         [Parameter] public  List<TagDto> TagList { get; set; }
+        [Parameter] public SelectState SelectState { get; set; }
+        // [Parameter] public bool ValueChanged { get; set; }
+        // public event Action<TaskDto> OnClose;
         
-        private bool ShowTagList { get; set; } = false;
+        private int Id { get; set; }
         private  MultiSelectList MultiSelectList { get; set; }
-        private bool ValueChanged { get; set; }
         
-        private async Task AddTags(TaskDto item)
-        {
-            ShowTagList = false;
-            if (ValueChanged)
-            {
-                ValueChanged = false;
-                try
-                {
-                    var result = await Service.UpdateTags(item);
-                    if (result.Successful)
-                    {
-                        ToastService.ShowSuccess(SuccessMsg.TagsForTaskEdited);
-                        foreach (var tag in item.TagList)
-                        {
-                            Console.WriteLine(tag.Name);
-                        }
-                    }
-                    else
-                    {
-                        ToastService.ShowError(result.Error);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    ToastService.ShowError(exception.Message);
-                }
-            }
 
+        protected override async Task OnInitializedAsync()
+        {
+            SelectState.ShowTagLists.Add(false);
+            Id = SelectState.ShowTagLists.Count -1;
+            //ShowTagList = false;
         }
         
-        private void CheckboxChanged(ChangeEventArgs e, string key, TaskDto task)
+        // private async Task AddTags(TaskDto item)
+        // {
+        //     SelectState.ShowTagLists[Id] = false;
+        //     if (ValueChanged)
+        //     {
+        //         ValueChanged = false;
+        //         try
+        //         {
+        //             var result = await Service.UpdateTags(item);
+        //             if (result.Successful)
+        //             {
+        //                 ToastService.ShowSuccess(SuccessMsg.TagsForTaskEdited);
+        //                 foreach (var tag in item.TagList)
+        //                 {
+        //                     Console.WriteLine(tag.Name);
+        //                 }
+        //             }
+        //             else
+        //             {
+        //                 ToastService.ShowError(result.Error);
+        //             }
+        //         }
+        //         catch (Exception exception)
+        //         {
+        //             ToastService.ShowError(exception.Message);
+        //         }
+        //     }
+        // }
+        
+        private void CheckboxChanged(ChangeEventArgs e, string key)
         {
-            ValueChanged = true;
+            SelectState.ValueChanged = true;
             var selectItem = MultiSelectList.FirstOrDefault(i => i.Value == key);
             if (selectItem != null)
             {
@@ -76,24 +84,36 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 var tagInfo = _mapper.Map<TagInfo>(tag);
                 if (selectItem.Selected)
                 {
-                    task.TagList.Add(tagInfo);
+                    TaskItem.TagList.Add(tagInfo);
                 }
                 else
                 {
-                    task.TagList.Remove(task.TagList.FirstOrDefault(x=>x.Id == id));
+                    TaskItem.TagList.Remove(TaskItem.TagList.FirstOrDefault(x=>x.Id == id));
                 }
             }
+        }
+
+        private async Task CloseTagList()
+        {
+            SelectState.CloseOne(Id);
         }
         
         private void OpenTagList(TaskDto item)
         {
-            MultiSelectList = new MultiSelectList(TagList, nameof(CurrentItem.Id), nameof(CurrentItem.Name),item.TagList?.Select(x=>x.Id).ToList());
-
-            CurrentSelectListId = item.Id;
-            ValueChanged = false;
-            ShowTagList = true;
-            StateHasChanged();
+            if (SelectState.ShowTagLists[Id])
+            {
+                SelectState.CloseOne(Id);
+            }
+            else
+            {
+                SelectState.CloseAll();
+                MultiSelectList = new MultiSelectList(TagList, nameof(CurrentItem.Id), nameof(CurrentItem.Name), item.TagList?.Select(x=>x.Id).ToList());
             
+                SelectState.CurrentSelectListId          = item.Id;
+                SelectState.ValueChanged     = false;
+                SelectState.ShowTagLists[Id] = true;
+                StateHasChanged();
+            }
         }
     }
 }

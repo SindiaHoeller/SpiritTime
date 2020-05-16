@@ -156,6 +156,7 @@
             <e p="MultiSelectPartial.razor.cs" t="Include" />
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
+            <e p="SelectState.cs" t="Include" />
           </e>
           <e p="Workspaces" t="Include">
             <e p="Add.razor" t="Include" />
