@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Partials.Overlays;
+using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 using SpiritTime.Shared.Messages;
@@ -19,10 +20,10 @@ namespace SpiritTime.Frontend.Pages.Tags
         [CascadingParameter] BaseOverlay Modal { get; set; }
         [Inject] private ITagService Service { get; set; }
         [Inject] private IWorkspaceService WorkspaceService { get; set; }
+        [Inject] private IToastService ToastService { get; set; }
 
         private bool ShowForm { get; set; }
         private bool ShowErrorForm { get; set; }
-        private bool ShowSuccessForm { get; set; }
         private TagDto Item { get; set; }
         private string Error { get; set; }
         private string Id = string.Empty;
@@ -60,7 +61,8 @@ namespace SpiritTime.Frontend.Pages.Tags
                 if (item.Successful)
                 {
                     Item = item.Item;
-                    ShowSuccessForm = true;
+                    ToastService.ShowSuccess(SuccessMsg.TagAdded + Item.Name);
+                    ModalService.Close(OverlayModalResult.Ok(Item));
                 }
                 else
                 {
@@ -77,12 +79,6 @@ namespace SpiritTime.Frontend.Pages.Tags
 
             StateHasChanged();
         }
-
-        private void Done()
-        {
-            ModalService.Close(OverlayModalResult.Ok(Item));
-        }
-
         private void Cancel()
         {
             ModalService.Close(OverlayModalResult.Cancel());

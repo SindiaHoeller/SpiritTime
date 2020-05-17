@@ -20,14 +20,12 @@ namespace SpiritTime.Frontend.Pages.Rules
         [Inject] private IOverlayModalService ModalService { get; set; }
         [CascadingParameter] private BaseOverlay Modal { get; set; }
         [Inject] private ITaskTagRuleService Service { get; set; }
-        [Inject] private IMapper _mapper { get; set; }
         [Inject] private ITagService TagService { get; set; }
         [CascadingParameter] OverlayModalParameters Parameters { get; set; }
         [Inject] private IToastService ToastService { get; set; }
 
         private bool ShowForm { get; set; }
         private bool ShowErrorForm { get; set; } = false;
-        private bool ShowSuccessForm { get; set; }
         private TaskTagRuleDto Item { get; set; }
         private string Error { get; set; }
         private List<TagDto> TagList { get; set; }
@@ -61,7 +59,8 @@ namespace SpiritTime.Frontend.Pages.Rules
                 var result = await Service.Edit(Item);
                 if (result.Successful)
                 {
-                    ShowSuccessForm = true;
+                    ToastService.ShowSuccess(SuccessMsg.RuleEdited + Item.TriggerName);
+                    ModalService.Close(OverlayModalResult.Ok(Item));
                 }
                 else
                 {
@@ -75,12 +74,6 @@ namespace SpiritTime.Frontend.Pages.Rules
                 }
             }
             StateHasChanged();
-        }
-
-        private void Done()
-        {
-            ModalService.Close(OverlayModalResult.Ok(Item));
-
         }
         private void Cancel()
         {

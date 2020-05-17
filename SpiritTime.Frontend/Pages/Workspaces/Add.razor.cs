@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Partials.Overlays;
+using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models.WorkspaceModels;
@@ -12,10 +13,10 @@ namespace SpiritTime.Frontend.Pages.Workspaces
     public partial class Add
     {
         [Inject] private IOverlayModalService ModalService { get; set; }
-        [CascadingParameter] OverlayModalParameters Parameters { get; set; }
-        [CascadingParameter] BaseOverlay Modal { get; set; }
         [Inject] private IWorkspaceService Service { get; set; }
         [Inject] private IMapper _mapper { get; set; }
+        [Inject] private IToastService ToastService { get; set; }
+        [CascadingParameter] BaseOverlay            Modal      { get; set; }
 
         bool ShowForm { get; set; } = true;
         private bool ShowErrorForm { get; set; } = false;
@@ -41,6 +42,8 @@ namespace SpiritTime.Frontend.Pages.Workspaces
                 if (item.Successful)
                 {
                     Workspace = _mapper.Map<WorkspaceDto>(item);
+                    ToastService.ShowSuccess(SuccessMsg.WorkspaceAdded + Name );
+                    ModalService.Close(OverlayModalResult.Ok(Workspace));
                 }
                 else
                 {
@@ -54,12 +57,6 @@ namespace SpiritTime.Frontend.Pages.Workspaces
                     ShowErrorForm = true;
                 }
             }
-        }
-
-        void Done()
-        {
-            ModalService.Close(OverlayModalResult.Ok(Workspace));
-
         }
 
         void Cancel()

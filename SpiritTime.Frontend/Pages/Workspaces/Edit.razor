@@ -15,14 +15,7 @@
 else if (ShowErrorForm)
 {
     <div class="alert alert-danger" role="alert">
-        @ErrorMsg.NameCanNotBeEmpty<br />
-        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
-    </div>
-}
-else
-{
-    <div class="alert alert-success text-center" role="alert">
-        @SuccessMsg.WorkspaceEdited @Workspace.Name <br />
-        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
+        @Error<br />
+        <button class="custom-small-button" @onclick="Cancel">@TextMsg.Done</button>
     </div>
 }
