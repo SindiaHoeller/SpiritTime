@@ -44,26 +44,28 @@ namespace SpiritTime.Frontend.Pages.Rules
 
         private async void SubmitForm()
         {
+            ShowForm = false;
             Int32.TryParse(Id, out int id);
             Item.TagId = id;
-
             if (String.IsNullOrEmpty(Item.TriggerText))
             {
-                ToastService.ShowError(ErrorMsg.NameCanNotBeEmpty);
+                Error = ErrorMsg.NameCanNotBeEmpty;
+                ShowErrorForm = true;
             }
             else if (Item.TagId <= 0)
             {
-                ToastService.ShowError(ErrorMsg.ChooseOption);
+                Error         = ErrorMsg.ChooseOption;
+                ShowErrorForm = true;
             }
             else
             {
-                ShowForm = false;
                 var newItem = Mapper.Map<TaskTagRuleNew>(Item);
                 var item    = await Service.Add(newItem);
                 if (item.Successful)
                 {
                     Item            = item.Item;
-                    ShowSuccessForm = true;
+                    ToastService.ShowSuccess(SuccessMsg.RuleAdded + Item.TriggerName);
+                    ModalService.Close(OverlayModalResult.Ok(Item));
                 }
                 else
                 {
@@ -71,13 +73,7 @@ namespace SpiritTime.Frontend.Pages.Rules
                     ShowErrorForm = true;
                 }
             }
-
             StateHasChanged();
-        }
-
-        private void Done()
-        {
-            ModalService.Close(OverlayModalResult.Ok(Item));
         }
 
         private void Cancel()

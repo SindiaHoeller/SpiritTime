@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Partials.Overlays;
+using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
@@ -12,9 +13,10 @@ namespace SpiritTime.Frontend.Pages.Workspaces
     public partial class Edit
     {
         [Inject] private IOverlayModalService ModalService { get; set; }
-        [CascadingParameter] private BaseOverlay Modal { get; set; }
         [Inject] private IWorkspaceService Service { get; set; }
         [Inject] private IMapper _mapper { get; set; }
+        [Inject] private IToastService ToastService { get; set; }
+        [CascadingParameter] private BaseOverlay Modal { get; set; }
         [CascadingParameter] OverlayModalParameters Parameters { get; set; }
 
         bool ShowForm { get; set; } = true;
@@ -42,6 +44,8 @@ namespace SpiritTime.Frontend.Pages.Workspaces
                 if (result.Successful)
                 {
                     Workspace = _mapper.Map<WorkspaceDto>(itemResource);
+                    ToastService.ShowSuccess(SuccessMsg.WorkspaceEdited + Workspace.Name);
+                    ModalService.Close(OverlayModalResult.Ok(Workspace));
                 }
                 else
                 {
@@ -54,13 +58,7 @@ namespace SpiritTime.Frontend.Pages.Workspaces
                     ShowErrorForm = true;
                 }
             }
-            this.StateHasChanged();
-        }
-
-        private void Done()
-        {
-            ModalService.Close(OverlayModalResult.Ok(Workspace));
-
+            StateHasChanged();
         }
         private void Cancel()
         {

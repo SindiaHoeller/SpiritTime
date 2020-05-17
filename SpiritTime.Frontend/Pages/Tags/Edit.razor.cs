@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Partials.Overlays;
+using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
 using SpiritTime.Shared.Helper;
@@ -21,11 +22,11 @@ namespace SpiritTime.Frontend.Pages.Tags
         [Inject] private ITagService Service { get; set; }
         [Inject] private IMapper _mapper { get; set; }
         [Inject] private IWorkspaceService WorkspaceService { get; set; }
+        [Inject] private IToastService ToastService { get; set; }
         [CascadingParameter] OverlayModalParameters Parameters { get; set; }
 
         private bool ShowForm { get; set; }
         private bool ShowErrorForm { get; set; } = false;
-        private bool ShowSuccessForm { get; set; }
         private TagDto Item { get; set; }
         private string Error { get; set; }
         private List<WorkspaceDto> WorkspaceList { get; set; }
@@ -48,13 +49,11 @@ namespace SpiritTime.Frontend.Pages.Tags
             ShowForm = false;
             if (string.IsNullOrEmpty(Item.Name))
             {
-                Error = ErrorMsg.NameCanNotBeEmpty;
-                ShowErrorForm = true;
+                ToastService.ShowError(ErrorMsg.NameCanNotBeEmpty);
             }
             else if (Item.WorkspaceId <= 0)
             {
-                Error = ErrorMsg.WorkspaceChoose;
-                ShowErrorForm = true;
+                ToastService.ShowError(ErrorMsg.ChooseOption);
             }
             else
             {
@@ -65,7 +64,8 @@ namespace SpiritTime.Frontend.Pages.Tags
                 if (result.Successful)
                 {
                     Item = _mapper.Map<TagDto>(itemResource);
-                    ShowSuccessForm = true;
+                    ToastService.ShowSuccess(SuccessMsg.TagEdited + Item.Name);
+                    ModalService.Close(OverlayModalResult.Ok(Item));
                 }
                 else
                 {
@@ -79,12 +79,6 @@ namespace SpiritTime.Frontend.Pages.Tags
                 }
             }
             StateHasChanged();
-        }
-
-        private void Done()
-        {
-            ModalService.Close(OverlayModalResult.Ok(Item));
-
         }
         private void Cancel()
         {

@@ -40,13 +40,6 @@ else if (ShowErrorForm)
 {
     <div class="alert alert-danger" role="alert">
         @Error<br/>
-        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
-    </div>
-}
-else if (ShowSuccessForm)
-{
-    <div class="alert alert-success text-center" role="alert">
-        @SuccessMsg.RuleEdited <br/>
-        <button class="custom-small-button" @onclick="Done">@TextMsg.Done</button>
+        <button class="custom-small-button" @onclick="Cancel">@TextMsg.Done</button>
     </div>
 }
