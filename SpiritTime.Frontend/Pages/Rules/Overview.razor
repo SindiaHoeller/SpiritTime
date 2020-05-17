@@ -73,16 +73,17 @@
                                 <p>@TextMsg.ReplaceTrigger</p>
                             }
                         </td>
-                        <td>
-                            @*<a class="custom-small-button mr-3" href="/teacher/classes/details/@item.Id">
-                                    <span class="oi oi-info"></span>
-                                </a>*@
-                            <button class="custom-small-button" @onclick="@(() => Update(item))">
-                                <span class="oi oi-pencil"></span>
-                            </button>
-                            <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
-                                <span class="oi oi-trash"></span>
-                            </button>
+                        <td class="d-flex align-items-center justify-content-center">
+                            <Tooltip Text="Edit" Placement="Placement.Left">
+                                <button class="custom-small-button" @onclick="@(() => Update(item))">
+                                    <span class="oi oi-pencil"></span>
+                                </button>
+                            </Tooltip>
+                            <Tooltip Text="Delete" Placement="Placement.Right">
+                                <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
+                                    <span class="oi oi-trash"></span>
+                                </button>
+                            </Tooltip>
                         </td>
                     </tr>
                 }

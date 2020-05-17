@@ -526,7 +526,7 @@ div.custom-task-background .custom-small-button {
 }
 .smiley-check label > * {
   top: 0;
-  position: absolute;
+  position: absolute !important;
   transition: opacity 0.2s ease;
 }
 .smiley-check input:checked + label {
@@ -789,6 +789,26 @@ label.small-separator {
 [type=datetime-local].hide-date::-webkit-datetime-edit-ampm-field {
   display: block;
   color: red;
+}
+
+.tooltip-inner {
+  background-color: #00cc00;
+}
+
+.tooltip.bs-tooltip-right .arrow:before {
+  border-right-color: #00cc00 !important;
+}
+
+.tooltip.bs-tooltip-left .arrow:before {
+  border-right-color: #00cc00 !important;
+}
+
+.tooltip.bs-tooltip-bottom .arrow:before {
+  border-right-color: #00cc00 !important;
+}
+
+.tooltip.bs-tooltip-top .arrow:before {
+  border-right-color: #00cc00 !important;
 }
 
 /*# sourceMappingURL=index.css.map */
