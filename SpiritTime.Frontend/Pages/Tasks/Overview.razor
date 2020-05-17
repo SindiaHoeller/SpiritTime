@@ -1,9 +1,12 @@
 @page "/tasks/overview" 
 
+
 <div class="center-and-highlight task-main-view">
+<input style="opacity: 0; width: 0; height: 100%" @ref="focusHelper"/>
     <div class="col-12 custom-background">
         <div class="text-center">
-            <h1>@TextMsg.Task</h1>
+            <h1 >@TextMsg.Task</h1>
+            
         </div>
         @if (ShowError && ErrorMessage != null)
         {
@@ -21,8 +24,9 @@
                 <div class="col-lg-4">
                     <input @bind-value="@CurrentItem.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control" placeholder="Description"/>
                 </div>
-                <div class="col-lg-2">
-                    <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="datetime" class="form-control" placeholder="StartDate"/>
+                <div class="col-lg-2 d-flex justify-content-start">
+                    <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(async () => await UpdateStartDate(CurrentItem))" type="datetime-local" class="form-control hide-date" placeholder="StartDate"/>
+                    <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="time" class="form-control hide-date" placeholder="StartTime"/>
                 </div>
                 <div class="col-lg-2 tags">
                     <MultiSelectPartial
@@ -67,58 +71,64 @@
                     {
                         // if (task != CurrentItem)
                         // {
-                            <div class=" mb-1">
-                                <div class="row">
-                                    <div class="col-lg-1 smiley-check">
-                                        @{ var buttonId = IsDisabled ? "" : "isBooked" + task.Id; }
-                                        @if (task.IsBooked)
-                                        {
-                                            <input checked="checked" id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
-                                        }
-                                        else
-                                        {
-                                            <input id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
-                                        }
-                                        <label @onclick="@(async () => await UpdateCheckbox(task))" for="@buttonId">
-                                            <span>‼️</span><span>📁</span>
-                                        </label>
+                        <div class=" mb-1">
+                            <div class="row">
+                                <div class="col-lg-1 smiley-check">
+                                    @{ var buttonId = IsDisabled ? "" : "isBooked" + task.Id; }
+                                    @if (task.IsBooked)
+                                    {
+                                        <input checked="checked" id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
+                                    }
+                                    else
+                                    {
+                                        <input id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
+                                    }
+                                    <label @onclick="@(async () => await UpdateCheckbox(task))" for="@buttonId">
+                                        <span>‼️</span><span>📁</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-1">
+                                    <input @bind-value="@task.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Name"/>
+                                </div>
+                                <div class="col-lg-3">
+                                    <input @bind-value="@task.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Description"/>
+                                </div>
+                                <div class="col-lg-3 d-flex d-flex justify-content-center">
+                                    <div class="d-flex justify-content-start">
+                                        <input @bind-value="@task.StartDate" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(async () => await UpdateStartDate(task))" type="datetime-local" class="form-control hide-date" placeholder="StartDate"/>
+                                        <input @bind-value="@task.StartDate"  @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="time" class="form-control hide-date" placeholder="StartTime"/>
+                                        <label class="form-control small-separator">&nbsp;-&nbsp;</label>
                                     </div>
-                                    <div class="col-lg-1">
-                                        <input @bind-value="@task.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Name"/>
+
+                                    <div class="d-flex justify-content-start">
+                                        <input @bind-value="@task.EndDate" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(async () => await Update(task))" type="datetime-local" class="form-control hide-date" placeholder="EndDate"/>
+                                        <input @bind-value="@task.EndDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="time" class="form-control  hide-date" placeholder="EndTime"/>
+
                                     </div>
-                                    <div class="col-lg-3">
-                                        <input @bind-value="@task.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Description"/>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <input @bind-value="@task.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await UpdateStartDate(task))" type="datetime" class="form-control" placeholder="StartDate"/>
-                                    </div>
-                                    @* <label for="unit-name">@TextMsg.WorkspaceName:</label> *@
-                                    <div class="col-lg-2">
-                                        <input @bind-value="@task.EndDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="datetime" class="form-control" placeholder="EndDate"/>
-                                    </div>
-                                    <div class="col-lg-2 tags">
-                                        <MultiSelectPartial
-                                            CurrentItem="@CurrentItem"
-                                            TaskItem="@task"
-                                            TagList="@TagList"
-                                            SelectState="@SelectState">
-                                        </MultiSelectPartial>
-                                    </div>
-                                    <div class="col-lg-1">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <label class="">@task.TimeSpanText</label>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <button class="custom-small-button green ml-3" @onclick="@(() => Start(task))">
-                                                    <i class="fas fa-play"></i>
-                                                </button>
-                                            </div>
+                                </div>
+                                <div class="col-lg-2 tags">
+                                    <MultiSelectPartial
+                                        CurrentItem="@CurrentItem"
+                                        TaskItem="@task"
+                                        TagList="@TagList"
+                                        SelectState="@SelectState">
+                                    </MultiSelectPartial>
+                                </div>
+                                <div class="col-lg-1">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label class="form-control">@task.TimeSpanText</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <button class="custom-small-button green ml-3" @onclick="@(() => Start(task))">
+                                                <i class="fas fa-play"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        }
+                        </div>
+                    }
                     @* } *@
                 </div>
             }
