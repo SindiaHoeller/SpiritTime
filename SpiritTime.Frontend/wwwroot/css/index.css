@@ -727,4 +727,68 @@ input:focus, input.form-control:focus, input.form-control[readonly]:focus {
   border-left-color: #cf9946;
 }
 
+[type=time].hide-date {
+  border: none;
+  cursor: pointer;
+  padding-left: 0.1rem;
+}
+[type=time].hide-date::-webkit-inner-spin-button {
+  display: none;
+}
+[type=time].hide-date::-webkit-clear-button {
+  display: none;
+}
+
+label.small-separator {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+[type=datetime-local].hide-date {
+  background: transparent url("../img/calendar-alt.png") 50% 50% no-repeat;
+  width: 30px;
+  background-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: background-image 0.5s ease-in-out;
+}
+[type=datetime-local].hide-date:hover {
+  background-image: url("../img/calendar-alt_focus.png");
+}
+[type=datetime-local].hide-date::-webkit-inner-spin-button {
+  display: none;
+}
+[type=datetime-local].hide-date::-webkit-clear-button {
+  display: none;
+}
+[type=datetime-local].hide-date::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+[type=datetime-local].hide-date::-webkit-datetime-edit-month-field {
+  display: none;
+}
+[type=datetime-local].hide-date::-webkit-datetime-edit-day-field {
+  display: none;
+}
+[type=datetime-local].hide-date::-webkit-datetime-edit-year-field {
+  display: none;
+}
+[type=datetime-local].hide-date::-webkit-datetime-edit-minute-field {
+  display: none;
+}
+[type=datetime-local].hide-date::-webkit-datetime-edit-hour-field {
+  display: none;
+}
+[type=datetime-local].hide-date::-webkit-datetime-edit-second-field {
+  display: none;
+}
+[type=datetime-local].hide-date::-webkit-datetime-edit-text {
+  display: none;
+}
+[type=datetime-local].hide-date::-webkit-datetime-edit-ampm-field {
+  display: block;
+  color: red;
+}
+
 /*# sourceMappingURL=index.css.map */

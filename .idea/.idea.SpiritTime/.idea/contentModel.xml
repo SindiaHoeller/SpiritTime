@@ -125,6 +125,7 @@
           <e p="Counter.razor" t="Include" />
           <e p="Error.razor" t="Include" />
           <e p="Index.razor" t="Include" />
+          <e p="JsHelper.cs" t="Include" />
           <e p="NoElementsPage.razor" t="Include" />
           <e p="Options" t="Include">
             <e p="Overview.razor" t="Include" />
@@ -262,6 +263,8 @@
               <e p="bootstrap.min.css" t="Include" />
               <e p="bootstrap.min.css.map" t="Include" />
             </e>
+            <e p="datetime.css" t="Include" />
+            <e p="datetime.css.map" t="Include" />
             <e p="index.css" t="Include" />
             <e p="index.css.map" t="Include" />
             <e p="index.min.css" t="Include" />
@@ -287,10 +290,13 @@
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="img" t="Include">
+            <e p="calendar-alt.png" t="Include" />
+            <e p="calendar-alt_focus.png" t="Include" />
             <e p="OK.png" t="Include" />
           </e>
           <e p="js" t="Include">
             <e p="index.js" t="Include" />
+            <e p="jsInterop.js" t="Include" />
           </e>
           <e p="lib" t="Include">
             <e p="bootstrap" t="Include">
@@ -385,6 +391,7 @@
             <e p="_buttons.sass" t="Include" />
             <e p="_checkbox.sass" t="Include" />
             <e p="_colors.sass" t="Include" />
+            <e p="_datetime.sass" t="Include" />
             <e p="_general.sass" t="Include" />
             <e p="_multiselect.sass" t="Include" />
             <e p="_toast.sass" t="Include" />

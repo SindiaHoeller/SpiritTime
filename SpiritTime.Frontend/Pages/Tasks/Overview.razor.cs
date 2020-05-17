@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using SpiritTime.Frontend.Infrastructure;
 using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.TagServices;
@@ -17,16 +18,17 @@ namespace SpiritTime.Frontend.Pages.Tasks
 {
     public partial class Overview : IDisposable
     {
-        [Inject]    private ITaskService  Service             { get; set; }
-        [Inject]    private ITagService   TagService          { get; set; }
-        [Inject]    private IToastService ToastService        { get; set; }
-        [Inject]    private SelectState   SelectState         { get; set; }
-        [Parameter] public  List<TagDto>  TagList             { get; set; }
-        [Parameter] public  TagDto        SelectedTag         { get; set; }
-        [Parameter] public  TaskDto       CurrentItem         { get; set; }
-        private             bool          ShowError           { get; set; } = false;
-        private             string        ErrorMessage        { get; set; }
-        private             bool          NoElements          { get; set; }
+        [Inject]    private ITaskService  Service      { get; set; }
+        [Inject]    private ITagService   TagService   { get; set; }
+        [Inject]    private IToastService ToastService { get; set; }
+        [Inject]    private SelectState   SelectState  { get; set; }
+        [Inject]    public  IJSRuntime    JsRuntime    { get; set; }
+        [Parameter] public  List<TagDto>  TagList      { get; set; }
+        [Parameter] public  TagDto        SelectedTag  { get; set; }
+        [Parameter] public  TaskDto       CurrentItem  { get; set; }
+        private             bool          ShowError    { get; set; } = false;
+        private             string        ErrorMessage { get; set; }
+        private             bool          NoElements   { get; set; }
 
         private        TaskDto             NewItem        { get; set; }
         private        List<TaskDailyList> TaskDailyLists { get; set; }
@@ -35,6 +37,8 @@ namespace SpiritTime.Frontend.Pages.Tasks
         private static Timer               _timer;
         private        bool                ValueChanged { get; set; }
         private        bool                IsDisabled   { get; set; }
+        //Needed for changing focus on datepicker
+        private        ElementReference    focusHelper;
 
         protected override async Task OnInitializedAsync()
         {
@@ -43,9 +47,8 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 InitItems();
                 await GetDailyLists();
                 await GetTagListResult();
-                SelectState.OnChange += StateHasChanged;
+                SelectState.OnChange          += StateHasChanged;
                 SelectState.OnSaveAndCloseAll += AddTags;
-
             }
             catch (Exception ex)
             {
@@ -121,11 +124,6 @@ namespace SpiritTime.Frontend.Pages.Tasks
             TaskDailyLists = new List<TaskDailyList>();
         }
 
-        private void OnValueChanged()
-        {
-            ValueChanged = true;
-        }
-
         #endregion
 
         /// <summary>
@@ -133,6 +131,18 @@ namespace SpiritTime.Frontend.Pages.Tasks
         /// </summary>
 
         #region Tasks Update & Delete & Add
+
+        private void OnValueChanged()
+        {
+            ValueChanged = true;
+        }
+
+        private async Task OnValueChangedFocusOut()
+        {
+            ValueChanged = true;
+            await focusHelper.Focus(JsRuntime);
+        }
+
 
         private async Task UpdateCheckbox(TaskDto item)
         {
@@ -148,34 +158,37 @@ namespace SpiritTime.Frontend.Pages.Tasks
 
         private async Task UpdateStartDate(TaskDto item)
         {
-            var list = TaskDailyLists.FirstOrDefault(x => x.ItemList.Contains(item));
-            if (item.StartDate.ToShortDateString() != list?.Date.ToShortDateString() && list != null)
+            if (ValueChanged)
             {
-                var listContainsDate = TaskDailyLists.FirstOrDefault(x => x.Date.ToShortDateString() == item.StartDate.ToShortDateString());
-                list.ItemList.Remove(item);
-                if (listContainsDate != null)
+                var list = TaskDailyLists.FirstOrDefault(x => x.ItemList.Contains(item));
+                if (item.StartDate.ToShortDateString() != list?.Date.ToShortDateString() && list != null)
                 {
-                    listContainsDate.ItemList.Add(item);
-                    listContainsDate.ItemList = listContainsDate.ItemList.OrderByDescending(x => x.StartDate).ToList();
-                }
-                else
-                {
-                    TaskDailyLists.Add(
-                        new TaskDailyList
-                        {
-                            Date     = item.StartDate,
-                            ItemList = new List<TaskDto> {item}
-                        }
-                    );
+                    var listContainsDate = TaskDailyLists.FirstOrDefault(x => x.Date.ToShortDateString() == item.StartDate.ToShortDateString());
+                    list.ItemList.Remove(item);
+                    if (listContainsDate != null)
+                    {
+                        listContainsDate.ItemList.Add(item);
+                        listContainsDate.ItemList = listContainsDate.ItemList.OrderByDescending(x => x.StartDate).ToList();
+                    }
+                    else
+                    {
+                        TaskDailyLists.Add(
+                            new TaskDailyList
+                            {
+                                Date     = item.StartDate,
+                                ItemList = new List<TaskDto> {item}
+                            }
+                        );
+                    }
+
+                    if (!list.ItemList.Any())
+                    {
+                        TaskDailyLists.Remove(list);
+                    }
                 }
 
-                if (!list.ItemList.Any())
-                {
-                    TaskDailyLists.Remove(list);
-                }
+                await Update(item);
             }
-
-            await Update(item);
         }
 
         private async Task Update(TaskDto item)
@@ -343,18 +356,18 @@ namespace SpiritTime.Frontend.Pages.Tasks
         {
             SelectState.OnChange -= StateHasChanged;
         }
-        
-        
+
+
         private async void AddTags()
         {
             try
             {
-                var item = CurrentItem?.Id == SelectState.CurrentSelectListId 
-                    ? CurrentItem 
+                var item = CurrentItem?.Id == SelectState.CurrentSelectListId
+                    ? CurrentItem
                     : Helper.GetTaskById(TaskDailyLists, SelectState.CurrentSelectListId);
 
                 if (item == null || !SelectState.ValueChanged) return;
-            
+
                 SelectState.ValueChanged = false;
                 var result = await Service.UpdateTags(item);
                 if (result.Successful)
