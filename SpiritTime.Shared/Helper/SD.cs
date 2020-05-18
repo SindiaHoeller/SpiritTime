@@ -15,5 +15,7 @@
         public const string ItemList = "ItemList";
         public const string Id = "Id";
         public const string CurrentWorkspace = "CurrentWorkspace";
+        public const string HideTagsKey = "HideTagsKey";
+        public const string HideBookingOptionsKey = "HideBookingOptionsKey";
     }
 }

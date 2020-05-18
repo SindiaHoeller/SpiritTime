@@ -219,6 +219,7 @@
             <e p="AuthService.cs" t="Include" />
             <e p="IAuthService.cs" t="Include" />
           </e>
+          <e p="IServiceBase.cs" t="Include" />
           <e p="NotifierService.cs" t="Include" />
           <e p="OptionsService" t="Include">
             <e p="IOptionService.cs" t="Include" />

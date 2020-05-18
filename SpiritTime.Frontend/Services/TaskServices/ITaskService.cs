@@ -5,7 +5,7 @@ using SpiritTime.Shared.Models.TaskModels;
 
 namespace SpiritTime.Frontend.Services.TaskServices
 {
-    public interface ITaskService
+    public interface ITaskService : IServiceBase
     {
         Task<TaskListResult> GetAllAsync();
         Task<TaskListResult> GetByIdAsync(int id);

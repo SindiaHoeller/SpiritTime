@@ -66,5 +66,7 @@ namespace SpiritTime.Frontend.Services
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SD.Bearer, token);
             }
         }
+        
+
     }
 }
