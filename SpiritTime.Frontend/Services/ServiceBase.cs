@@ -22,10 +22,6 @@ namespace SpiritTime.Frontend.Services
             //_httpClient.BaseAddress = new Uri(appSetting.BackendBaseAddress);
             //_httpClient.DefaultRequestHeaders.Add(SD.UserAgent, SD.BlazorServer);
         }
-
-
-
-
         public async Task<ResultModel> Edit(T item)
         {
             await SetAuthenticationHeader();
@@ -53,6 +49,15 @@ namespace SpiritTime.Frontend.Services
             {
                 return new ResultModel {Error = ex.Message, Successful = false};
             }
+        }
+        
+        public async Task<string> GetLocalStorageByKey(string key)
+        {
+            return await _localStorage.GetItemAsync<string>(key);
+        }
+        public async Task SetLocalStorageByKey(string key, string value)
+        {
+            await _localStorage.SetItemAsync(key, value);
         }
     }
 }

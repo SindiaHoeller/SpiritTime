@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using SpiritTime.Frontend.Infrastructure;
 using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.TaskServices;
+using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models.TagModels;
 using SpiritTime.Shared.Models.TaskModels;
@@ -23,12 +25,17 @@ namespace SpiritTime.Frontend.Pages.Tasks
         [Inject]    private IToastService ToastService { get; set; }
         [Inject]    private SelectState   SelectState  { get; set; }
         [Inject]    public  IJSRuntime    JsRuntime    { get; set; }
+        [Inject] public ILocalStorageService LocalStorageService { get; set; }
         [Parameter] public  List<TagDto>  TagList      { get; set; }
         [Parameter] public  TagDto        SelectedTag  { get; set; }
         [Parameter] public  TaskDto       CurrentItem  { get; set; }
         private             bool          ShowError    { get; set; } = false;
         private             string        ErrorMessage { get; set; }
         private             bool          NoElements   { get; set; }
+        private bool ShowFilterOptions { get; set; }
+        private bool HideTags { get; set; }
+        private bool HideBookingOptions { get; set; }
+        
 
         private        TaskDto             NewItem        { get; set; }
         private        List<TaskDailyList> TaskDailyLists { get; set; }
@@ -37,6 +44,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
         private static Timer               _timer;
         private        bool                ValueChanged { get; set; }
         private        bool                IsDisabled   { get; set; }
+        
         //Needed for changing focus on datepicker
         private        ElementReference    focusHelper;
 
@@ -47,6 +55,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 InitItems();
                 await GetDailyLists();
                 await GetTagListResult();
+                await GetFilter();
                 SelectState.OnChange          += StateHasChanged;
                 SelectState.OnSaveAndCloseAll += AddTags;
             }
@@ -56,6 +65,18 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 ToastService.ShowError(ex.Message);
             }
         }
+
+        private async Task GetFilter()
+        {
+            var hideTags = await Service.GetLocalStorageByKey(SD.HideTagsKey);
+            if (hideTags == "true")
+                HideTags = true;
+            var hideBooking = await Service.GetLocalStorageByKey(SD.HideBookingOptionsKey);
+            if (hideBooking == "true")
+                HideBookingOptions = true;
+        }
+
+
 
         #region Initial functions
 
@@ -388,5 +409,24 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 ToastService.ShowError(exception.Message);
             }
         }
+
+        #region Filter
+        private void ToggleFilterOptions()
+        {
+            ShowFilterOptions = !ShowFilterOptions;
+            StateHasChanged();
+        }
+        private async Task TriggerHideTags()
+        {
+            StateHasChanged();
+            await Service.SetLocalStorageByKey(SD.HideTagsKey, !HideTags ?  "true" : "false");
+        }
+        private async Task TriggerHideBookingOptions()
+        {
+            StateHasChanged();
+            await Service.SetLocalStorageByKey(SD.HideBookingOptionsKey, !HideBookingOptions ?  "true" : "false");
+        }
+
+        #endregion
     }
 }
