@@ -19,7 +19,7 @@
                 </div>
                 <div class="inputGroup my-0">
                     <input @bind="HideBookingOptions" type="checkbox" id="HideBookingOptions"/>
-                    <label for="HideBookingOptions"  @onclick="@(() => TriggerHideBookingOptions())">Hide Booking Options</label>
+                    <label for="HideBookingOptions" @onclick="@(() => TriggerHideBookingOptions())">Hide Booking Options</label>
                 </div>
             </div>
         </div>
@@ -41,20 +41,20 @@
 
 @if (CurrentItem != null)
 {
-    <div class="row">
-        <div class="col-lg-1">
+    <div class="d-flex">
+        <div class="">
             <Tooltip Text="Name" Placement="Placement.Top">
                 <input @bind-value="@CurrentItem.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control" placeholder="Name"/>
             </Tooltip>
 
         </div>
-        <div class="col-lg-4">
+        <div class="flex-grow-1">
             <Tooltip Text="Description" Placement="Placement.Top">
                 <input @bind-value="@CurrentItem.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control"
                         placeholder="Description"/>
             </Tooltip>
         </div>
-        <div class="col-lg-2 ">
+        <div class="">
             <Tooltip Text="Start Date" Placement="Placement.Top" Class="d-flex justify-content-start">
                 <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(async () => await UpdateStartDate(CurrentItem))" type="datetime-local" class="form-control hide-date" placeholder="StartDate"/>
                 <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="time" class="form-control hide-date" placeholder="StartTime"/>
@@ -63,7 +63,7 @@
 
         @if (!HideTags)
         {
-            <div class="col-lg-2 tags">
+            <div class="col-lg-2 col-sm-1 tags">
                 <Tooltip Text="Taglist" Placement="Placement.Top">
                     <MultiSelectPartial
                         CurrentItem="@CurrentItem"
@@ -75,12 +75,12 @@
             </div>
         }
 
-        <div class="col-lg-2">
+        <div class="">
             <Tooltip Text="Duration" Placement="Placement.Top">
                 <label class="form-control">@CurrentTime</label>
             </Tooltip>
         </div>
-        <div class="col-lg-1">
+        <div class="">
             <Tooltip Text="Stop" Placement="Placement.Top">
                 <button class="custom-small-button red ml-3" @onclick="@(() => Stop())">
                     <i class="fas fa-stop"></i>
@@ -96,9 +96,12 @@ else if (NewItem != null)
             <input @bind="@NewItem.Name" type="text" class="form-control" placeholder="Name"/>
         </Tooltip>
 
-        <Tooltip Text="Description" Placement="Placement.Top">
-            <input @bind="@NewItem.Description" type="text" class="form-control" placeholder="Description"/>
-        </Tooltip>
+        <div class=" flex-grow-1">
+            <Tooltip Text="Description" Placement="Placement.Top">
+                <input @bind="@NewItem.Description" type="text" class="form-control" placeholder="Description"/>
+            </Tooltip>
+        </div>
+
 
         <Tooltip Text="Start" Placement="Placement.Top">
             <button class="custom-small-button green ml-3" @onclick="@(() => Start(NewItem))">
@@ -124,10 +127,10 @@ else if (NewItem != null)
                 // if (task != CurrentItem)
                 // {
                 <div class=" mb-1">
-                    <div class="row">
+                    <div class="d-flex">
                         @if (!HideBookingOptions)
                         {
-                            <div class="col-lg-1 smiley-check">
+                            <div class="smiley-check">
                                 @{ var buttonId = IsDisabled ? "" : "isBooked" + task.Id; }
                                 @if (task.IsBooked)
                                 {
@@ -149,18 +152,18 @@ else if (NewItem != null)
                             </div>
                         }
 
-                        <div class="col-lg-1">
+                        <div class="flex-sm-shrink-1">
                             <Tooltip Text="Name" Placement="Placement.Top">
                                 <input @bind-value="@task.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Name"/>
                             </Tooltip>
 
                         </div>
-                        <div class="col-lg-3">
+                        <div class="flex-grow-1">
                             <Tooltip Text="Description" Placement="Placement.Top">
                                 <input @bind-value="@task.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Description"/>
                             </Tooltip>
                         </div>
-                        <div class="col-lg-3 d-flex justify-content-center">
+                        <div class="d-flex justify-content-center">
                             <Tooltip Text="Start Date" Placement="Placement.Top" Class="d-flex justify-content-center">
                                 <div class="d-flex justify-content-start">
                                     <input @bind-value="@task.StartDate" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(async () => await UpdateStartDate(task))" type="datetime-local" class="form-control hide-date" placeholder="StartDate"/>
@@ -177,7 +180,7 @@ else if (NewItem != null)
                         </div>
                         @if (!HideTags)
                         {
-                            <div class="col-lg-2 tags">
+                            <div class="col-lg-2 col-sm-1 tags">
                                 <Tooltip Text="Taglist" Placement="Placement.Top">
                                     <MultiSelectPartial
                                         CurrentItem="@CurrentItem"
@@ -189,7 +192,7 @@ else if (NewItem != null)
                             </div>
                         }
 
-                        <div class="col-lg-1">
+                        <div class="">
                             <div class="d-flex justify-content-around">
                                 <Tooltip Text="Duration" Placement="Placement.Top">
                                     <label class="form-control">@task.TimeSpanText</label>
