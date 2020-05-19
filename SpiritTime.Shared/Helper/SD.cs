@@ -17,5 +17,6 @@
         public const string CurrentWorkspace = "CurrentWorkspace";
         public const string HideTagsKey = "HideTagsKey";
         public const string HideBookingOptionsKey = "HideBookingOptionsKey";
+        public const string TagTrigger = "##";
     }
 }
