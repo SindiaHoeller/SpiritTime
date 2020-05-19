@@ -169,6 +169,9 @@ namespace SpiritTime.Backend.Controllers.Tags
                         return new JsonResult(new ResultModel
                             { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
 
+                    var taskTags = await _unitOfWork.TaskTagRepository.GetMultipleByAsync(x => x.TagId == id);
+                    _unitOfWork.TaskTagRepository.RemoveRange(taskTags);
+                    await _unitOfWork.SaveAsync();
 
                     _unitOfWork.TagRepository.Remove(item);
                     await _unitOfWork.SaveAsync();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SpiritTime.Shared.Models.TagModels;
 using SpiritTime.Shared.Models.TaskModels;
 
 namespace SpiritTime.Frontend.Pages.Tasks
@@ -11,6 +12,25 @@ namespace SpiritTime.Frontend.Pages.Tasks
         {
             var span = after.Subtract(prev);
             return GetTimSpanByTimeSpan(span, includeSecs);
+        }
+
+        public static void UpdateTaskInfo(TaskDto task, TaskDto newTask)
+        {
+            task.Name = newTask.Name;
+            task.Description = newTask.Description;
+            task.TagList = newTask.TagList;
+        }
+
+        public static void AddMissingTags(List<TagDto> tagList, List<TagInfo> newTagList, string workspaceId)
+        {
+            var workspace = Int32.TryParse(workspaceId, out int id) ? id : 0;
+            foreach (var tag in newTagList)
+            {
+                if (tagList.FirstOrDefault(x => x.Id == tag.Id) == null)
+                {
+                    tagList.Add(new TagDto{Name = tag.Name, Id = tag.Id, WorkspaceId = workspace});
+                }
+            }
         }
 
         public static string GetTimSpanByTimeSpan(TimeSpan span, bool includeSecs)

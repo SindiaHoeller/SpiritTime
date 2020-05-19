@@ -177,6 +177,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
                 // gets a list of all current tags for the task
                 resultItem.TagList = await Helper.GetAllTagsForTask(item.Id);
+                resultItem = await Helper.FindTagsByTrigger(resultItem);
 
                 //Update original Item in database
                 item.Name = resultItem.Name;
@@ -216,7 +217,9 @@ namespace SpiritTime.Backend.Controllers.Tasks
                     { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
                 var item = await _unitOfWork.TaskRepository
                     .GetUniqueByAsync(x => x.Id == resource.Id);
-
+                
+                resource = await Helper.FindTagsByTrigger(resource);
+                
                 item.Description = resource.Description;
                 item.Name = resource.Name;
                 item.EndDate = resource.EndDate;
@@ -227,12 +230,13 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 
                 await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
                 
+                
                 await _unitOfWork.SaveAsync();
-                return new JsonResult(new ResultModel { Error = null, Successful = true });
+                return new JsonResult(new TaskResult { Item = resource, Successful = true });
             }
             catch (Exception ex)
             {
-                return new JsonResult(new ResultModel { Error = ex.Message, Successful = false });
+                return new JsonResult(new TaskResult { Error = ex.Message, Successful = false });
             }
         }
         

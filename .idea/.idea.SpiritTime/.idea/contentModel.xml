@@ -119,6 +119,7 @@
             <e p="Login.razor.cs" t="Include" />
             <e p="Logout.razor" t="Include" />
             <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
             <e p="Register.razor" t="Include" />
             <e p="Register.razor.cs" t="Include" />
           </e>
@@ -449,7 +450,7 @@
             <e p="Authentication" t="Include">
               <e p="AuthenticationResource.cs" t="Include" />
               <e p="AuthenticationResult.cs" t="Include" />
-              <e p="User.cs" t="Include" />
+              <e p="AuthUser.cs" t="Include" />
             </e>
             <e p="ChangeUserEmail" t="Include">
               <e p="ChangeUserEmailResource.cs" t="Include" />
@@ -467,6 +468,8 @@
               <e p="RegisterResource.cs" t="Include" />
               <e p="RegisterResult.cs" t="Include" />
             </e>
+            <e p="UserInfo.cs" t="Include" />
+            <e p="UserInfoResult.cs" t="Include" />
           </e>
           <e p="ResultModel.cs" t="Include" />
           <e p="TagModels" t="Include">

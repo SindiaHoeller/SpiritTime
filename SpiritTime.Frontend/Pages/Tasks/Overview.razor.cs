@@ -65,6 +65,11 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 ToastService.ShowError(ex.Message);
             }
         }
+        public void Dispose()
+        {
+            SelectState.OnChange          -= StateHasChanged;
+            SelectState.OnSaveAndCloseAll -= StateHasChanged;
+        }
 
         private async Task GetFilter()
         {
@@ -228,6 +233,14 @@ namespace SpiritTime.Frontend.Pages.Tasks
                         {
                             // Update the task timespan text
                             item.TimeSpanText = Helper.UpdateTimeSpanText(item);
+                            
+                            // Update basic task info
+                            Helper.UpdateTaskInfo(item, result.Item);
+                            
+                            // Add possibly missing tags to list
+                            Helper.AddMissingTags(TagList, item.TagList, await Service.GetLocalStorageByKey(SD.CurrentWorkspace));
+                            
+                            
                             // Update the dailylist timespan text
                             Helper.UpdateTimeSpanTextForList(TaskDailyLists);
                         }
@@ -373,10 +386,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
 
         #endregion
 
-        public void Dispose()
-        {
-            SelectState.OnChange -= StateHasChanged;
-        }
+
 
 
         private async void AddTags()

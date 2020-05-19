@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http.Features;
 using SpiritTime.Core;
 using SpiritTime.Core.Entities;
+using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models.TagModels;
 using SpiritTime.Shared.Models.TaskModels;
 
@@ -227,5 +228,67 @@ namespace SpiritTime.Backend.Controllers.Tasks
             return taskDtos;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns></returns>
+        public async Task<TaskDto> FindTagsByTrigger(TaskDto task)
+        {
+            var allTags = await _unitOfWork.TagRepository.GetMultipleByAsync(x => x.WorkspaceId == task.WorkspaceId);
+            if(task.Name.Contains("##"))
+            {
+                var (taglist, name) = await GetTags(task, task.Name, allTags);
+                task.TagList.AddRange(taglist);
+                task.Name = name.Trim();
+            }
+
+            if (task.Description.Contains(SD.TagTrigger))
+            {
+                var (taglist, description) = await GetTags(task, task.Description, allTags);
+                task.TagList.AddRange(taglist);
+                task.Description = description.Trim();
+            }
+
+            return task;
+        }
+
+        private async Task<(List<TagInfo>, string)> GetTags(TaskDto task, string text, List<Tag> allTags)
+        {
+            var names = GetTagsNames(text);
+            var tagList = new List<Tag>();
+            foreach (var name in names)
+            {
+                var tag = allTags.FirstOrDefault(x => string.Equals(x.Name, name, StringComparison.CurrentCultureIgnoreCase));
+                if (tag != null)
+                {
+                    await AddTagToTask(task.Id, tag.Id);
+                }
+                else
+                {
+                    tag = new Tag {Name = name, WorkspaceId = task.WorkspaceId};
+                    await _unitOfWork.TagRepository.AddAsync(tag);
+                    await _unitOfWork.SaveAsync();
+                    await _unitOfWork.TaskTagRepository.AddAsync(new TaskTag{TaskId = task.Id, TagId = tag.Id});
+                    await _unitOfWork.SaveAsync();
+                }
+                tagList.Add(tag);
+                text = text.Replace(SD.TagTrigger + name, "");
+            }
+
+            return (_mapper.Map<List<TagInfo>>(tagList), text);
+        }
+
+
+        private List<string> GetTagsNames(string text)
+        {
+            var elements = text.Split("##");
+
+            return elements
+                .Where(x=>x != elements.FirstOrDefault())
+                .Select(element => element.Split(' ', 1).FirstOrDefault())
+                .Select(x=> x?.Trim())
+                .ToList();
+        }
     }
 }

@@ -55,7 +55,7 @@ namespace SpiritTime.Persistence
                 .HasOne(x=>x.Tasks)
                 .WithMany(x=>x.TaskTags)
                 .HasForeignKey(x=>x.TaskId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<TaskTag>()
                 .HasOne(x=>x.Tag)
                 .WithMany(x=>x.TaskTags)
