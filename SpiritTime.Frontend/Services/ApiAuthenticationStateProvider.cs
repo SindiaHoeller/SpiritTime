@@ -74,13 +74,13 @@ namespace SpiritTime.Frontend.Services
             NotifyAuthenticationStateChanged(authState);
         }
 
-        public async Task<User> GetCurrentUser()
+        public async Task<AuthUser> GetCurrentUser()
         {
             var authState = await GetAuthenticationStateAsync();
             var user = authState.User;
             var emailClaim = user.Claims.Where(x => x.Type == "email").FirstOrDefault();
             var idClaim = user.Claims.Where(x => x.Type == "nameid").FirstOrDefault();
-            return new User
+            return new AuthUser
             {
                 Email = emailClaim?.Value,
                 Id = idClaim?.Value,

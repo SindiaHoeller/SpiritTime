@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +16,7 @@ using SpiritTime.Core;
 using SpiritTime.Core.Entities;
 using SpiritTime.Shared.Api;
 using SpiritTime.Shared.Helper;
+using SpiritTime.Shared.Models.Account;
 using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.Account.ChangeUserEmail;
 using SpiritTime.Shared.Models.Account.ChangeUserPassword;
@@ -27,7 +30,7 @@ namespace SpiritTime.Backend.Controllers.Account
     /// </summary>
     [ApiController]
     [Route(ControllerNames.Account)]
-    public class AccountController : ControllerBase
+    public class AccountController : ControllerHelper
     {
         private const string Controller = "Account";
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -36,6 +39,7 @@ namespace SpiritTime.Backend.Controllers.Account
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -43,7 +47,7 @@ namespace SpiritTime.Backend.Controllers.Account
             JwtAuthentication jwtAuthentication,
             ILogger<AccountController> logger,
             IHttpContextAccessor httpContextAccessor,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork, IMapper mapper) : base(httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -51,6 +55,7 @@ namespace SpiritTime.Backend.Controllers.Account
             _logger = logger;
             _httpContextAccessor = httpContextAccessor;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -185,7 +190,7 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <response code="200">Email sent</response>
         /// <response code="400">Send email doesnt work</response>
         /// <response code="404">User not Fount</response>
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet(ApiMethod.ChangeUserEmail)]
         public async Task<IActionResult> ChangeUserEmail(ChangeUserEmailResource changeUserEmailResource)
         {
@@ -246,7 +251,7 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <response code="200">Password successfully changed</response>
         /// <response code="400">Invalid credentials</response>
         /// <response code="409">Password rules are broken</response>
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut(ApiMethod.ChangeUserPassword)]
         public async Task<IActionResult> ChangeUserPassword(ChangeUserPasswordResource changeUserPasswordResource)
         {
@@ -274,7 +279,7 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <returns></returns>
         /// <response code="200">User successfully deleted</response>
         /// <response code="400">Delete user failed</response>
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete(ApiMethod.DeleteUser)]
         public async Task<IActionResult> DeleteUser(DeleteUserResource deleteUserResource)
         {
@@ -287,6 +292,30 @@ namespace SpiritTime.Backend.Controllers.Account
                 new DeleteUserResult { Successful = true};
 
             return new JsonResult(result);
+        }
+
+
+        /// <summary>
+        /// Gets the Info of a user
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet(ApiMethod.GetUserInfo)]
+        public async Task<IActionResult> GetUserInfo()
+        {
+            try
+            {
+                var userId   = GetUserId();
+                var user     = await _unitOfWork.ApplicationUserRepository.GetUniqueByAsync(x => x.Id == userId);
+                var userInfo = _mapper.Map<UserInfo>(user);
+            
+                return new JsonResult(new UserInfoResult{UserInfo = userInfo, Successful = true});
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new UserInfoResult{Error = ex.Message, Successful = true});
+            }
+
         }
     }
 }

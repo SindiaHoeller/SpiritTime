@@ -14,6 +14,7 @@ namespace SpiritTime.Core
         ITaskTagRuleRepository TaskTagRuleRepository { get; }
         IWorkspaceRepository WorkspaceRepository { get; }
         ITaskTagRepository TaskTagRepository { get;  }
+        IApplicationUserRepository ApplicationUserRepository { get;  }
         
         Task SaveAsync();
     }

@@ -12,9 +12,11 @@ namespace SpiritTime.Shared.Messages
         public const string ConfirmDeletion = "Are you sure, that you want to delete this item?";
         public const string NoElements = "No Element available. Please create one first.";
         public const string Save = "Save";
+        public const string ChangeEmail = "ChangeEmail";
 
         public const string Options = "Options";
         public const string Task = "Task";
+        public const string AccountInfo = "Account Information";
 
         public const string Workspace = "Workspace";
         public const string AddWorkspace = "Add " + SD.Workspace;

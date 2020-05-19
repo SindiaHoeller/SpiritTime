@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using SpiritTime.Frontend.Config;
 using SpiritTime.Shared.Api;
 using SpiritTime.Shared.Helper;
+using SpiritTime.Shared.Models.Account;
 using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.Account.Registration;
 
@@ -69,46 +70,18 @@ namespace SpiritTime.Frontend.Services.AuthServices
             }
         }
 
-        //public async Task<AuthenticationResult> RefreshTokenAsync(AuthenticationResource refreshRequest)
-        //{
-        //    string serializedUser = JsonConvert.SerializeObject(refreshRequest);
-
-        //    var requestMessage = new HttpRequestMessage(HttpMethod.Post, "Users/RefreshToken");
-        //    requestMessage.Content = new StringContent(serializedUser);
-
-        //    requestMessage.Content.Headers.ContentType
-        //        = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
-        //    var response = await _httpClient.SendAsync(requestMessage);
-
-        //    var responseStatusCode = response.StatusCode;
-        //    var responseBody = await response.Content.ReadAsStringAsync();
-
-        //    var returnedUser = JsonConvert.DeserializeObject<AuthenticationResult>(responseBody);
-
-        //    return await Task.FromResult(returnedUser);
-        //}
-
-        //public async Task<AuthenticationResult> GetUserByAccessTokenAsync(string accessToken)
-        //{
-        //    string serializedRefreshRequest = JsonConvert.SerializeObject(accessToken);
-
-        //    var requestMessage = new HttpRequestMessage(HttpMethod.Post, "Users/GetUserByAccessToken");
-        //    requestMessage.Content = new StringContent(serializedRefreshRequest);
-
-        //    requestMessage.Content.Headers.ContentType
-        //        = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
-        //    var response = await _httpClient.SendAsync(requestMessage);
-
-        //    var responseStatusCode = response.StatusCode;
-        //    var responseBody = await response.Content.ReadAsStringAsync();
-
-        //    var returnedUser = JsonConvert.DeserializeObject<AuthenticationResult>(responseBody);
-
-        //    return await Task.FromResult(returnedUser);
-        //}
-
+        public async Task<UserInfoResult> GetUserInfo()
+        {
+            try
+            {
+                await SetAuthenticationHeader();
+                return await _httpClient.GetJsonAsync<UserInfoResult>(_path.GetUserInfo);
+            }
+            catch (Exception ex)
+            {
+                return new UserInfoResult { Successful = false, Error = ex.Message };
+            }
+        }
 
 
         public async Task Logout()

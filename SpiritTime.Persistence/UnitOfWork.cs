@@ -19,6 +19,7 @@ namespace SpiritTime.Persistence
         public ITaskTagRuleRepository TaskTagRuleRepository { get; }
         public IWorkspaceRepository WorkspaceRepository { get; }
         public ITaskTagRepository TaskTagRepository { get;  }
+        public IApplicationUserRepository ApplicationUserRepository { get;  }
 
         public UnitOfWork(ApplicationDbContext dbContext)
         {
@@ -28,6 +29,7 @@ namespace SpiritTime.Persistence
             TaskTagRuleRepository = new TaskTagRuleRepository(_dbContext);
             TaskTagRepository = new TaskTagRepository(_dbContext);
             WorkspaceRepository = new WorkspaceRepository(_dbContext);
+            ApplicationUserRepository = new ApplicationUserRepository(_dbContext);
         }
         public async Task SaveAsync()
         {
