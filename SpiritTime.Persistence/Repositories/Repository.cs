@@ -9,7 +9,7 @@ using SpiritTime.Core.Contracts;
 namespace SpiritTime.Persistence.Repositories
 {
 
-    public class Repository<T> : IRepository<T> where T : class, IEntityObject
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> _dbSet;
 

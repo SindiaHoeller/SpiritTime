@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using SpiritTime.Shared.Models.Account;
 using SpiritTime.Shared.Models.Account.Authentication;
 using SpiritTime.Shared.Models.Account.Registration;
 
@@ -11,5 +12,6 @@ namespace SpiritTime.Frontend.Services.AuthServices
         //Task<AuthenticationResult> RefreshTokenAsync(AuthenticationResource refreshRequest);
         //Task<AuthenticationResult> GetUserByAccessTokenAsync(string accessToken);
         Task Logout();
+        Task<UserInfoResult> GetUserInfo();
     }
 }

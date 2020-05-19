@@ -17,6 +17,8 @@
         private readonly string _changeUserPassword;
         public string DeleteUser => _deleteUser;
         private readonly string _deleteUser;
+        public string GetUserInfo => _getUserInfo;
+        private readonly string _getUserInfo;
 
 
         // Workspace
@@ -87,6 +89,7 @@
             _confirmEmailAfterChange = basepath + account + ApiMethod.ConfirmEmailAfterChange;
             _changeUserPassword = basepath + account + ApiMethod.ChangeUserPassword;
             _deleteUser = basepath + account + ApiMethod.DeleteUser;
+            _getUserInfo = basepath + account + ApiMethod.GetUserInfo;
 
             var workspace = ControllerNames.Workspaces + "/";;
             _workspaceGetall = basepath + workspace + ApiMethod.GetallByUserId;

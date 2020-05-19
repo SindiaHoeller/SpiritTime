@@ -36,6 +36,7 @@
             <e p="JwtSettings.cs" t="Include" />
           </e>
           <e p="Profiles" t="Include">
+            <e p="ApplicationUserProfile.cs" t="Include" />
             <e p="TagProfile.cs" t="Include" />
             <e p="TaskProfile.cs" t="Include" />
             <e p="TaskTagRuleProfile.cs" t="Include" />
@@ -63,6 +64,7 @@
       <e p="SpiritTime.Core" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Contracts" t="Include">
+          <e p="IApplicationUserRepository.cs" t="Include" />
           <e p="IEntityObject.cs" t="Include" />
           <e p="IRepository.cs" t="Include" />
           <e p="ITagRepository.cs" t="Include" />
@@ -418,6 +420,7 @@
           </e>
         </e>
         <e p="Repositories" t="Include">
+          <e p="ApplicationUserRepository.cs" t="Include" />
           <e p="Repository.cs" t="Include" />
           <e p="TagRepository.cs" t="Include" />
           <e p="TaskRepository.cs" t="Include" />
