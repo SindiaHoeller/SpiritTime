@@ -2,6 +2,7 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @using SpiritTime.Frontend.Partials.Toasts
 @using SpiritTime.Frontend.Partials.ToastModal
+@using ElectronNET.API
 
 <BaseOverlay/>
 
@@ -44,3 +45,17 @@
         @Body
     </div>
 </div>
+
+@* @code{ *@
+@* *@
+@*     protected override void OnInitialized() *@
+@*     { *@
+@*         if (HybridSupport.IsElectronActive) *@
+@*         { *@
+@*             Electron.Menu.SetApplicationMenu(ElectronMenu.Get()); *@
+@*         } *@
+@*          *@
+@*     } *@
+@* *@
+@* } *@
+

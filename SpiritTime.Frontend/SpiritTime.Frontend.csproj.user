@@ -10,8 +10,8 @@
     <StartAction>Project</StartAction>
     <StartArguments></StartArguments>
     <ExternalConsole>true</ExternalConsole>
-    <LaunchBrowser></LaunchBrowser>
-    <ApplicationURL>https://localhost:5011;http://localhost:5010</ApplicationURL>
+    <LaunchBrowser>false</LaunchBrowser>
+    <ApplicationURL>https://localhost:5011;http://localhost:5010;</ApplicationURL>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'DotnetWatch' ">
     <StartAction>Program</StartAction>
@@ -19,7 +19,7 @@
     <StartArguments>watch run debug -nowarn</StartArguments>
     <StartWorkingDirectory>.</StartWorkingDirectory>
     <ExternalConsole>true</ExternalConsole>
-    <LaunchBrowser></LaunchBrowser>
+    <LaunchBrowser>false</LaunchBrowser>
     <ApplicationURL>https://localhost:18676;http://localhost:41497</ApplicationURL>
   </PropertyGroup>
 </Project>

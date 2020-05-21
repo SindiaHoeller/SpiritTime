@@ -18,5 +18,6 @@
         public const string HideTagsKey = "HideTagsKey";
         public const string HideBookingOptionsKey = "HideBookingOptionsKey";
         public const string TagTrigger = "##";
+        public const string TaskGotCreated = "SpiritTime created a new Task";
     }
 }
