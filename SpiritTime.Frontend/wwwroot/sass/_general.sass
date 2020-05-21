@@ -97,7 +97,6 @@ table
   a
     &:hover
       text-decoration: none
-
   .top-row, .custom-top-row
     justify-content: space-between
     background: $gradient2
@@ -118,8 +117,6 @@ table
       font-family: $font1
       font-size: 28px
       text-shadow: $color3 0.5px 0.5px
-      
-      
   .center-and-highlight
     justify-content: center
     align-items: center
@@ -173,3 +170,32 @@ div.custom-task-background
   border-radius: 10px
   right: 65px
 
+.quick-input
+  width: 100%
+  background-color: transparent
+  align-items: center
+  justify-content: center
+  display: flex
+  input
+    border-top: 0 !important
+    border-left: 0 !important
+    border-right: 0 !important
+    &:hover, &:focus
+      border-color: $color4
+      background-color: transparent !important
+      //outline: transparent auto 0 !important
+      box-shadow: 0 0 0 0.2rem transparent
+  label
+    margin: 0
+    white-space: nowrap
+    display: block
+    width: 100%
+    height: calc(1.5em + .75rem + 2px)
+    padding: .375rem .75rem
+    font-size: 1rem
+    font-weight: 400
+    line-height: 1.5
+    border-width: 1px
+    &:hover, &:focus
+      border-color: transparent
+      outline: transparent auto 0

@@ -146,6 +146,44 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 return new JsonResult(new TaskResult { Error = ex.Message, Successful = false });
             }
         }
+        /// <summary>
+        ///     Get's currently running Task by WorkspaceId
+        /// </summary>
+        /// <remarks> Needs: Task Id <br />  Returns: TaskResult </remarks>
+        /// <returns></returns>
+        /// <response code="200">Returns a TaskResult</response>
+
+        [HttpGet(ApiMethod.GetCurrentTaskByWorkspaceId)]
+        public async Task<IActionResult> GetCurrentTaskByWorkspaceId(int id)
+        {
+            try
+            {
+                //Int32.TryParse(stringId, out int id);
+                if (!await CheckForPermissionByWorkspace(id, _unitOfWork))
+                    return new JsonResult(new TaskResult
+                        { Error = ErrorMsg.NotAuthorizedForAction, Successful = false });
+
+                var task = await _unitOfWork.TaskRepository.GetUniqueByAsync(x => x.WorkspaceId == id && x.EndDate == DateTime.MinValue);
+
+                if (task != null)
+                {
+                    var taskDto = _mapper.Map<TaskDto>(task);
+
+                    taskDto.TagList = await Helper.GetAllTagsForTask(id);
+                    var result = new TaskResult
+                    {
+                        Successful = true,
+                        Item       = taskDto
+                    };
+                    return new JsonResult(result);
+                }
+                return new JsonResult(new TaskResult{Successful = true});
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new TaskResult { Error = ex.Message, Successful = false });
+            }
+        }
 
         /// <summary>
         ///     Creates a new Task

@@ -60,6 +60,8 @@
         public string TaskUpdateTags => _taskUpdateTags;
         private readonly string _taskDelete;
         public string TaskDelete => _taskDelete;
+        private readonly string _taskGetCurrentTaskByWorkspaceId;
+        public string TaskGetCurrentTaskByWorkspaceId => _taskGetCurrentTaskByWorkspaceId;
 
         // TaskTag
         private readonly string _taskTagAddTag;
@@ -113,6 +115,7 @@
             _taskEdit = basepath + task + ApiMethod.Update;
             _taskUpdateTags = basepath + task + ApiMethod.UpdateTagsForTask;
             _taskDelete = basepath + task + ApiMethod.Delete;
+            _taskGetCurrentTaskByWorkspaceId = basepath + task + ApiMethod.GetCurrentTaskByWorkspaceId;
             
 
             var taskTag = ControllerNames.TaskTag + "/";

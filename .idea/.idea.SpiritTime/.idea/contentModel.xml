@@ -100,6 +100,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Config" t="Include">
           <e p="AppSettings.cs" t="Include" />
+          <e p="BlazorConfig.cs" t="Include" />
           <e p="ColorCalc.cs" t="Include" />
         </e>
         <e p="electron.manifest.json" t="Include" />

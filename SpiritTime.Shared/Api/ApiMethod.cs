@@ -26,6 +26,7 @@ namespace SpiritTime.Shared.Api
         public const string RemoveTag = "RemoveTag";
         public const string CompareTags = "CompareTags";
         public const string UpdateTagsForTask = "UpdateTagsForTask";
+        public const string GetCurrentTaskByWorkspaceId = "GetCurrentTaskByWorkspaceId";
 
     }
 }

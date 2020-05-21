@@ -15,14 +15,30 @@ namespace SpiritTime.Frontend.Pages.QuickInput
     {
         [Inject] private IJSRuntime JsRuntime { get; set; }
         [Inject] private ITaskService Service { get; set; }
+        [Parameter]
+        public string Current { get; set; }
         private TaskDto TaskDto { get; set; }
         private ElementReference inputBox;
         private ElementReference newTask;
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
             TaskDto = new TaskDto();
-            
+            if (!string.IsNullOrEmpty(Current))
+            {
+                var result = await Service.GetCurrentTask();
+                if (result.Successful)
+                {
+                    if (result.Item != null)
+                    {
+                        TaskDto = result.Item;
+                    }
+                }
+                else
+                {
+                    Electron.Notification.Show(new NotificationOptions("Error", result.Error));
+                }
+            }
         }
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -39,26 +55,26 @@ namespace SpiritTime.Frontend.Pages.QuickInput
                 case "Enter":
                 {
                     await newTask.Focus(JsRuntime);
-                    var result = await Service.Add(TaskDto);
+                    var result = TaskDto.Id == 0 ? await Service.Add(TaskDto) : await Service.Edit(TaskDto);
+                    NotificationOptions options;
                     if (result.Successful)
                     {
-                        var options = new NotificationOptions(SD.TaskGotCreated, TaskDto.Name + " - " + TaskDto.Description)
-                        {
-                            OnClick = async () => await Electron.Dialog.ShowMessageBoxAsync("Notification clicked")
-                        };
-
-                        Electron.Notification.Show(options);
+                        options = TaskDto.Id == 0 
+                            ? new NotificationOptions(SD.TaskGotCreated, TaskDto.Name + " - " + TaskDto.Description) 
+                            : new NotificationOptions(SD.TaskGotEdited, TaskDto.Name + " - " + TaskDto.Description);
+                        
+                        options.OnClick = async () => await Electron.Dialog.ShowMessageBoxAsync("Notification clicked");
                     }
                     else
                     {
-                        var options = new NotificationOptions("Error", result.Error)
+                        options = new NotificationOptions("Error", result.Error)
                         {
                             OnClick = async () => await Electron.Dialog.ShowMessageBoxAsync("Notification clicked")
                         };
-
-                        Electron.Notification.Show(options);
                     }
+                    Electron.Notification.Show(options);
                     await JsHelper.CloseWindow(JsRuntime);
+                    
                     Console.WriteLine($"NewTask submitted...Pressed: [{e.Key}]");
                     break;
                 }
@@ -71,8 +87,6 @@ namespace SpiritTime.Frontend.Pages.QuickInput
                     break;
                 }
             }
-
-            
         }
         // private void KeyDown(KeyboardEventArgs e)
         // {

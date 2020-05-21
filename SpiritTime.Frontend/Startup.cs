@@ -130,29 +130,23 @@ namespace SpiritTime.Frontend
                 Show   = false
             });
             
-            await browserWindow.WebContents.Session.ClearCacheAsync();
+            // await browserWindow.WebContents.Session.ClearCacheAsync();
             
             browserWindow.OnReadyToShow += () => browserWindow.Show();
             browserWindow.SetTitle("SpiritTime");
             Electron.Menu.SetApplicationMenu(ElectronMenu.Get());
             
-            Electron.GlobalShortcut.Register("CmdOrCtrl+I", async () => {
+            Electron.GlobalShortcut.Register(Configuration["Shortcuts:NewTask"], async () => {
             
                 var viewPath = $"http://localhost:{BridgeSettings.WebPort}/newtask";
-                await Electron.WindowManager.CreateWindowAsync( new BrowserWindowOptions
-                {
-                    Width = 800,
-                    Height = 30,
-                    Center = true,
-                    Resizable = false,
-                    Movable = false,
-                    Maximizable = false,
-                    AlwaysOnTop = true,
-                    Frame = false,
-                    // Modal = true,
-                    AcceptFirstMouse = true,
-                    AutoHideMenuBar = true
-                }, viewPath);
+                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync( BlazorConfig.GetMiniWindowOptions(), viewPath);
+                secondaryWindow.OnClose += browserWindow.Reload;
+            });
+            Electron.GlobalShortcut.Register(Configuration["Shortcuts:CurrentTask"], async () => {
+            
+                var viewPath = $"http://localhost:{BridgeSettings.WebPort}/newtask/current";
+                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync( BlazorConfig.GetMiniWindowOptions(), viewPath);
+                secondaryWindow.OnClose += browserWindow.Reload;
             });
             
             

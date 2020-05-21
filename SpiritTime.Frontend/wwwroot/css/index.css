@@ -208,6 +208,40 @@ div.custom-task-background .custom-small-button {
   right: 65px;
 }
 
+.quick-input {
+  width: 100%;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.quick-input input {
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+.quick-input input:hover, .quick-input input:focus {
+  border-color: #f7f7f7;
+  background-color: transparent !important;
+  box-shadow: 0 0 0 0.2rem transparent;
+}
+.quick-input label {
+  margin: 0;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  border-width: 1px;
+}
+.quick-input label:hover, .quick-input label:focus {
+  border-color: transparent;
+  outline: transparent auto 0;
+}
+
 .blazored-modal-container {
   display: none;
   position: fixed;

@@ -64,6 +64,7 @@ namespace SpiritTime.Frontend.Shared
                             Accelerator = "CmdOrCtrl+I",
                             Click       = () => Electron.WindowManager.BrowserWindows.First().WebContents.OpenDevTools()
                         },
+                        
                         // new MenuItem
                         // {
                         //     Type = MenuType.separator
@@ -86,7 +87,8 @@ namespace SpiritTime.Frontend.Shared
                     Label = "Window", Role = MenuRole.window, Type = MenuType.submenu, Submenu = new MenuItem[]
                     {
                         new MenuItem {Label = "Minimize", Accelerator = "CmdOrCtrl+M", Role = MenuRole.minimize},
-                        new MenuItem {Label = "Close", Accelerator    = "CmdOrCtrl+W", Role = MenuRole.close}
+                        new MenuItem {Label = "Close", Accelerator    = "CmdOrCtrl+W", Role = MenuRole.close},
+                        new MenuItem {Label = "Quit", Accelerator = "CmdOrCtrl+Q", Role = MenuRole.quit}
                     }
                 },
                 new MenuItem
