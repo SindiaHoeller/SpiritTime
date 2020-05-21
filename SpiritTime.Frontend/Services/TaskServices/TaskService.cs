@@ -43,6 +43,21 @@ namespace SpiritTime.Frontend.Services.TaskServices
             }
         }
         
+        public async Task<TaskResult> GetCurrentTask()
+        {
+            try
+            {
+                await SetAuthenticationHeader();
+                var workspaceId = await GetCurrentWorkspaceId();
+                return await _httpClient.GetJsonAsync<TaskResult>(_path.TaskGetCurrentTaskByWorkspaceId + "?id=" + workspaceId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new TaskResult { Error = e.Message, Successful = false };
+            }
+        }
+        
         public new async Task<TaskResult> Edit(TaskDto item)
         {
             await SetAuthenticationHeader();
