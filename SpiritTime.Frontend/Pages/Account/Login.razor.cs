@@ -22,6 +22,7 @@ namespace SpiritTime.Frontend.Pages.Account
 
         protected override async Task OnInitializedAsync()
         {
+            Console.WriteLine("Login page loaded...");
             LoginModel = new AuthenticationResource();
             var authenticated = await AuthenticationProvider.GetAuthenticationStateAsync();
             if (authenticated.User.Identity.IsAuthenticated)
@@ -32,9 +33,9 @@ namespace SpiritTime.Frontend.Pages.Account
         private async Task HandleLogin()
         {
             ShowErrors = false;
-            
+            Console.WriteLine("HandleLogin activated...");
             var result = await AuthService.LoginAsync(LoginModel);
-            
+            Console.WriteLine(result.Error);
             if(!result.Successful)
             {
                 Error = result.Error;
@@ -42,6 +43,7 @@ namespace SpiritTime.Frontend.Pages.Account
             }
             else
             {
+                Console.WriteLine("Navigate to Main page...");
                 NavigationManager.NavigateTo("/");
             }
         }

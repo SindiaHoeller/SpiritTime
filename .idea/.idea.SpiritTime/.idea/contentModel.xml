@@ -102,6 +102,7 @@
           <e p="AppSettings.cs" t="Include" />
           <e p="ColorCalc.cs" t="Include" />
         </e>
+        <e p="electron.manifest.json" t="Include" />
         <e p="Infrastructure" t="Include">
           <e p="TaskComparer.cs" t="Include" />
         </e>
@@ -133,6 +134,10 @@
           <e p="Options" t="Include">
             <e p="Overview.razor" t="Include" />
             <e p="Overview.razor.cs" t="Include" />
+          </e>
+          <e p="QuickInput" t="Include">
+            <e p="NewTask.razor" t="Include" />
+            <e p="NewTask.razor.cs" t="Include" />
           </e>
           <e p="Rules" t="Include">
             <e p="Add.razor" t="Include" />
@@ -254,6 +259,8 @@
           </e>
         </e>
         <e p="Shared" t="Include">
+          <e p="ElectronMenu.cs" t="Include" />
+          <e p="EmptyLayout.razor" t="Include" />
           <e p="LoginMenu.razor" t="Include" />
           <e p="MainLayout.razor" t="Include" />
           <e p="NavMenu.razor" t="Include" />

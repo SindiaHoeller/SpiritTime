@@ -1,0 +1,7 @@
+@page "/newtask" 
+@layout EmptyLayout
+<div class="d-flex bg-secondary">
+    <label @ref="newTask" class="flex-nowrap" tabindex="3" >New Task:</label>
+    <input @ref="inputBox" class="flex-grow-1" @bind="TaskDto.Name" type="text" id="name" @onkeydown="e => Submit(e)" tabindex="1"/>
+    <input class="flex-grow-1" @bind="TaskDto.Description" type="text" id="description" @onkeydown="e => Submit(e)" tabindex="2"/>
+</div>

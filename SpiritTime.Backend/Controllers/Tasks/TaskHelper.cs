@@ -37,15 +37,19 @@ namespace SpiritTime.Backend.Controllers.Tasks
         {
             if (task.EndDate == DateTime.MinValue)
             {
-                var taskNotEnded = await _unitOfWork.TaskRepository
-                    .GetUniqueByAsync(x => x.EndDate == DateTime.MinValue &&
+                var tasksNotEnded = await _unitOfWork.TaskRepository
+                    .GetMultipleByAsync(x => x.EndDate == DateTime.MinValue &&
                                            x.Id != task.Id);
-                if (taskNotEnded != null)
+                foreach (var taskNotEnded in tasksNotEnded)
                 {
-                    taskNotEnded.EndDate = task.StartDate;
-                    _unitOfWork.TaskRepository.Update(taskNotEnded);
-                    await _unitOfWork.SaveAsync();
+                    if (taskNotEnded != null)
+                    {
+                        taskNotEnded.EndDate = task.StartDate;
+                        _unitOfWork.TaskRepository.Update(taskNotEnded);
+                        await _unitOfWork.SaveAsync();
+                    }
                 }
+
             }
         }
         
@@ -191,13 +195,16 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// <returns></returns>
         private async Task<string> ExecuteTrigger(Core.Entities.TaskTagRules item, int taskId, string text)
         {
-            if (text.Contains(item.TriggerText))
+            if (!string.IsNullOrEmpty(text))
             {
-                await AddTagToTask(taskId, item.TagId);
-                if (item.ReplaceTrigger)
-                    text = text.Replace(item.TriggerText, "").Trim();
+                if (text.Contains(item.TriggerText))
+                {
+                    await AddTagToTask(taskId, item.TagId);
+                    if (item.ReplaceTrigger)
+                        text = text.Replace(item.TriggerText, "").Trim();
+                }
             }
-
+            
             return text;
         }
 

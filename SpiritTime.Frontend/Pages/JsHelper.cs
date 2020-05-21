@@ -11,5 +11,10 @@ namespace SpiritTime.Frontend.Pages
             await jsRuntime.InvokeVoidAsync(
                 "jsInterop.focusElement", elementRef);
         }
+
+        public static async Task CloseWindow(IJSRuntime jsRuntime)
+        {
+            await jsRuntime.InvokeVoidAsync("jsInterop.closeWindow");
+        }
     }
 }

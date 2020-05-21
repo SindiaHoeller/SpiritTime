@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="2.1.5" />
     <PackageReference Include="Blazored.Typeahead" Version="4.3.0" />
@@ -12,23 +10,21 @@
     <PackageReference Include="Blazorise.Components" Version="0.9.0" />
     <PackageReference Include="Blazorise.DataGrid" Version="0.9.0" />
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.0" />
+    <PackageReference Include="ElectronNET.API" Version="8.31.2" />
     <PackageReference Include="EmbeddedBlazorContent" Version="1.10.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview3.20168.3" />
-    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.0.96" />
+<!--    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.0.96" />-->
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\SpiritTime.Shared\SpiritTime.Shared.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Pages\Workspaces\" />
     <Folder Include="Profiles\" />
   </ItemGroup>
-
   <ItemGroup>
     <Content Update="Pages\Options\Overview.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -90,7 +86,21 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Update="Pages\QuickInput\NewTask.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Shared\EmptyLayout.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
   </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="http://json.schemastore.org/2.0.0-csd.2.beta.2018-10-10.json" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties properties_4launchsettings_1json__JsonSchema="http://json.schemastore.org/2.0.0-csd.2.beta.2018-10-10.json" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Content Update="electron.manifest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

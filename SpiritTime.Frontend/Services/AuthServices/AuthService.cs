@@ -37,8 +37,9 @@ namespace SpiritTime.Frontend.Services.AuthServices
 
             try
             {
+                Console.WriteLine("Service.LoginAsync called..." + _path.Login);
                 var result = await _httpClient.PostJsonAsync<AuthenticationResult>(_path.Login, userResource);
-
+                Console.WriteLine("Result: " + result.Successful);
                 if (result.Successful)
                 {
                     var (workspaceSet, error) = await SetCurrentWorkspace(result.WorkspaceId);

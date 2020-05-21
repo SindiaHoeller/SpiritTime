@@ -24,29 +24,27 @@ namespace SpiritTime.Frontend.Pages.Tasks
         [Inject]    private ITagService   TagService   { get; set; }
         [Inject]    private IToastService ToastService { get; set; }
         [Inject]    private SelectState   SelectState  { get; set; }
-        [Inject]    public  IJSRuntime    JsRuntime    { get; set; }
-        [Inject] public ILocalStorageService LocalStorageService { get; set; }
+        [Inject]    private IJSRuntime    JsRuntime    { get; set; }
         [Parameter] public  List<TagDto>  TagList      { get; set; }
         [Parameter] public  TagDto        SelectedTag  { get; set; }
         [Parameter] public  TaskDto       CurrentItem  { get; set; }
-        private             bool          ShowError    { get; set; } = false;
-        private             string        ErrorMessage { get; set; }
-        private             bool          NoElements   { get; set; }
-        private bool ShowFilterOptions { get; set; }
-        private bool HideTags { get; set; }
-        private bool HideBookingOptions { get; set; }
-        
 
-        private        TaskDto             NewItem        { get; set; }
-        private        List<TaskDailyList> TaskDailyLists { get; set; }
-        private        int                 DayCount       { get; set; } = 15;
-        private        string              CurrentTime    { get; set; } = "";
+        private        bool                ShowError          { get; set; } = false;
+        private        string              ErrorMessage       { get; set; }
+        private        bool                NoElements         { get; set; }
+        private        bool                ShowFilterOptions  { get; set; }
+        private        bool                HideTags           { get; set; }
+        private        bool                HideBookingOptions { get; set; }
+        private        TaskDto             NewItem            { get; set; }
+        private        List<TaskDailyList> TaskDailyLists     { get; set; }
+        private        int                 DayCount           { get; set; } = 15;
+        private        string              CurrentTime        { get; set; } = "";
         private static Timer               _timer;
         private        bool                ValueChanged { get; set; }
         private        bool                IsDisabled   { get; set; }
-        
+
         //Needed for changing focus on datepicker
-        private        ElementReference    focusHelper;
+        private ElementReference focusHelper;
 
         protected override async Task OnInitializedAsync()
         {
@@ -65,6 +63,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 ToastService.ShowError(ex.Message);
             }
         }
+
         public void Dispose()
         {
             SelectState.OnChange          -= StateHasChanged;
@@ -80,7 +79,6 @@ namespace SpiritTime.Frontend.Pages.Tasks
             if (hideBooking == "true")
                 HideBookingOptions = true;
         }
-
 
 
         #region Initial functions
@@ -233,14 +231,14 @@ namespace SpiritTime.Frontend.Pages.Tasks
                         {
                             // Update the task timespan text
                             item.TimeSpanText = Helper.UpdateTimeSpanText(item);
-                            
+
                             // Update basic task info
                             Helper.UpdateTaskInfo(item, result.Item);
-                            
+
                             // Add possibly missing tags to list
                             Helper.AddMissingTags(TagList, item.TagList, await Service.GetLocalStorageByKey(SD.CurrentWorkspace));
-                            
-                            
+
+
                             // Update the dailylist timespan text
                             Helper.UpdateTimeSpanTextForList(TaskDailyLists);
                         }
@@ -387,8 +385,6 @@ namespace SpiritTime.Frontend.Pages.Tasks
         #endregion
 
 
-
-
         private async void AddTags()
         {
             try
@@ -421,20 +417,23 @@ namespace SpiritTime.Frontend.Pages.Tasks
         }
 
         #region Filter
+
         private void ToggleFilterOptions()
         {
             ShowFilterOptions = !ShowFilterOptions;
             StateHasChanged();
         }
+
         private async Task TriggerHideTags()
         {
             StateHasChanged();
-            await Service.SetLocalStorageByKey(SD.HideTagsKey, !HideTags ?  "true" : "false");
+            await Service.SetLocalStorageByKey(SD.HideTagsKey, !HideTags ? "true" : "false");
         }
+
         private async Task TriggerHideBookingOptions()
         {
             StateHasChanged();
-            await Service.SetLocalStorageByKey(SD.HideBookingOptionsKey, !HideBookingOptions ?  "true" : "false");
+            await Service.SetLocalStorageByKey(SD.HideBookingOptionsKey, !HideBookingOptions ? "true" : "false");
         }
 
         #endregion

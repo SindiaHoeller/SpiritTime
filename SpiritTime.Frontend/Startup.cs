@@ -8,6 +8,8 @@ using Blazored.LocalStorage;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
+using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -29,6 +31,7 @@ using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.TaskServices;
 using SpiritTime.Frontend.Services.TaskTagRuleServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
+using SpiritTime.Frontend.Shared;
 
 namespace SpiritTime.Frontend
 {
@@ -108,6 +111,52 @@ namespace SpiritTime.Frontend
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+            // Open the Electron-Window here
+            
+            if (HybridSupport.IsElectronActive)
+            {
+                ElectronBootstrap();
+            }
+
+            // Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
+        }
+        private async void ElectronBootstrap()
+        {
+            var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
+            {
+                Title = "SpiritTimes",
+                Width  = 1152,
+                Height = 940,
+                Show   = false
+            });
+            
+            await browserWindow.WebContents.Session.ClearCacheAsync();
+            
+            browserWindow.OnReadyToShow += () => browserWindow.Show();
+            browserWindow.SetTitle("SpiritTime");
+            Electron.Menu.SetApplicationMenu(ElectronMenu.Get());
+            
+            Electron.GlobalShortcut.Register("CmdOrCtrl+I", async () => {
+            
+                var viewPath = $"http://localhost:{BridgeSettings.WebPort}/newtask";
+                await Electron.WindowManager.CreateWindowAsync( new BrowserWindowOptions
+                {
+                    Width = 800,
+                    Height = 30,
+                    Center = true,
+                    Resizable = false,
+                    Movable = false,
+                    Maximizable = false,
+                    AlwaysOnTop = true,
+                    Frame = false,
+                    // Modal = true,
+                    AcceptFirstMouse = true,
+                    AutoHideMenuBar = true
+                }, viewPath);
+            });
+            
+            
+            Electron.App.WillQuit += (args) => Task.Run(() => Electron.GlobalShortcut.UnregisterAll());
         }
     }
 }
