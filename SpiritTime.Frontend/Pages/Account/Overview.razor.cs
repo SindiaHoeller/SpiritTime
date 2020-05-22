@@ -2,8 +2,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.AuthServices;
+using SpiritTime.Shared.Messages;
 using SpiritTime.Shared.Models.Account;
 using SpiritTime.Shared.Models.Account.Authentication;
+using SpiritTime.Shared.Models.Account.ChangeUserPassword;
 
 namespace SpiritTime.Frontend.Pages.Account
 {
@@ -13,7 +15,8 @@ namespace SpiritTime.Frontend.Pages.Account
         [Inject] private IToastService  ToastService { get; set; }
         private UserInfo UserInfo { get; set; }
         private bool ShowError { get; set; }
-        private string ErrorMsg { get; set; }
+        private string ErrorMessage { get; set; }
+        public ChangeUserPasswordResource PWChangeInfo { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -21,17 +24,42 @@ namespace SpiritTime.Frontend.Pages.Account
             if (result.Successful)
             {
                 UserInfo = result.UserInfo;
+                PWChangeInfo.Email = UserInfo.Email;
             }
             else
             {
                 ShowError = true;
-                ErrorMsg = result.Error;
+                ErrorMessage = result.Error;
             }
         }
 
-        private void SaveChanges()
+        private async Task SaveChanges()
         {
-            
+            var result = await Service.UpdateUserInfo(UserInfo);
+            if (!result.Successful)
+            {
+                ToastService.ShowError(result.Error);
+            }
+            else
+            {
+                ToastService.ShowSuccess(SuccessMsg.UpdatedUserInfo);
+            }
+        }
+
+        private async Task ChangePassword()
+        {
+            if (string.IsNullOrEmpty(PWChangeInfo.Password))
+            {
+                ToastService.ShowError(ErrorMsg.PasswordDoesNotMeetRequirements);
+            }
+            else if (PWChangeInfo.Password != PWChangeInfo.NewPassword)
+            {
+                ToastService.ShowError(ErrorMsg.PasswordDoNotMatch);
+            }
+            else
+            {
+                // TODO
+            }
         }
     }
 }

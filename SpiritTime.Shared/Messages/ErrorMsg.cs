@@ -14,5 +14,9 @@ namespace SpiritTime.Shared.Messages
         public const string TagNotAdded = "The Tag could not be added.";
         public const string TagNotEdited = "The Tag could not be edited";
         public const string TaskEmpty = "You have to fill name or description field.";
+
+        public const string PasswordDoesNotMeetRequirements = "The password could not be changed, because it does not meet the requirements.";
+        public const string PasswordDoNotMatch = "The passwords do not match";
+        
     }
 }

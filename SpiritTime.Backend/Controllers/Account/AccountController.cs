@@ -32,30 +32,30 @@ namespace SpiritTime.Backend.Controllers.Account
     [Route(ControllerNames.Account)]
     public class AccountController : ControllerHelper
     {
-        private const string Controller = "Account";
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly JwtAuthentication _jwtAuthentication;
-        private readonly ILogger<AccountController> _logger;
+        private const    string                         Controller = "Account";
+        private readonly IHttpContextAccessor           _httpContextAccessor;
+        private readonly JwtAuthentication              _jwtAuthentication;
+        private readonly ILogger<AccountController>     _logger;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        private readonly UserManager<ApplicationUser>   _userManager;
+        private readonly IUnitOfWork                    _unitOfWork;
+        private readonly IMapper                        _mapper;
 
         public AccountController(
-            UserManager<ApplicationUser> userManager,
+            UserManager<ApplicationUser>   userManager,
             SignInManager<ApplicationUser> signInManager,
-            JwtAuthentication jwtAuthentication,
-            ILogger<AccountController> logger,
-            IHttpContextAccessor httpContextAccessor,
-            IUnitOfWork unitOfWork, IMapper mapper) : base(httpContextAccessor)
+            JwtAuthentication              jwtAuthentication,
+            ILogger<AccountController>     logger,
+            IHttpContextAccessor           httpContextAccessor,
+            IUnitOfWork                    unitOfWork, IMapper mapper) : base(httpContextAccessor)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _jwtAuthentication = jwtAuthentication;
-            _logger = logger;
+            _userManager         = userManager;
+            _signInManager       = signInManager;
+            _jwtAuthentication   = jwtAuthentication;
+            _logger              = logger;
             _httpContextAccessor = httpContextAccessor;
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            _unitOfWork          = unitOfWork;
+            _mapper              = mapper;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace SpiritTime.Backend.Controllers.Account
             try
             {
                 if (await _userManager.FindByEmailAsync(registerResource.Email) != null)
-                    return new JsonResult(new RegisterResult { Error = "Email is already taken", Successful = false });
+                    return new JsonResult(new RegisterResult {Error = "Email is already taken", Successful = false});
 
                 var user = CreateUser(registerResource);
 
@@ -84,7 +84,7 @@ namespace SpiritTime.Backend.Controllers.Account
 
                 if (!createResult.Succeeded) return Forbid("Password has to fulfill the requirements");
                 await _userManager.UpdateSecurityStampAsync(user);
-                
+
                 var emailConfirmationCode = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
                 //TODO: Email Confirmation wirklich einbauen
@@ -109,11 +109,11 @@ namespace SpiritTime.Backend.Controllers.Account
                 //        Error = "Our Email Server is currently busy, please try again!"
                 //    });
                 //}
-                return new JsonResult(new RegisterResult { Successful = true });
+                return new JsonResult(new RegisterResult {Successful = true});
             }
             catch (Exception ex)
             {
-                return new JsonResult(new RegisterResult { Error = ex.Message, Successful = false });
+                return new JsonResult(new RegisterResult {Error = ex.Message, Successful = false});
             }
         }
 
@@ -122,7 +122,7 @@ namespace SpiritTime.Backend.Controllers.Account
             return new ApplicationUser
             {
                 UserName = registerResource.Email,
-                Email = registerResource.Email
+                Email    = registerResource.Email
             };
         }
 
@@ -143,23 +143,23 @@ namespace SpiritTime.Backend.Controllers.Account
             if (!signInResult.Succeeded)
             {
                 if (signInResult.IsLockedOut)
-                    return new JsonResult(new AuthenticationResult { Successful = false, Error = "Your Account is locked." });
+                    return new JsonResult(new AuthenticationResult {Successful = false, Error = "Your Account is locked."});
                 if (signInResult.IsNotAllowed)
-                    return new JsonResult(new AuthenticationResult { Successful = false, Error = "Your account is not allowed. Please confirm your Email." });
-                return new JsonResult(new AuthenticationResult { Successful = false, Error = "Invalid email or password" });
+                    return new JsonResult(new AuthenticationResult {Successful = false, Error = "Your account is not allowed. Please confirm your Email."});
+                return new JsonResult(new AuthenticationResult {Successful = false, Error = "Invalid email or password"});
             }
 
             var user = await _userManager.Users.SingleOrDefaultAsync(r => r.Email == authenticationResource.Email);
 
-            var jwt = _jwtAuthentication.GenerateToken(user);
-            var defaultWorkspace = await _unitOfWork.WorkspaceRepository.GetUniqueByAsync(x=>x.UserId == user.Id);
+            var jwt              = _jwtAuthentication.GenerateToken(user);
+            var defaultWorkspace = await _unitOfWork.WorkspaceRepository.GetUniqueByAsync(x => x.UserId == user.Id);
             if (defaultWorkspace != null) return new JsonResult(new AuthenticationResult {Successful = true, Token = jwt, WorkspaceId = defaultWorkspace.Id});
-            
+
             defaultWorkspace = new Workspace {UserId = user.Id, Name = "Default"};
             await _unitOfWork.WorkspaceRepository.AddAsync(defaultWorkspace);
             await _unitOfWork.SaveAsync();
 
-            return new JsonResult(new AuthenticationResult { Successful = true, Token = jwt, WorkspaceId = defaultWorkspace.Id});
+            return new JsonResult(new AuthenticationResult {Successful = true, Token = jwt, WorkspaceId = defaultWorkspace.Id});
             //return Ok(jwt);
         }
 
@@ -174,11 +174,11 @@ namespace SpiritTime.Backend.Controllers.Account
         [HttpGet(ApiMethod.ConfirmEmail)]
         public async Task<IActionResult> ConfirmEmail(string email, string token)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user               = await _userManager.FindByEmailAsync(email);
             var confirmationResult = _userManager.ConfirmEmailAsync(user, token).Result;
 
             return confirmationResult.Succeeded
-                ? (IActionResult)Ok("Confirmation done")
+                ? (IActionResult) Ok("Confirmation done")
                 : NotFound("Something went wrong!");
         }
 
@@ -218,7 +218,7 @@ namespace SpiritTime.Backend.Controllers.Account
             //    ? (ActionResult)Ok("Confirmation email sent")
             //    : BadRequest("Our Email Server is currently busy, please try again!");
             var jwt = _jwtAuthentication.GenerateToken(user);
-            return new JsonResult(new ChangeUserEmailResult{Error = null, Successful = true, Token = jwt});
+            return new JsonResult(new ChangeUserEmailResult {Error = null, Successful = true, Token = jwt});
         }
 
         /// <summary>
@@ -233,13 +233,13 @@ namespace SpiritTime.Backend.Controllers.Account
         [HttpGet(ApiMethod.ConfirmEmailAfterChange)]
         public async Task<IActionResult> ConfirmEmailAfterChange(string email, string token, string newEmail)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user              = await _userManager.FindByEmailAsync(email);
             var changeEmailResult = await _userManager.ChangeEmailAsync(user, newEmail, token);
             if (changeEmailResult.Succeeded)
                 changeEmailResult = await _userManager.SetUserNameAsync(user, newEmail);
 
             return changeEmailResult.Succeeded
-                ? (IActionResult)Ok("Your email has changed")
+                ? (IActionResult) Ok("Your email has changed")
                 : BadRequest("Something went wrong!");
         }
 
@@ -255,6 +255,7 @@ namespace SpiritTime.Backend.Controllers.Account
         [HttpPut(ApiMethod.ChangeUserPassword)]
         public async Task<IActionResult> ChangeUserPassword(ChangeUserPasswordResource changeUserPasswordResource)
         {
+            //TODO : Include check for authenticated user
             var user = await _userManager.FindByEmailAsync(changeUserPasswordResource.Email);
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, changeUserPasswordResource.Password,
                 changeUserPasswordResource.NewPassword);
@@ -263,13 +264,12 @@ namespace SpiritTime.Backend.Controllers.Account
             var result = !changePasswordResult.Succeeded
                 ? new ChangeUserPasswordResult
                 {
-                    Error = changePasswordResult.Errors.ToList().Select(x => x.ToString()).ToList(), 
+                    Error      = changePasswordResult.Errors.ToList().Select(x => x.ToString()).ToList(),
                     Successful = false
                 }
                 : new ChangeUserPasswordResult {Error = null, Successful = true};
 
             return new JsonResult(result);
-
         }
 
         /// <summary>
@@ -283,13 +283,11 @@ namespace SpiritTime.Backend.Controllers.Account
         [HttpDelete(ApiMethod.DeleteUser)]
         public async Task<IActionResult> DeleteUser(DeleteUserResource deleteUserResource)
         {
-            var user = await _userManager.FindByEmailAsync(deleteUserResource.Email);
+            var user         = await _userManager.FindByEmailAsync(deleteUserResource.Email);
             var deleteResult = await _userManager.DeleteAsync(user);
 
 
-            var result = !deleteResult.Succeeded ? 
-                new DeleteUserResult { Error = deleteResult.Errors.ToList().Select(x=>x.Description).ToList(), Successful = false} : 
-                new DeleteUserResult { Successful = true};
+            var result = !deleteResult.Succeeded ? new DeleteUserResult {Error = deleteResult.Errors.ToList().Select(x => x.Description).ToList(), Successful = false} : new DeleteUserResult {Successful = true};
 
             return new JsonResult(result);
         }
@@ -308,14 +306,38 @@ namespace SpiritTime.Backend.Controllers.Account
                 var userId   = GetUserId();
                 var user     = await _unitOfWork.ApplicationUserRepository.GetUniqueByAsync(x => x.Id == userId);
                 var userInfo = _mapper.Map<UserInfo>(user);
-            
-                return new JsonResult(new UserInfoResult{UserInfo = userInfo, Successful = true});
+                return new JsonResult(new UserInfoResult {UserInfo = userInfo, Successful = true});
             }
             catch (Exception ex)
             {
-                return new JsonResult(new UserInfoResult{Error = ex.Message, Successful = true});
+                return new JsonResult(new UserInfoResult {Error = ex.Message, Successful = true});
             }
+        }
 
+        /// <summary>
+        /// Gets the Info of a user
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(ApiMethod.EditUserInfo)]
+        public async Task<IActionResult> EditUserInfo(UserInfo info)
+        {
+            try
+            {
+                var userId = GetUserId();
+                var user   = await _unitOfWork.ApplicationUserRepository.GetUniqueByAsync(x => x.Id == userId);
+                user.Firstname = string.IsNullOrEmpty(info.Firstname) ? "" : info.Firstname;
+                user.Lastname  = string.IsNullOrEmpty(info.Lastname) ? "" : info.Lastname;
+                _unitOfWork.ApplicationUserRepository.Update(user);
+                await _unitOfWork.SaveAsync();
+
+                var userInfo = _mapper.Map<UserInfo>(user);
+                return new JsonResult(new UserInfoResult {UserInfo = userInfo, Successful = true});
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new UserInfoResult {Error = ex.Message, Successful = true});
+            }
         }
     }
 }
