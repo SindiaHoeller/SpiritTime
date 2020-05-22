@@ -83,6 +83,18 @@ namespace SpiritTime.Frontend.Services.AuthServices
                 return new UserInfoResult { Successful = false, Error = ex.Message };
             }
         }
+        public async Task<UserInfoResult> UpdateUserInfo(UserInfo userInfo)
+        {
+            try
+            {
+                await SetAuthenticationHeader();
+                return await _httpClient.PostJsonAsync<UserInfoResult>(_path.EditUserInfo, userInfo);
+            }
+            catch (Exception ex)
+            {
+                return new UserInfoResult { Successful = false, Error = ex.Message };
+            }
+        }
 
 
         public async Task Logout()

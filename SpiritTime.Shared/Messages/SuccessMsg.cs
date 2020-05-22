@@ -22,6 +22,7 @@ namespace SpiritTime.Shared.Messages
         public const string RuleEdited = "Rule successfully edited for the Trigger: ";
 
         public const string UpdatedOptions = "Successfully updated this Option";
+        public const string UpdatedUserInfo = "Successfully updated the User Infos";
 
         public const string TagsForTaskEdited = "Tags for Task successfully edited.";
     }

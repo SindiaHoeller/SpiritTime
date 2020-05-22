@@ -19,6 +19,8 @@
         private readonly string _deleteUser;
         public string GetUserInfo => _getUserInfo;
         private readonly string _getUserInfo;
+        public string EditUserInfo => _editUserInfo;
+        private readonly string _editUserInfo;
 
 
         // Workspace
@@ -92,8 +94,9 @@
             _changeUserPassword = basepath + account + ApiMethod.ChangeUserPassword;
             _deleteUser = basepath + account + ApiMethod.DeleteUser;
             _getUserInfo = basepath + account + ApiMethod.GetUserInfo;
+            _editUserInfo = basepath + account + ApiMethod.EditUserInfo;
 
-            var workspace = ControllerNames.Workspaces + "/";;
+            var workspace = ControllerNames.Workspaces + "/";
             _workspaceGetall = basepath + workspace + ApiMethod.GetallByUserId;
             _workspaceGetOne = basepath + workspace + ApiMethod.GetOneById;
             _workspaceAdd = basepath + workspace + ApiMethod.Create;

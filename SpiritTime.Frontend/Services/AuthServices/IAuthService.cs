@@ -13,5 +13,6 @@ namespace SpiritTime.Frontend.Services.AuthServices
         //Task<AuthenticationResult> GetUserByAccessTokenAsync(string accessToken);
         Task Logout();
         Task<UserInfoResult> GetUserInfo();
+        Task<UserInfoResult> UpdateUserInfo(UserInfo userInfo);
     }
 }
