@@ -12,7 +12,9 @@ namespace SpiritTime.Shared.Messages
         public const string ConfirmDeletion = "Are you sure, that you want to delete this item?";
         public const string NoElements = "No Element available. Please create one first.";
         public const string Save = "Save";
-        public const string ChangeEmail = "ChangeEmail";
+        public const string ChangeEmail = "Change Email";
+        public const string ChangePassword = "Change Password";
+        public const string DeleteUser = "Delete my User";
 
         public const string Options = "Options";
         public const string Task = "Task";
@@ -43,7 +45,12 @@ namespace SpiritTime.Shared.Messages
         public const string NameField = "Field 'name'";
         public const string TriggerOn = "Triggers on this fields";
         public const string ReplaceTrigger = "Trigger will get replaced.";
-        
+
+        public const string DeleteUserMsg = "Are you sure, that you want to delete your Account?";
+        public const string DeleteUserDetail = "It is NOT possible to undo this! Your account and all contained data will be immediately deleted!";
+        public const string DeleteUserDetail2 = "If you are sure, please type in  '" + DeleteConfirmString +"' into the box below.";
+        public const string DeleteConfirmString = "DELETE";
+
 
     }
 }

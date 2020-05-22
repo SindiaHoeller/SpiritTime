@@ -13,11 +13,12 @@ label.small-separator
   
 [type="datetime-local"].hide-date
   background: transparent url("../img/calendar-alt.png")  50% 50% no-repeat
-  width: 30px
+  width: 70px
   background-size: 15px
   border: none
-  cursor: pointer
+  //cursor: pointer
   transition: background-image 0.5s ease-in-out
+  padding: 0 20px 0 0
   &:hover
     background-image: url("../img/calendar-alt_focus.png")
   &::-webkit-inner-spin-button
@@ -26,6 +27,8 @@ label.small-separator
     display: none
   &::-webkit-calendar-picker-indicator
     opacity: 0
+    //width: 100px
+    //height: 15px
     cursor: pointer
   &::-webkit-datetime-edit-month-field
     display: none
