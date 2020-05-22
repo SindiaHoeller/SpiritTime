@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Blazored.LocalStorage;
@@ -10,6 +11,8 @@ using SpiritTime.Shared.Api;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models.Account;
 using SpiritTime.Shared.Models.Account.Authentication;
+using SpiritTime.Shared.Models.Account.ChangeUserPassword;
+using SpiritTime.Shared.Models.Account.DeleteUser;
 using SpiritTime.Shared.Models.Account.Registration;
 
 namespace SpiritTime.Frontend.Services.AuthServices
@@ -93,6 +96,31 @@ namespace SpiritTime.Frontend.Services.AuthServices
             catch (Exception ex)
             {
                 return new UserInfoResult { Successful = false, Error = ex.Message };
+            }
+        }
+        
+        public async Task<ChangeUserPasswordResult> ChangeUserPassword(ChangeUserPasswordResource pwChangeInfo)
+        {
+            try
+            {
+                await SetAuthenticationHeader();
+                return await _httpClient.PutJsonAsync<ChangeUserPasswordResult>(_path.ChangeUserPassword, pwChangeInfo);
+            }
+            catch (Exception ex)
+            {
+                return new ChangeUserPasswordResult { Successful = false, Error = new List<string>{ex.Message} };
+            }
+        }
+        public async Task<DeleteUserResult> DeleteOwnUser(DeleteUserResource deleteUser)
+        {
+            try
+            {
+                await SetAuthenticationHeader();
+                return await _httpClient.PutJsonAsync<DeleteUserResult>(_path.DeleteOwnUser, deleteUser);
+            }
+            catch (Exception ex)
+            {
+                return new DeleteUserResult { Successful = false, Error = new List<string>{ex.Message} };
             }
         }
 

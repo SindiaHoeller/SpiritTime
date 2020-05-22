@@ -17,6 +17,8 @@ namespace SpiritTime.Shared.Messages
 
         public const string PasswordDoesNotMeetRequirements = "The password could not be changed, because it does not meet the requirements.";
         public const string PasswordDoNotMatch = "The passwords do not match";
-        
+
+        public const string Abort = "Aborted current action";
+
     }
 }

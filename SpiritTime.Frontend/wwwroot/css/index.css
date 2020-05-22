@@ -208,6 +208,13 @@ div.custom-task-background .custom-small-button {
   right: 65px;
 }
 
+.account-info input {
+  min-width: 500px;
+}
+.account-info button {
+  min-width: 200px;
+}
+
 .quick-input {
   width: 100%;
   background-color: transparent;
@@ -788,11 +795,11 @@ label.small-separator {
 
 [type=datetime-local].hide-date {
   background: transparent url("../img/calendar-alt.png") 50% 50% no-repeat;
-  width: 30px;
+  width: 70px;
   background-size: 15px;
   border: none;
-  cursor: pointer;
   transition: background-image 0.5s ease-in-out;
+  padding: 0 20px 0 0;
 }
 [type=datetime-local].hide-date:hover {
   background-image: url("../img/calendar-alt_focus.png");

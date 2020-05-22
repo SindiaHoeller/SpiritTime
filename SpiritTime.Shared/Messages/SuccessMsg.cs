@@ -25,5 +25,7 @@ namespace SpiritTime.Shared.Messages
         public const string UpdatedUserInfo = "Successfully updated the User Infos";
 
         public const string TagsForTaskEdited = "Tags for Task successfully edited.";
+
+        public const string PasswordUpdated = "Successfully updated user password";
     }
 }

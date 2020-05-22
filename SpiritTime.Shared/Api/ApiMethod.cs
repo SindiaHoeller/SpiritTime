@@ -8,7 +8,7 @@ namespace SpiritTime.Shared.Api
         public const string ChangeUserEmail = "ChangeUserEmail";
         public const string ConfirmEmailAfterChange = "ConfirmEmailAfterChange";
         public const string ChangeUserPassword = "ChangeUserPassword";
-        public const string DeleteUser = "DeleteUser";
+        public const string DeleteOwnUser = "DeleteOwnUser";
         public const string GetUserInfo = "GetUserInfo";
         public const string EditUserInfo = "EditUserInfo";
         

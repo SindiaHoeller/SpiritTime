@@ -15,8 +15,8 @@
         private readonly string _confirmEmailAfterChange;
         public string ChangeUserPassword => _changeUserPassword;
         private readonly string _changeUserPassword;
-        public string DeleteUser => _deleteUser;
-        private readonly string _deleteUser;
+        public string DeleteOwnUser => _deleteOwnUser;
+        private readonly string _deleteOwnUser;
         public string GetUserInfo => _getUserInfo;
         private readonly string _getUserInfo;
         public string EditUserInfo => _editUserInfo;
@@ -92,7 +92,7 @@
             _changeUserEmail = basepath + account + ApiMethod.ChangeUserEmail;
             _confirmEmailAfterChange = basepath + account + ApiMethod.ConfirmEmailAfterChange;
             _changeUserPassword = basepath + account + ApiMethod.ChangeUserPassword;
-            _deleteUser = basepath + account + ApiMethod.DeleteUser;
+            _deleteOwnUser = basepath + account + ApiMethod.DeleteOwnUser;
             _getUserInfo = basepath + account + ApiMethod.GetUserInfo;
             _editUserInfo = basepath + account + ApiMethod.EditUserInfo;
 

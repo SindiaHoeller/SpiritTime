@@ -256,10 +256,16 @@ namespace SpiritTime.Backend.Controllers.Account
         public async Task<IActionResult> ChangeUserPassword(ChangeUserPasswordResource changeUserPasswordResource)
         {
             //TODO : Include check for authenticated user
-            var user = await _userManager.FindByEmailAsync(changeUserPasswordResource.Email);
+            var userId = GetUserId();
+            var user   = await _unitOfWork.ApplicationUserRepository.GetUniqueByAsync(x => x.Id == userId);
+            if (user.Email != changeUserPasswordResource.Email)
+                return new JsonResult(
+                    new ChangeUserPasswordResult{Error = new List<string>{"The User does not have the permission to change this mail adress!"}, 
+                        Successful = false});
+            
+            //var user = await _userManager.FindByEmailAsync(changeUserPasswordResource.Email);
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, changeUserPasswordResource.Password,
                 changeUserPasswordResource.NewPassword);
-
 
             var result = !changePasswordResult.Succeeded
                 ? new ChangeUserPasswordResult
@@ -267,7 +273,7 @@ namespace SpiritTime.Backend.Controllers.Account
                     Error      = changePasswordResult.Errors.ToList().Select(x => x.ToString()).ToList(),
                     Successful = false
                 }
-                : new ChangeUserPasswordResult {Error = null, Successful = true};
+                : new ChangeUserPasswordResult { Error = null, Successful = true };
 
             return new JsonResult(result);
         }
@@ -280,14 +286,19 @@ namespace SpiritTime.Backend.Controllers.Account
         /// <response code="200">User successfully deleted</response>
         /// <response code="400">Delete user failed</response>
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [HttpDelete(ApiMethod.DeleteUser)]
-        public async Task<IActionResult> DeleteUser(DeleteUserResource deleteUserResource)
+        [HttpPut(ApiMethod.DeleteOwnUser)]
+        public async Task<IActionResult> DeleteOwnUser(DeleteUserResource deleteUserResource)
         {
-            var user         = await _userManager.FindByEmailAsync(deleteUserResource.Email);
+            var userId = GetUserId();
+            var user   = await _unitOfWork.ApplicationUserRepository.GetUniqueByAsync(x => x.Id == userId);
+            if(user.Email != deleteUserResource.Email)
+                return new JsonResult(new DeleteUserResult{Error = new List<string>{"You are not authenticated to delete this user."}, Successful = false});
+            //var user         = await _userManager.FindByEmailAsync(deleteUserResource.Email);
             var deleteResult = await _userManager.DeleteAsync(user);
 
-
-            var result = !deleteResult.Succeeded ? new DeleteUserResult {Error = deleteResult.Errors.ToList().Select(x => x.Description).ToList(), Successful = false} : new DeleteUserResult {Successful = true};
+            var result = !deleteResult.Succeeded 
+                ? new DeleteUserResult {Error = deleteResult.Errors.ToList().Select(x => x.Description).ToList(), Successful = false} 
+                : new DeleteUserResult {Successful = true};
 
             return new JsonResult(result);
         }

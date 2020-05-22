@@ -449,6 +449,7 @@
         <e p="Helper" t="Include">
           <e p="Crypt.cs" t="Include" />
           <e p="JwtHelper.cs" t="Include" />
+          <e p="PasswordValidator.cs" t="Include" />
           <e p="SD.cs" t="Include" />
         </e>
         <e p="Messages" t="Include">
