@@ -403,6 +403,7 @@
             <e p="_buttons.sass" t="Include" />
             <e p="_checkbox.sass" t="Include" />
             <e p="_colors.sass" t="Include" />
+            <e p="_context-menu.sass" t="Include" />
             <e p="_datetime.sass" t="Include" />
             <e p="_general.sass" t="Include" />
             <e p="_multiselect.sass" t="Include" />

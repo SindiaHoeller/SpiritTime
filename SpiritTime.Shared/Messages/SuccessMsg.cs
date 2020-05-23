@@ -18,6 +18,10 @@ namespace SpiritTime.Shared.Messages
         public const string TagAdded = "Tag successfully added: ";
         public const string TagEdited = "Tag successfully edited: ";
         
+        public const string TaskAdded = "Task successfully added: ";
+        public const string TaskEdited = "Task successfully edited: ";
+        public const string TaskDeleted = "Task successfully deleted: ";
+        
         public const string RuleAdded = "Rule successfully added for the Trigger: ";
         public const string RuleEdited = "Rule successfully edited for the Trigger: ";
 
