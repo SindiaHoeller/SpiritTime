@@ -99,7 +99,7 @@
         <e p="appsettings.json" t="Include" />
         <e p="Assets" t="Include">
           <e p="electron_32x32.png" t="Include" />
-          <e p="favicon-120.png" t="Include" />
+          <e p="favicon120.png" t="Include" />
           <e p="favicon32.png" t="Include" />
           <e p="icon32.png" t="Include" />
         </e>
@@ -309,6 +309,7 @@
             <e p="site.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
+          <e p="favicon_old.ico" t="Include" />
           <e p="img" t="Include">
             <e p="calendar-alt.png" t="Include" />
             <e p="calendar-alt_focus.png" t="Include" />
