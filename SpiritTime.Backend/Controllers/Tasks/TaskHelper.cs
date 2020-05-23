@@ -243,15 +243,20 @@ namespace SpiritTime.Backend.Controllers.Tasks
         public async Task<TaskDto> FindTagsByTrigger(TaskDto task)
         {
             var allTags = await _unitOfWork.TagRepository.GetMultipleByAsync(x => x.WorkspaceId == task.WorkspaceId);
-            if(task.Name.Contains("##"))
+            if (!string.IsNullOrEmpty(task.Name))
             {
-                var (taglist, name) = await GetTags(task, task.Name, allTags);
-                task.TagList.AddRange(taglist);
-                task.Name = name.Trim();
+                if(task.Name.Contains(SD.TagTrigger))
+                {
+                    var (taglist, name) = await GetTags(task, task.Name, allTags);
+                    task.TagList.AddRange(taglist);
+                    task.Name = name.Trim();
+                }
             }
 
-            if (task.Description.Contains(SD.TagTrigger))
+            if (!string.IsNullOrEmpty(task.Description))
             {
+                if (!task.Description.Contains(SD.TagTrigger)) return task;
+                
                 var (taglist, description) = await GetTags(task, task.Description, allTags);
                 task.TagList.AddRange(taglist);
                 task.Description = description.Trim();

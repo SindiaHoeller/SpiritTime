@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
+using BlazorContextMenu;
 using Blazored.LocalStorage;
 using Blazorise;
 using Blazorise.Bootstrap;
@@ -69,16 +70,27 @@ namespace SpiritTime.Frontend
             services.AddScoped<IWorkspaceService, WorkspaceService>();
 
             services.AddScoped(typeof(ITableService<>), typeof(TableService<>));
-            
+
 
             services.AddSingleton<HttpClient>();
             services.AddSingleton<SelectState>();
 
+            services.AddBlazorContextMenu(options =>
+                options.ConfigureTemplate("dark", template =>
+                {
+                    template.MenuCssClass                = "dark-menu";
+                    template.MenuItemCssClass            = "dark-menu-item";
+                    template.MenuItemDisabledCssClass    = "dark-menu-item--disabled";
+                    template.MenuItemWithSubMenuCssClass = "dark-menu-item--with-submenu";
+                    template.Animation                   = Animation.Slide;
+                })
+            );
+
             services.AddAuthorization();
-            services.AddBlazorise( options =>
+            services.AddBlazorise(options =>
                 {
                     options.ChangeTextOnKeyPress = true; // optional
-                } )
+                })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
         }
@@ -112,7 +124,7 @@ namespace SpiritTime.Frontend
                 endpoints.MapFallbackToPage("/_Host");
             });
             // Open the Electron-Window here
-            
+
             if (HybridSupport.IsElectronActive)
             {
                 ElectronBootstrap();
@@ -120,36 +132,37 @@ namespace SpiritTime.Frontend
 
             // Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
+
         private async void ElectronBootstrap()
         {
             var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
             {
-                Title = "SpiritTimes",
+                Title  = "SpiritTimes",
                 Width  = 1152,
                 Height = 940,
                 Show   = false
             });
-            
+
             // await browserWindow.WebContents.Session.ClearCacheAsync();
-            
+
             browserWindow.OnReadyToShow += () => browserWindow.Show();
             browserWindow.SetTitle("SpiritTime");
             Electron.Menu.SetApplicationMenu(ElectronMenu.Get());
-            
-            Electron.GlobalShortcut.Register(Configuration["Shortcuts:NewTask"], async () => {
-            
-                var viewPath = $"http://localhost:{BridgeSettings.WebPort}/newtask";
-                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync( BlazorConfig.GetMiniWindowOptions(), viewPath);
+
+            Electron.GlobalShortcut.Register(Configuration["Shortcuts:NewTask"], async () =>
+            {
+                var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask";
+                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(BlazorConfig.GetMiniWindowOptions(), viewPath);
                 secondaryWindow.OnClose += browserWindow.Reload;
             });
-            Electron.GlobalShortcut.Register(Configuration["Shortcuts:CurrentTask"], async () => {
-            
-                var viewPath = $"http://localhost:{BridgeSettings.WebPort}/newtask/current";
-                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync( BlazorConfig.GetMiniWindowOptions(), viewPath);
+            Electron.GlobalShortcut.Register(Configuration["Shortcuts:CurrentTask"], async () =>
+            {
+                var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask/current";
+                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(BlazorConfig.GetMiniWindowOptions(), viewPath);
                 secondaryWindow.OnClose += browserWindow.Reload;
             });
-            
-            
+
+
             Electron.App.WillQuit += (args) => Task.Run(() => Electron.GlobalShortcut.UnregisterAll());
         }
     }

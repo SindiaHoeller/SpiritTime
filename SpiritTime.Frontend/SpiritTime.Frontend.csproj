@@ -3,6 +3,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Blazor.ContextMenu" Version="1.6.0" />
     <PackageReference Include="Blazored.LocalStorage" Version="2.1.5" />
     <PackageReference Include="Blazored.Typeahead" Version="4.3.0" />
     <PackageReference Include="Blazorise" Version="0.9.0" />
@@ -91,6 +92,10 @@
     </Content>
     <Content Update="Shared\EmptyLayout.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="wwwroot\sass\_context-menu.sass">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
   <ProjectExtensions>

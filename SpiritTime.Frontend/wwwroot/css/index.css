@@ -795,7 +795,7 @@ label.small-separator {
 
 [type=datetime-local].hide-date {
   background: transparent url("../img/calendar-alt.png") 50% 50% no-repeat;
-  width: 70px;
+  width: 50px;
   background-size: 15px;
   border: none;
   transition: background-image 0.5s ease-in-out;
@@ -840,24 +840,38 @@ label.small-separator {
   color: red;
 }
 
-.tooltip-inner {
-  background-color: #00cc00;
+div.dark-menu {
+  color: #f7f7f7;
+  background-color: #7b7b7b;
 }
 
-.tooltip.bs-tooltip-right .arrow:before {
-  border-right-color: #00cc00 !important;
+.dark-menu .dark-menu-item--with-submenu:after {
+  border-left-color: #f7f7f7;
 }
 
-.tooltip.bs-tooltip-left .arrow:before {
-  border-right-color: #00cc00 !important;
+.dark-menu .dark-menu-item--disabled,
+.dark-menu .dark-menu-item {
+  background-color: #7b7b7b;
+  padding: 10px 15px;
 }
 
-.tooltip.bs-tooltip-bottom .arrow:before {
-  border-right-color: #00cc00 !important;
+.dark-menu .dark-menu-item--disabled:hover,
+.dark-menu .dark-menu-item:hover {
+  background-color: #313131;
 }
 
-.tooltip.bs-tooltip-top .arrow:before {
-  border-right-color: #00cc00 !important;
+.blazor-context-menu--default,
+.blazor-context-menu__list {
+  border-radius: 0 10px 10px 10px;
+  padding: 0;
+}
+
+.blazor-context-menu__item--default {
+  border-radius: 0 10px 10px 10px;
+}
+
+.task-list tr {
+  display: block;
 }
 
 /*# sourceMappingURL=index.css.map */

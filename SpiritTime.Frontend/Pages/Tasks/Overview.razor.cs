@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
+using BlazorContextMenu;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -28,6 +29,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
         [Parameter] public  List<TagDto>  TagList      { get; set; }
         [Parameter] public  TagDto        SelectedTag  { get; set; }
         [Parameter] public  TaskDto       CurrentItem  { get; set; }
+        [Inject] private IJSRuntime jsRuntime { get; set; }
 
         private        bool                ShowError          { get; set; } = false;
         private        string              ErrorMessage       { get; set; }
@@ -399,7 +401,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 var result = await Service.UpdateTags(item);
                 if (result.Successful)
                 {
-                    ToastService.ShowSuccess(SuccessMsg.TagsForTaskEdited);
+                    ToastService.ShowSuccess(SuccessMsg.TaskEdited + item.Name);
                     foreach (var tag in item.TagList)
                     {
                         Console.WriteLine(tag.Name);
@@ -416,8 +418,41 @@ namespace SpiritTime.Frontend.Pages.Tasks
             }
         }
 
-        #region Filter
+        private async void DeleteClick(ItemClickEventArgs e)
+        {
+            try
+            {
+                var item = e.Data as TaskDto;
+                if (item == null) return;
+                var result = await Service.Delete(item.Id);
+                if (result.Successful)
+                {
+                    ToastService.ShowSuccess(SuccessMsg.TaskDeleted + item.Name);
+                    Helper.RemoveItemFromDailyList(item, TaskDailyLists);
+                    StateHasChanged();
+                }
+                else
+                {
+                    ToastService.ShowError(result.Error);
+                }
+            }
+            catch (Exception exception)
+            {
+                ToastService.ShowError(exception.Message);
+            }
+            
+            
+        }
+        private async void ToggleBooked(ItemClickEventArgs e)
+        {
+            var item = e.Data as TaskDto;
+            await UpdateCheckbox(item);
+        }
+        
 
+        
+
+        #region Filter
         private void ToggleFilterOptions()
         {
             ShowFilterOptions = !ShowFilterOptions;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SpiritTime.Frontend.Infrastructure;
 using SpiritTime.Shared.Models.TagModels;
 using SpiritTime.Shared.Models.TaskModels;
 
@@ -41,8 +42,9 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 span = span.Duration();
                 timeSpanString += "MINUS ";
             }
-            timeSpanString += span.Days > 0 ? span.Days + "days " : "";
-            timeSpanString += span.Hours > 9 ? span.Hours + ":" : "0" + span.Hours + ":";
+            //timeSpanString += span.Days > 0 ? span.Days + "days " : "";
+            var hours = span.Hours + span.Days * 24;
+            timeSpanString += hours > 9 ? hours + ":" : "0" + hours + ":";
             timeSpanString += span.Minutes > 9 ? span.Minutes.ToString() : "0" + span.Minutes;
             if(includeSecs)
                 timeSpanString += span.Seconds > 9 ? ":" + span.Seconds : ":0" + span.Seconds;
@@ -93,6 +95,11 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 newDailyList.TimeSpanText =  GetTimSpanByTimeSpan(newDailyList.TimeSpan, false);
                 taskDailyLists.Add(newDailyList);
             }
+        }
+
+        public static void RemoveItemFromDailyList(TaskDto item, List<TaskDailyList> taskDailyLists)
+        {
+            taskDailyLists.ForEach(x => x.ItemList.Remove(item));
         }
     }
 }
