@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Hosting;
+using SpiritTime.Frontend.ElectronConfig;
 using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.OptionsService;
 using SpiritTime.Shared.Messages;
@@ -13,6 +15,7 @@ namespace SpiritTime.Frontend.Pages.Options
     {
         [Inject] private IOptionService Service { get; set; }
         [Inject] private IToastService ToastService { get; set; }
+        [Inject] private IWebHostEnvironment _env { get; set; }
         private bool ShowError { get; set; }
         private string ErrMsg { get; set; }
         private bool ShowWorkspaces { get; set; }
@@ -53,6 +56,11 @@ namespace SpiritTime.Frontend.Pages.Options
                 ShowError = true;
             }
             StateHasChanged();
+        }
+
+        private void Opentray()
+        {
+            BlazorConfig.CreateTray(_env);
         }
     }
 }

@@ -712,6 +712,7 @@ input:focus, input.form-control:focus, input.form-control[readonly]:focus {
   position: absolute;
   background: #393939;
   left: 56px;
+  top: 0;
   width: 120px;
   height: 150px;
   overflow: auto;
@@ -774,6 +775,11 @@ input:focus, input.form-control:focus, input.form-control[readonly]:focus {
 }
 .multiselect label:hover::after {
   border-left-color: #cf9946;
+}
+
+.tags-wrapper {
+  width: 100%;
+  height: 100%;
 }
 
 [type=time].hide-date {

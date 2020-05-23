@@ -97,13 +97,22 @@
         <e p="App.razor" t="Include" />
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
+        <e p="Assets" t="Include">
+          <e p="electron_32x32.png" t="Include" />
+          <e p="favicon-120.png" t="Include" />
+          <e p="favicon32.png" t="Include" />
+          <e p="icon32.png" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Config" t="Include">
           <e p="AppSettings.cs" t="Include" />
-          <e p="BlazorConfig.cs" t="Include" />
           <e p="ColorCalc.cs" t="Include" />
         </e>
         <e p="electron.manifest.json" t="Include" />
+        <e p="ElectronConfig" t="Include">
+          <e p="BlazorConfig.cs" t="Include" />
+          <e p="ElectronMenu.cs" t="Include" />
+        </e>
         <e p="Infrastructure" t="Include">
           <e p="TaskComparer.cs" t="Include" />
         </e>
@@ -260,7 +269,6 @@
           </e>
         </e>
         <e p="Shared" t="Include">
-          <e p="ElectronMenu.cs" t="Include" />
           <e p="EmptyLayout.razor" t="Include" />
           <e p="LoginMenu.razor" t="Include" />
           <e p="MainLayout.razor" t="Include" />

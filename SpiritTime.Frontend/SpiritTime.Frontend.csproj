@@ -25,6 +25,15 @@
   <ItemGroup>
     <Folder Include="Pages\Workspaces\" />
     <Folder Include="Profiles\" />
+    <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\icon32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\favicon32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Update="Pages\Options\Overview.razor">
