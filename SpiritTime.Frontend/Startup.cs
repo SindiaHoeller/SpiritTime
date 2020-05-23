@@ -21,6 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpiritTime.Core.Contracts;
 using SpiritTime.Frontend.Config;
+using SpiritTime.Frontend.ElectronConfig;
 using SpiritTime.Frontend.Pages.Tasks;
 using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Partials.ToastModal;
@@ -128,8 +129,8 @@ namespace SpiritTime.Frontend
             if (HybridSupport.IsElectronActive)
             {
                 ElectronBootstrap();
+                // BlazorConfig.CreateTray(env);
             }
-
             // Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
 
@@ -161,7 +162,6 @@ namespace SpiritTime.Frontend
                 var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(BlazorConfig.GetMiniWindowOptions(), viewPath);
                 secondaryWindow.OnClose += browserWindow.Reload;
             });
-
 
             Electron.App.WillQuit += (args) => Task.Run(() => Electron.GlobalShortcut.UnregisterAll());
         }

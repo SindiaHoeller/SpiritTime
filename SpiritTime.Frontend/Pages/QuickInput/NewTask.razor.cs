@@ -39,6 +39,10 @@ namespace SpiritTime.Frontend.Pages.QuickInput
                     Electron.Notification.Show(new NotificationOptions("Error", result.Error));
                 }
             }
+            else
+            {
+                TaskDto.Name = await Electron.Clipboard.ReadTextAsync();
+            }
         }
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
