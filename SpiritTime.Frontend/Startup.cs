@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -128,17 +129,18 @@ namespace SpiritTime.Frontend
 
             if (HybridSupport.IsElectronActive)
             {
-                ElectronBootstrap();
+                ElectronBootstrap(env);
                 // BlazorConfig.CreateTray(env);
             }
             // Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
 
-        private async void ElectronBootstrap()
+        private async void ElectronBootstrap(IWebHostEnvironment env)
         {
             var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
             {
                 Title  = "SpiritTimes",
+                Icon = Path.Combine(env.ContentRootPath, "Assets/favicon120.png"),
                 Width  = 1152,
                 Height = 940,
                 Show   = false
