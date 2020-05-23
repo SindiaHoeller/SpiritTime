@@ -44,6 +44,8 @@ namespace SpiritTime.Frontend.Pages.Tasks
         private static Timer               _timer;
         private        bool                ValueChanged { get; set; }
         private        bool                IsDisabled   { get; set; }
+        public DateTime Date { get; set; }
+        private DateTime valueDateTime = DateTime.Now;
 
         //Needed for changing focus on datepicker
         private ElementReference focusHelper;
@@ -168,6 +170,31 @@ namespace SpiritTime.Frontend.Pages.Tasks
             ValueChanged = true;
             await focusHelper.Focus(JsRuntime);
         }
+        
+
+        private void ToActualDate(DateTime actual)
+        {
+            valueDateTime = actual;
+            StateHasChanged();
+        }
+
+        private async void WriteBackStartDate(TaskDto task)
+        {
+            if (task.StartDate != valueDateTime)
+            {
+                task.StartDate = valueDateTime.Date.Add(task.StartDate.TimeOfDay);
+                await UpdateStartDate(task);
+            }
+        }
+        
+        private async void WriteBackEndDate(TaskDto task)
+        {
+            if (task.EndDate != valueDateTime)
+            {
+                task.EndDate = valueDateTime.Date.Add(task.EndDate.TimeOfDay);
+                await Update(task);
+            }
+        }
 
 
         private async Task UpdateCheckbox(TaskDto item)
@@ -244,6 +271,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                             // Update the dailylist timespan text
                             Helper.UpdateTimeSpanTextForList(TaskDailyLists);
                         }
+                        StateHasChanged();
 
                         ToastService.ShowSuccess(SuccessMsg.SuccessedUpdate);
                         IsDisabled = false;
@@ -448,8 +476,20 @@ namespace SpiritTime.Frontend.Pages.Tasks
             var item = e.Data as TaskDto;
             await UpdateCheckbox(item);
         }
-        
 
+
+        //
+        // private void ToDateTimeNow()
+        // {
+        //     testDateTime = DateTime.Now;
+        //     StateHasChanged();
+        // }
+        //
+        // private void TestChanged()
+        // {
+        //     var test = testDateTime;
+        //     StateHasChanged();
+        // }
         
 
         #region Filter

@@ -34,186 +34,194 @@
 <div class="text-center">
     <h1 >@TextMsg.Task</h1>
 </div>
+
 @if (ShowError && ErrorMessage != null)
 {
     <div class="alert alert-danger" role="alert">
         @ErrorMessage
     </div>
 }
+<div class="custom-task-background mb-4 task-list">
+    @if (CurrentItem != null)
+    {
+        <div class="d-flex">
+            <div class="">
+                <Tooltip Text="Name" Placement="Placement.Top">
+                    <input @bind-value="@CurrentItem.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control" placeholder="Name"/>
+                </Tooltip>
 
-@if (CurrentItem != null)
-{
-    <div class="d-flex">
-        <div class="">
-            <Tooltip Text="Name" Placement="Placement.Top">
-                <input @bind-value="@CurrentItem.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control" placeholder="Name"/>
-            </Tooltip>
-
-        </div>
-        <div class="flex-grow-1">
-            <Tooltip Text="Description" Placement="Placement.Top">
-                <input @bind-value="@CurrentItem.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control"
-                        placeholder="Description"/>
-            </Tooltip>
-        </div>
-        <div class="">
-            <Tooltip Text="Start Date" Placement="Placement.Top" Class="d-flex justify-content-start">
-                <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(async () => await UpdateStartDate(CurrentItem))" type="datetime-local" class="form-control hide-date" placeholder="StartDate"/>
-                <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="time" class="form-control hide-date" placeholder="StartTime"/>
-            </Tooltip>
-        </div>
-
-        @if (!HideTags)
-        {
-            <div class="col-lg-2 col-sm-1 tags">
-                <Tooltip Text="Taglist" Placement="Placement.Top">
-                    <MultiSelectPartial
-                        CurrentItem="@CurrentItem"
-                        TaskItem="@CurrentItem"
-                        TagList="@TagList"
-                        SelectState="@SelectState">
-                    </MultiSelectPartial>
+            </div>
+            <div class="flex-grow-1">
+                <Tooltip Text="Description" Placement="Placement.Top">
+                    <input @bind-value="@CurrentItem.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control"
+                            placeholder="Description"/>
                 </Tooltip>
             </div>
-        }
+            <div class="">
+                <Tooltip Text="Start Date" Placement="Placement.Top" Class="d-flex justify-content-start">
+                    <input @bind-value="@valueDateTime" @onfocusin="@(() => ToActualDate(CurrentItem.StartDate))" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(() => WriteBackStartDate(CurrentItem))"
+                            type="date" class="form-control hide-date"/>
+                    <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="time" class="form-control hide-date" placeholder="StartTime"/>
+                </Tooltip>
+            </div>
 
-        <div class="">
-            <Tooltip Text="Duration" Placement="Placement.Top">
-                <label class="form-control">@CurrentTime</label>
-            </Tooltip>
+            @if (!HideTags)
+            {
+                <div class="col-lg-2 col-sm-1 tags">
+                    <Tooltip Text="Taglist" Placement="Placement.Top">
+                        <MultiSelectPartial
+                            CurrentItem="@CurrentItem"
+                            TaskItem="@CurrentItem"
+                            TagList="@TagList"
+                            SelectState="@SelectState">
+                        </MultiSelectPartial>
+                    </Tooltip>
+                </div>
+            }
+
+            <div class="">
+                <Tooltip Text="Duration" Placement="Placement.Top">
+                    <label class="form-control">@CurrentTime</label>
+                </Tooltip>
+            </div>
+            <div class="">
+                <Tooltip Text="Stop" Placement="Placement.Top">
+                    <button class="custom-small-button red ml-3" @onclick="@(() => Stop())">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                </Tooltip>
+            </div>
         </div>
-        <div class="">
-            <Tooltip Text="Stop" Placement="Placement.Top">
-                <button class="custom-small-button red ml-3" @onclick="@(() => Stop())">
-                    <i class="fas fa-stop"></i>
+    }
+    else if (NewItem != null)
+    {
+        <div class="d-flex justify-content-around">
+            <Tooltip Text="Name" Placement="Placement.Top">
+                <input @bind="@NewItem.Name" type="text" class="form-control" placeholder="Name"/>
+            </Tooltip>
+
+            <div class=" flex-grow-1">
+                <Tooltip Text="Description" Placement="Placement.Top">
+                    <input @bind="@NewItem.Description" type="text" class="form-control" placeholder="Description"/>
+                </Tooltip>
+            </div>
+
+
+            <Tooltip Text="Start" Placement="Placement.Top">
+                <button class="custom-small-button green ml-3" @onclick="@(() => Start(NewItem))">
+                    <i class="fas fa-play"></i>
                 </button>
             </Tooltip>
         </div>
-    </div>
-}
-else if (NewItem != null)
-{
-    <div class="d-flex justify-content-around">
-        <Tooltip Text="Name" Placement="Placement.Top">
-            <input @bind="@NewItem.Name" type="text" class="form-control" placeholder="Name"/>
-        </Tooltip>
-
-        <div class=" flex-grow-1">
-            <Tooltip Text="Description" Placement="Placement.Top">
-                <input @bind="@NewItem.Description" type="text" class="form-control" placeholder="Description"/>
-            </Tooltip>
-        </div>
-
-
-        <Tooltip Text="Start" Placement="Placement.Top">
-            <button class="custom-small-button green ml-3" @onclick="@(() => Start(NewItem))">
-                <i class="fas fa-play"></i>
-            </button>
-        </Tooltip>
-    </div>
-}
-
+    }
+</div>
 @if (TaskDailyLists.Any())
 {
     foreach (var item in TaskDailyLists)
     {
-        <div class="custom-task-background mb-4 task-list">
-            <div class="d-flex justify-content-between task-header">
-                <h3>@item.Date.ToString("dd.MM.yyyy")</h3>
-                <h4>@item.TimeSpanText</h4>
-            </div>
+        if (item.ItemList.Any())
+        {
+            <div class="custom-task-background mb-4 task-list">
+                <div class="d-flex justify-content-between task-header">
+                    <h3>@item.Date.ToString("dd.MM.yyyy")</h3>
+                    <h4>@item.TimeSpanText</h4>
+                </div>
 
-            @foreach (var task in item.ItemList)
-            {
-                // if (task != CurrentItem)
-                // {
-                <ContextMenuTrigger Data="task" WrapperTag="tr" MenuId="contextMenu">
-                    <div class=" mb-1">
-                        <div class="d-flex">
-                            @if (!HideBookingOptions)
-                            {
-                                <div class="smiley-check">
-                                    @{ var buttonId = IsDisabled ? "" : "isBooked" + task.Id; }
-                                    @if (task.IsBooked)
-                                    {
-                                        <input checked="checked" id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
-                                    }
-                                    else
-                                    {
-                                        <input id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
-                                    }
-                                    <label @onclick="@(async () => await UpdateCheckbox(task))" for="@buttonId">
-                                        <Tooltip Text="Is Booked" Placement="Placement.Top">
-                                            <span>‼️</span>
-                                        </Tooltip>
-                                        <Tooltip Text="Not Booked" Placement="Placement.Top">
-                                            <span>📁</span>
-                                        </Tooltip>
+                @foreach (var task in item.ItemList)
+                {
+                    // if (task != CurrentItem)
+                    // {
+                    <ContextMenuTrigger Data="task" WrapperTag="tr" MenuId="contextMenu">
+                        <div class=" mb-1">
+                            <div class="d-flex">
+                                @if (!HideBookingOptions)
+                                {
+                                    <div class="smiley-check">
+                                        @{ var buttonId = IsDisabled ? "" : "isBooked" + task.Id; }
+                                        @if (task.IsBooked)
+                                        {
+                                            <input checked="checked" id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
+                                        }
+                                        else
+                                        {
+                                            <input id="@buttonId" @bind-value="@task.IsBooked" type="checkbox" class="form-control" placeholder="Is booked"/>
+                                        }
+                                        <label @onclick="@(async () => await UpdateCheckbox(task))" for="@buttonId">
+                                            <Tooltip Text="Is Booked" Placement="Placement.Top">
+                                                <span>‼️</span>
+                                            </Tooltip>
+                                            <Tooltip Text="Not Booked" Placement="Placement.Top">
+                                                <span>📁</span>
+                                            </Tooltip>
 
-                                    </label>
-                                </div>
-                            }
-
-                            <div class="flex-sm-shrink-1">
-                                <Tooltip Text="Name" Placement="Placement.Top">
-                                    <input @bind-value="@task.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Name"/>
-                                </Tooltip>
-
-                            </div>
-                            <div class="flex-grow-1">
-                                <Tooltip Text="Description" Placement="Placement.Top">
-                                    <input @bind-value="@task.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Description"/>
-                                </Tooltip>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <Tooltip Text="Start Date" Placement="Placement.Top" Class="d-flex justify-content-center">
-                                    <div class="d-flex justify-content-start">
-                                        @* @onfocusout="@(async () => await UpdateStartDate(task))" *@
-                                        <input @bind-value="@task.StartDate" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(async () => await UpdateStartDate(task))" type="datetime-local" class="form-control hide-date" placeholder="StartDate"/>
-                                        <input @bind-value="@task.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="time" class="form-control hide-date" placeholder="StartTime"/>
-                                        <label class="form-control small-separator">&nbsp;-&nbsp;</label>
+                                        </label>
                                     </div>
-                                </Tooltip>
-                                <div>
-                                    <Tooltip Text="End Date" Placement="Placement.Top" Class="d-flex justify-content-start">
-                                        <input @bind-value="@task.EndDate" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(async () => await Update(task))" type="datetime-local" class="form-control hide-date" placeholder="EndDate"/>
-                                        <input @bind-value="@task.EndDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="time" class="form-control  hide-date" placeholder="EndTime"/>
-                                    </Tooltip>
-                                </div>
-                            </div>
-                            @if (!HideTags)
-                            {
-                                <div class="col-lg-2 col-sm-1 tags">
-                                    <Tooltip Text="Taglist" Placement="Placement.Top">
-                                        <MultiSelectPartial
-                                            CurrentItem="@CurrentItem"
-                                            TaskItem="@task"
-                                            TagList="@TagList"
-                                            SelectState="@SelectState">
-                                        </MultiSelectPartial>
-                                    </Tooltip>
-                                </div>
-                            }
+                                }
 
-                            <div class="">
-                                <div class="d-flex justify-content-around">
-                                    <Tooltip Text="Duration" Placement="Placement.Top">
-                                        <label class="form-control">@task.TimeSpanText</label>
+                                <div class="flex-sm-shrink-1">
+                                    <Tooltip Text="Name" Placement="Placement.Top">
+                                        <input @bind-value="@task.Name" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Name"/>
                                     </Tooltip>
 
-                                    <Tooltip Text="Start" Placement="Placement.Top">
-                                        <button class="custom-small-button green ml-3" @onclick="@(() => Start(task))">
-                                            <i class="fas fa-play"></i>
-                                        </button>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <Tooltip Text="Description" Placement="Placement.Top">
+                                        <input @bind-value="@task.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Description"/>
                                     </Tooltip>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <Tooltip Text="Start Date" Placement="Placement.Top" Class="d-flex justify-content-center">
+                                        <div class="d-flex justify-content-start">
+                                            @* @onfocusout="@(async () => await UpdateStartDate(task))" *@
+
+                                            <input @bind-value="@valueDateTime" @onfocusin="@(() => ToActualDate(task.StartDate))" @oninput="@(OnValueChangedFocusOut)"
+                                                    @onfocusout="@(() => WriteBackStartDate(task))" type="date" class="form-control hide-date"/>
+                                            <input @bind-value="@task.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="time" class="form-control hide-date"/>
+                                            <label class="form-control small-separator">&nbsp;-&nbsp;</label>
+                                        </div>
+                                    </Tooltip>
+                                    <div>
+                                        <Tooltip Text="End Date" Placement="Placement.Top" Class="d-flex justify-content-start">
+                                            <input @bind-value="@valueDateTime" @onfocusin="@(() => ToActualDate(task.EndDate))" @oninput="@(OnValueChangedFocusOut)"
+                                                    @onfocusout="@(() => WriteBackEndDate(task))" type="date" class="form-control hide-date"/>
+                                            <input @bind-value="@task.EndDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="time" class="form-control  hide-date"/>
+                                        </Tooltip>
+                                    </div>
+                                </div>
+                                @if (!HideTags)
+                                {
+                                    <div class="col-lg-2 col-sm-1 tags">
+                                        <Tooltip Text="Taglist" Placement="Placement.Top">
+                                            <MultiSelectPartial
+                                                CurrentItem="@CurrentItem"
+                                                TaskItem="@task"
+                                                TagList="@TagList"
+                                                SelectState="@SelectState">
+                                            </MultiSelectPartial>
+                                        </Tooltip>
+                                    </div>
+                                }
+
+                                <div class="">
+                                    <div class="d-flex justify-content-around">
+                                        <Tooltip Text="Duration" Placement="Placement.Top">
+                                            <label class="form-control">@task.TimeSpanText</label>
+                                        </Tooltip>
+
+                                        <Tooltip Text="Start" Placement="Placement.Top">
+                                            <button class="custom-small-button green ml-3" @onclick="@(() => Start(task))">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </Tooltip>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </ContextMenuTrigger>
-            }
-            @* } *@
-        </div>
+                    </ContextMenuTrigger>
+                }
+                @* } *@
+            </div>
+        }
     }
 }
 </div>
