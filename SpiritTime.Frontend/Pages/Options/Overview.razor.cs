@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
+using SpiritTime.Frontend.Config;
+using SpiritTime.Frontend.Config.WriteOptions;
 using SpiritTime.Frontend.ElectronConfig;
 using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.OptionsService;
@@ -15,17 +17,21 @@ namespace SpiritTime.Frontend.Pages.Options
     {
         [Inject] private IOptionService Service { get; set; }
         [Inject] private IToastService ToastService { get; set; }
-        [Inject] private IWebHostEnvironment _env { get; set; }
+        [Inject] private IWebHostEnvironment Env { get; set; }
+        [Inject] private IWritableOptions<ShortcutsConfig> WritableConfig { get; set; }
         private bool ShowError { get; set; }
         private string ErrMsg { get; set; }
         private bool ShowWorkspaces { get; set; }
         public List<WorkspaceDto> WorkspaceList { get; set; }
         public int CurrentWorkspaceId { get; set; }
         public string CurrentWorkspaceStringId { get; set; }
+        public ShortcutsConfig ShortcutsConfig { get; set; }
+        
         
 
         protected override async Task OnInitializedAsync()
         {
+            ShortcutsConfig = WritableConfig.Value;
             var result = await Service.GetCurrentWorkspaceAndList();
             if (result.Success)
             {
@@ -58,9 +64,27 @@ namespace SpiritTime.Frontend.Pages.Options
             StateHasChanged();
         }
 
+        private void WriteChangesToAppsettings()
+        {
+            try
+            {
+                WritableConfig.Update(opt =>
+                {
+                    opt.CurrentTask = ShortcutsConfig.CurrentTask;
+                    opt.NewTask     = ShortcutsConfig.NewTask;
+                });
+                ElectronConfiguration.SetGlobalKeyboardShortcuts(ShortcutsConfig.NewTask, ShortcutsConfig.CurrentTask);
+                ToastService.ShowSuccess(SuccessMsg.SuccessedUpdate);
+            }
+            catch (Exception e)
+            {
+                ToastService.ShowError(e.Message);
+            }
+        }
+
         private void Opentray()
         {
-            BlazorConfig.CreateTray(_env);
+            ElectronConfig.ElectronConfiguration.CreateTray(Env);
         }
     }
 }

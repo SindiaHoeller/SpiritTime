@@ -121,6 +121,8 @@ table
     justify-content: center
     align-items: center
     display: flex
+    div.full-width
+      width: 100%
   .custom-background
     background: $background-theme2-3
     padding: 2em
@@ -206,3 +208,9 @@ div.custom-task-background
       border-color: transparent
       outline: transparent auto 0
       
+select, select.form-control
+  background-color: transparent
+  color: $color4
+  &:focus
+    background-color: transparent
+    color: $color4

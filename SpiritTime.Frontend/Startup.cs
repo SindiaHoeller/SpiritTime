@@ -22,6 +22,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpiritTime.Core.Contracts;
 using SpiritTime.Frontend.Config;
+using SpiritTime.Frontend.Config.WriteOptions;
 using SpiritTime.Frontend.ElectronConfig;
 using SpiritTime.Frontend.Pages.Tasks;
 using SpiritTime.Frontend.Partials.OverlayModalService;
@@ -40,9 +41,15 @@ namespace SpiritTime.Frontend
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            // var builder = new ConfigurationBuilder()
+            //     .SetBasePath(env.ContentRootPath)
+            //     .AddJsonFile("appsettings.json",                        optional: true, reloadOnChange: true)
+            //     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+            //     .AddEnvironmentVariables();
+            // Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -57,6 +64,7 @@ namespace SpiritTime.Frontend
 
             var appSettingSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingSection);
+            services.ConfigureWritable<ShortcutsConfig>(Configuration.GetSection("Shortcuts"));
 
             services.AddTransient<ValidateHeaderHandler>();
 
@@ -147,23 +155,11 @@ namespace SpiritTime.Frontend
             });
 
             // await browserWindow.WebContents.Session.ClearCacheAsync();
+            ElectronConfig.ElectronConfiguration.SetGlobalKeyboardShortcuts(Configuration["Shortcuts:NewTask"], Configuration["Shortcuts:CurrentTask"], browserWindow);
 
             browserWindow.OnReadyToShow += () => browserWindow.Show();
             browserWindow.SetTitle("SpiritTime");
             Electron.Menu.SetApplicationMenu(ElectronMenu.Get());
-
-            Electron.GlobalShortcut.Register(Configuration["Shortcuts:NewTask"], async () =>
-            {
-                var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask";
-                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(BlazorConfig.GetMiniWindowOptions(), viewPath);
-                secondaryWindow.OnClose += browserWindow.Reload;
-            });
-            Electron.GlobalShortcut.Register(Configuration["Shortcuts:CurrentTask"], async () =>
-            {
-                var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask/current";
-                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(BlazorConfig.GetMiniWindowOptions(), viewPath);
-                secondaryWindow.OnClose += browserWindow.Reload;
-            });
 
             Electron.App.WillQuit += (args) => Task.Run(() => Electron.GlobalShortcut.UnregisterAll());
         }

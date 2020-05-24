@@ -15,8 +15,7 @@ namespace SpiritTime.Frontend.Pages.QuickInput
     {
         [Inject] private IJSRuntime JsRuntime { get; set; }
         [Inject] private ITaskService Service { get; set; }
-        [Parameter]
-        public string Current { get; set; }
+        [Parameter] public string Current { get; set; }
         private TaskDto TaskDto { get; set; }
         private ElementReference inputBox;
         private ElementReference newTask;
@@ -79,7 +78,7 @@ namespace SpiritTime.Frontend.Pages.QuickInput
                     Electron.Notification.Show(options);
                     await JsHelper.CloseWindow(JsRuntime);
                     
-                    Console.WriteLine($"NewTask submitted...Pressed: [{e.Key}]");
+                    // Console.WriteLine($"NewTask submitted...Pressed: [{e.Key}]");
                     break;
                 }
                 case "Escape":
