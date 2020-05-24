@@ -1,7 +1,7 @@
 ﻿@page "/workspace/overview"
 
 <div class="center-and-highlight">
-    <div class="col-12 custom-background mt-5">
+    <div class="col-12 custom-background">
         <div class="text-center">
             <div class="text-right">
                 <button class="custom-small-button" @onclick="Add">@TextMsg.AddWorkspace</button>
@@ -35,8 +35,9 @@
                 <thead>
                 <tr>
                     <th>
-                        <span class="oi @(TableService.GetSortStyle(nameof(WorkspaceDto.Name)))"
+                        <span
                               @onclick="@(() => TableService.SortTable(nameof(WorkspaceDto.Name)))">
+                            <i class="fas @(TableService.GetSortStyle(nameof(WorkspaceDto.Name)))"></i>
                         </span>
                         <span class="pl-3">@nameof(WorkspaceDto.Name)</span>
                     </th>
@@ -51,12 +52,12 @@
                         <td class="d-flex align-items-center justify-content-center">
                             <Tooltip Text="Edit" Placement="Placement.Left">
                                 <button class="custom-small-button mr-1" @onclick="@(() => Update(item))">
-                                    <span class="oi oi-pencil"></span>
+                                    <i class="fas fa-pencil-alt"></i>
                                 </button>
                             </Tooltip>
                             <Tooltip Text="Delete" Placement="Placement.Right">
                                 <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
-                                    <span class="oi oi-trash"></span>
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </Tooltip>
                         </td>

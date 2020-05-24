@@ -430,6 +430,7 @@
             <e p="_media.sass" t="Include" />
             <e p="_menu.sass" t="Include" />
             <e p="_multiselect.sass" t="Include" />
+            <e p="_sidebar.sass" t="Include" />
             <e p="_toast.sass" t="Include" />
             <e p="index.sass" t="Include" />
           </e>

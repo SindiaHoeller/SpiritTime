@@ -16,7 +16,8 @@
 
 
 <div class="main">
-    <div class="top-row px-3">
+    <div class="top-row">
+        <div class="small-size menu-placeholder"></div>
         <div class="">
             <a class="custom-navbar-brand" href="">
                 <img src="/img/icon_120x120.png" asp-append-version="true" alt="SpiritTime Logo" class="logo-small"/>
@@ -33,15 +34,18 @@
         <LoginMenu/>
         @* <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a> *@
     </div>
-    <AuthorizeView>
-        <Authorized>
-            <div class="sidebar">
-                <NavMenu/>
+    
+    <div class="d-flex">
+            <AuthorizeView>
+                <Authorized>
+                    <div class="sidebar">
+                        <NavMenu/>
+                    </div>
+                </Authorized>
+            </AuthorizeView>
+            <div class="content">
+                @Body
             </div>
-        </Authorized>
-    </AuthorizeView>
-    <div class="content px-4">
-        @Body
     </div>
 </div>
 

@@ -51,33 +51,7 @@ table
   font-family: $font2
   font-size: 1.6rem
 
-.sidebar
-  background: $color5
-  li.nav-item
-    a
-      border-bottom: solid 1px $color3
-      &:not(:hover)
-        border-radius: 0      
-  a.nav-link
-    font-size: 1.3rem
-    font-family: $font1
-    color: $color4
-    transition: .5s
-    &:hover
-      color: $color2
-  .navbar
-    padding: 0.4rem 1rem
-  .top-row-custom
-    background: $gradient2
-    h3
-      color: $color1
-      font-family: $font1
-    a.main
-      color: $color1
-      font-family: $font1
-      font-size: 28px
-      text-shadow: $color3 0.5px 0.5px
-      padding: 0 !important
+
 .full-center
   display: flex
   justify-content: center
@@ -103,6 +77,7 @@ table
     background: $gradient2
     z-index: 10
     border-bottom: 1px solid $color5
+    padding-right: 12px
     a:not(.main)
       color: $color4
       transition: .4s
@@ -232,3 +207,7 @@ a.custom-navbar-brand
   border: 0 !important
   p
     margin: 0
+    
+.content
+  flex-grow: 1
+  margin: 0 30px

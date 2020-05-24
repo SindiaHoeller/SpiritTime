@@ -1,7 +1,7 @@
 @page "/options/overview" 
 @using ElectronNET.API
 <div class="center-and-highlight">
-    <div class="col-12 custom-background mt-5">
+    <div class="col-12 custom-background">
         <div class="text-center">
             <h1>@TextMsg.Options</h1>
 
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group my-3">
                     <button class="custom-small-button" @onclick="@(() => SetWorkspace())">
-                        <span class="oi oi-check"></span> @TextMsg.Save
+                        <i class="fas fa-save"></i> @TextMsg.Save
                     </button>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group my-3">
                     <button class="custom-small-button" @onclick="@(() => WriteChangesToAppsettings())">
-                        <span class="oi oi-check"></span> @TextMsg.Save
+                        <i class="fas fa-save"></i> @TextMsg.Save
                     </button>
                 </div>
             </div>

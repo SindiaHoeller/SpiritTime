@@ -4,10 +4,7 @@
 
 
 <div class="center-and-highlight task-main-view">
-
-
 <input style="opacity: 0; width: 0; height: 100%" @ref="focusHelper"/>
-
 <div class="col-12 custom-background">
 
 <div class="d-flex justify-content-end ">
@@ -57,7 +54,7 @@
                             placeholder="Description"/>
                 </Tooltip>
             </div>
-            <div class="">
+            <div class="full-size">
                 <Tooltip Text="Start Date" Placement="Placement.Top" Class="d-flex justify-content-start">
                     <input @bind-value="@valueDateTime" @onfocusin="@(() => ToActualDate(CurrentItem.StartDate))" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(() => WriteBackStartDate(CurrentItem))"
                             type="date" class="form-control hide-date"/>
@@ -67,7 +64,7 @@
 
             @if (!HideTags)
             {
-                <div class="col-lg-2 col-sm-1 tags">
+                <div class="col-lg-2 col-sm-1 tags full-size">
                     <Tooltip Text="Taglist" Placement="Placement.Top">
                         <MultiSelectPartial
                             CurrentItem="@CurrentItem"
@@ -79,7 +76,7 @@
                 </div>
             }
 
-            <div class="">
+            <div class="full-size">
                 <Tooltip Text="Duration" Placement="Placement.Top">
                     <label class="form-control">@CurrentTime</label>
                 </Tooltip>
@@ -136,7 +133,7 @@
                             <div class="d-flex">
                                 @if (!HideBookingOptions)
                                 {
-                                    <div class="smiley-check">
+                                    <div class="smiley-check full-size">
                                         @{ var buttonId = IsDisabled ? "" : "isBooked" + task.Id; }
                                         @if (task.IsBooked)
                                         {
@@ -169,7 +166,7 @@
                                         <input @bind-value="@task.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="text" class="form-control" placeholder="Description"/>
                                     </Tooltip>
                                 </div>
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-center full-size">
                                     <Tooltip Text="Start Date" Placement="Placement.Top" Class="d-flex justify-content-center">
                                         <div class="d-flex justify-content-start">
                                             @* @onfocusout="@(async () => await UpdateStartDate(task))" *@
@@ -190,7 +187,7 @@
                                 </div>
                                 @if (!HideTags)
                                 {
-                                    <div class="col-lg-2 col-sm-1 tags">
+                                    <div class="col-lg-2 col-sm-1 tags full-size">
                                         <Tooltip Class="tags-wrapper" Text="Taglist" Placement="Placement.Top">
                                             <MultiSelectPartial
                                                 CurrentItem="@CurrentItem"
@@ -204,7 +201,7 @@
 
                                 <div class="">
                                     <div class="d-flex justify-content-around">
-                                        <Tooltip Text="Duration" Placement="Placement.Top">
+                                        <Tooltip Text="Duration" Placement="Placement.Top" Class="full-size">
                                             <label class="form-control">@task.TimeSpanText</label>
                                         </Tooltip>
 

@@ -40,15 +40,15 @@ namespace SpiritTime.Frontend.Services.TableServices
         {
             if (CurrentSortColumn != columnName)
             {
-                return "oi-sort-ascending";
+                return "fa-sort";
             }
             if (IsSortedAscending)
             {
-                return "oi-caret-bottom";
+                return "fa-sort-down";
             }
             else
             {
-                return "oi-caret-top";
+                return "fa-sort-up";
             }
         }
     }

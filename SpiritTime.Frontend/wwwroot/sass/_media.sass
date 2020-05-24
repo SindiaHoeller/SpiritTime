@@ -1,19 +1,48 @@
-@media (max-width: 767.98px)
+@media (max-width: 400px)
+  .custom-navbar-brand
+    .logo-small
+      margin-right: 0 !important
+    .custom-header
+      display: none
+      
+
+  .main .custom-background
+    padding: 10px 15px
+  div.custom-task-background
+    padding: 0.4em
+    box-shadow: none
+
+@media (max-width: 867.98px)
+  .blazored-modal-wrapper
+    padding: 20px 20px
+  .blazored-modal-header
+    padding: 0
+  .content
+    margin: 0
+  .account-info input
+    min-width: 100%
   .full-size
-    display: none
+    display: none !important
   .main .top-row
     background: transparent
     border: 0
-    //&:not(.auth)
-    //  display: none
-
+  div.custom-task-background
+    padding: 1em
+    box-shadow: none
+    
     &.auth
       justify-content: space-between
 
     a, .btn-link
       margin-left: 0
+  .sidebar
+    position: absolute
+    top: 12px
+    left: 12px
+  .menu-placeholder
+    width: 95px
 
-@media (min-width: 768px)
+@media (min-width: 868px)
   .small-size
     display: none
   app

@@ -2,7 +2,7 @@
 @using SpiritTime.Shared.Models.TagModels
 
 <div class="center-and-highlight">
-    <div class="col-12 custom-background mt-5">
+    <div class="col-12 custom-background">
         <div class="text-center">
             <div class="text-right">
                 <button class="custom-small-button" @onclick="Add">@TextMsg.TagAdd</button>
@@ -26,20 +26,20 @@
                 <thead>
                 <tr>
                     <th>
-                        <span class="oi @(TableService.GetSortStyle(nameof(TagDto.Name)))"
-                              @onclick="@(() => TableService.SortTable(nameof(TagDto.Name)))">
+                        <span @onclick="@(() => TableService.SortTable(nameof(TagDto.Name)))">
+                            <i class="fas @(TableService.GetSortStyle(nameof(TagDto.Name)))"></i>
                         </span>
                         <span class="pl-3">@nameof(TagDto.Name)</span>
                     </th>
-                    <th>
-                        <span class="oi @(TableService.GetSortStyle(nameof(TagDto.WorkspaceName)))"
-                              @onclick="@(() => TableService.SortTable(nameof(TagDto.WorkspaceName)))">
+                    <th class="full-size">
+                        <span @onclick="@(() => TableService.SortTable(nameof(TagDto.WorkspaceName)))">
+                            <i class="fas @(TableService.GetSortStyle(nameof(TagDto.WorkspaceName)))"></i>
                         </span>
                         <span class="pl-3">@nameof(TagDto.WorkspaceName)</span>
                     </th>
-                    <th>
-                        <span class="oi @(TableService.GetSortStyle(nameof(TagDto.ColorCode)))"
-                              @onclick="@(() => TableService.SortTable(nameof(TagDto.ColorCode)))">
+                    <th class="full-size">
+                        <span @onclick="@(() => TableService.SortTable(nameof(TagDto.ColorCode)))">
+                            <i class="fas @(TableService.GetSortStyle(nameof(TagDto.ColorCode)))"></i>
                         </span>
                         <span class="pl-3">@nameof(TagDto.ColorCode)</span>
                     </th>
@@ -51,20 +51,20 @@
                 {
                     <tr>
                         <td>@item.Name</td>
-                        <td>@item.WorkspaceName</td>
-                        <td>
+                        <td class="full-size">@item.WorkspaceName</td>
+                        <td class="full-size">
                             @{ var color = String.IsNullOrEmpty(item.ColorCode) ? "#D4C19C" : item.ColorCode; }
                             <p style="background-color: @color">@item.ColorCode</p>
                         </td>
                         <td class="d-flex align-items-center justify-content-center">
                             <Tooltip Text="Edit" Placement="Placement.Left">
                                 <button class="custom-small-button mr-1" @onclick="@(() => Update(item))">
-                                    <span class="oi oi-pencil"></span>
+                                    <i class="fas fa-pencil-alt"></i>
                                 </button>
                             </Tooltip>
                             <Tooltip Text="Delete" Placement="Placement.Right">
                                 <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
-                                    <span class="oi oi-trash"></span>
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </Tooltip>
                         </td>
