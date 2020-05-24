@@ -1,7 +1,7 @@
 using AutoMapper;
 using SpiritTime.Shared.Models.TagModels;
 
-namespace SpiritTime.Frontend.Profiles
+namespace SpiritTime.Frontend.Infrastructure.Profiles
 {
     public class TagProfile : Profile
     {

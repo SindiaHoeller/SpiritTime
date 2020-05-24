@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using SpiritTime.Frontend.Config;
-using SpiritTime.Frontend.Config.WriteOptions;
-using SpiritTime.Frontend.ElectronConfig;
+using SpiritTime.Frontend.Infrastructure.Config;
+using SpiritTime.Frontend.Infrastructure.Config.WriteOptions;
+using SpiritTime.Frontend.Infrastructure.ElectronConfig;
 using SpiritTime.Frontend.Partials.ToastModal;
 using SpiritTime.Frontend.Services.OptionsService;
 using SpiritTime.Shared.Messages;
@@ -84,7 +84,7 @@ namespace SpiritTime.Frontend.Pages.Options
 
         private void Opentray()
         {
-            ElectronConfig.ElectronConfiguration.CreateTray(Env);
+            ElectronConfiguration.CreateTray(Env);
         }
     }
 }

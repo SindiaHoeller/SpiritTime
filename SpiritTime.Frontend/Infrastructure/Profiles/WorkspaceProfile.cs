@@ -1,8 +1,7 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using SpiritTime.Shared.Models.WorkspaceModels;
 
-namespace SpiritTime.Frontend.Profiles
+namespace SpiritTime.Frontend.Infrastructure.Profiles
 {
     public class WorkspaceProfile : Profile
     {

@@ -2,7 +2,7 @@ using System.Linq;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 
-namespace SpiritTime.Frontend.ElectronConfig
+namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
 {
     public static class ElectronMenu
     {

@@ -1,7 +1,7 @@
 using AutoMapper;
 using SpiritTime.Shared.Models.TaskTagRuleModels;
 
-namespace SpiritTime.Frontend.Profiles
+namespace SpiritTime.Frontend.Infrastructure.Profiles
 {
     public class TaskTagRuleProfile : Profile
     {

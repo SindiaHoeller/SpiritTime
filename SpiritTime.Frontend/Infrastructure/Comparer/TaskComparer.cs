@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using SpiritTime.Shared.Models.TaskModels;
 
-namespace SpiritTime.Frontend.Infrastructure
+namespace SpiritTime.Frontend.Infrastructure.Comparer
 {
     public class TaskComparer : IEqualityComparer<TaskDto>
     {

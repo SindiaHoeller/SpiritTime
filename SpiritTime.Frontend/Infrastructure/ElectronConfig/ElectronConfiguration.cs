@@ -1,11 +1,10 @@
-using System;
 using System.IO;
 using System.Linq;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Hosting;
 
-namespace SpiritTime.Frontend.ElectronConfig
+namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
 {
     public static class ElectronConfiguration
     {

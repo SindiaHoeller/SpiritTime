@@ -21,9 +21,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpiritTime.Core.Contracts;
-using SpiritTime.Frontend.Config;
-using SpiritTime.Frontend.Config.WriteOptions;
-using SpiritTime.Frontend.ElectronConfig;
+using SpiritTime.Frontend.Infrastructure.Config;
+using SpiritTime.Frontend.Infrastructure.Config.WriteOptions;
+using SpiritTime.Frontend.Infrastructure.ElectronConfig;
 using SpiritTime.Frontend.Pages.Tasks;
 using SpiritTime.Frontend.Partials.OverlayModalService;
 using SpiritTime.Frontend.Partials.ToastModal;
@@ -155,7 +155,7 @@ namespace SpiritTime.Frontend
             });
 
             // await browserWindow.WebContents.Session.ClearCacheAsync();
-            ElectronConfig.ElectronConfiguration.SetGlobalKeyboardShortcuts(Configuration["Shortcuts:NewTask"], Configuration["Shortcuts:CurrentTask"], browserWindow);
+            ElectronConfiguration.SetGlobalKeyboardShortcuts(Configuration["Shortcuts:NewTask"], Configuration["Shortcuts:CurrentTask"], browserWindow);
 
             browserWindow.OnReadyToShow += () => browserWindow.Show();
             browserWindow.SetTitle("SpiritTime");
