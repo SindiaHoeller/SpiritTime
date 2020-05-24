@@ -5,6 +5,9 @@ namespace SpiritTime.Shared.Messages
 {
     public static class TextMsg
     {
+        public const string RegisterText = "Create a new account.";
+        public const string LoginText = "Log in with your existing account.";
+        
         public const string Loading = "... Loading ...";
         public const string Done = "Done";
         public const string Confirm = "Confirm";

@@ -1,5 +1,3 @@
-
-
 html
   color: $color4
   background: $main-background no-repeat center center fixed
@@ -48,6 +46,10 @@ table
         cursor: pointer
         box-shadow: $shadow-color 0.05rem 0.05rem
 
+.custom-header
+  color: $color4
+  font-family: $font2
+  font-size: 1.6rem
 
 .sidebar
   background: $color5
@@ -55,8 +57,7 @@ table
     a
       border-bottom: solid 1px $color3
       &:not(:hover)
-        border-radius: 0
-      
+        border-radius: 0      
   a.nav-link
     font-size: 1.3rem
     font-family: $font1
@@ -105,9 +106,11 @@ table
     a:not(.main)
       color: $color4
       transition: .4s
+      margin-right: 4px
+      margin-left: 4px
       background: transparent
-      padding: 8px 6px !important
-      border-radius: 3px
+      padding: 6px 10px !important
+      border-radius: 6px
       border: 1px solid $color4
       &:hover
         color: $color2
@@ -214,3 +217,18 @@ select, select.form-control
   &:focus
     background-color: transparent
     color: $color4
+
+.logo-small
+  width: 30px
+  height: 30px
+  margin-right: 16px
+  
+a.custom-navbar-brand
+  justify-content: center
+  display: flex
+  align-items: center
+  padding: 0 !important
+  margin: 0
+  border: 0 !important
+  p
+    margin: 0

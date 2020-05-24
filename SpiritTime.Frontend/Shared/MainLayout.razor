@@ -14,18 +14,14 @@
                 WarningIconClass="oi oi-warning"/>
 
 
-<AuthorizeView>
-    <Authorized>
-        <div class="sidebar">
-            <NavMenu/>
-            
-        </div>
-    </Authorized>
-</AuthorizeView>
 
 <div class="main">
-    <div class="top-row px-5">
-        <div>
+    <div class="top-row px-3">
+        <div class="">
+            <a class="custom-navbar-brand" href="">
+                <img src="/img/icon_120x120.png" asp-append-version="true" alt="SpiritTime Logo" class="logo-small"/>
+                <p class="custom-header">SpiritTime</p>
+            </a>
             @if (HybridSupport.IsElectronActive)
             {
                 <button class="custom-small-button ml-3" @onclick="@(() => ReloadUi())">
@@ -33,13 +29,17 @@
                 </button>
             }
         </div>
-        <div>
-            <LoginMenu/>
-        </div>
 
+        <LoginMenu/>
         @* <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a> *@
     </div>
-
+    <AuthorizeView>
+        <Authorized>
+            <div class="sidebar">
+                <NavMenu/>
+            </div>
+        </Authorized>
+    </AuthorizeView>
     <div class="content px-4">
         @Body
     </div>
@@ -61,5 +61,5 @@
         var mainWindow = Electron.WindowManager.BrowserWindows.FirstOrDefault();
         mainWindow?.Reload();
     }
-}
 
+}

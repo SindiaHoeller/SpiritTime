@@ -17,8 +17,16 @@
             </Authorizing>
             <NotAuthorized>
                 <div class="text-center">
-                    <h1 class="mb-3">Login</h1>
-                    <h5>Melde dich mit deinem Account an.</h5>
+                    <div class="menu-switch">
+                        <a class="login active">
+                            <h2>Login</h2>
+                        </a>
+                        <a href="Register" class="register">
+                            <h2>Register</h2>
+                        </a>
+                    </div>
+                    
+                    <h5>@TextMsg.LoginText</h5>
                 </div>
                 <hr/>
                 @if (ShowErrors)
