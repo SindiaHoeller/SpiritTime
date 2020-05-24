@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace SpiritTime.Frontend.Config.WriteOptions
+namespace SpiritTime.Frontend.Infrastructure.Config.WriteOptions
 {
     public class WritableOptions<T> : IWritableOptions<T> where T : class, new()
     {

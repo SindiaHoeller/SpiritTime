@@ -1,7 +1,6 @@
-using System.ComponentModel;
 using System.Drawing;
 
-namespace SpiritTime.Frontend.Config
+namespace SpiritTime.Frontend.Infrastructure.Config
 {
     public static class ColorCalc
     {

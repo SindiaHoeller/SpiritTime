@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
-using SpiritTime.Frontend.Config;
+using SpiritTime.Frontend.Infrastructure.Config;
 using SpiritTime.Shared.Api;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models.Account.Authentication;

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace SpiritTime.Frontend.Config.WriteOptions
+namespace SpiritTime.Frontend.Infrastructure.Config.WriteOptions
 {
     public static class ServiceCollectionExtensions
     {
