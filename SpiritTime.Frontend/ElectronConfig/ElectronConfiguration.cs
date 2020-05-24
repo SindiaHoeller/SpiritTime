@@ -7,8 +7,35 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace SpiritTime.Frontend.ElectronConfig
 {
-    public static class BlazorConfig
+    public static class ElectronConfiguration
     {
+        
+        public static void SetGlobalKeyboardShortcuts(string newTaskTrigger, string currentTaskTrigger)
+        {
+            SetGlobalKeyboardShortcuts(newTaskTrigger, currentTaskTrigger, GetMainWindow());
+        }
+        public static void SetGlobalKeyboardShortcuts(string newTaskTrigger, string currentTaskTrigger, BrowserWindow mainWindow)
+        {
+            Electron.GlobalShortcut.UnregisterAll();
+            Electron.GlobalShortcut.Register(newTaskTrigger, async () =>
+            {
+                var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask";
+                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
+                secondaryWindow.OnClose += mainWindow.Reload;
+            });
+            Electron.GlobalShortcut.Register(currentTaskTrigger, async () =>
+            {
+                var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask/current";
+                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
+                secondaryWindow.OnClose += mainWindow.Reload;
+            });
+        }
+
+        public static BrowserWindow GetMainWindow()
+        {
+            return Electron.WindowManager.BrowserWindows.FirstOrDefault();
+        }
+        
         public static BrowserWindowOptions GetMiniWindowOptions()
         {
             return new BrowserWindowOptions

@@ -107,10 +107,16 @@
         <e p="Config" t="Include">
           <e p="AppSettings.cs" t="Include" />
           <e p="ColorCalc.cs" t="Include" />
+          <e p="ShortcutsConfig.cs" t="Include" />
+          <e p="WriteOptions" t="Include">
+            <e p="IWritableOptions.cs" t="Include" />
+            <e p="ServiceCollectionExtensions.cs" t="Include" />
+            <e p="WritableOptions.cs" t="Include" />
+          </e>
         </e>
         <e p="electron.manifest.json" t="Include" />
         <e p="ElectronConfig" t="Include">
-          <e p="BlazorConfig.cs" t="Include" />
+          <e p="ElectronConfiguration.cs" t="Include" />
           <e p="ElectronMenu.cs" t="Include" />
         </e>
         <e p="Infrastructure" t="Include">
@@ -539,6 +545,6 @@
       <e p="SpiritTime.sln" t="IncludeFlat" />
     </e>
     <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_SpiritTime.1628037071.01" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_SpiritTime.1628037071.00" t="ExcludeRecursive" />
   </component>
 </project>
