@@ -35,6 +35,18 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:18676;http://localhost:41497"
+    },
+    "SpiritTime.Frontend.Watch": {
+      "commandName": "Executable",
+      "executablePath": "dotnet",
+      "workingDirectory": "$(ProjectDir)",
+      "commandLineArgs": "watch run -nowarn",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:5011/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HTTPS_PORT": "44300"
+      }
     }
   }
 }

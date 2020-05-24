@@ -99,7 +99,6 @@
         <e p="appsettings.json" t="Include" />
         <e p="Assets" t="Include">
           <e p="electron_32x32.png" t="Include" />
-          <e p="favicon120.png" t="Include" />
           <e p="favicon32.png" t="Include" />
           <e p="icon32.png" t="Include" />
         </e>
@@ -297,6 +296,8 @@
             <e p="index.css.map" t="Include" />
             <e p="index.min.css" t="Include" />
             <e p="index.min.css.map" t="Include" />
+            <e p="media.css" t="Include" />
+            <e p="media.css.map" t="Include" />
             <e p="open-iconic" t="Include">
               <e p="font" t="Include">
                 <e p="css" t="Include">
@@ -318,9 +319,12 @@
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="favicon_old.ico" t="Include" />
+          <e p="fonts" t="Include" />
           <e p="img" t="Include">
             <e p="calendar-alt.png" t="Include" />
             <e p="calendar-alt_focus.png" t="Include" />
+            <e p="favicon120.png" t="Include" />
+            <e p="icon_120x120.png" t="Include" />
             <e p="OK.png" t="Include" />
           </e>
           <e p="js" t="Include">
@@ -423,6 +427,8 @@
             <e p="_context-menu.sass" t="Include" />
             <e p="_datetime.sass" t="Include" />
             <e p="_general.sass" t="Include" />
+            <e p="_media.sass" t="Include" />
+            <e p="_menu.sass" t="Include" />
             <e p="_multiselect.sass" t="Include" />
             <e p="_toast.sass" t="Include" />
             <e p="index.sass" t="Include" />

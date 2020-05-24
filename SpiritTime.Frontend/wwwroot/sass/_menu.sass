@@ -1,0 +1,43 @@
+.menu-switch
+  display: flex
+  justify-content: space-between
+  //align-items: center
+  margin-bottom: 20px
+  border-bottom: 1px solid $color3
+  .login, .register
+    width: 100%
+    h1, h2, h3, h4
+      color: $color1
+    &:not(.active)
+      transition: all 0.3s ease
+      padding-top: 6px
+      &:hover
+        background: transparent
+        padding-top: 2px
+        h1, h2, h3, h4
+          font-size: 30px
+          cursor: pointer
+          color: $color1 !important
+      h1, h2, h3, h4
+        transition: all 0.3s ease
+        color: $color2 !important
+        margin: 0
+        font-size: 28px
+  .login
+    &.active
+      border-right: 1px solid $color3
+    &:not(.active)
+      background: linear-gradient(-8deg, rgba(123,123,123,0.3) 0%, rgba(49,49,49,0.1) 70%, rgba(49,49,49,0.01) 100%)
+  .register
+    &.active
+      border-left: 1px solid $color3
+    &:not(.active)
+      background: linear-gradient(8deg, rgba(123,123,123,0.3) 0%, rgba(49,49,49,0.1) 70%, rgba(49,49,49,0.01) 100%)
+
+@media (max-width: 767.98px)
+  .login, .register
+    h1, h2, h3, h4
+      font-size: 20px !important
+    &:not(.active):not(:hover)
+      h1, h2, h3, h4
+        font-size: 15px !important
