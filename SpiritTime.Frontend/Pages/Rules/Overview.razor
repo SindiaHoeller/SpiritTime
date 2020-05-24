@@ -3,7 +3,7 @@
 @using SpiritTime.Shared.Models.TaskTagRuleModels
 
 <div class="center-and-highlight">
-    <div class="col-12 custom-background mt-5">
+    <div class="col-12 custom-background">
         <div class="text-center">
             <div class="text-right">
                 <button class="custom-small-button" @onclick="Add">@TextMsg.TagRuleAdd</button>
@@ -38,18 +38,18 @@
                 <thead>
                 <tr>
                     <th>
-                        <span class="oi @(TableService.GetSortStyle(nameof(TaskTagRuleDto.TriggerText)))"
-                              @onclick="@(() => TableService.SortTable(nameof(TaskTagRuleDto.TriggerText)))">
+                        <span @onclick="@(() => TableService.SortTable(nameof(TaskTagRuleDto.TriggerText)))">
+                            <i class="fas @(TableService.GetSortStyle(nameof(TaskTagRuleDto.TriggerText)))"></i>
                         </span>
                         <span class="pl-3">@nameof(TaskTagRuleDto.TriggerText)</span>
                     </th>
-                    <th>
-                        <span class="oi @(TableService.GetSortStyle(nameof(TaskTagRuleDto.TagName)))"
-                              @onclick="@(() => TableService.SortTable(nameof(TaskTagRuleDto.TagName)))">
+                    <th class="full-size">
+                        <span @onclick="@(() => TableService.SortTable(nameof(TaskTagRuleDto.TagName)))">
+                              <i class="fas @(TableService.GetSortStyle(nameof(TaskTagRuleDto.TagName)))"></i>
                         </span>
                         <span class="pl-3">@nameof(TaskTagRuleDto.TagName)</span>
                     </th>
-                    <th>@TextMsg.TriggerOn</th>
+                    <th class="full-size">@TextMsg.TriggerOn</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -58,8 +58,8 @@
                 {
                     <tr>
                         <td>@item.TriggerText</td>
-                        <td>@item.TagName</td>
-                        <td>
+                        <td class="full-size">@item.TagName</td>
+                        <td class="full-size">
                             @if (@item.TriggerDescription)
                             {
                                 <p>@TextMsg.DescriptionField</p>
@@ -76,12 +76,12 @@
                         <td class="d-flex align-items-center justify-content-center">
                             <Tooltip Text="Edit" Placement="Placement.Left">
                                 <button class="custom-small-button mr-1" @onclick="@(() => Update(item))">
-                                    <span class="oi oi-pencil"></span>
+                                    <i class="fas fa-pencil-alt"></i>
                                 </button>
                             </Tooltip>
                             <Tooltip Text="Delete" Placement="Placement.Right">
                                 <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
-                                    <span class="oi oi-trash"></span>
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </Tooltip>
                         </td>
