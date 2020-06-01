@@ -11,12 +11,19 @@ using SpiritTime.Core.Entities;
 
 namespace SpiritTime.Backend.Infrastructure.Jwt
 {
+    /// <summary>
+    /// JwtAuthentication
+    /// </summary>
     public class JwtAuthentication
     {
         private readonly string _securityKey;
         private readonly string _validAudience;
         private readonly string _validIssuer;
 
+        /// <summary>
+        /// JwtAuthentication
+        /// </summary>
+        /// <param name="configuration"></param>
         public JwtAuthentication(IConfiguration configuration)
         {
             _securityKey = configuration["Jwt:SecurityKey"] ??
@@ -27,6 +34,11 @@ namespace SpiritTime.Backend.Infrastructure.Jwt
                            throw new InvalidOperationException("Set the 'Jwt:ValidIssuer' on appSettings");
         }
 
+        /// <summary>
+        /// GenerateToken
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public string GenerateToken(ApplicationUser user)
         {
             var claims = new List<Claim>

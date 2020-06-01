@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace SpiritTime.Backend.Services
 {
-    public class Settings
+    /// <summary>
+    /// Settings
+    /// </summary>
+    public abstract class Settings
     {
+        /// <summary>
+        /// Color
+        /// </summary>
         public string Color { get; set; }
     }
 }

@@ -35,6 +35,9 @@ namespace SpiritTime.Backend.Controllers.Tasks
         private readonly ILogger<WorkspacesController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        /// <summary>
+        /// Helper
+        /// </summary>
         public TaskHelper Helper { get; set; }
         /// <summary>
         /// TaskTagRuleController

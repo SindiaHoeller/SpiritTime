@@ -5,8 +5,14 @@ using SpiritTime.Shared.Models.TaskModels;
 
 namespace SpiritTime.Backend.Infrastructure.Profiles
 {
+    /// <summary>
+    /// TaskProfile
+    /// </summary>
     public class TaskProfile : Profile
     {
+        /// <summary>
+        /// TaskProfile
+        /// </summary>
         public TaskProfile()
         {
             CreateMap<Tasks, TaskDto>();

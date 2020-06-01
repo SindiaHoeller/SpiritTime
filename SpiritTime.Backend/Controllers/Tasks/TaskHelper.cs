@@ -19,10 +19,12 @@ namespace SpiritTime.Backend.Controllers.Tasks
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="unitOfWork"></param>
+        /// <param name="mapper"></param>
         public TaskHelper(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
