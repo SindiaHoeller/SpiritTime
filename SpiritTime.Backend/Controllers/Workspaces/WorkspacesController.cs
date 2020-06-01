@@ -206,7 +206,6 @@ namespace SpiritTime.Backend.Controllers.Workspaces
         /// </summary>
         /// <remarks>Needs: Id \
         /// Returns: ResultModel</remarks>
-        /// <param name="idString"></param>
         /// <returns></returns>
         /// <response code="200">Returns a ResultModel</response>
         //[Authorize]

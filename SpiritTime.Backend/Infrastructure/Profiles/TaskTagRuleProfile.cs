@@ -4,6 +4,9 @@ using SpiritTime.Shared.Models.TaskTagRuleModels;
 
 namespace SpiritTime.Backend.Infrastructure.Profiles
 {
+    /// <summary>
+    /// TaskTagRuleProfile
+    /// </summary>
     public class TaskTagRuleProfile : Profile
     {
         /// <summary>

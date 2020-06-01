@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/.nuget/packages/blazorise/0.9.0/contentFiles/any/netstandard2.1/compilerconfig.json" t="Include" />
-    <e p="$PROJECT_DIR$" t="IncludeFlat">
+    <e p="C:\Users\Aki\.nuget\packages\blazorise\0.9.0\contentFiles\any\netstandard2.1\compilerconfig.json" t="Include" />
+    <e p="C:\Users\Aki\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Aki\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_SpiritTime.1990354367.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Aki\Development\SpiritTime" t="IncludeFlat">
       <e p="packages" t="ExcludeRecursive" />
       <e p="SpiritTime.Backend" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
@@ -553,7 +555,5 @@
       </e>
       <e p="SpiritTime.sln" t="IncludeFlat" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_SpiritTime.1628037071.00" t="ExcludeRecursive" />
   </component>
 </project>

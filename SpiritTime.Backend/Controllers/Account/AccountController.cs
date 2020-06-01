@@ -41,6 +41,16 @@ namespace SpiritTime.Backend.Controllers.Account
         private readonly IUnitOfWork                    _unitOfWork;
         private readonly IMapper                        _mapper;
 
+        /// <summary>
+        /// AccountController
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="signInManager"></param>
+        /// <param name="jwtAuthentication"></param>
+        /// <param name="logger"></param>
+        /// <param name="httpContextAccessor"></param>
+        /// <param name="unitOfWork"></param>
+        /// <param name="mapper"></param>
         public AccountController(
             UserManager<ApplicationUser>   userManager,
             SignInManager<ApplicationUser> signInManager,
