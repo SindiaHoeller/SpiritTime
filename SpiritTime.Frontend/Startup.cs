@@ -119,7 +119,7 @@ namespace SpiritTime.Frontend
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.ApplicationServices
                 .UseBootstrapProviders()

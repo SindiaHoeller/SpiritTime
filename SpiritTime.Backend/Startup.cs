@@ -93,7 +93,7 @@ namespace SpiritTime.Backend
                     Title   = "VocaDrill",
                     Version = "v1"
                 });
-                c.IncludeXmlComments(GetXmlCommentsPath());
+                // c.IncludeXmlComments(GetXmlCommentsPath());
             });
 
             services.AddControllers();
@@ -162,9 +162,9 @@ namespace SpiritTime.Backend
             };
         }
 
-        private string GetXmlCommentsPath()
-        {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SpiritTime.Backend.xml");
-        }
+        // private string GetXmlCommentsPath()
+        // {
+        //     return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SpiritTime.Backend.xml");
+        // }
     }
 }

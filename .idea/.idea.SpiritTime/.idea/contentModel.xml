@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Aki\.nuget\packages\blazorise\0.9.0\contentFiles\any\netstandard2.1\compilerconfig.json" t="Include" />
+    <e p="C:\Users\Aki\.nuget\packages\blazorise\0.9.0.3\contentFiles\any\netstandard2.1\compilerconfig.json" t="Include" />
     <e p="C:\Users\Aki\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Aki\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_SpiritTime.1990354367.00" t="ExcludeRecursive" />
     <e p="C:\Users\Aki\Development\SpiritTime" t="IncludeFlat">
@@ -46,7 +46,7 @@
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Backend.AssemblyInfo.cs" t="Include" />
             </e>
@@ -86,7 +86,7 @@
         </e>
         <e p="IUnitOfWork.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Core.AssemblyInfo.cs" t="Include" />
             </e>
@@ -132,7 +132,7 @@
         </e>
         <e p="libman.json" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Frontend.AssemblyInfo.cs" t="Include" />
               <e p="SpiritTime.Frontend.RazorAssemblyInfo.cs" t="Include" />
@@ -448,7 +448,7 @@
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Persistence.AssemblyInfo.cs" t="Include" />
             </e>
@@ -545,7 +545,7 @@
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Shared.AssemblyInfo.cs" t="Include" />
             </e>
