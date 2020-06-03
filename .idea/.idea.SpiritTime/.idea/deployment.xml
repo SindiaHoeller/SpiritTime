@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="Spiritlabs.DEV">
+    <serverData>
+      <paths name="Spiritlabs.DEV">
+        <serverdata>
+          <mappings>
+            <mapping local="$USER_HOME$/.nuget/packages/blazorise/0.9.0/contentFiles/any/netstandard2.1/compilerconfig.json" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Spiritlabs.Dev API">
+        <serverdata>
+          <mappings>
+            <mapping local="$USER_HOME$/.nuget/packages/blazorise/0.9.0/contentFiles/any/netstandard2.1/compilerconfig.json" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

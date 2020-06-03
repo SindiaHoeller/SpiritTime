@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="24a90a38-1df7-4405-b2a2-121dcd6667ff" name="Spiritlabs.DEV" url="https://time.spiritlabs.dev">
+        <fileTransfer rootFolder="/var/www/spirittime" accessType="SFTP" host="185.164.4.67" port="22" sshConfigId="12c91dbb-c0aa-41fa-a24f-6427ab06cb56" sshConfig="root@185.164.4.67:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="e34be53b-5fd6-4ec4-af58-d9c5c1832c47" name="Spiritlabs.Dev API" url="https://time.spiritlabs.dev">
+        <fileTransfer rootFolder="/var/www/spirittimeAPI" accessType="SFTP" host="185.164.4.67" port="22" sshConfigId="12c91dbb-c0aa-41fa-a24f-6427ab06cb56" sshConfig="root@185.164.4.67:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
