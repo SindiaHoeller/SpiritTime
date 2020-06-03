@@ -1,69 +1,29 @@
-﻿@* <div class="top-row-custom pl-4 navbar navbar-dark"> *@
-@*     <div class="py-3"></div> *@
-@*     <div class="full-center"> *@
-@*         <div class="custom-top-row pr-3">~ *@
-@*             <LoginMenu/> *@
-@*         </div> *@
-@* *@
-@*         <button class="navbar-toggler" @onclick="ToggleNavMenu"> *@
-@*             <span class="navbar-toggler-icon"></span> *@
-@*         </button> *@
-@*     </div> *@
-@* *@
-@* </div> *@
-
-<button class="navbar-toggler" @onclick="ToggleNavMenu">
-    <i class="fas fa-bars"></i>
-</button>
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">SpiritTime.Frontend</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
-        @* <li class="nav-item px-3"> *@
-        @*     <NavLink class="nav-link" href="" Match="NavLinkMatch.All"> *@
-        @*         <span class="oi oi-home" aria-hidden="true"></span> Home *@
-        @*     </NavLink> *@
-        @* </li> *@
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="tasks/overview">
-                <span class="oi oi-task" aria-hidden="true"></span> Tasks
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="tags/overview">
-                <span class="oi oi-bookmark" aria-hidden="true"></span> Tags
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> Counter
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="rules/overview">
-                <span class="oi oi-briefcase" aria-hidden="true"></span> Rules
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="workspace/overview">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Workspaces
-            </NavLink>
-        </li>
-        @* <hr/> *@
-        @* <li class="nav-item px-3"> *@
-        @*     <NavLink class="nav-link" href="account/overview"> *@
-        @*         <span class="oi oi-list-rich" aria-hidden="true"></span> Account *@
-        @*     </NavLink> *@
-        @* </li> *@
-        <hr/>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="options/overview">
-                <span class="oi oi-cog" aria-hidden="true"></span> Options
-            </NavLink>
-        </li>
-        <hr/>
-        @* <li class="nav-item px-3"> *@
-        @*     <NavLink class="nav-link" href="newtask"> *@
-        @*         <span class="oi oi-cog" aria-hidden="true"></span> NewTask *@
-        @*     </NavLink> *@
-        @* </li> *@
     </ul>
 </div>
-
 
 @code {
     private bool collapseNavMenu = true;

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/.idea.SpiritTime.iml" filepath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/.idea.SpiritTime.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/.idea.SpiritTime/riderModule.iml" filepath="$PROJECT_DIR$/.idea/.idea.SpiritTime/riderModule.iml" />
     </modules>
   </component>

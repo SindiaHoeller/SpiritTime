@@ -1,6 +1,4 @@
 ﻿@page "/counter"
-@using SpiritTime.Frontend.Services.WorkspaceServices
-@inject IWorkspaceService WorkspaceService
 
 <h1>Counter</h1>
 
@@ -14,7 +12,6 @@
     private void IncrementCount()
     {
         currentCount++;
-        var result = WorkspaceService.GetAllAsync();
-        Console.WriteLine("Das Ergebnis ist: " + result);
     }
+
 }

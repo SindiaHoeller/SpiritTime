@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpiritTime.Frontend", "SpiritTime.Frontend\SpiritTime.Frontend.csproj", "{D3196835-F1CA-4A30-B61F-49283CF25450}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpiritTime.Shared", "SpiritTime.Shared\SpiritTime.Shared.csproj", "{79B29AD0-5C20-4FDF-8287-04D975EB6849}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpiritTime.Backend", "SpiritTime.Backend\SpiritTime.Backend.csproj", "{A2029C17-BEAA-470E-9D20-0EFD84E8DD21}"
@@ -13,16 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpiritTime.Core", "SpiritTi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpiritTime.Persistence", "SpiritTime.Persistence\SpiritTime.Persistence.csproj", "{DB5016D3-09A6-4490-8A4A-5CF3C4DD10BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpiritTime.Frontend", "SpiritTime.Frontend\SpiritTime.Frontend.csproj", "{B2BD22D6-42F9-4856-98FE-66C1E3AEE8B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D3196835-F1CA-4A30-B61F-49283CF25450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3196835-F1CA-4A30-B61F-49283CF25450}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3196835-F1CA-4A30-B61F-49283CF25450}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3196835-F1CA-4A30-B61F-49283CF25450}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79B29AD0-5C20-4FDF-8287-04D975EB6849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79B29AD0-5C20-4FDF-8287-04D975EB6849}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79B29AD0-5C20-4FDF-8287-04D975EB6849}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{DB5016D3-09A6-4490-8A4A-5CF3C4DD10BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB5016D3-09A6-4490-8A4A-5CF3C4DD10BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB5016D3-09A6-4490-8A4A-5CF3C4DD10BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2BD22D6-42F9-4856-98FE-66C1E3AEE8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2BD22D6-42F9-4856-98FE-66C1E3AEE8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2BD22D6-42F9-4856-98FE-66C1E3AEE8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2BD22D6-42F9-4856-98FE-66C1E3AEE8B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
