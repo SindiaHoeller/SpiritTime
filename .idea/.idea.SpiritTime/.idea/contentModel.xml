@@ -105,6 +105,7 @@
           <e p="icon32.png" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="electron.manifest.json" t="Include" />
         <e p="Infrastructure" t="Include">
           <e p="Comparer" t="Include">
             <e p="TaskComparer.cs" t="Include" />
@@ -129,6 +130,7 @@
             <e p="WorkspaceProfile.cs" t="Include" />
           </e>
         </e>
+        <e p="libman.json" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -291,8 +293,13 @@
               <e p="bootstrap.min.css.map" t="Include" />
             </e>
             <e p="datetime.css" t="Include" />
+            <e p="datetime.css.map" t="Include" />
             <e p="index.css" t="Include" />
+            <e p="index.css.map" t="Include" />
+            <e p="index.min.css" t="Include" />
+            <e p="index.min.css.map" t="Include" />
             <e p="media.css" t="Include" />
+            <e p="media.css.map" t="Include" />
             <e p="open-iconic" t="Include">
               <e p="font" t="Include">
                 <e p="css" t="Include">
@@ -313,6 +320,8 @@
             <e p="site.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
+          <e p="favicon_old.ico" t="Include" />
+          <e p="fonts" t="Include" />
           <e p="img" t="Include">
             <e p="calendar-alt.png" t="Include" />
             <e p="calendar-alt_focus.png" t="Include" />

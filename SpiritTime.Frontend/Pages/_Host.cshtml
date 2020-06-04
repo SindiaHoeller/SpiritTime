@@ -1,16 +1,17 @@
 ﻿@page "/"
 @namespace SpiritTime.Frontend.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EmbeddedBlazorContent;
 @{
     Layout = null;
 }
 
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>SpiritTime.Frontend</title>
+    <title>SpiritTime</title>
     <base href="~/"/>
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="lib/font-awesome/css/all.css" rel="stylesheet"/>
@@ -18,15 +19,17 @@
     <link href="_content/Blazorise/blazorise.css" rel="stylesheet"/>
     <link href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" rel="stylesheet"/>
     <link href="_content/Blazored.Typeahead/blazored-typeahead.css" rel="stylesheet"/>
-        <link href="css/site.css" rel="stylesheet"/>
-        <link href="css/index.css" rel="stylesheet"/>
+    
+    @* <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> *@
+    <link href="css/site.css" rel="stylesheet"/>
+    <link href="css/index.css" rel="stylesheet"/>
 </head>
+
 <body>
 <div class="main-background"></div>
 <app>
-    <component type="typeof(App)" render-mode="ServerPrerendered"/>
+<component type="typeof(App)" render-mode="ServerPrerendered"/>
     @* @(await Html.RenderComponentAsync<App>(RenderMode.Server)) *@
-    @* <component type="typeof(App)" render-mode="ServerPrerendered"/> *@
 </app>
 
 <div id="blazor-error-ui">
@@ -49,6 +52,9 @@
 <script src="_content/Blazored.Typeahead/blazored-typeahead.js"></script>
 
 <script src="_framework/blazor.server.js"></script>
+<script>
+
+</script>
 <environment include="Development">
     <script>
         window.Blazor.defaultReconnectionHandler.onConnectionDown = function () {

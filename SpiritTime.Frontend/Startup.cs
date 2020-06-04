@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SpiritTime.Core.Contracts;
 using SpiritTime.Frontend.Infrastructure.Config;
 using SpiritTime.Frontend.Infrastructure.Config.WriteOptions;
 using SpiritTime.Frontend.Infrastructure.ElectronConfig;
@@ -34,16 +35,21 @@ using SpiritTime.Frontend.Services.TagServices;
 using SpiritTime.Frontend.Services.TaskServices;
 using SpiritTime.Frontend.Services.TaskTagRuleServices;
 using SpiritTime.Frontend.Services.WorkspaceServices;
-
-// using SpiritTime.Frontend.Data;
+using SpiritTime.Frontend.Shared;
 
 namespace SpiritTime.Frontend
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            // var builder = new ConfigurationBuilder()
+            //     .SetBasePath(env.ContentRootPath)
+            //     .AddJsonFile("appsettings.json",                        optional: true, reloadOnChange: true)
+            //     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+            //     .AddEnvironmentVariables();
+            // Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -113,18 +119,30 @@ namespace SpiritTime.Frontend
                 app.UseHsts();
             }
 
-            // app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.ApplicationServices
+                .UseBootstrapProviders()
+                .UseFontAwesomeIcons();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+            // Open the Electron-Window here
+
+            if (HybridSupport.IsElectronActive)
+            {
+                ElectronBootstrap(env);
+                // BlazorConfig.CreateTray(env);
+            }
+            // Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
-        
+
         private async void ElectronBootstrap(IWebHostEnvironment env)
         {
             var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions

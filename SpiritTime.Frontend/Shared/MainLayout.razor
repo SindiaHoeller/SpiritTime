@@ -1,15 +1,67 @@
 ﻿@inherits LayoutComponentBase
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using ElectronNET.API
 
-<div class="sidebar">
-    <NavMenu/>
-</div>
+<BaseOverlay/>
+
+<BlazoredToasts Position="@ToastPosition.BottomRight"
+                Timeout="10"
+                SuccessClass="success-toast-override"
+                SuccessIconClass="oi oi-circle-check"
+                ErrorIconClass="oi oi-circle-x"
+                WarningIconClass="oi oi-warning"/>
+
+
 
 <div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-    </div>
+    <div class="top-row">
+        <div class="small-size menu-placeholder"></div>
+        <div class="">
+            <a class="custom-navbar-brand" href="">
+                <img src="/img/icon_120x120.png" asp-append-version="true" alt="SpiritTime Logo" class="logo-small"/>
+                <p class="custom-header">SpiritTime</p>
+            </a>
+            @if (HybridSupport.IsElectronActive)
+            {
+                <button class="custom-small-button ml-3" @onclick="@(() => ReloadUi())">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            }
+        </div>
 
-    <div class="content px-4">
-        @Body
+        <LoginMenu/>
+        @* <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a> *@
+    </div>
+    
+    <div class="d-flex">
+            <AuthorizeView>
+                <Authorized>
+                    <div class="sidebar">
+                        <NavMenu/>
+                    </div>
+                </Authorized>
+            </AuthorizeView>
+            <div class="content">
+                @Body
+            </div>
     </div>
 </div>
+
+@code{
+
+    // protected override void OnInitialized()
+    // {
+    //     if (HybridSupport.IsElectronActive)
+    //     {
+    //         
+    //     }
+    //
+    // }
+
+    protected void ReloadUi()
+    {
+        var mainWindow = Electron.WindowManager.BrowserWindows.FirstOrDefault();
+        mainWindow?.Reload();
+    }
+
+}
