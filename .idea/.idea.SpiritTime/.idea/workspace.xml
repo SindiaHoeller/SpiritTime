@@ -20,183 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0dda207-c215-4fdc-8a6d-18b8654369c5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Logout.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/JsHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/NoElementsPage.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Add.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Add.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Delete.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Delete.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Edit.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Edit.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Overview.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Overview.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tags/Add.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tags/Add.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tags/Delete.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tags/Delete.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tags/Edit.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tags/Edit.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tags/Overview.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tags/Overview.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/Helper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/MultiSelectPartial.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/MultiSelectPartial.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/Overview.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/Overview.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/SelectState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Workspaces/Add.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Workspaces/Add.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Workspaces/Delete.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Workspaces/Delete.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Workspaces/Edit.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Workspaces/Edit.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Workspaces/Overview.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Workspaces/Overview.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/OverlayModalService/IOverlayModalService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/OverlayModalService/OverlayModalOptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/OverlayModalService/OverlayModalParameters.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/OverlayModalService/OverlayModalResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/OverlayModalService/OverlayModalService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Overlays/AddModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Overlays/BaseOverlay.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Overlays/BaseOverlay.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Overlays/ConfirmOverlay.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Overlays/ConfirmOverlay.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Overlays/DeleteOverlay.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Overlays/DeleteOverlay.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Overlays/ResultModal.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Overlays/ResultModal.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/ToastModal/IToastService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/ToastModal/ToastInstance.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/ToastModal/ToastLevel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/ToastModal/ToastPosition.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/ToastModal/ToastService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/ToastModal/ToastSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Toasts/BlazoredToast.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Toasts/BlazoredToast.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Toasts/BlazoredToasts.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Partials/Toasts/BlazoredToasts.razor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/IAuthService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/OptionsService/IOptionService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/OptionsService/OptionService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/OptionsService/WorkspaceOption.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TableServices/ITableService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TableServices/TableService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TagServices/ITagService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TagServices/TagService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/ITaskService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/TaskService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskTagRuleServices/ITaskTagRuleService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskTagRuleServices/TaskTagRuleService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/WorkspaceServices/IWorkspaceService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/WorkspaceServices/WorkspaceService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/img/OK.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/img/calendar-alt.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/img/calendar-alt_focus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/img/favicon120.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/img/icon_120x120.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/js/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/js/jsInterop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/bootstrap/dist/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/bootstrap/dist/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/all.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/all.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/brands.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/brands.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/fontawesome.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/fontawesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/regular.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/regular.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/solid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/solid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/svg-with-js.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/svg-with-js.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/v4-shims.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/css/v4-shims.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/all.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/all.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/brands.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/brands.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/conflict-detection.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/conflict-detection.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/fontawesome.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/fontawesome.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/regular.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/regular.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/solid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/solid.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/v4-shims.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/js/v4-shims.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/sprites/brands.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/sprites/regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/sprites/solid.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-brands-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-brands-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-brands-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-brands-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-brands-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-regular-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-regular-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-regular-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-regular-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-regular-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-solid-900.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-solid-900.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-solid-900.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-solid-900.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/font-awesome/webfonts/fa-solid-900.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/jquery/jquery.slim.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_blazored-modal.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_buttons.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_checkbox.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_colors.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_context-menu.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_datetime.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_general.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_media.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_menu.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_multiselect.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_sidebar.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_toast.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/index.sass" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/datetime.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/media.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/riderModule.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/App.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Data/WeatherForecast.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Data/WeatherForecastService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/FetchData.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Shared/SurveyPrompt.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Shared/SurveyPrompt.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/site.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,19 +43,32 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TagServices/TagService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.js.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Counter.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/WorkspaceServices/WorkspaceService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/JsHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/NoElementsPage.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/B/ConfigureServicesBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/3/GenericWebHostBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9FC32238-18FC-4637-A422-2ABB00D82D22/3/HostBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Add.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/9/ConfigureBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/App.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/4/GenericWebHostedService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -227,9 +76,13 @@
       <list>
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" />
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/App.razor" />
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/App.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" />
       </list>
     </option>
   </component>
@@ -242,6 +95,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34995976" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30008045" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -332,7 +187,7 @@
       <option name="presentableId" value="Default" />
       <updated>1591214816694</updated>
       <workItem from="1591214826225" duration="5215000" />
-      <workItem from="1591298749150" duration="3112000" />
+      <workItem from="1591298749150" duration="8749000" />
     </task>
     <servers />
   </component>
@@ -369,22 +224,98 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591216166281" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1591301754454">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1591307454655">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591301754454" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1591301754453">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591307454655" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1591307454655">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591301754453" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1591301754453">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591307454655" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1591307454654">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591301754453" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1591301754453">
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591307454654" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1591307454655">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591301754453" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591307454655" />
+    <state width="2517" height="386" key="GridCell.Tab.1.bottom" timestamp="1591306000150">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000150" />
+    <state width="2517" height="386" key="GridCell.Tab.1.center" timestamp="1591306000149">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.1.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000149" />
+    <state width="2517" height="386" key="GridCell.Tab.1.left" timestamp="1591306000149">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.1.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000149" />
+    <state width="2517" height="386" key="GridCell.Tab.1.right" timestamp="1591306000150">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.1.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000150" />
+    <state width="2517" height="386" key="GridCell.Tab.2.bottom" timestamp="1591306000150">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000150" />
+    <state width="2517" height="386" key="GridCell.Tab.2.center" timestamp="1591306000150">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.2.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000150" />
+    <state width="2517" height="386" key="GridCell.Tab.2.left" timestamp="1591306000150">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.2.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000150" />
+    <state width="2517" height="386" key="GridCell.Tab.2.right" timestamp="1591306000150">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.2.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000150" />
+    <state width="2517" height="386" key="GridCell.Tab.3.bottom" timestamp="1591306000151">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.3.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000151" />
+    <state width="2517" height="386" key="GridCell.Tab.3.center" timestamp="1591306000150">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.3.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000150" />
+    <state width="2517" height="386" key="GridCell.Tab.3.left" timestamp="1591306000150">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.3.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000150" />
+    <state width="2517" height="386" key="GridCell.Tab.3.right" timestamp="1591306000150">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.3.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000150" />
+    <state width="2517" height="386" key="GridCell.Tab.4.bottom" timestamp="1591306000151">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.4.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000151" />
+    <state width="2517" height="386" key="GridCell.Tab.4.center" timestamp="1591306000151">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.4.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000151" />
+    <state width="2517" height="386" key="GridCell.Tab.4.left" timestamp="1591306000151">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.4.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000151" />
+    <state width="2517" height="386" key="GridCell.Tab.4.right" timestamp="1591306000151">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.4.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591306000151" />
+    <state x="872" y="432" key="Rider.ProjectTemplateDialog.Size" timestamp="1591304146066">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="872" y="432" key="Rider.ProjectTemplateDialog.Size/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591304146066" />
+    <state x="92" y="92" width="2376" height="1216" key="VCS.FileHistoryDialog" timestamp="1591304928220">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="92" y="92" width="2376" height="1216" key="VCS.FileHistoryDialog/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591304928220" />
+    <state x="954" y="299" width="651" height="801" key="find.popup" timestamp="1591307286247">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="954" y="299" width="651" height="801" key="find.popup/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591307286247" />
     <state x="1103" y="431" key="ftp.server.browser" timestamp="1591215793319">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

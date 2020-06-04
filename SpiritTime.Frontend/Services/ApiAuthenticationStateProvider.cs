@@ -30,15 +30,16 @@ namespace SpiritTime.Frontend.Services
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var accessToken = await _localStorage.GetItemAsync<string>(SD.AccessToken);
-
+            var accessToken = "";
+            // var accessToken = await _localStorage.GetItemAsync<string>(SD.AccessToken);
+            //
             if (string.IsNullOrWhiteSpace(accessToken))
             {
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
-
+        
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SD.Bearer, accessToken);
-
+        
             return new AuthenticationState(
                 new ClaimsPrincipal(new ClaimsIdentity(JwtHelper.ParseClaimsFromJwt(accessToken), "jwt")));
         }
@@ -66,31 +67,31 @@ namespace SpiritTime.Frontend.Services
         }
 
 
-        public void MarkUserAsAuthenticated(string email)
-        {
-            var authenticatedUser =
-                new ClaimsPrincipal(new ClaimsIdentity(new[] {new Claim(ClaimTypes.Name, email)}, "apiauth"));
-            var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
-            NotifyAuthenticationStateChanged(authState);
-        }
+        // public void MarkUserAsAuthenticated(string email)
+        // {
+        //     var authenticatedUser =
+        //         new ClaimsPrincipal(new ClaimsIdentity(new[] {new Claim(ClaimTypes.Name, email)}, "apiauth"));
+        //     var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
+        //     NotifyAuthenticationStateChanged(authState);
+        // }
 
-        public async Task<AuthUser> GetCurrentUser()
-        {
-            var authState = await GetAuthenticationStateAsync();
-            var user = authState.User;
-            var emailClaim = user.Claims.Where(x => x.Type == "email").FirstOrDefault();
-            var idClaim = user.Claims.Where(x => x.Type == "nameid").FirstOrDefault();
-            return new AuthUser
-            {
-                Email = emailClaim?.Value,
-                Id = idClaim?.Value,
-            };
-        }
+        // public async Task<AuthUser> GetCurrentUser()
+        // {
+        //     var authState = await GetAuthenticationStateAsync();
+        //     var user = authState.User;
+        //     var emailClaim = user.Claims.Where(x => x.Type == "email").FirstOrDefault();
+        //     var idClaim = user.Claims.Where(x => x.Type == "nameid").FirstOrDefault();
+        //     return new AuthUser
+        //     {
+        //         Email = emailClaim?.Value,
+        //         Id = idClaim?.Value,
+        //     };
+        // }
 
-        public void StateChanged()
-        {
-            NotifyAuthenticationStateChanged(GetAuthenticationStateAsync()); // <- Does nothing
-        }
+        // public void StateChanged()
+        // {
+        //     NotifyAuthenticationStateChanged(GetAuthenticationStateAsync()); // <- Does nothing
+        // }
 
 
     }
