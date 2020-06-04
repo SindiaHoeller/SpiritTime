@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
+    <e p="C:\Users\Aki\.nuget\packages\blazorise\0.9.0.3\contentFiles\any\netstandard2.1\compilerconfig.json" t="Include" />
     <e p="C:\Users\Aki\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Aki\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_SpiritTime.1990354367.00" t="ExcludeRecursive" />
     <e p="C:\Users\Aki\Development\SpiritTime" t="IncludeFlat">
@@ -98,10 +99,35 @@
         <e p="App.razor" t="Include" />
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
+        <e p="Assets" t="Include">
+          <e p="electron_32x32.png" t="Include" />
+          <e p="favicon32.png" t="Include" />
+          <e p="icon32.png" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Data" t="Include">
-          <e p="WeatherForecast.cs" t="Include" />
-          <e p="WeatherForecastService.cs" t="Include" />
+        <e p="Infrastructure" t="Include">
+          <e p="Comparer" t="Include">
+            <e p="TaskComparer.cs" t="Include" />
+          </e>
+          <e p="Config" t="Include">
+            <e p="AppSettings.cs" t="Include" />
+            <e p="ColorCalc.cs" t="Include" />
+            <e p="ShortcutsConfig.cs" t="Include" />
+            <e p="WriteOptions" t="Include">
+              <e p="IWritableOptions.cs" t="Include" />
+              <e p="ServiceCollectionExtensions.cs" t="Include" />
+              <e p="WritableOptions.cs" t="Include" />
+            </e>
+          </e>
+          <e p="ElectronConfig" t="Include">
+            <e p="ElectronConfiguration.cs" t="Include" />
+            <e p="ElectronMenu.cs" t="Include" />
+          </e>
+          <e p="Profiles" t="Include">
+            <e p="TagProfile.cs" t="Include" />
+            <e p="TaskTagRuleProfile.cs" t="Include" />
+            <e p="WorkspaceProfile.cs" t="Include" />
+          </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Release" t="Include">
@@ -113,16 +139,145 @@
         </e>
         <e p="Pages" t="Include">
           <e p="_Host.cshtml" t="Include" />
+          <e p="Account" t="Include">
+            <e p="Login.razor" t="Include" />
+            <e p="Login.razor.cs" t="Include" />
+            <e p="Logout.razor" t="Include" />
+            <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
+            <e p="Register.razor" t="Include" />
+            <e p="Register.razor.cs" t="Include" />
+          </e>
           <e p="Counter.razor" t="Include" />
           <e p="Error.razor" t="Include" />
-          <e p="FetchData.razor" t="Include" />
           <e p="Index.razor" t="Include" />
+          <e p="JsHelper.cs" t="Include" />
+          <e p="NoElementsPage.razor" t="Include" />
+          <e p="Options" t="Include">
+            <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
+          </e>
+          <e p="QuickInput" t="Include">
+            <e p="NewTask.razor" t="Include" />
+            <e p="NewTask.razor.cs" t="Include" />
+          </e>
+          <e p="Rules" t="Include">
+            <e p="Add.razor" t="Include" />
+            <e p="Add.razor.cs" t="Include" />
+            <e p="Delete.razor" t="Include" />
+            <e p="Delete.razor.cs" t="Include" />
+            <e p="Edit.razor" t="Include" />
+            <e p="Edit.razor.cs" t="Include" />
+            <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
+          </e>
+          <e p="Tags" t="Include">
+            <e p="Add.razor" t="Include" />
+            <e p="Add.razor.cs" t="Include" />
+            <e p="Delete.razor" t="Include" />
+            <e p="Delete.razor.cs" t="Include" />
+            <e p="Edit.razor" t="Include" />
+            <e p="Edit.razor.cs" t="Include" />
+            <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
+          </e>
+          <e p="Tasks" t="Include">
+            <e p="Helper.cs" t="Include" />
+            <e p="MultiSelectPartial.razor" t="Include" />
+            <e p="MultiSelectPartial.razor.cs" t="Include" />
+            <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
+            <e p="SelectState.cs" t="Include" />
+          </e>
+          <e p="Workspaces" t="Include">
+            <e p="Add.razor" t="Include" />
+            <e p="Add.razor.cs" t="Include" />
+            <e p="Delete.razor" t="Include" />
+            <e p="Delete.razor.cs" t="Include" />
+            <e p="Edit.razor" t="Include" />
+            <e p="Edit.razor.cs" t="Include" />
+            <e p="Overview.razor" t="Include" />
+            <e p="Overview.razor.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Partials" t="Include">
+          <e p="OverlayModalService" t="Include">
+            <e p="IOverlayModalService.cs" t="Include" />
+            <e p="OverlayModalOptions.cs" t="Include" />
+            <e p="OverlayModalParameters.cs" t="Include" />
+            <e p="OverlayModalResult.cs" t="Include" />
+            <e p="OverlayModalService.cs" t="Include" />
+          </e>
+          <e p="Overlays" t="Include">
+            <e p="AddModel.cs" t="Include" />
+            <e p="BaseOverlay.razor" t="Include" />
+            <e p="BaseOverlay.razor.cs" t="Include" />
+            <e p="ConfirmOverlay.razor" t="Include" />
+            <e p="ConfirmOverlay.razor.cs" t="Include" />
+            <e p="DeleteOverlay.razor" t="Include" />
+            <e p="DeleteOverlay.razor.cs" t="Include" />
+            <e p="ResultModal.razor" t="Include" />
+            <e p="ResultModal.razor.cs" t="Include" />
+          </e>
+          <e p="ToastModal" t="Include">
+            <e p="IToastService.cs" t="Include" />
+            <e p="ToastInstance.cs" t="Include" />
+            <e p="ToastLevel.cs" t="Include" />
+            <e p="ToastPosition.cs" t="Include" />
+            <e p="ToastService.cs" t="Include" />
+            <e p="ToastSettings.cs" t="Include" />
+          </e>
+          <e p="Toasts" t="Include">
+            <e p="BlazoredToast.razor" t="Include" />
+            <e p="BlazoredToast.razor.cs" t="Include" />
+            <e p="BlazoredToasts.razor" t="Include" />
+            <e p="BlazoredToasts.razor.cs" t="Include" />
+          </e>
         </e>
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />
         </e>
+        <e p="Services" t="Include">
+          <e p="ApiAuthenticationStateProvider.cs" t="Include" />
+          <e p="AuthServices" t="Include">
+            <e p="AuthService.cs" t="Include" />
+            <e p="IAuthService.cs" t="Include" />
+          </e>
+          <e p="IServiceBase.cs" t="Include" />
+          <e p="NotifierService.cs" t="Include" />
+          <e p="OptionsService" t="Include">
+            <e p="IOptionService.cs" t="Include" />
+            <e p="OptionService.cs" t="Include" />
+            <e p="WorkspaceOption.cs" t="Include" />
+          </e>
+          <e p="ServiceBase.cs" t="Include" />
+          <e p="ServiceHelper.cs" t="Include" />
+          <e p="TableServices" t="Include">
+            <e p="ITableService.cs" t="Include" />
+            <e p="TableService.cs" t="Include" />
+          </e>
+          <e p="TagServices" t="Include">
+            <e p="ITagService.cs" t="Include" />
+            <e p="TagService.cs" t="Include" />
+          </e>
+          <e p="TaskServices" t="Include">
+            <e p="ITaskService.cs" t="Include" />
+            <e p="TaskService.cs" t="Include" />
+          </e>
+          <e p="TaskTagRuleServices" t="Include">
+            <e p="ITaskTagRuleService.cs" t="Include" />
+            <e p="TaskTagRuleService.cs" t="Include" />
+          </e>
+          <e p="ValidateHeaderHandler.cs" t="Include" />
+          <e p="WorkspaceServices" t="Include">
+            <e p="IWorkspaceService.cs" t="Include" />
+            <e p="WorkspaceService.cs" t="Include" />
+          </e>
+        </e>
         <e p="Shared" t="Include">
+          <e p="EmptyLayout.razor" t="Include" />
+          <e p="LoginMenu.razor" t="Include" />
           <e p="MainLayout.razor" t="Include" />
           <e p="NavMenu.razor" t="Include" />
           <e p="SurveyPrompt.razor" t="Include" />
@@ -155,6 +310,120 @@
             <e p="site.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
+          <e p="img" t="Include">
+            <e p="calendar-alt.png" t="Include" />
+            <e p="calendar-alt_focus.png" t="Include" />
+            <e p="favicon120.png" t="Include" />
+            <e p="icon_120x120.png" t="Include" />
+            <e p="OK.png" t="Include" />
+          </e>
+          <e p="js" t="Include">
+            <e p="index.js" t="Include" />
+            <e p="jsInterop.js" t="Include" />
+          </e>
+          <e p="lib" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p="dist" t="Include">
+                <e p="css" t="Include">
+                  <e p="bootstrap.css" t="Include" />
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="js" t="Include">
+                  <e p="bootstrap.js" t="Include" />
+                  <e p="bootstrap.min.js" t="Include" />
+                  <e p="bootstrap.min.js.map" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="font-awesome" t="Include">
+              <e p="css" t="Include">
+                <e p="all.css" t="Include" />
+                <e p="all.min.css" t="Include" />
+                <e p="brands.css" t="Include" />
+                <e p="brands.min.css" t="Include" />
+                <e p="fontawesome.css" t="Include" />
+                <e p="fontawesome.min.css" t="Include" />
+                <e p="regular.css" t="Include" />
+                <e p="regular.min.css" t="Include" />
+                <e p="solid.css" t="Include" />
+                <e p="solid.min.css" t="Include" />
+                <e p="svg-with-js.css" t="Include" />
+                <e p="svg-with-js.min.css" t="Include" />
+                <e p="v4-shims.css" t="Include" />
+                <e p="v4-shims.min.css" t="Include" />
+              </e>
+              <e p="js" t="Include">
+                <e p="all.js" t="Include" />
+                <e p="all.min.js" t="Include" />
+                <e p="brands.js" t="Include" />
+                <e p="brands.min.js" t="Include" />
+                <e p="conflict-detection.js" t="Include" />
+                <e p="conflict-detection.min.js" t="Include" />
+                <e p="fontawesome.js" t="Include" />
+                <e p="fontawesome.min.js" t="Include" />
+                <e p="regular.js" t="Include" />
+                <e p="regular.min.js" t="Include" />
+                <e p="solid.js" t="Include" />
+                <e p="solid.min.js" t="Include" />
+                <e p="v4-shims.js" t="Include" />
+                <e p="v4-shims.min.js" t="Include" />
+              </e>
+              <e p="sprites" t="Include">
+                <e p="brands.svg" t="Include" />
+                <e p="regular.svg" t="Include" />
+                <e p="solid.svg" t="Include" />
+              </e>
+              <e p="webfonts" t="Include">
+                <e p="fa-brands-400.eot" t="Include" />
+                <e p="fa-brands-400.svg" t="Include" />
+                <e p="fa-brands-400.ttf" t="Include" />
+                <e p="fa-brands-400.woff" t="Include" />
+                <e p="fa-brands-400.woff2" t="Include" />
+                <e p="fa-regular-400.eot" t="Include" />
+                <e p="fa-regular-400.svg" t="Include" />
+                <e p="fa-regular-400.ttf" t="Include" />
+                <e p="fa-regular-400.woff" t="Include" />
+                <e p="fa-regular-400.woff2" t="Include" />
+                <e p="fa-solid-900.eot" t="Include" />
+                <e p="fa-solid-900.svg" t="Include" />
+                <e p="fa-solid-900.ttf" t="Include" />
+                <e p="fa-solid-900.woff" t="Include" />
+                <e p="fa-solid-900.woff2" t="Include" />
+              </e>
+            </e>
+            <e p="jquery" t="Include">
+              <e p="jquery.slim.min.js" t="Include" />
+            </e>
+            <e p="popper.js" t="Include">
+              <e p="popper.min.js" t="Include" />
+              <e p="umd" t="Include">
+                <e p="popper-utils.js" t="Include" />
+                <e p="popper-utils.js.map" t="Include" />
+                <e p="popper-utils.min.js" t="Include" />
+                <e p="popper-utils.min.js.map" t="Include" />
+                <e p="popper.js" t="Include" />
+                <e p="popper.js.map" t="Include" />
+                <e p="popper.min.js" t="Include" />
+                <e p="popper.min.js.map" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="sass" t="Include">
+            <e p="_blazored-modal.sass" t="Include" />
+            <e p="_buttons.sass" t="Include" />
+            <e p="_checkbox.sass" t="Include" />
+            <e p="_colors.sass" t="Include" />
+            <e p="_context-menu.sass" t="Include" />
+            <e p="_datetime.sass" t="Include" />
+            <e p="_general.sass" t="Include" />
+            <e p="_media.sass" t="Include" />
+            <e p="_menu.sass" t="Include" />
+            <e p="_multiselect.sass" t="Include" />
+            <e p="_sidebar.sass" t="Include" />
+            <e p="_toast.sass" t="Include" />
+            <e p="index.sass" t="Include" />
+          </e>
         </e>
       </e>
       <e p="SpiritTime.Persistence" t="IncludeRecursive">

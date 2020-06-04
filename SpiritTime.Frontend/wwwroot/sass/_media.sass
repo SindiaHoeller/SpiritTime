@@ -1,0 +1,71 @@
+@media (max-width: 400px)
+  .custom-navbar-brand
+    .logo-small
+      margin-right: 0 !important
+    .custom-header
+      display: none
+      
+
+  .main .custom-background
+    padding: 10px 15px
+  div.custom-task-background
+    padding: 0.4em
+    box-shadow: none
+
+@media (max-width: 867.98px)
+  .blazored-modal-wrapper
+    padding: 20px 20px
+  .blazored-modal-header
+    padding: 0
+  .content
+    margin: 0
+  .account-info input
+    min-width: 100%
+  .full-size
+    display: none !important
+  .main .top-row
+    background: transparent
+    border: 0
+  div.custom-task-background
+    padding: 1em
+    box-shadow: none
+    
+    &.auth
+      justify-content: space-between
+
+    a, .btn-link
+      margin-left: 0
+  .sidebar
+    position: absolute
+    top: 12px
+    left: 12px
+  .menu-placeholder
+    width: 95px
+
+@media (min-width: 868px)
+  .small-size
+    display: none
+  app
+    flex-direction: row
+  .custom-top-row
+    display: none
+
+  .sidebar
+    width: 250px
+    height: 100vh
+    position: absolute
+    top: 50px
+  .content
+    margin-left: 280px
+
+  .main
+    .top-row
+      position: sticky
+      top: 0
+
+  .navbar-toggler
+    display: none
+
+  .sidebar .collapse
+    /* Never collapse the sidebar for wide screens
+    display: block

@@ -1,0 +1,108 @@
+@page "/account/overview" 
+
+<div class="center-and-highlight">
+    <div class="col-12 custom-background">
+        <div class="text-center">
+            <h1>@TextMsg.AccountInfo</h1>
+
+        </div>
+        @if (ShowError && ErrorMessage != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ErrorMessage
+            </div>
+        }
+        @if (UserInfo != null)
+        {
+@*             <h3 >Current @TextMsg.Workspace:</h3> *@
+            <div class="d-flex flex-column offset-lg-3 col-lg-6 offset-xs-0 col-xs-12 center-and-highlight account-info">
+                <div class="form-group my-3">
+                    <label for="firstname">@nameof(UserInfo.Firstname):</label>
+                    <input @bind="UserInfo.Firstname" type="text" class="form-control" id="firstname" placeholder="@nameof(UserInfo.Firstname)"/>
+                </div>
+                <div class="form-group my-3">
+                    <label for="lastname">@nameof(UserInfo.Lastname):</label>
+                    <input @bind="UserInfo.Lastname" type="text" class="form-control" id="lastname" placeholder="@nameof(UserInfo.Firstname)"/>
+                </div>
+                <div class="form-group my-3">
+                    <button class="custom-small-button" @onclick="@(() => SaveChanges())">
+                        <i class="fas fa-save"></i> @TextMsg.Save
+                    </button>
+                </div>
+
+                <hr/>
+                @if (!ShowPasswordReset)
+                {
+                    <div class="form-group my-3">
+                        <button class="custom-small-button" @onclick="@(() => TogglePasswordReset())">
+                            <i class="fas fa-pencil-alt"></i> @TextMsg.ChangePassword
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group my-3">
+                        <label for="password">@nameof(PWChangeInfo.Password):</label>
+                        <input @bind="@PWChangeInfo.Password" type="password" class="form-control" id="password" placeholder="@nameof(PWChangeInfo.Password)"/>
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="newPassword">@nameof(PWChangeInfo.NewPassword):</label>
+                        <input @bind="@PWChangeInfo.NewPassword" type="password" class="form-control" id="newPassword" placeholder="@nameof(PWChangeInfo.NewPassword)"/>
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="newPasswordConfirmation">@nameof(PasswordConfirmation):</label>
+                        <input @bind="@PasswordConfirmation" type="password" class="form-control" id="newPasswordConfirmation" placeholder="@nameof(PasswordConfirmation)"/>
+                    </div>
+
+                    <div class="form-group my-3">
+                        <button  Color="Color.Danger" class="custom-small-button orange" @onclick="@(async () => await ChangePassword())">
+                            <i class="fas fa-pencil-alt"></i> @TextMsg.ChangePassword
+                        </button>
+                        <button class="custom-small-button" @onclick="@(() => TogglePasswordReset())">
+                            <i class="fas fa-ban"></i> Abort
+                        </button>
+                    </div>
+                }
+                <hr/>
+                <Alert @ref="DeleteAlert" Color="Color.Danger">
+                    <Heading Size="HeadingSize.Is4" TextColor="TextColor.Danger">
+                        @TextMsg.DeleteUserMsg
+                    </Heading>
+                    <Paragraph>
+                        @TextMsg.DeleteUserDetail
+                        @TextMsg.DeleteUserDetail2
+                    </Paragraph>
+                    <Paragraph>
+                        <input @bind="@DeleteConfirmation" class="form-control" id="password" placeholder="DELETE"/>
+                    </Paragraph>
+                    <Paragraph>
+                        <Button Color="Color.Danger" @onclick="@(async () => await DeleteOwnUser())">DELETE</Button>
+                        <Button Color="Color.Light" @onclick="@(ToggleDelete)"><i class="fas fa-ban"></i> Abort</Button>
+                    </Paragraph>
+                </Alert>
+
+                @if (!HideDeleteButton)
+                {
+                    <div class="form-group my-3">
+                        <button class="custom-small-button red" @onclick="@(ToggleDelete)">
+                            <i class="fas fa-pencil-alt"></i> @TextMsg.DeleteUser
+                        </button>
+                    </div>
+                }
+
+
+                @* <div class="form-group my-3 col-lg-6 col-xs-12"> *@
+                @*     <label for="firstname">@nameof(UserInfo.Firstname):</label> *@
+                @*     <input readonly @bind="UserInfo.Email" type="text" class="form-control" id="firstname" placeholder="@nameof(UserInfo.Firstname)"/> *@
+                @* </div> *@
+                @* *@
+                @* <div class="form-group my-3 col-lg-4 col-xs-12"> *@
+                @*     <button class="custom-small-button" @onclick="@(async() => await SaveChanges())"> *@
+                @*         <i class="fas fa-pencil-alt"></i> @TextMsg.ChangeEmail *@
+                @*     </button> *@
+                @* </div> *@
+            </div>
+        }
+
+    </div>
+</div>

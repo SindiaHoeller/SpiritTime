@@ -1,0 +1,34 @@
+﻿@if (ShowForm)
+{
+    <div class="simple-form">
+        <div class="form-group my-3">
+            <label for="unit-name">@TextMsg.TagName:</label>
+            <input @bind="@Item.Name" type="text" class="form-control" id="unit-name" placeholder="@TextMsg.WorkspaceName" />
+            <input @bind="@Item.ColorCode" type="color" class="form-control"/>
+        </div>
+                <div class="form-group my-3">
+                    <label for="unit-name">@TextMsg.Workspace:</label>
+                    <EditForm Model="Item">
+                        <InputSelect Id="list" @bind-Value="@Id" class="form-control">
+                            @foreach (var item in WorkspaceList)
+                            {
+                                <option value="@item.Id">@item.Name </option>
+                            }
+        
+                        </InputSelect>
+                    </EditForm>
+                </div>
+        <div class="text-center pt-5 mt-5">
+            <button @onclick="SubmitForm" class="custom-small-button">@TextMsg.Confirm</button>
+            <button @onclick="Cancel" class="custom-small-button trash">@TextMsg.Abort</button>
+        </div>
+
+    </div>
+}
+else if(ShowErrorForm)
+{
+    <div class="alert alert-danger" role="alert">
+        @Error<br />
+        <button class="custom-small-button" @onclick="Cancel">@TextMsg.Done</button>
+    </div>
+}
