@@ -1,0 +1,74 @@
+.multiselect
+  position: absolute
+  background: $color6
+  left: 56px
+  top: 0
+  width: 120px
+  height: 150px
+  overflow: auto
+  z-index: 5
+  border-radius: 10px
+  border-bottom: 1px solid $color5
+  border-right: 1px solid $color5
+  .custom-checkbox
+    height: 20px
+    margin-bottom: 5px
+    display: flex
+    align-items: center
+    &:first-child
+      margin-top: 7px
+
+    input
+      cursor: pointer
+      z-index: 6
+      width: 20%
+      &:hover + label
+        background-color: $color1
+        color: $color4
+        &::after
+          border-left-color: $color1
+
+  label
+    cursor: pointer
+    float: left
+    border: 0
+    background: $color2
+    border-radius: 3px 0 0 3px
+    color: $color5
+    display: inline-block
+    height: 20px
+    line-height: 20px
+    padding: 0 5px 0 25px
+    position: absolute
+    left: 0
+    margin: 0 10px 5px 0
+    text-decoration: none
+    -webkit-transition: color 0.2s
+    //&::before
+    //  background: $color1
+    //  border-radius: 10px
+    //  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25)
+    //  content: ''
+    //  height: 6px
+    //  left: 5px
+    //  position: absolute
+    //  width: 6px
+    //  top: 7.5px
+    &::after
+      background: transparent
+      border-bottom: 10px solid transparent
+      border-left: 10px solid $color2
+      border-top: 10px solid transparent
+      content: ''
+      position: absolute
+      right: -10px
+      top: 0
+    &:hover
+      background-color: $color1
+      color: $color4
+      &::after
+        border-left-color: $color1
+        
+.tags-wrapper
+  width: 100%
+  height: 100%

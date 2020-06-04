@@ -1,0 +1,213 @@
+html
+  color: $color4
+  background: $main-background no-repeat center center fixed
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+body
+  background-color: transparent
+  color: $color4
+h1
+  color: $color1
+  font-family: $font1
+
+#components-reconnect-modal
+  background-color: $color5 !important
+  
+h2, h3, h4, h5
+  color: $color3
+  font-family: $font1
+p
+  font-family: $font2
+hr
+  border-top: 1px solid $color3
+table
+  color: $color4 !important
+  tr, td
+    border-radius: 5px
+    border-color: transparent
+    border-width: 5px
+    text-align: center
+    &.red
+      background-color: $red
+    &.orange
+      background-color: $orange
+    &.green
+      background-color: $green
+  th
+    span.oi
+      background-color: $color3
+      border-radius: 5px
+      padding: 3px
+      box-shadow: $shadow-color 0.2rem 0.2rem
+      transition: .4s
+      &:hover
+        cursor: pointer
+        box-shadow: $shadow-color 0.05rem 0.05rem
+
+.custom-header
+  color: $color4
+  font-family: $font2
+  font-size: 1.6rem
+
+
+.full-center
+  display: flex
+  justify-content: center
+  align-items: center
+
+.custom-top-row
+  a
+    color: $color4
+    transition: .4s
+    background: transparent
+    padding: 8px 6px !important
+    border-radius: 3px
+    border: 1px solid $color4
+    &:hover
+      color: $color2
+      border-color: $color2
+.main 
+  a
+    &:hover
+      text-decoration: none
+  .top-row, .custom-top-row
+    justify-content: space-between
+    background: $gradient2
+    z-index: 10
+    border-bottom: 1px solid $color5
+    padding-right: 12px
+    a:not(.main)
+      color: $color4
+      transition: .4s
+      margin-right: 4px
+      margin-left: 4px
+      background: transparent
+      padding: 6px 10px !important
+      border-radius: 6px
+      border: 1px solid $color4
+      &:hover
+        color: $color2
+        border-color: $color2
+    a.main
+      color: $color1
+      font-family: $font1
+      font-size: 28px
+      text-shadow: $color3 0.5px 0.5px
+  .center-and-highlight
+    justify-content: center
+    align-items: center
+    display: flex
+    div.full-width
+      width: 100%
+  .custom-background
+    background: $background-theme2-3
+    padding: 2em
+    border-radius: 1em
+    box-shadow: $shadow-color 0.3rem 0.3rem
+
+
+  
+
+label.form-control
+  background-color: transparent
+  color: $color4
+  border-color: transparent
+div.expand
+  width: 100%
+div.task-header
+  border: 1px solid $color3
+  justify-content: center
+  align-items: center
+  display: flex
+  border-radius: 10px
+  margin-bottom: .5rem
+div.custom-task-background
+  background-color: $color6
+  padding: 2em
+  border-radius: 1em
+  box-shadow: $shadow-color 0.3rem 0.3rem
+  h1, h2, h3, h4
+    margin: .5rem
+  .custom-small-button
+    margin-top: 5px
+    margin-bottom: 5px
+    
+.task-main-view
+  .row
+    margin-right: 0
+    margin-left: 0
+  .col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1
+    padding-left: 2px
+    padding-right: 2px
+    
+
+.overlay-option-menu
+  position: absolute
+  background-color: $color5
+  z-index: 5
+  border-radius: 10px
+  right: 65px
+
+.account-info
+  input
+    min-width: 500px
+  button
+    min-width: 200px
+  
+.quick-input
+  width: 100%
+  background-color: transparent
+  align-items: center
+  justify-content: center
+  display: flex
+  input
+    border-top: 0 !important
+    border-left: 0 !important
+    border-right: 0 !important
+    &:hover, &:focus
+      border-color: $color4
+      background-color: transparent !important
+      //outline: transparent auto 0 !important
+      box-shadow: 0 0 0 0.2rem transparent
+  label
+    margin: 0
+    white-space: nowrap
+    display: block
+    width: 100%
+    height: calc(1.5em + .75rem + 2px)
+    padding: .375rem .75rem
+    font-size: 1rem
+    font-weight: 400
+    line-height: 1.5
+    border-width: 1px
+    &:hover, &:focus
+      border-color: transparent
+      outline: transparent auto 0
+      
+select, select.form-control
+  background-color: transparent
+  color: $color4
+  &:focus
+    background-color: transparent
+    color: $color4
+
+.logo-small
+  width: 30px
+  height: 30px
+  margin-right: 16px
+  
+a.custom-navbar-brand
+  justify-content: center
+  display: flex
+  align-items: center
+  padding: 0 !important
+  margin: 0
+  border: 0 !important
+  p
+    margin: 0
+    
+.content
+  flex-grow: 1
+  margin: 0 30px

@@ -1,0 +1,63 @@
+@page "/options/overview" 
+@using ElectronNET.API
+<div class="center-and-highlight">
+    <div class="col-12 custom-background">
+        <div class="text-center">
+            <h1>@TextMsg.Options</h1>
+
+        </div>
+        @if (ShowError && ErrMsg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ErrMsg
+            </div>
+        }
+        @if (ShowWorkspaces)
+        {
+            <h3 >Current @TextMsg.Workspace:</h3>
+            <div class="d-flex flex-column offset-lg-3 col-lg-6 offset-xs-0 col-xs-12 center-and-highlight account-info">
+                <div class="form-group my-3 full-width">
+
+                    <EditForm Model="WorkspaceList">
+                        <InputSelect Id="list" @bind-Value="@CurrentWorkspaceStringId" class="form-control">
+                            @foreach (var item in WorkspaceList)
+                            {
+                                <option value="@item.Id">@item.Name </option>
+                            }
+                        </InputSelect>
+                    </EditForm>
+                </div>
+                <div class="form-group my-3">
+                    <button class="custom-small-button" @onclick="@(() => SetWorkspace())">
+                        <i class="fas fa-save"></i> @TextMsg.Save
+                    </button>
+                </div>
+            </div>
+        }
+        @if (HybridSupport.IsElectronActive)
+        {
+            <h3>Shortcuts Options</h3>
+            <div class="d-flex flex-column offset-lg-3 col-lg-6 offset-xs-0 col-xs-12 center-and-highlight account-info">
+                <div class="form-group my-3">
+                    <label for="CurrentTask">"Edit current task" shortcut:</label>
+                    <input @bind="@ShortcutsConfig.CurrentTask" type="text" class="form-control" id="CurrentTask"/>
+                </div>
+                <div class="form-group my-3">
+                    <label for="NewTask">"Add new task" shortcut:</label>
+                    <input @bind="@ShortcutsConfig.NewTask" type="text" class="form-control" id="NewTask"/>
+                </div>
+                <div class="form-group my-3">
+                    <button class="custom-small-button" @onclick="@(() => WriteChangesToAppsettings())">
+                        <i class="fas fa-save"></i> @TextMsg.Save
+                    </button>
+                </div>
+            </div>
+        }
+
+        @* <div class="form-group my-3 col-lg-12 col-xs-12"> *@
+        @*     <button class="custom-small-button" @onclick="@(() => Opentray())"> *@
+        @*         <span class="oi oi-check"></span> START TRAY *@
+        @*     </button> *@
+        @* </div> *@
+    </div>
+</div>

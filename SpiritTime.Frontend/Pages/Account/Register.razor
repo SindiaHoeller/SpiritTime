@@ -1,0 +1,45 @@
+﻿@page "/register"
+<div class="center-and-highlight">
+    <div class="col-xl-4 col-lg-6 col-md-8 col-xs-12 custom-background mt-5">
+        <div class="text-center">
+            <div class="menu-switch">
+                <a href="Login"  class="login">
+                    <h1>Login</h1>
+                </a>
+                <a class="register active">
+                    <h1>Register</h1>
+                </a>
+            </div>
+            <h5>@TextMsg.RegisterText</h5>
+
+        </div>
+        <hr/>
+        @if (ShowErrors)
+        {
+            <div class="alert alert-danger" role="alert">
+                <p>@Error</p>
+            </div>
+        }
+        <EditForm Model="RegisterResource">
+            <DataAnnotationsValidator/>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <InputText Id="email" class="form-control" @bind-Value="RegisterResource.Email"/>
+                <ValidationMessage For="@(() => RegisterResource.Email)"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Passwort:</label>
+                <InputText Id="password" type="password" class="form-control" @bind-Value="RegisterResource.Password"/>
+                <ValidationMessage For="@(() => RegisterResource.Password)"/>
+            </div>
+            <div class="form-group">
+                <label for="confirmpassword">Passwort bestätigen</label>
+                <InputText Id="confirmpassword" type="password" class="form-control" @bind-Value="ConfirmPassword"/>
+                <ValidationMessage For="@(() => ConfirmPassword)"/>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn custom-primary" @onclick="HandleRegistration">Registrieren</button>
+            </div>
+        </EditForm>
+    </div>
+</div>

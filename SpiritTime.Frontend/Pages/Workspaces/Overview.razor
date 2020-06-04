@@ -1,0 +1,70 @@
+﻿@page "/workspace/overview"
+
+<div class="center-and-highlight">
+    <div class="col-12 custom-background">
+        <div class="text-center">
+            <div class="text-right">
+                <button class="custom-small-button" @onclick="Add">@TextMsg.AddWorkspace</button>
+            </div>
+            <h1>@TextMsg.Workspace</h1>
+        </div>
+        @if (ShowError && ErrorMsg != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ErrorMsg
+            </div>
+        }
+        @if (TableService.Objects == null)
+        {
+            if (NoElements)
+            {
+                <p>
+                    <em>@TextMsg.NoElements</em>
+                </p>
+            }
+            else
+            {
+                <p>
+                    <em>@TextMsg.Loading</em>
+                </p>
+            }
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        <span
+                              @onclick="@(() => TableService.SortTable(nameof(WorkspaceDto.Name)))">
+                            <i class="fas @(TableService.GetSortStyle(nameof(WorkspaceDto.Name)))"></i>
+                        </span>
+                        <span class="pl-3">@nameof(WorkspaceDto.Name)</span>
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in TableService.Objects)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td class="d-flex align-items-center justify-content-center">
+                            <Tooltip Text="Edit" Placement="Placement.Left">
+                                <button class="custom-small-button mr-1" @onclick="@(() => Update(item))">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </Tooltip>
+                            <Tooltip Text="Delete" Placement="Placement.Right">
+                                <button class="custom-small-button trash" @onclick="@(() => Remove(item.Id))">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </Tooltip>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
