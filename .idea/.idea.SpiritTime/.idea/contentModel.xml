@@ -290,6 +290,9 @@
               <e p="bootstrap.min.css" t="Include" />
               <e p="bootstrap.min.css.map" t="Include" />
             </e>
+            <e p="datetime.css" t="Include" />
+            <e p="index.css" t="Include" />
+            <e p="media.css" t="Include" />
             <e p="open-iconic" t="Include">
               <e p="font" t="Include">
                 <e p="css" t="Include">

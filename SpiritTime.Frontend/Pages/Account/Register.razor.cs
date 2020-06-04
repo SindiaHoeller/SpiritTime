@@ -20,13 +20,25 @@ namespace SpiritTime.Frontend.Pages.Account
         private bool ShowErrors;
         private string Error;
         private string ConfirmPassword;
-        protected override async Task OnInitializedAsync()
+        // protected override async Task OnInitializedAsync()
+        // {
+        //     var authenticated = await AuthenticationProvider.GetAuthenticationStateAsync();
+        //     if (authenticated.User.Identity.IsAuthenticated)
+        //     {
+        //         NavigationManager.NavigateTo("/");
+        //     }
+        // }
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            var authenticated = await AuthenticationProvider.GetAuthenticationStateAsync();
-            if (authenticated.User.Identity.IsAuthenticated)
+            if (firstRender)
             {
-                NavigationManager.NavigateTo("/");
+                var authenticated = await AuthenticationProvider.GetAuthenticationStateAsync();
+                if (authenticated.User.Identity.IsAuthenticated)
+                {
+                    NavigationManager.NavigateTo("/");
+                }
             }
+            // return await base.OnAfterRenderAsync(firstRender);
         }
         private async Task HandleRegistration()
         {
