@@ -24,22 +24,12 @@ namespace SpiritTime.Frontend.Pages.Account
         {
             Console.WriteLine("Login page loaded...");
             LoginModel = new AuthenticationResource();
-
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
+            var authenticated = await AuthenticationProvider.GetAuthenticationStateAsync();
+            if (authenticated.User.Identity.IsAuthenticated)
             {
-                var authenticated = await AuthenticationProvider.GetAuthenticationStateAsync();
-                if (authenticated.User.Identity.IsAuthenticated)
-                {
-                    NavigationManager.NavigateTo("/");
-                }
+                NavigationManager.NavigateTo("/");
             }
-            // return await base.OnAfterRenderAsync(firstRender);
         }
-
         private async Task HandleLogin()
         {
             ShowErrors = false;

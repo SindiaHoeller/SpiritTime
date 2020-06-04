@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ActiveDebugProfile>SpiritTime.Frontend</ActiveDebugProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <StartAction>Project</StartAction>
+    <StartArguments></StartArguments>
+    <ExternalConsole>true</ExternalConsole>
+    <LaunchBrowser>false</LaunchBrowser>
+    <ApplicationURL>https://localhost:5011;http://localhost:5010;</ApplicationURL>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'DotnetWatch' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>..\..\..\.dotnet\dotnet</StartProgram>
+    <StartArguments>watch run debug -nowarn</StartArguments>
+    <StartWorkingDirectory>.</StartWorkingDirectory>
+    <ExternalConsole>true</ExternalConsole>
+    <LaunchBrowser>false</LaunchBrowser>
+    <ApplicationURL>https://localhost:18676;http://localhost:41497</ApplicationURL>
+  </PropertyGroup>
+</Project>
