@@ -28,8 +28,8 @@
 <body>
 <div class="main-background"></div>
 <app>
-<component type="typeof(App)" render-mode="ServerPrerendered"/>
-    @* @(await Html.RenderComponentAsync<App>(RenderMode.Server)) *@
+    @* <component type="typeof(App)" render-mode="ServerPrerendered"/> *@
+    @(await Html.RenderComponentAsync<App>(RenderMode.Server))
 </app>
 
 <div id="blazor-error-ui">

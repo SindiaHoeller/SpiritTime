@@ -30,8 +30,8 @@ namespace SpiritTime.Frontend.Services
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            // var accessToken = await _localStorage.GetItemAsync<string>(SD.AccessToken);
-            var accessToken = "";
+            var accessToken = await _localStorage.GetItemAsync<string>(SD.AccessToken);
+            // var accessToken = "";
             if (string.IsNullOrWhiteSpace(accessToken))
             {
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
