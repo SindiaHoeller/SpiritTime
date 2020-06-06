@@ -37,6 +37,7 @@ namespace SpiritTime.Frontend.Services.AuthServices
 
         public async Task<AuthenticationResult> LoginAsync(AuthenticationResource userResource)
         {
+
             try
             {
                 Console.WriteLine("Service.LoginAsync called..." + _path.Login);
