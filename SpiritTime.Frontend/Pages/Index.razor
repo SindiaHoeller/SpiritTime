@@ -1,21 +1,68 @@
 ﻿@* @inject IToastService ToastService *@
 
 @page "/"
-<div class="center-and-highlight">
+<div class="center-and-highlight" xmlns="http://www.w3.org/1999/html">
     <div class="text-center custom-background mt-lg-5 mt-sm-0">
-        <h1>Willkommen</h1>
+        <div class="logo-background">
+            <h1>Welcome <i class="fas fa-at"></i> SpiritTime !</h1>
 
-        <h4 class="mb-1">Dies ist die Startseite von SpiritTime</h4>
-        <hr />
-        <p>
-            Beschreibung der Applikation und Informationen über die Entwickler.
-        </p>
-        @*<button @onclick="@LogUsername">Log username</button>*@
-        
-        @* <button class="btn btn-warning" @onclick="@(() => ToastService.ShowWarning("I'm a Warning Message"))">Warning Toast</button> *@
-        @* <button class="btn btn-danger" @onclick="@(() => ToastService.ShowError("I'm a Error Message"))">Error Toast</button> *@
+            <h4 class="mb-1"><i class="fas fa-file-code  mr-2"></i> Under Development</h4>
+            <hr/>
+            <p>
+                If you are interested getting a beta tester asap, please let me know:
+            </p>
+            <a href="mailto:sindia.hoeller@spiritlabs.dev">
+                <h4><i class="fas fa-envelope-open-text"></i> sindia.hoeller@spiritlabs.dev</h4>
+            </a>
+            <hr/>
+            <h4>
+                <i class="fas fa-question-circle"></i>
+            </h4>
+            <p>
+                Are you not satisfied with the time tracking applications you found so far? <br/>
+                Do you feel like all of them distract you in your workflow? <br/>
+                Do you find yourself not tracking your time in the end, even though you forget half of what you've done that day? <br/> <br/>
+            </p>
+            <h4>
+                <i class="fas fa-exclamation mr-3"></i>
+            </h4>
+            <p>
+                That's how I feel, and why I have one target: <br/>
+                SpiritTime will be designed for quick, easy and non-distractive usage. <br/><br/>
+            </p>
+            <h4>Designed for this workflow: </h4>
+            <ul class="simple-design">
+                <li><i class="fas fa-fast-forward mr-3"></i> Switching between tasks <b>very quickly</b></li>
+                <li><i class="fas fa-tasks mr-3"></i><b> No possibilty to plan</b> those tasks previously</li>
+                <li><i class="fas fa-bullseye mr-3"></i> No time or disire focus on time tracking while activly working</li>
+                <li><i class="fas fa-window-close mr-3"></i> Once everything is done, all tasks have to be booked into various booking systems (which are too bulky to use while actually working)</li>
+            </ul>
+            <h4>The target:</h4>
+            <ul class="simple-design">
+                <li><i class="fas fa-keyboard mr-3"></i> Being able to just quickly insert <b>what you are doing RIGHT now</b></li>
+                <li><i class="fas fa-thumbtack mr-3"></i> <b>No need to switch and focus on SpiritTime</b> for inserting a new task or editing your current task</li>
+                <li><i class="fas fa-info-circle mr-3"></i> No need to insert additional information, but the one thing: <b>What's your task?</b></li>
+                <li><i class="fas fa-plus-circle mr-3"></i> The <b>possibility to insert more information</b>, once you WANT to take time for it</li>
+                <li><i class="fas fa-pencil-ruler mr-3"></i> Let SpiritTime add additinal information for your automatically, based on <b>rules that you control</b>.</li>
+                <li><i class="fas fa-calendar-week mr-3"></i> <b>Remember</b> all the tasks, you've done</li>
+                <li><i class="fas fa-check-circle mr-3"></i> Being able to <b>mark the tasks</b> you have already booked</li>
+            </ul>
+            <h4>Available for:</h4>
+            <ul class="simple-design">
+                <li><i class="fab fa-windows"></i> Windows</li>
+                <li><i class="fab fa-apple"></i> MacOs</li>
+                <li><i class="fab fa-linux"></i> Linux</li>
+                <li>Fully responsive Webapplication</li>
+            </ul>
+            <p>
+                I do have plans for adding mobile versions for <i class="fab fa-android"></i> Android and <i class="fab fa-app-store-ios"></i> iOS aswell, as soon as the desktop versions are ready. <br/>
+            </p>
+            @*<button @onclick="@LogUsername">Log username</button>*@
+
+            @* <button class="btn btn-warning" @onclick="@(() => ToastService.ShowWarning("I'm a Warning Message"))">Warning Toast</button> *@
+            @* <button class="btn btn-danger" @onclick="@(() => ToastService.ShowError("I'm a Error Message"))">Error Toast</button> *@
+        </div>
     </div>
-
 </div>
 
 @*@code{
