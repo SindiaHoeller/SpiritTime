@@ -20,81 +20,120 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0dda207-c215-4fdc-8a6d-18b8654369c5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register_Error.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/img/icon_background_10op.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/img/icon_background_20op.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/img/icon_background_5op.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_lists.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/sshConfigs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Backend/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Backend/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Backend/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Backend/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Backend/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Backend/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Backend/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/index.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_general.sass" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_general.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_media.sass" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_media.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/index.sass" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/index.sass" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Sass File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/IAuthService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/EmptyLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TagServices/TagService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/LoginMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.js.map" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Counter.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/WorkspaceServices/WorkspaceService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/JsHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/NoElementsPage.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/B/ConfigureServicesBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/3/GenericWebHostBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9FC32238-18FC-4637-A422-2ABB00D82D22/3/HostBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/IAuthService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/NoElementsPage.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Partials/ToastModal/IToastService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/LoginMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Add.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/9/ConfigureBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Counter.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TagServices/TagService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register_Error.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/WorkspaceServices/WorkspaceService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7B19537B-F065-4C3F-9F78-85C4099CD3AA/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.js.map" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/B/ConfigureServicesBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/3/GenericWebHostBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9FC32238-18FC-4637-A422-2ABB00D82D22/3/HostBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/9/ConfigureBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/App.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/4/GenericWebHostedService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/EmptyLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7B19537B-F065-4C3F-9F78-85C4099CD3AA/5C/Array.Enumerators.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/App.razor" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" />
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" />
         <option value="$PROJECT_DIR$/SpiritTime.Backend/Program.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Backend/appsettings.json" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_media.sass" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/index.sass" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register_Error.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Backend/Startup.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Backend/Properties/launchSettings.json" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_lists.sass" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_general.sass" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" />
       </list>
     </option>
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="SASS" pattern="file[riderModule]:SpiritTime.Frontend/wwwroot//*" />
   </component>
   <component name="ProjectId" id="1cp9lCea0IQ6JBO5R1g6WwjjEaY" />
   <component name="ProjectLevelVcsManager">
@@ -111,12 +150,33 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="Sass" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.SpiritTime.Frontend">
+  <component name="RunManager" selected="Publish to custom server.Publish Frontend to public server">
+    <configuration name="Publish Backend to public server" type="DotNetPublishAndUpload" factoryName="Publish to custom server">
+      <riderPublish server_id="24975043-6e42-4c00-87ce-dfabdf8cea27" target_framework="netcoreapp3.1" uuid_high="-6772679263814793458" uuid_low="-7124678128480756447" />
+      <method v="2" />
+    </configuration>
     <configuration name="Publish Frontend to public server" type="DotNetPublishAndUpload" factoryName="Publish to custom server">
       <riderPublish server_id="24975043-6e42-4c00-87ce-dfabdf8cea27" target_framework="netcoreapp3.1" uuid_high="-5567255260718086058" uuid_low="-7422382152925386568" />
       <method v="2" />
+    </configuration>
+    <configuration name="SpiritTime.Backend NoDev" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SpiritTime.Backend/SpiritTime.Backend.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="SpiritTime.Backend NoDev" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
     </configuration>
     <configuration name="SpiritTime.Backend" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SpiritTime.Backend/SpiritTime.Backend.csproj" />
@@ -180,10 +240,12 @@
     </configuration>
     <list>
       <item itemvalue=".NET Launch Settings Profile.SpiritTime.Backend" />
+      <item itemvalue=".NET Launch Settings Profile.SpiritTime.Backend NoDev" />
       <item itemvalue=".NET Launch Settings Profile.SpiritTime.Backend: IIS Express" />
       <item itemvalue=".NET Launch Settings Profile.SpiritTime.Frontend" />
       <item itemvalue=".NET Launch Settings Profile.SpiritTime.Frontend: IIS Express" />
       <item itemvalue="Publish to custom server.Publish Frontend to public server" />
+      <item itemvalue="Publish to custom server.Publish Backend to public server" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -200,6 +262,8 @@
       <workItem from="1591298749150" duration="8749000" />
       <workItem from="1591308402812" duration="669000" />
       <workItem from="1591380889653" duration="10098000" />
+      <workItem from="1591436768550" duration="6356000" />
+      <workItem from="1591443191052" duration="5927000" />
     </task>
     <servers />
   </component>
@@ -224,106 +288,114 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="872" y="358" key="#Deployment" timestamp="1591216114170">
+    <state x="872" y="358" key="#Deployment" timestamp="1591447630167">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="358" key="#Deployment/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591216114170" />
-    <state x="856" y="345" key="#SSH_Configurations" timestamp="1591216102921">
+    <state x="872" y="358" key="#Deployment/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591447630167" />
+    <state x="931" y="409" key="#SSH_Configurations" timestamp="1591447574178">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="856" y="345" key="#SSH_Configurations/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591216102921" />
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591216166281">
+    <state x="931" y="409" key="#SSH_Configurations/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591447574178" />
+    <state x="1086" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591448550538">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591216166281" />
+    <state x="1086" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591448550538" />
     <state width="402" height="464" key="DebuggerActiveHint" timestamp="1591309149233">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="402" height="464" key="DebuggerActiveHint/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591309149233" />
-    <state width="2517" height="359" key="GridCell.Tab.0.bottom" timestamp="1591434279998">
+    <state x="949" y="478" key="EditFileWatcherDialog" timestamp="1591436999391">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="359" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434279998" />
-    <state width="2517" height="359" key="GridCell.Tab.0.center" timestamp="1591434279998">
+    <state x="949" y="478" key="EditFileWatcherDialog/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591436999391" />
+    <state width="2517" height="386" key="GridCell.Tab.0.bottom" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="359" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434279998" />
-    <state width="2517" height="359" key="GridCell.Tab.0.left" timestamp="1591434279998">
+    <state width="2517" height="386" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.0.center" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="359" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434279998" />
-    <state width="2517" height="359" key="GridCell.Tab.0.right" timestamp="1591434279998">
+    <state width="2517" height="386" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.0.left" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="359" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434279998" />
-    <state width="2517" height="359" key="GridCell.Tab.1.bottom" timestamp="1591434287982">
+    <state width="2517" height="386" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.0.right" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="359" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434287982" />
-    <state width="2517" height="359" key="GridCell.Tab.1.center" timestamp="1591434287982">
+    <state width="2517" height="386" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.1.bottom" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="359" key="GridCell.Tab.1.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434287982" />
-    <state width="2517" height="359" key="GridCell.Tab.1.left" timestamp="1591434287982">
+    <state width="2517" height="386" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.1.center" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="359" key="GridCell.Tab.1.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434287982" />
-    <state width="2517" height="359" key="GridCell.Tab.1.right" timestamp="1591434287982">
+    <state width="2517" height="386" key="GridCell.Tab.1.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.1.left" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="359" key="GridCell.Tab.1.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434287982" />
-    <state width="2517" height="386" key="GridCell.Tab.2.bottom" timestamp="1591434273255">
+    <state width="2517" height="386" key="GridCell.Tab.1.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.1.right" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273255" />
-    <state width="2517" height="386" key="GridCell.Tab.2.center" timestamp="1591434273255">
+    <state width="2517" height="386" key="GridCell.Tab.1.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.2.bottom" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.2.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273255" />
-    <state width="2517" height="386" key="GridCell.Tab.2.left" timestamp="1591434273255">
+    <state width="2517" height="386" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.2.center" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.2.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273255" />
-    <state width="2517" height="386" key="GridCell.Tab.2.right" timestamp="1591434273255">
+    <state width="2517" height="386" key="GridCell.Tab.2.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.2.left" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.2.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273255" />
-    <state width="2517" height="386" key="GridCell.Tab.3.bottom" timestamp="1591434273256">
+    <state width="2517" height="386" key="GridCell.Tab.2.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.2.right" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.3.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273256" />
-    <state width="2517" height="386" key="GridCell.Tab.3.center" timestamp="1591434273256">
+    <state width="2517" height="386" key="GridCell.Tab.2.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.3.bottom" timestamp="1591458604198">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.3.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273256" />
-    <state width="2517" height="386" key="GridCell.Tab.3.left" timestamp="1591434273256">
+    <state width="2517" height="386" key="GridCell.Tab.3.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604198" />
+    <state width="2517" height="386" key="GridCell.Tab.3.center" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.3.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273256" />
-    <state width="2517" height="386" key="GridCell.Tab.3.right" timestamp="1591434273256">
+    <state width="2517" height="386" key="GridCell.Tab.3.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.3.left" timestamp="1591458604197">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.3.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273256" />
-    <state width="2517" height="386" key="GridCell.Tab.4.bottom" timestamp="1591434273256">
+    <state width="2517" height="386" key="GridCell.Tab.3.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604197" />
+    <state width="2517" height="386" key="GridCell.Tab.3.right" timestamp="1591458604198">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.4.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273256" />
-    <state width="2517" height="386" key="GridCell.Tab.4.center" timestamp="1591434273256">
+    <state width="2517" height="386" key="GridCell.Tab.3.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604198" />
+    <state width="2517" height="386" key="GridCell.Tab.4.bottom" timestamp="1591458604198">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.4.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273256" />
-    <state width="2517" height="386" key="GridCell.Tab.4.left" timestamp="1591434273256">
+    <state width="2517" height="386" key="GridCell.Tab.4.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604198" />
+    <state width="2517" height="386" key="GridCell.Tab.4.center" timestamp="1591458604198">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.4.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273256" />
-    <state width="2517" height="386" key="GridCell.Tab.4.right" timestamp="1591434273256">
+    <state width="2517" height="386" key="GridCell.Tab.4.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604198" />
+    <state width="2517" height="386" key="GridCell.Tab.4.left" timestamp="1591458604198">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="386" key="GridCell.Tab.4.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591434273256" />
+    <state width="2517" height="386" key="GridCell.Tab.4.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604198" />
+    <state width="2517" height="386" key="GridCell.Tab.4.right" timestamp="1591458604198">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="386" key="GridCell.Tab.4.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591458604198" />
     <state x="872" y="432" key="Rider.ProjectTemplateDialog.Size" timestamp="1591304146066">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="872" y="432" key="Rider.ProjectTemplateDialog.Size/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591304146066" />
+    <state x="781" y="345" key="SettingsEditor" timestamp="1591437000340">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="781" y="345" key="SettingsEditor/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591437000340" />
     <state x="92" y="92" width="2376" height="1216" key="VCS.FileHistoryDialog" timestamp="1591304928220">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -332,18 +404,26 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1288" height="708" key="XDebugger.FullValuePopup/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591386158699" />
+    <state x="-2369" y="155" width="2192" height="1000" key="dock-window-1" timestamp="1591443230236">
+      <screen x="-2560" y="0" width="2560" height="1400" />
+    </state>
+    <state x="-2369" y="155" width="2192" height="1000" key="dock-window-1/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591443230236" />
     <state x="954" y="299" width="651" height="801" key="find.popup" timestamp="1591307286247">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="954" y="299" width="651" height="801" key="find.popup/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591307286247" />
-    <state x="1103" y="431" key="ftp.server.browser" timestamp="1591215793319">
+    <state x="1103" y="431" key="ftp.server.browser" timestamp="1591447619254">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1103" y="431" key="ftp.server.browser/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591215793319" />
+    <state x="1103" y="431" key="ftp.server.browser/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591447619254" />
     <state x="1150" y="592" key="publish.login" timestamp="1591215810094">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1150" y="592" key="publish.login/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591215810094" />
+    <state x="746" y="351" width="1183" height="679" key="scopes" timestamp="1591436955565">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="746" y="351" width="1183" height="679" key="scopes/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591436955565" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -360,19 +440,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs</url>
-          <line>42</line>
-          <properties documentPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" initialLine="43">
-            <startOffsets>
-              <option value="1733" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1827" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

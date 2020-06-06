@@ -2,7 +2,7 @@
 <project version="4">
   <component name="SshConfigs">
     <configs>
-      <sshConfig authType="PASSWORD" host="185.164.4.67" id="e0aab070-b147-4a56-b850-8816dc163244" port="22" customName="Spiritlabs.dev" nameFormat="CUSTOM" username="root" />
+      <sshConfig authType="PASSWORD" host="185.164.4.67" id="e0aab070-b147-4a56-b850-8816dc163244" port="20022" customName="Spiritlabs.dev" nameFormat="CUSTOM" username="root" />
     </configs>
   </component>
 </project>

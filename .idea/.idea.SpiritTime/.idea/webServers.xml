@@ -3,7 +3,14 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="24975043-6e42-4c00-87ce-dfabdf8cea27" name="Spiritlabs.dev" url="https://time.spiritlabs.dev">
-        <fileTransfer rootFolder="/var/www/spirittime" accessType="SFTP" host="185.164.4.67" port="22" sshConfigId="e0aab070-b147-4a56-b850-8816dc163244" sshConfig="Spiritlabs.dev">
+        <fileTransfer rootFolder="/var/www/spirittime" accessType="SFTP" host="185.164.4.67" port="20022" sshConfigId="e0aab070-b147-4a56-b850-8816dc163244" sshConfig="Spiritlabs.dev">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="c4446c03-166c-44c9-a8f8-fdacf7e72e16" name="SpiritlabsBackEnd" url="https://timeapi.spiritlabs.dev">
+        <fileTransfer rootFolder="/var/www/spirittimeAPI" accessType="SFTP" host="185.164.4.67" port="20022" sshConfigId="e0aab070-b147-4a56-b850-8816dc163244" sshConfig="Spiritlabs.dev">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

@@ -43,7 +43,7 @@
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Backend.AssemblyInfo.cs" t="Include" />
             </e>
@@ -83,7 +83,7 @@
         </e>
         <e p="IUnitOfWork.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Core.AssemblyInfo.cs" t="Include" />
             </e>
@@ -129,7 +129,7 @@
         </e>
         <e p="libman.json" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Frontend.AssemblyInfo.cs" t="Include" />
               <e p="SpiritTime.Frontend.RazorAssemblyInfo.cs" t="Include" />
@@ -146,6 +146,7 @@
             <e p="Overview.razor.cs" t="Include" />
             <e p="Register.razor" t="Include" />
             <e p="Register.razor.cs" t="Include" />
+            <e p="Register_Error.razor" t="Include" />
           </e>
           <e p="Counter.razor" t="Include" />
           <e p="Error.razor" t="Include" />
@@ -324,6 +325,9 @@
             <e p="calendar-alt_focus.png" t="Include" />
             <e p="favicon120.png" t="Include" />
             <e p="icon_120x120.png" t="Include" />
+            <e p="icon_background_10op.png" t="Include" />
+            <e p="icon_background_20op.png" t="Include" />
+            <e p="icon_background_5op.png" t="Include" />
             <e p="OK.png" t="Include" />
           </e>
           <e p="js" t="Include">
@@ -426,6 +430,7 @@
             <e p="_context-menu.sass" t="Include" />
             <e p="_datetime.sass" t="Include" />
             <e p="_general.sass" t="Include" />
+            <e p="_lists.sass" t="Include" />
             <e p="_media.sass" t="Include" />
             <e p="_menu.sass" t="Include" />
             <e p="_multiselect.sass" t="Include" />
@@ -445,7 +450,7 @@
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Persistence.AssemblyInfo.cs" t="Include" />
             </e>
@@ -542,7 +547,7 @@
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp3.1" t="Include">
               <e p="SpiritTime.Shared.AssemblyInfo.cs" t="Include" />
             </e>

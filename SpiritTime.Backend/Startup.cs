@@ -107,38 +107,57 @@ namespace SpiritTime.Backend
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+            app.UseRouting();
+            app.UseAuthorization();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
+                var swaggerOptions = new Services.SwaggerOptions();
+
+
+                Configuration.GetSection(nameof(swaggerOptions)).Bind(swaggerOptions);
+                app.UseSwagger(option => { option.RouteTemplate = swaggerOptions.JsonRoute; });
+                app.UseSwaggerUI(c => { c.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description); });
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                    endpoints.MapGet("/", async context =>
+                    {
+                        await context.Response.WriteAsync("<div style=\"text-align: center;\">"                                                                    +
+                                                          "<h1 style=\"text-align: center; margin-top: 20px\">Landing Page -  SpiritTime API</h1>"                 +
+                                                          "<a style=\"text-align: center; border: 1px solid black; background-color: black; "                      +
+                                                          "border-radius: 5px; color: white; padding: 5px 15px; text-decoration: none; cursor: pointer;\" href=\"" +
+                                                          swaggerOptions.LandingPageRedirectUrl                                                                    +
+                                                          "\">Go to Swagger</a>"                                                                                   +
+                                                          "</div>");
+                    });
+                });
+                app.UseSwagger();
+                app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpiritTime"); });
+            }
+            else
+            {
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                    endpoints.MapGet("/", async context =>
+                    {
+                        await context.Response.WriteAsync("<div style=\"text-align: center;\">"                                                                    +
+                                                          "<h1 style=\"text-align: center; margin-top: 20px\">Landing Page -  SpiritTime API</h1>"                 +
+                                                          "<p>For more Information, check out the Main Page: </p>" +
+                                                          "<a style=\"text-align: center; border: 1px solid black; background-color: black; "                      +
+                                                          "border-radius: 5px; color: white; padding: 5px 15px; text-decoration: none; cursor: pointer;\" href=\"https://time.spiritlabs.dev/\">Go to Application</a>"                                                                                   +
+                                                          "</div>"
+                                                          );
+                    });
+                });
             }
 
             //app.UseHttpsRedirection();
 
-            app.UseAuthentication();
-            app.UseRouting();
-            app.UseAuthorization();
-            var swaggerOptions = new Services.SwaggerOptions();
-
-
-            Configuration.GetSection(nameof(swaggerOptions)).Bind(swaggerOptions);
-            app.UseSwagger(option => { option.RouteTemplate = swaggerOptions.JsonRoute; });
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description); });
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("<div style=\"text-align: center;\">"                                                                    +
-                                                      "<h1 style=\"text-align: center; margin-top: 20px\">Landing Page -  SpiritTime API</h1>"                 +
-                                                      "<a style=\"text-align: center; border: 1px solid black; background-color: black; "                      +
-                                                      "border-radius: 5px; color: white; padding: 5px 15px; text-decoration: none; cursor: pointer;\" href=\"" +
-                                                      swaggerOptions.LandingPageRedirectUrl                                                                    +
-                                                      "\">Go to Swagger</a>"                                                                                   +
-                                                      "</div>");
-                });
-            });
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpiritTime"); });
         }
 
         private void GetAuthenticationOptions(AuthenticationOptions options)

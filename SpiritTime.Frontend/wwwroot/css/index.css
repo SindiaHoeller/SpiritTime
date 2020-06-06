@@ -92,6 +92,12 @@ table th span.oi:hover {
 .main a:hover {
   text-decoration: none;
 }
+.main a h1, .main a h2, .main a h3, .main a h4, .main a h5 {
+  color: #D4C19C;
+}
+.main a h1:hover, .main a h2:hover, .main a h3:hover, .main a h4:hover, .main a h5:hover {
+  color: #cf9946;
+}
 .main .top-row, .main .custom-top-row {
   justify-content: space-between;
   background: linear-gradient(0deg, #313131, #7b7b7b);
@@ -255,6 +261,12 @@ a.custom-navbar-brand p {
 .content {
   flex-grow: 1;
   margin: 0 30px;
+}
+
+.logo-background {
+  background: url("../img/icon_background_10op.png") bottom no-repeat;
+  background-size: contain;
+  width: 100%;
 }
 
 .menu-switch {
@@ -520,7 +532,7 @@ a.custom-navbar-brand p {
     top: 50px;
   }
 
-  .content {
+  .content:not(.full-width) {
     margin-left: 280px;
   }
 
@@ -1078,6 +1090,35 @@ div.dark-menu {
 
 .task-list tr {
   display: block;
+}
+
+ul.simple-design {
+  list-style-type: none;
+  margin: 0 0 20px 0;
+  padding: 0;
+  max-width: 800px;
+  text-align: center;
+  display: inline-block;
+}
+ul.simple-design li {
+  font: 200 16px/1.5 Helvetica, Verdana, sans-serif;
+}
+ul.simple-design li:last-child {
+  border: none;
+}
+ul.simple-design li {
+  text-decoration: none;
+  -webkit-transition: font-size 0.3s ease, color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, color 0.3s ease;
+  -o-transition: font-size 0.3s ease, color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, color 0.3s ease;
+  transition: font-size 0.3s ease, color 0.3s ease;
+  display: block;
+  max-width: 800px;
+}
+ul.simple-design li:hover {
+  font-size: 18px;
+  color: #D4C19C;
 }
 
 /*# sourceMappingURL=index.css.map */
