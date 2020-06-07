@@ -1,14 +1,14 @@
 {
   "executable": "SpiritTime.Frontend",
   "splashscreen": {
-    "imageFile": "Assets/icon32.png"
+    "imageFile": "bin/Assets/icon32.png"
   },
   "name": "SpiritTime",
-  "author": "",
+  "author": "Sindia Höller",
   "singleInstance": false,
   "build": {
     "appId": "com.SpiritTime.Frontend.app",
-    "productName": "SpiritTime.Frontend",
+    "productName": "SpiritTime",
     "copyright": "Copyright ©SpiritTime 2020",
     "buildVersion": "1.0.0",
     "compression": "maximum",
@@ -29,6 +29,15 @@
         "filter": ["**/*"]
       },
       "**/*"
-    ]
+    ],
+    "win": {
+      "icon": "bin/Assets/icon.ico"
+    },
+    "osx": {
+      "icon": "bin/Assets/icon.icns"
+    },
+    "linux": {
+      "icon": "bin/Assets/icon_120x120.png"
+    }
   }
 }

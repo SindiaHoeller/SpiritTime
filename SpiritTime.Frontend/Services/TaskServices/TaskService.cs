@@ -43,6 +43,22 @@ namespace SpiritTime.Frontend.Services.TaskServices
             }
         }
         
+        public async Task<ResultModel> StopAllRunningTasks()
+        {
+            try
+            {
+                await SetAuthenticationHeader();
+                var workspaceId = await GetCurrentWorkspaceId();
+                return await _httpClient.GetJsonAsync<ResultModel>(_path.TaskStopAll + "?id=" + workspaceId);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new TaskListResult { Error = e.Message, Successful = false };
+            }
+        }
+        
         public async Task<TaskResult> GetCurrentTask()
         {
             try

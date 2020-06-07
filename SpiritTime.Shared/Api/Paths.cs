@@ -64,6 +64,8 @@
         public string TaskDelete => _taskDelete;
         private readonly string _taskGetCurrentTaskByWorkspaceId;
         public string TaskGetCurrentTaskByWorkspaceId => _taskGetCurrentTaskByWorkspaceId;
+        private readonly string _taskStopAll;
+        public string TaskStopAll => _taskStopAll;
 
         // TaskTag
         private readonly string _taskTagAddTag;
@@ -119,6 +121,7 @@
             _taskUpdateTags = basepath + task + ApiMethod.UpdateTagsForTask;
             _taskDelete = basepath + task + ApiMethod.Delete;
             _taskGetCurrentTaskByWorkspaceId = basepath + task + ApiMethod.GetCurrentTaskByWorkspaceId;
+            _taskStopAll = basepath + task + ApiMethod.StopAll;
             
 
             var taskTag = ControllerNames.TaskTag + "/";

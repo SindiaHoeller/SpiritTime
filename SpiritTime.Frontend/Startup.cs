@@ -138,15 +138,13 @@ namespace SpiritTime.Frontend
             if (HybridSupport.IsElectronActive)
             {
                 ElectronBootstrap(env);
-                // BlazorConfig.CreateTray(env);
+                
             }
             // Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
 
         private async void ElectronBootstrap(IWebHostEnvironment env)
         {
-
-            // await CaptchaWindow.WebContents.Session.SetProxyAsync(proxyConfig);
             var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
             {
                 Title  = "SpiritTimes",
@@ -155,22 +153,27 @@ namespace SpiritTime.Frontend
                 Height = 940,
                 Show   = false
             });
+            var shortcutConfig = new ShortcutsConfig
+            {
+                CurrentTask = Configuration["Shortcuts:CurrentTask"],
+                NewTask = Configuration["Shortcuts:NewTask"],
+                StopCurrentTask = Configuration["Shortcuts:StopCurrentTask"]
+            };
+            
 
             // await browserWindow.WebContents.Session.ClearCacheAsync();
             var proxyConfig = new ProxyConfig(Configuration["Proxy:PacScript"], 
                 Configuration["Proxy:PacScript"], 
                 Configuration["Proxy:ProxyBypassRules"]);
             await browserWindow.WebContents.Session.SetProxyAsync(proxyConfig);
-            ElectronConfiguration.SetGlobalKeyboardShortcuts(
-                Configuration["Shortcuts:NewTask"], 
-                Configuration["Shortcuts:CurrentTask"], 
-                browserWindow, proxyConfig);
+            ElectronConfiguration.SetGlobalKeyboardShortcuts(shortcutConfig, browserWindow, proxyConfig);
 
             browserWindow.OnReadyToShow += () => browserWindow.Show();
             browserWindow.SetTitle("SpiritTime");
             Electron.Menu.SetApplicationMenu(ElectronMenu.Get());
 
             Electron.App.WillQuit += (args) => Task.Run(() => Electron.GlobalShortcut.UnregisterAll());
+            ElectronConfiguration.CreateTray(env, shortcutConfig);
         }
     }
 }

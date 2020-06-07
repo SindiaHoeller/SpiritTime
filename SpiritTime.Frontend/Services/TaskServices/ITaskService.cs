@@ -16,5 +16,6 @@ namespace SpiritTime.Frontend.Services.TaskServices
         Task<TaskResult> Edit(TaskDto item);
         List<TaskDailyList> FullyPrepareList(List<TaskDto> itemList);
         Task<TaskResult> GetCurrentTask();
+        Task<ResultModel> StopAllRunningTasks();
     }
 }

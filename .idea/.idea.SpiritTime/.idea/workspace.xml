@@ -20,24 +20,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0dda207-c215-4fdc-8a6d-18b8654369c5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/icon_120x120.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/ProxyConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/jquery/jquery.slim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/add.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/close.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/icon.icns" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/icon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/icon24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/open.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/renew.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Assets/stop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/img/icon24.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/ShortcutsConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/ShortcutsConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/ITaskService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/ITaskService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/TaskService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/TaskService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/electron.manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/electron.manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/libman.json" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/libman.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_general.sass" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_general.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Shared/Messages/ErrorMsg.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Shared/Messages/ErrorMsg.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Shared/Messages/SuccessMsg.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Shared/Messages/SuccessMsg.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Shared/Api/ApiMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Shared/Api/ApiMethod.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Shared/Api/Paths.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Shared/Api/Paths.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,58 +70,77 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/JsHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/IAuthService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/NoElementsPage.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Partials/ToastModal/IToastService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/LoginMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Add.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Controllers/ControllerHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Counter.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TagServices/TagService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register_Error.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/ITaskService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/TaskService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/WorkspaceServices/WorkspaceService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7B19537B-F065-4C3F-9F78-85C4099CD3AA/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/electron.manifest.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/ShortcutsConfig.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.js.map" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/B/ConfigureServicesBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/3/GenericWebHostBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1653BEC2-F8F6-487F-8791-0D9E32848D0A/61/136580cd/BrowserWindowOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9FC32238-18FC-4637-A422-2ABB00D82D22/3/HostBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Shared/Api/ApiMethod.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/9/ConfigureBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Shared/Api/Paths.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/App.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5A1C9D25-7A36-4F04-8F09-2E805AC08F14/4/GenericWebHostedService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/EmptyLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7B19537B-F065-4C3F-9F78-85C4099CD3AA/5C/Array.Enumerators.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/IAuthService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/LoginMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Shared/Helper/SD.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Error.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register_Error.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7B19537B-F065-4C3F-9F78-85C4099CD3AA/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1653BEC2-F8F6-487F-8791-0D9E32848D0A/1a/c391f503/MessageBoxOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1653BEC2-F8F6-487F-8791-0D9E32848D0A/c5/7bf4dae1/Dialog.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1653BEC2-F8F6-487F-8791-0D9E32848D0A/70/1a794586/MenuItem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/SurveyPrompt.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" />
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/App.razor" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Backend/Program.cs" />
@@ -123,13 +156,31 @@
         <option value="$PROJECT_DIR$/SpiritTime.Backend/Startup.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Backend/Properties/launchSettings.json" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_lists.sass" />
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" />
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/electron.manifest.json" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/sass/_general.sass" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.cshtml.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/ITaskService.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Shared/Api/ApiMethod.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Shared/Api/Paths.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskHelper.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Backend/Controllers/ControllerHelper.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskController.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/TaskService.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/ShortcutsConfig.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" />
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/App.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronMenu.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/SpiritTime.Frontend.csproj" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/electron.manifest.json" />
       </list>
     </option>
   </component>
@@ -145,6 +196,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34995976" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30008045" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -266,6 +318,7 @@
       <workItem from="1591436768550" duration="6356000" />
       <workItem from="1591443191052" duration="5927000" />
       <workItem from="1591490842182" duration="1057000" />
+      <workItem from="1591531638948" duration="17452000" />
     </task>
     <servers />
   </component>
@@ -287,6 +340,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -310,22 +364,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="949" y="478" key="EditFileWatcherDialog/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591436999391" />
-    <state width="2517" height="399" key="GridCell.Tab.0.bottom" timestamp="1591491906716">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1591563205293">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="399" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
-    <state width="2517" height="399" key="GridCell.Tab.0.center" timestamp="1591491906716">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591563205293" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1591563205293">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="399" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
-    <state width="2517" height="399" key="GridCell.Tab.0.left" timestamp="1591491906716">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591563205293" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1591563205293">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="399" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
-    <state width="2517" height="399" key="GridCell.Tab.0.right" timestamp="1591491906716">
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591563205293" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1591563205293">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="399" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591563205293" />
     <state width="2517" height="399" key="GridCell.Tab.1.bottom" timestamp="1591491906716">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

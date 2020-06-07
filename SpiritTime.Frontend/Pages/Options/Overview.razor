@@ -47,6 +47,10 @@
                     <input @bind="@ShortcutsConfig.NewTask" type="text" class="form-control" id="NewTask"/>
                 </div>
                 <div class="form-group my-3">
+                    <label for="StopCurrentTask">"Stop current task" shortcut:</label>
+                    <input @bind="@ShortcutsConfig.StopCurrentTask" type="text" class="form-control" id="StopCurrentTask"/>
+                </div>
+                <div class="form-group my-3">
                     <button class="custom-small-button" @onclick="@(() => WriteChangesToAppsettings())">
                         <i class="fas fa-save"></i> @TextMsg.Save
                     </button>

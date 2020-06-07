@@ -1,10 +1,14 @@
 using System;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.JSInterop;
+using SpiritTime.Frontend.Infrastructure.ElectronConfig;
 using SpiritTime.Frontend.Services.TaskServices;
 using SpiritTime.Shared.Helper;
 using SpiritTime.Shared.Models.TaskModels;
@@ -15,6 +19,7 @@ namespace SpiritTime.Frontend.Pages.QuickInput
     {
         [Inject] private IJSRuntime JsRuntime { get; set; }
         [Inject] private ITaskService Service { get; set; }
+        [Inject] private IWebHostEnvironment env { get; set; }
         [Parameter] public string Current { get; set; }
         private TaskDto TaskDto { get; set; }
         private ElementReference inputBox;
@@ -35,7 +40,7 @@ namespace SpiritTime.Frontend.Pages.QuickInput
                 }
                 else
                 {
-                    Electron.Notification.Show(new NotificationOptions("Error", result.Error));
+                    Electron.Notification.Show(ElectronConfiguration.GetNotificationOptions("Error", result.Error, env));
                 }
             }
             else
@@ -63,17 +68,12 @@ namespace SpiritTime.Frontend.Pages.QuickInput
                     if (result.Successful)
                     {
                         options = TaskDto.Id == 0 
-                            ? new NotificationOptions(SD.TaskGotCreated, TaskDto.Name + " - " + TaskDto.Description) 
-                            : new NotificationOptions(SD.TaskGotEdited, TaskDto.Name + " - " + TaskDto.Description);
-                        
-                        options.OnClick = async () => await Electron.Dialog.ShowMessageBoxAsync("Notification clicked");
+                            ? ElectronConfiguration.GetNotificationOptions(SD.TaskGotCreated, TaskDto.Name + " - " + TaskDto.Description, env) 
+                            : ElectronConfiguration.GetNotificationOptions(SD.TaskGotEdited, TaskDto.Name + " - " + TaskDto.Description, env);
                     }
                     else
                     {
-                        options = new NotificationOptions("Error", result.Error)
-                        {
-                            OnClick = async () => await Electron.Dialog.ShowMessageBoxAsync("Notification clicked")
-                        };
+                        options = ElectronConfiguration.GetNotificationOptions("Error", result.Error, env);
                     }
                     Electron.Notification.Show(options);
                     await JsHelper.CloseWindow(JsRuntime);

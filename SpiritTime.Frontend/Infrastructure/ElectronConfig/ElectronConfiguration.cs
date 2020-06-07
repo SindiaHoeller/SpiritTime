@@ -5,37 +5,60 @@ using System.Threading.Tasks;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Hosting;
+using SpiritTime.Frontend.Infrastructure.Config;
 
 namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
 {
     public static class ElectronConfiguration
     {
-        
-        public static void SetGlobalKeyboardShortcuts(string newTaskTrigger, string currentTaskTrigger, ProxyConfig proxyConfig)
+        public static void SetGlobalKeyboardShortcuts(ShortcutsConfig shortcutsConfig, ProxyConfig proxyConfig)
         {
-            SetGlobalKeyboardShortcuts(newTaskTrigger, currentTaskTrigger, GetMainWindow(), proxyConfig);
+            SetGlobalKeyboardShortcuts(shortcutsConfig, GetMainWindow(), proxyConfig);
         }
         public static void SetGlobalKeyboardShortcuts(
-            string newTaskTrigger, 
-            string currentTaskTrigger, 
+            ShortcutsConfig shortcutsConfig,
             BrowserWindow mainWindow,
             ProxyConfig proxyConfig)
         {
             Electron.GlobalShortcut.UnregisterAll();
-            Electron.GlobalShortcut.Register(newTaskTrigger, async () =>
+            Electron.GlobalShortcut.Register(shortcutsConfig.NewTask, async () =>
             {
-                var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask";
-                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
-                await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
-                secondaryWindow.OnClose += mainWindow.Reload;
+                await CreateNewTaskWindow(mainWindow, proxyConfig);
             });
-            Electron.GlobalShortcut.Register(currentTaskTrigger, async () =>
+            Electron.GlobalShortcut.Register(shortcutsConfig.CurrentTask, async () =>
             {
-                var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask/current";
-                var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
-                await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
-                secondaryWindow.OnClose += mainWindow.Reload;
+                await CreateCurrentTaskWindow(mainWindow, proxyConfig);
             });
+            Electron.GlobalShortcut.Register(shortcutsConfig.StopCurrentTask, async () =>
+            {
+                await CreateStopTasksWindow(mainWindow, proxyConfig);
+            });
+        }
+
+        private static async Task CreateNewTaskWindow(BrowserWindow mainWindow, ProxyConfig proxyConfig = null)
+        {
+            var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask";
+            var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
+            if(proxyConfig != null)
+                await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
+            secondaryWindow.OnClose += mainWindow.Reload;
+        }
+
+        private static async Task CreateCurrentTaskWindow(BrowserWindow mainWindow, ProxyConfig proxyConfig = null)
+        {
+            var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask/current";
+            var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
+            if(proxyConfig != null)
+                await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
+            secondaryWindow.OnClose += mainWindow.Reload;
+        }
+        private static async Task CreateStopTasksWindow(BrowserWindow mainWindow, ProxyConfig proxyConfig = null)
+        {
+            var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/stoptasks";
+            var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetHiddenWindowOptions(), viewPath);
+            if(proxyConfig != null)
+                await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
+            secondaryWindow.OnClose += mainWindow.Reload;
         }
 
         public static async Task<string> SetProxy(ProxyConfig proxyConfig, string serverUrl)
@@ -75,86 +98,160 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                 AutoHideMenuBar  = true
             };
         }
+        public static BrowserWindowOptions GetHiddenWindowOptions()
+        {
+            return new BrowserWindowOptions
+            {
+                Width       = 0,
+                Height      = 0,
+                AlwaysOnTop = false,
+                Resizable   = false,
+                Movable     = false,
+                Maximizable = false,
+                Frame       = false,
+                Closable = false
+            };
+        }
 
-        public static void CreateTray(IWebHostEnvironment env)
+        public static async void CreateTray(IWebHostEnvironment env, ShortcutsConfig shortcutsConfig)
         {
             var windowManager = Electron.WindowManager.BrowserWindows.ToList();
             if (Electron.Tray.MenuItems.Count == 0)
             {
 
-                // var menu = new[]
-                // {
-                //     new MenuItem
-                //     {
-                //         Label = "Open Main Window",
-                //         Click = () =>
-                //         {
-                //             Console.WriteLine("Focussed on: " + windowManager.FirstOrDefault()?.Id);
-                //             windowManager.FirstOrDefault()?.Focus();
-                //         }
-                //     },
-                //     new MenuItem
-                //     {
-                //         Label = "Reload",
-                //         Click = () =>
-                //         {
-                //             Console.WriteLine("Reload on: " + windowManager.FirstOrDefault()?.Id);
-                //             // on reload, start fresh and close any old
-                //             // open secondary windows
-                //             windowManager.ForEach(browserWindow =>
-                //             {
-                //                 if (browserWindow.Id != 1)
-                //                 {
-                //                     browserWindow.Close();
-                //                 }
-                //                 else
-                //                 {
-                //                     browserWindow.Reload();
-                //                 }
-                //             });
-                //         }
-                //     },
-                //     new MenuItem
-                //     {
-                //         Label = "Remove",
-                //         Click = () =>
-                //         {
-                //             Console.WriteLine("Remove on: " + windowManager.FirstOrDefault()?.Id);
-                //             Electron.Tray.Destroy();
-                //             windowManager.ForEach(x=>x.Close());
-                //         }
-                //     },
-                // };
-
-                var menu = new MenuItem
+                var menu = new[]
                 {
-                    Label       = "Reload",
-                    Accelerator = "CmdOrCtrl+R",
-                    Click = () =>
+                    new MenuItem
                     {
-                        // on reload, start fresh and close any old
-                        // open secondary windows
-                        Electron.WindowManager.BrowserWindows.ToList().ForEach(browserWindow =>
+                        Label = "Open TickTick",
+                        Icon = Path.Combine(env.ContentRootPath, "Assets/icon24.png"),
+                        Click = () =>
                         {
-                            if (browserWindow.Id != 1)
+                            Console.WriteLine("Focused on: " + windowManager.FirstOrDefault()?.Id);
+                            windowManager.FirstOrDefault()?.Focus();
+                        }
+                    },
+                    new MenuItem
+                    {
+                        Label = "Add new Task",
+                        Accelerator = shortcutsConfig.NewTask,
+                        Icon = Path.Combine(env.ContentRootPath, "Assets/add.png"),
+                        Click = async ()  =>
+                        {
+                            Console.WriteLine("Creating new task window.");
+                            await CreateNewTaskWindow(windowManager.FirstOrDefault());
+                        }
+                    },
+                    new MenuItem
+                    {
+                        Label = "Edit current Task",
+                        Accelerator = shortcutsConfig.CurrentTask,
+                        Icon = Path.Combine(env.ContentRootPath, "Assets/edit.png"),
+                        Click = async () =>
+                        {
+                            Console.WriteLine("Creating current task window.");
+                            await CreateCurrentTaskWindow(windowManager.FirstOrDefault());
+                        }
+                    },
+                    new MenuItem
+                    {
+                        Label = "Stop current Task",
+                        Accelerator = shortcutsConfig.StopCurrentTask,
+                        Icon = Path.Combine(env.ContentRootPath, "Assets/stop.png"),
+                        Click = async () =>
+                        {
+                            Console.WriteLine("Stopping current task.");
+                            await CreateCurrentTaskWindow(windowManager.FirstOrDefault());
+                        }
+                    },
+
+                    new MenuItem
+                    {
+                        Label       = "Reload",
+                        Icon = Path.Combine(env.ContentRootPath, "Assets/renew.png"),
+                        Accelerator = "CmdOrCtrl+R",
+                        Click = () =>
+                        {
+                            // on reload, start fresh and close any old
+                            // open secondary windows
+                            windowManager.ForEach(browserWindow =>
                             {
-                                browserWindow.Close();
-                            }
-                            else
-                            {
-                                browserWindow.Reload();
-                            }
-                        });
-                    }
+                                if (browserWindow != windowManager.FirstOrDefault())
+                                {
+                                    Console.WriteLine("Closing: " + browserWindow.Id);
+                                    browserWindow.Close();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Reloading: " + browserWindow.Id);
+                                    browserWindow.Reload();
+                                }
+                            });
+                        }
+                    },
+                    new MenuItem
+                    {
+                        Label = "Close",
+                        Icon = Path.Combine(env.ContentRootPath, "Assets/close.png"),
+                        Accelerator = "CmdOrCtrl+Q",
+                        Click = () =>
+                        {
+                            Console.WriteLine("Remove on: " + windowManager.FirstOrDefault()?.Id);
+                            Electron.Tray.Destroy();
+                            windowManager.ForEach(x=>x.Close());
+                        }
+                    },
                 };
+
+                // var menu = new MenuItem
+                // {
+                //     Label       = "Reload",
+                //     Accelerator = "CmdOrCtrl+R",
+                //     Click = () =>
+                //     {
+                //         // on reload, start fresh and close any old
+                //         // open secondary windows
+                //         Electron.WindowManager.BrowserWindows.ToList().ForEach(browserWindow =>
+                //         {
+                //             Console.WriteLine(browserWindow.Id);
+                //             if (browserWindow != Electron.WindowManager.BrowserWindows.FirstOrDefault())
+                //             {
+                //                 browserWindow.Close();
+                //             }
+                //             else
+                //             {
+                //                 browserWindow.Reload();
+                //             }
+                //         });
+                //     }
+                // };
                 
-                Electron.Tray.Show(Path.Combine(env.ContentRootPath, "Assets/icon32.png"), menu);
-                // Electron.Tray.SetToolTip("SpiritTime");
+                Electron.Tray.Show(Path.Combine(env.ContentRootPath, "Assets/icon_120x120.png"), menu);
+                Electron.Tray.SetToolTip("SpiritTime");
             }
             else
             {
                 Electron.Tray.Destroy();
             }
+        }
+
+        public static MessageBoxOptions GetMessageBoxOptions(string title, string details = "")
+        {
+            return new MessageBoxOptions(title)
+            {
+                Title = title,
+                Detail = details,
+                Icon = Path.Combine("/img/icon24.png"),
+            };
+        }
+
+        public static NotificationOptions GetNotificationOptions(string title, string details, IWebHostEnvironment env)
+        {
+            return new NotificationOptions(title, details)
+            {
+                OnClick = () => Electron.WindowManager.BrowserWindows.FirstOrDefault()?.Focus(),
+                Icon = Path.Combine(env.ContentRootPath, "Assets/icon32.png")
+            };
         }
     }
 }

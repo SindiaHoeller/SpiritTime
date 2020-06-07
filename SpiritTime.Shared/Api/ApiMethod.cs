@@ -16,6 +16,7 @@ namespace SpiritTime.Shared.Api
         public const string Create = "Create";
         public const string Update = "Update";
         public const string Delete = "Delete";
+        public const string StopAll = "StopAll";
         
         public const string GetAllByWorkspace = "GetAllByWorkspace";
         public const string GetOneById = "GetOneById";
