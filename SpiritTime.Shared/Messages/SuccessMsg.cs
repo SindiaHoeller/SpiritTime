@@ -31,5 +31,8 @@ namespace SpiritTime.Shared.Messages
         public const string TagsForTaskEdited = "Tags for Task successfully edited.";
 
         public const string PasswordUpdated = "Successfully updated user password";
+
+        public const string UpdatedProxy =
+            "Proxy settings got successfully updated. Please restart the application to let the changes take effect.";
     }
 }

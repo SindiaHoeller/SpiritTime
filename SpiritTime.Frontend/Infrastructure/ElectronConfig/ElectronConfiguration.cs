@@ -1,5 +1,7 @@
+using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Hosting;
@@ -9,25 +11,46 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
     public static class ElectronConfiguration
     {
         
-        public static void SetGlobalKeyboardShortcuts(string newTaskTrigger, string currentTaskTrigger)
+        public static void SetGlobalKeyboardShortcuts(string newTaskTrigger, string currentTaskTrigger, ProxyConfig proxyConfig)
         {
-            SetGlobalKeyboardShortcuts(newTaskTrigger, currentTaskTrigger, GetMainWindow());
+            SetGlobalKeyboardShortcuts(newTaskTrigger, currentTaskTrigger, GetMainWindow(), proxyConfig);
         }
-        public static void SetGlobalKeyboardShortcuts(string newTaskTrigger, string currentTaskTrigger, BrowserWindow mainWindow)
+        public static void SetGlobalKeyboardShortcuts(
+            string newTaskTrigger, 
+            string currentTaskTrigger, 
+            BrowserWindow mainWindow,
+            ProxyConfig proxyConfig)
         {
             Electron.GlobalShortcut.UnregisterAll();
             Electron.GlobalShortcut.Register(newTaskTrigger, async () =>
             {
                 var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask";
                 var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
+                await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
                 secondaryWindow.OnClose += mainWindow.Reload;
             });
             Electron.GlobalShortcut.Register(currentTaskTrigger, async () =>
             {
                 var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask/current";
                 var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
+                await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
                 secondaryWindow.OnClose += mainWindow.Reload;
             });
+        }
+
+        public static async Task<string> SetProxy(ProxyConfig proxyConfig, string serverUrl)
+        {
+            var window = GetMainWindow();
+            if (window != null)
+            {
+                Console.WriteLine(proxyConfig.ProxyRules);
+                await window.WebContents.Session.SetProxyAsync(proxyConfig);
+                return await window.WebContents.Session.ResolveProxyAsync(serverUrl);
+            }
+            else
+            {
+                return "No window found.";
+            }
         }
 
         public static BrowserWindow GetMainWindow()

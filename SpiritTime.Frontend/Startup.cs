@@ -62,10 +62,10 @@ namespace SpiritTime.Frontend
             services.AddServerSideBlazor();
             services.AddAutoMapper(typeof(Startup));
 
-            var appSettingSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingSection);
+            // services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.ConfigureWritable<ShortcutsConfig>(Configuration.GetSection("Shortcuts"));
-
+            services.ConfigureWritable<ElectronProxyConfig>(Configuration.GetSection("Proxy"));
+            services.Configure<AppSettings>(Configuration.GetSection("Settings"));
             services.AddTransient<ValidateHeaderHandler>();
 
             services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
@@ -80,7 +80,6 @@ namespace SpiritTime.Frontend
             services.AddScoped<IWorkspaceService, WorkspaceService>();
 
             services.AddScoped(typeof(ITableService<>), typeof(TableService<>));
-
 
             services.AddSingleton<HttpClient>();
             services.AddSingleton<SelectState>();
@@ -133,6 +132,7 @@ namespace SpiritTime.Frontend
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+            
             // Open the Electron-Window here
 
             if (HybridSupport.IsElectronActive)
@@ -145,17 +145,26 @@ namespace SpiritTime.Frontend
 
         private async void ElectronBootstrap(IWebHostEnvironment env)
         {
+
+            // await CaptchaWindow.WebContents.Session.SetProxyAsync(proxyConfig);
             var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
             {
                 Title  = "SpiritTimes",
-                Icon = Path.Combine(env.ContentRootPath, "Assets/favicon120.png"),
+                Icon = Path.Combine(env.ContentRootPath, "Assets/icon_120x120.png"),
                 Width  = 1152,
                 Height = 940,
                 Show   = false
             });
 
             // await browserWindow.WebContents.Session.ClearCacheAsync();
-            ElectronConfiguration.SetGlobalKeyboardShortcuts(Configuration["Shortcuts:NewTask"], Configuration["Shortcuts:CurrentTask"], browserWindow);
+            var proxyConfig = new ProxyConfig(Configuration["Proxy:PacScript"], 
+                Configuration["Proxy:PacScript"], 
+                Configuration["Proxy:ProxyBypassRules"]);
+            await browserWindow.WebContents.Session.SetProxyAsync(proxyConfig);
+            ElectronConfiguration.SetGlobalKeyboardShortcuts(
+                Configuration["Shortcuts:NewTask"], 
+                Configuration["Shortcuts:CurrentTask"], 
+                browserWindow, proxyConfig);
 
             browserWindow.OnReadyToShow += () => browserWindow.Show();
             browserWindow.SetTitle("SpiritTime");
