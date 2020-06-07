@@ -35,13 +35,15 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// CheckAndStopPreviousTask
         /// </summary>
         /// <param name="task"></param>
-        public async Task CheckAndStopPreviousTask(TaskDto task)
+        /// <param name="workspaceId"></param>
+        public async Task CheckAndStopPreviousTask(TaskDto task, int workspaceId)
         {
             if (task.EndDate == DateTime.MinValue)
             {
                 var tasksNotEnded = await _unitOfWork.TaskRepository
                     .GetMultipleByAsync(x => x.EndDate == DateTime.MinValue &&
-                                           x.Id != task.Id);
+                                           x.Id != task.Id &&
+                                           x.WorkspaceId == workspaceId);
                 foreach (var taskNotEnded in tasksNotEnded)
                 {
                     if (taskNotEnded != null)
@@ -52,6 +54,23 @@ namespace SpiritTime.Backend.Controllers.Tasks
                     }
                 }
 
+            }
+        }
+
+        /// <summary>
+        /// CheckAndStopAllTasks
+        /// </summary>
+        /// <param name="workspaceId"></param>
+        public async Task CheckAndStopAllTasks(int workspaceId)
+        {
+            var tasksNotEnded = await _unitOfWork.TaskRepository
+                    .GetMultipleByAsync(x => x.EndDate == DateTime.MinValue &&
+                                             x.WorkspaceId == workspaceId);
+            foreach (var taskNotEnded in tasksNotEnded.Where(taskNotEnded => taskNotEnded != null))
+            {
+                taskNotEnded.EndDate = DateTime.Now;
+                _unitOfWork.TaskRepository.Update(taskNotEnded);
+                await _unitOfWork.SaveAsync();
             }
         }
         

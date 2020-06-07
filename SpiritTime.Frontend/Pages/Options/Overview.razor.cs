@@ -76,8 +76,11 @@ namespace SpiritTime.Frontend.Pages.Options
                 {
                     opt.CurrentTask = ShortcutsConfig.CurrentTask;
                     opt.NewTask     = ShortcutsConfig.NewTask;
+                    opt.StopCurrentTask = ShortcutsConfig.StopCurrentTask;
                 });
-                ElectronConfiguration.SetGlobalKeyboardShortcuts(ShortcutsConfig.NewTask, ShortcutsConfig.CurrentTask, ElectronProxyConfig.GetProxy());
+                ElectronConfiguration.SetGlobalKeyboardShortcuts(
+                    ShortcutsConfig,
+                    ElectronProxyConfig.GetProxy());
                 ToastService.ShowSuccess(SuccessMsg.SuccessedUpdate);
             }
             catch (Exception e)
@@ -120,7 +123,7 @@ namespace SpiritTime.Frontend.Pages.Options
 
         private void Opentray()
         {
-            ElectronConfiguration.CreateTray(Env);
+            ElectronConfiguration.CreateTray(Env, ShortcutsConfig);
         }
     }
 }

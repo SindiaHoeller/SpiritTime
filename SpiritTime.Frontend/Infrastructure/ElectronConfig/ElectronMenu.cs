@@ -8,7 +8,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
     {
         public static MenuItem[] Get()
         {
-            var menu = new MenuItem[]
+            var menu = new[]
             {
                 new MenuItem
                 {
@@ -37,7 +37,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                                 // open secondary windows
                                 Electron.WindowManager.BrowserWindows.ToList().ForEach(browserWindow =>
                                 {
-                                    if (browserWindow.Id != 1)
+                                    if (browserWindow != Electron.WindowManager.BrowserWindows.FirstOrDefault())
                                     {
                                         browserWindow.Close();
                                     }

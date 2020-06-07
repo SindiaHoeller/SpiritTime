@@ -4,5 +4,6 @@ namespace SpiritTime.Frontend.Infrastructure.Config
     {
         public string NewTask { get; set; }
         public string CurrentTask { get; set; }
+        public string StopCurrentTask { get; set; }
     }
 }

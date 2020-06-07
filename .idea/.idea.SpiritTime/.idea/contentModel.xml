@@ -97,10 +97,19 @@
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="Assets" t="Include">
+          <e p="add.png" t="Include" />
+          <e p="close.png" t="Include" />
+          <e p="edit.png" t="Include" />
           <e p="electron_32x32.png" t="Include" />
           <e p="favicon32.png" t="Include" />
+          <e p="icon.icns" t="Include" />
+          <e p="icon.ico" t="Include" />
+          <e p="icon24.png" t="Include" />
           <e p="icon32.png" t="Include" />
           <e p="icon_120x120.png" t="Include" />
+          <e p="open.png" t="Include" />
+          <e p="renew.png" t="Include" />
+          <e p="stop.png" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="electron.manifest.json" t="Include" />
@@ -162,6 +171,8 @@
           <e p="QuickInput" t="Include">
             <e p="NewTask.razor" t="Include" />
             <e p="NewTask.razor.cs" t="Include" />
+            <e p="StopTask.razor" t="Include" />
+            <e p="StopTask.razor.cs" t="Include" />
           </e>
           <e p="Rules" t="Include">
             <e p="Add.razor" t="Include" />
@@ -326,6 +337,7 @@
             <e p="calendar-alt.png" t="Include" />
             <e p="calendar-alt_focus.png" t="Include" />
             <e p="favicon120.png" t="Include" />
+            <e p="icon24.png" t="Include" />
             <e p="icon_120x120.png" t="Include" />
             <e p="icon_background_10op.png" t="Include" />
             <e p="icon_background_20op.png" t="Include" />
