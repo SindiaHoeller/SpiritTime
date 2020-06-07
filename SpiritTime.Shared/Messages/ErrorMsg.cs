@@ -20,5 +20,6 @@ namespace SpiritTime.Shared.Messages
 
         public const string Abort = "Aborted current action";
 
+        public const string ProxyError = "Connection to server with this proxy settings did not work!";
     }
 }

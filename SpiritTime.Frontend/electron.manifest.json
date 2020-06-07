@@ -1,15 +1,15 @@
 {
   "executable": "SpiritTime.Frontend",
   "splashscreen": {
-    "imageFile": ""
+    "imageFile": "Assets/icon32.png"
   },
-  "name": "SpiritTime.Frontend",
+  "name": "SpiritTime",
   "author": "",
   "singleInstance": false,
   "build": {
     "appId": "com.SpiritTime.Frontend.app",
     "productName": "SpiritTime.Frontend",
-    "copyright": "Copyright © 2020",
+    "copyright": "Copyright ©SpiritTime 2020",
     "buildVersion": "1.0.0",
     "compression": "maximum",
     "directories": {

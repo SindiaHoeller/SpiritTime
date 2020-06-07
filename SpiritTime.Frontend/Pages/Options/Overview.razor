@@ -52,7 +52,29 @@
                     </button>
                 </div>
             </div>
+            <h3>Proxy Options</h3>
+            <div class="d-flex flex-column offset-lg-3 col-lg-6 offset-xs-0 col-xs-12 center-and-highlight account-info">
+                <div class="form-group my-3">
+                    <label for="PacScript">Path to PacScript:</label>
+                    <input @bind="@ElectronProxyConfig.PacScript" type="text" class="form-control" id="PacScript" placeholder="http://wpad/wpad.dat"/>
+                </div>
+                <div class="form-group my-3">
+                    <label for="ProxyRules">ProxyRules:</label>
+                    <input @bind="@ElectronProxyConfig.ProxyRules" type="text" class="form-control" id="ProxyRules" placeholder="http=xtdmzproxy.ks.local:8080;https=xtdmzproxy.ks.local:8080"/>
+                </div>
+                <div class="form-group my-3">
+                    <label for="ProxyBypassRules">ProxyBypassRules:</label>
+                    <input @bind="@ElectronProxyConfig.ProxyBypassRules" type="text" class="form-control" id="ProxyBypassRules" placeholder="https://timeapi.spiritlabs.dev/"/>
+                </div>
+                <div class="form-group my-3">
+                    <button class="custom-small-button" @onclick="@(async () => await WriteProxyChangesToAppsettings())">
+                        <i class="fas fa-save"></i> @TextMsg.Save
+                    </button>
+                </div>
+            </div>
         }
+        
+
 
         @* <div class="form-group my-3 col-lg-12 col-xs-12"> *@
         @*     <button class="custom-small-button" @onclick="@(() => Opentray())"> *@

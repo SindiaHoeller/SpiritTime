@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Options;
 using SpiritTime.Frontend.Infrastructure.Config;
 using SpiritTime.Frontend.Infrastructure.Config.WriteOptions;
 using SpiritTime.Frontend.Infrastructure.ElectronConfig;
@@ -18,20 +20,22 @@ namespace SpiritTime.Frontend.Pages.Options
         [Inject] private IOptionService Service { get; set; }
         [Inject] private IToastService ToastService { get; set; }
         [Inject] private IWebHostEnvironment Env { get; set; }
+        [Inject] private IOptions<AppSettings> Settings { get; set; }
         [Inject] private IWritableOptions<ShortcutsConfig> WritableConfig { get; set; }
+        [Inject] private IWritableOptions<ElectronProxyConfig> WritableProxyConfig { get; set; }
+        private ElectronProxyConfig ElectronProxyConfig { get; set; }
+        private ShortcutsConfig ShortcutsConfig { get; set; }
         private bool ShowError { get; set; }
         private string ErrMsg { get; set; }
         private bool ShowWorkspaces { get; set; }
         public List<WorkspaceDto> WorkspaceList { get; set; }
         public int CurrentWorkspaceId { get; set; }
         public string CurrentWorkspaceStringId { get; set; }
-        public ShortcutsConfig ShortcutsConfig { get; set; }
-        
-        
 
         protected override async Task OnInitializedAsync()
         {
             ShortcutsConfig = WritableConfig.Value;
+            ElectronProxyConfig = WritableProxyConfig.Value;
             var result = await Service.GetCurrentWorkspaceAndList();
             if (result.Success)
             {
@@ -73,7 +77,7 @@ namespace SpiritTime.Frontend.Pages.Options
                     opt.CurrentTask = ShortcutsConfig.CurrentTask;
                     opt.NewTask     = ShortcutsConfig.NewTask;
                 });
-                ElectronConfiguration.SetGlobalKeyboardShortcuts(ShortcutsConfig.NewTask, ShortcutsConfig.CurrentTask);
+                ElectronConfiguration.SetGlobalKeyboardShortcuts(ShortcutsConfig.NewTask, ShortcutsConfig.CurrentTask, ElectronProxyConfig.GetProxy());
                 ToastService.ShowSuccess(SuccessMsg.SuccessedUpdate);
             }
             catch (Exception e)
@@ -81,6 +85,38 @@ namespace SpiritTime.Frontend.Pages.Options
                 ToastService.ShowError(e.Message);
             }
         }
+        private async Task WriteProxyChangesToAppsettings()
+        {
+            try
+            {
+                WritableProxyConfig.Update(opt =>
+                {
+                    opt.PacScript = ElectronProxyConfig.PacScript;
+                    opt.ProxyRules     = ElectronProxyConfig.ProxyRules;
+                    opt.ProxyBypassRules     = ElectronProxyConfig.ProxyBypassRules;
+                });
+                var result = await ElectronConfiguration.SetProxy(ElectronProxyConfig.GetProxy(), Settings.Value.BackendBaseAddress);
+                if (result == "DIRECT")
+                {
+                    ToastService.ShowSuccess(SuccessMsg.UpdatedProxy);
+                }
+                else if(!string.IsNullOrEmpty(result))
+                {
+                    ToastService.ShowInfo(result);
+                }
+                else
+                {
+                    ToastService.ShowError(ErrorMsg.ProxyError);
+                }
+                
+            }
+            catch (Exception e)
+            {
+                ToastService.ShowError(e.Message);
+            }
+        }
+        
+        
 
         private void Opentray()
         {

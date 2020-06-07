@@ -100,6 +100,7 @@
           <e p="electron_32x32.png" t="Include" />
           <e p="favicon32.png" t="Include" />
           <e p="icon32.png" t="Include" />
+          <e p="icon_120x120.png" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="electron.manifest.json" t="Include" />
@@ -110,6 +111,7 @@
           <e p="Config" t="Include">
             <e p="AppSettings.cs" t="Include" />
             <e p="ColorCalc.cs" t="Include" />
+            <e p="ProxyConfig.cs" t="Include" />
             <e p="ShortcutsConfig.cs" t="Include" />
             <e p="WriteOptions" t="Include">
               <e p="IWritableOptions.cs" t="Include" />
@@ -406,6 +408,7 @@
               </e>
             </e>
             <e p="jquery" t="Include">
+              <e p="jquery.slim.js" t="Include" />
               <e p="jquery.slim.min.js" t="Include" />
             </e>
             <e p="popper.js" t="Include">
