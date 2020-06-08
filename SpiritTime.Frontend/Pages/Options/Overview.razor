@@ -56,28 +56,84 @@
                     </button>
                 </div>
             </div>
-            <h3>Proxy Options</h3>
+        
+            <h3>Proxy Auth Options</h3>
             <div class="d-flex flex-column offset-lg-3 col-lg-6 offset-xs-0 col-xs-12 center-and-highlight account-info">
                 <div class="form-group my-3">
-                    <label for="PacScript">Path to PacScript:</label>
-                    <input @bind="@ElectronProxyConfig.PacScript" type="text" class="form-control" id="PacScript" placeholder="http://wpad/wpad.dat"/>
+                    <label for="ProxyEnabled">Enable Proxy</label>
+                    <input @bind="@ProxyAuthConfig.Enabled" type="checkbox" class="form-control" id="ProxyEnabled"/>
                 </div>
                 <div class="form-group my-3">
-                    <label for="ProxyRules">ProxyRules:</label>
-                    <input @bind="@ElectronProxyConfig.ProxyRules" type="text" class="form-control" id="ProxyRules" placeholder="http=xtdmzproxy.ks.local:8080;https=xtdmzproxy.ks.local:8080"/>
+                    <label for="ProxyUrl">ProxyUrl:</label>
+                    <input @bind="@ProxyAuthConfig.ProxyUrl" type="text" class="form-control" id="ProxyUrl" placeholder="http://xtdmzproxy.ks.local:8080"/>
                 </div>
                 <div class="form-group my-3">
-                    <label for="ProxyBypassRules">ProxyBypassRules:</label>
-                    <input @bind="@ElectronProxyConfig.ProxyBypassRules" type="text" class="form-control" id="ProxyBypassRules" placeholder="https://timeapi.spiritlabs.dev/"/>
+                    <label for="DefaultNetworkCred">DefaultNetworkCred:</label>
+                    <input @bind="@ProxyAuthConfig.DefaultNetworkCred" type="checkbox" class="form-control" id="DefaultNetworkCred"/>
                 </div>
                 <div class="form-group my-3">
-                    <button class="custom-small-button" @onclick="@(async () => await WriteProxyChangesToAppsettings())">
+                    <label for="ProxyUsername">ProxyUsername:</label>
+                    @if (ProxyAuthConfig.DefaultNetworkCred)
+                    {
+                        <input @bind="@ProxyAuthConfig.ProxyUsername" readonly type="text" class="form-control" id="ProxyUsername" placeholder="username"/>
+                    }
+                    else
+                    {
+                        <input @bind="@ProxyAuthConfig.ProxyUsername" type="text" class="form-control" id="ProxyUsername" placeholder="username"/>
+                    }
+                </div>
+                <div class="form-group my-3">
+                    <label for="ProxyDomain">ProxyDomain:</label>
+                    @if (ProxyAuthConfig.DefaultNetworkCred)
+                    {
+                        <input @bind="@ProxyAuthConfig.ProxyDomain" readonly type="text" class="form-control" id="ProxyDomain" placeholder="xt.local"/>
+                    }
+                    else
+                    {
+                        <input @bind="@ProxyAuthConfig.ProxyDomain" type="text" class="form-control" id="ProxyDomain" placeholder="xt.local"/>
+                    }
+                </div>
+                <div class="form-group my-3">
+                    <label for="ProxyPassword">ProxyPassword:</label>
+                    @if (ProxyAuthConfig.DefaultNetworkCred)
+                    {
+                        <input @bind="@ProxyAuthConfig.ProxyPassword" readonly type="password" class="form-control" id="ProxyPassword" placeholder="xt.local"/>
+                    }
+                    else
+                    {
+                        <input @bind="@ProxyAuthConfig.ProxyPassword" type="password" class="form-control" id="ProxyPassword" placeholder="xt.local"/>
+                    }
+                </div>
+
+                <div class="form-group my-3">
+                    <button class="custom-small-button" @onclick="@(async () => await WriteProxyAuthChangesToAppsettings())">
                         <i class="fas fa-save"></i> @TextMsg.Save
                     </button>
                 </div>
             </div>
-        }
         
+@*             <h3>Electron Proxy Options</h3> *@
+@*             <div class="d-flex flex-column offset-lg-3 col-lg-6 offset-xs-0 col-xs-12 center-and-highlight account-info"> *@
+@*                 <div class="form-group my-3"> *@
+@*                     <label for="PacScript">Path to PacScript:</label> *@
+@*                     <input @bind="@ElectronProxyConfig.PacScript" type="text" class="form-control" id="PacScript" placeholder="http://wpad/wpad.dat"/> *@
+@*                 </div> *@
+@*                 <div class="form-group my-3"> *@
+@*                     <label for="ProxyRules">ProxyRules:</label> *@
+@*                     <input @bind="@ElectronProxyConfig.ProxyRules" type="text" class="form-control" id="ProxyRules" placeholder="http=xtdmzproxy.ks.local:8080;https=xtdmzproxy.ks.local:8080"/> *@
+@*                 </div> *@
+@*                 <div class="form-group my-3"> *@
+@*                     <label for="ProxyBypassRules">ProxyBypassRules:</label> *@
+@*                     <input @bind="@ElectronProxyConfig.ProxyBypassRules" type="text" class="form-control" id="ProxyBypassRules" placeholder="https://timeapi.spiritlabs.dev/"/> *@
+@*                 </div> *@
+@*                 <div class="form-group my-3"> *@
+@*                     <button class="custom-small-button" @onclick="@(async () => await WriteProxyChangesToAppsettings())"> *@
+@*                         <i class="fas fa-save"></i> @TextMsg.Save *@
+@*                     </button> *@
+@*                 </div> *@
+@*             </div> *@
+        
+        }
 
 
         @* <div class="form-group my-3 col-lg-12 col-xs-12"> *@

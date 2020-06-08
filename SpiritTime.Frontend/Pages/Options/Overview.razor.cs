@@ -22,9 +22,11 @@ namespace SpiritTime.Frontend.Pages.Options
         [Inject] private IWebHostEnvironment Env { get; set; }
         [Inject] private IOptions<AppSettings> Settings { get; set; }
         [Inject] private IWritableOptions<ShortcutsConfig> WritableConfig { get; set; }
+        [Inject] private IWritableOptions<ProxyAuth> WritableProxyAuthConfig { get; set; }
         [Inject] private IWritableOptions<ElectronProxyConfig> WritableProxyConfig { get; set; }
         private ElectronProxyConfig ElectronProxyConfig { get; set; }
         private ShortcutsConfig ShortcutsConfig { get; set; }
+        private ProxyAuth ProxyAuthConfig { get; set; }
         private bool ShowError { get; set; }
         private string ErrMsg { get; set; }
         private bool ShowWorkspaces { get; set; }
@@ -36,6 +38,7 @@ namespace SpiritTime.Frontend.Pages.Options
         {
             ShortcutsConfig = WritableConfig.Value;
             ElectronProxyConfig = WritableProxyConfig.Value;
+            ProxyAuthConfig = WritableProxyAuthConfig.Value;
             var result = await Service.GetCurrentWorkspaceAndList();
             if (result.Success)
             {
@@ -88,6 +91,44 @@ namespace SpiritTime.Frontend.Pages.Options
                 ToastService.ShowError(e.Message);
             }
         }
+        
+        private async Task WriteProxyAuthChangesToAppsettings()
+        {
+            try
+            {
+                WritableProxyAuthConfig.Update(opt =>
+                {
+                    opt.ProxyUrl = ProxyAuthConfig.ProxyUrl;
+                    opt.ProxyUsername = ProxyAuthConfig.ProxyUsername;
+                    opt.ProxyPassword = ProxyAuthConfig.ProxyPassword;
+                    opt.AuthType = ProxyAuthConfig.AuthType;
+                    opt.Enabled = ProxyAuthConfig.Enabled;
+                    opt.DefaultNetworkCred = ProxyAuthConfig.DefaultNetworkCred;
+                    opt.ProxyDomain = ProxyAuthConfig.ProxyDomain;
+                });
+                var (successfull, error) = await ProxyAuthConfig.TestProxy(Settings.Value.BackendBaseAddress);
+                if (successfull)
+                {
+                    ToastService.ShowSuccess(SuccessMsg.UpdatedProxy);
+                    // TODO - ask before restarting the application
+                    ElectronConfiguration.RestartApplication();
+                }
+                else if(!string.IsNullOrEmpty(error))
+                {
+                    ToastService.ShowInfo(error);
+                }
+                else
+                {
+                    ToastService.ShowError(ErrorMsg.ProxyError);
+                }
+                
+            }
+            catch (Exception e)
+            {
+                ToastService.ShowError(e.Message);
+            }
+        }
+        
         private async Task WriteProxyChangesToAppsettings()
         {
             try

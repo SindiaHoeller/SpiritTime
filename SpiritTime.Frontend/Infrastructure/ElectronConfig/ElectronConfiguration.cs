@@ -123,7 +123,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                 {
                     new MenuItem
                     {
-                        Label = "Open TickTick",
+                        Label = "Open SpiritTime",
                         Icon = Path.Combine(env.ContentRootPath, "Assets/icon24.png"),
                         Click = () =>
                         {
@@ -252,6 +252,12 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                 OnClick = () => Electron.WindowManager.BrowserWindows.FirstOrDefault()?.Focus(),
                 Icon = Path.Combine(env.ContentRootPath, "Assets/icon32.png")
             };
+        }
+
+        public static void RestartApplication()
+        {
+            Electron.App.Relaunch();
+            Electron.App.Quit();
         }
     }
 }
