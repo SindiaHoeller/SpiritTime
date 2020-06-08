@@ -75,12 +75,17 @@ namespace SpiritTime.Frontend.Pages.Options
         {
             try
             {
+                Console.WriteLine("ShortcutsConfig.CurrentTask" + ShortcutsConfig.CurrentTask);
+                Console.WriteLine("ShortcutsConfig.NewTask"+ ShortcutsConfig.NewTask);
+                Console.WriteLine("ShortcutsConfig.NewTask"+ ShortcutsConfig.NewTask);
+                Console.WriteLine("WritableConfig" + WritableConfig.Value.CurrentTask);
                 WritableConfig.Update(opt =>
                 {
                     opt.CurrentTask = ShortcutsConfig.CurrentTask;
                     opt.NewTask     = ShortcutsConfig.NewTask;
                     opt.StopCurrentTask = ShortcutsConfig.StopCurrentTask;
                 });
+                
                 ElectronConfiguration.SetGlobalKeyboardShortcuts(
                     ShortcutsConfig,
                     ElectronProxyConfig.GetProxy());
@@ -115,7 +120,7 @@ namespace SpiritTime.Frontend.Pages.Options
                 }
                 else if(!string.IsNullOrEmpty(error))
                 {
-                    ToastService.ShowInfo(error);
+                    ToastService.ShowError(error);
                 }
                 else
                 {

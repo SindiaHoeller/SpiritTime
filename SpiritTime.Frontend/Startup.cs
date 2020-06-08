@@ -44,29 +44,41 @@ namespace SpiritTime.Frontend
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
-            // var builder = new ConfigurationBuilder()
-            //     .SetBasePath(env.ContentRootPath)
-            //     .AddJsonFile("appsettings.json",                        optional: true, reloadOnChange: true)
-            //     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-            //     .AddEnvironmentVariables();
-            // Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var appSettings = "appsettings.json";
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddAutoMapper(typeof(Startup));
+            
+            services.AddBlazorise(options =>
+                {
+                    options.ChangeTextOnKeyPress = true; // optional
+                })
+                .AddBootstrapProviders()
+                .AddFontAwesomeIcons();
+            if (HybridSupport.IsElectronActive)
+            {
+                var (conf, path) = ElectronConfiguration.SetAppSettings();
+                Console.WriteLine("AppSettings done: " + appSettings);
+                if (conf != null)
+                    Configuration = conf;
+                appSettings = path + "\\" + appSettings;
+                Console.WriteLine("APPSETTINGS2: " + appSettings);
+            }
+            services.ConfigureWritable<ShortcutsConfig>(Configuration.GetSection("Shortcuts"), appSettings);
+            services.ConfigureWritable<ElectronProxyConfig>(Configuration.GetSection("Proxy"), appSettings);
+            services.ConfigureWritable<ProxyAuth>(Configuration.GetSection("ProxyAuth"), appSettings);
+            services.Configure<AppSettings>(Configuration.GetSection("Settings"));
 
             // services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.ConfigureWritable<ShortcutsConfig>(Configuration.GetSection("Shortcuts"));
-            services.ConfigureWritable<ElectronProxyConfig>(Configuration.GetSection("Proxy"));
-            services.ConfigureWritable<ProxyAuth>(Configuration.GetSection("ProxyAuth"));
-            services.Configure<AppSettings>(Configuration.GetSection("Settings"));
+
             services.AddTransient<ValidateHeaderHandler>();
 
             IConfiguration config = new ConfigurationBuilder()
@@ -113,14 +125,10 @@ namespace SpiritTime.Frontend
                     template.Animation                   = Animation.Slide;
                 })
             );
-
             services.AddAuthorization();
-            services.AddBlazorise(options =>
-                {
-                    options.ChangeTextOnKeyPress = true; // optional
-                })
-                .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
+
+            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
