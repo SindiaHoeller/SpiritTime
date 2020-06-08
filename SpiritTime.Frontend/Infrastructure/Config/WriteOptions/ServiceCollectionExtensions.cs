@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +11,9 @@ namespace SpiritTime.Frontend.Infrastructure.Config.WriteOptions
         public static void ConfigureWritable<T>(
             this IServiceCollection services,
             IConfigurationSection   section,
-            string                  file = "appsettings.json") where T : class, new()
+            string                  file) where T : class, new()
         {
+            Console.WriteLine("ConfigureWritable file: " + file);
             services.Configure<T>(section);
             services.AddTransient<IWritableOptions<T>>(provider =>
             {

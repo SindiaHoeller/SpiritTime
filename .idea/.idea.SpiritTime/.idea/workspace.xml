@@ -20,18 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0dda207-c215-4fdc-8a6d-18b8654369c5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ProxyAuth.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ProxySettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SpiritTime.Frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SpiritTime/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SpiritTime/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/ServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/WritableOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/WritableOptions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SpiritTime.Frontend/electron.manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/SpiritTime.Frontend/electron.manifest.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,65 +46,69 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/EmptyLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/LoginMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/SurveyPrompt.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/WorkspaceServices/WorkspaceService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/JsHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/NoElementsPage.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Properties/launchSettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ProxySettings.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/IAuthService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register_Error.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TagServices/TagService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.js.map" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Add.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Partials/ToastModal/IToastService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Shared/Helper/SD.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Rules/Add.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Controllers/ControllerHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronMenu.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/ShortcutsConfig.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Controllers/Tasks/TaskController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Counter.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TagServices/TagService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/ITaskService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/TaskServices/TaskService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/348CE0C5-409D-4B55-9D33-ACFA68256918/1a/afaea7f2/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Counter.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/JsHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Error.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ProxyAuth.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Controllers/ControllerHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Shared/Api/Paths.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/NoElementsPage.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/electron.manifest.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/_Host.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Shared/Api/ApiMethod.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/App.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/WorkspaceServices/WorkspaceService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/_Imports.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1653BEC2-F8F6-487F-8791-0D9E32848D0A/4a/1de4c509/PathName.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/electron.manifest.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/ShortcutsConfig.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/wwwroot/lib/popper.js/umd/popper-utils.js.map" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/WritableOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/ServiceCollectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/IWritableOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Shared/Api/ApiMethod.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Shared/Api/Paths.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/App.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/EmptyLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ProxyAuth.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ProxySettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Backend/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/IAuthService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Index.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/LoginMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/MainLayout.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Shared/Helper/SD.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Error.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register_Error.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Tasks/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Register.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7B19537B-F065-4C3F-9F78-85C4099CD3AA/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/ApiAuthenticationStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/StopTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Login.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/NavMenu.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Shared/SurveyPrompt.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/Account/Overview.razor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Services/AuthServices/AuthService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SpiritTime.Frontend/Pages/QuickInput/NewTask.razor.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -151,10 +152,12 @@
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/appsettings.json" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ProxySettings.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ProxyAuth.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/ServiceCollectionExtensions.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" />
+        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/WritableOptions.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Startup.cs" />
         <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor" />
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Pages/Options/Overview.razor.cs" />
-        <option value="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/ElectronConfig/ElectronConfiguration.cs" />
       </list>
     </option>
   </component>
@@ -171,8 +174,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
-    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30010834" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34995976" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30008045" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -295,6 +298,9 @@
       <workItem from="1591531638948" duration="17452000" />
       <workItem from="1591626545345" duration="8961000" />
       <workItem from="1591645072229" duration="700000" />
+      <workItem from="1591647817029" duration="5006000" />
+      <workItem from="1591653179985" duration="2057000" />
+      <workItem from="1591655503047" duration="52000" />
     </task>
     <servers />
   </component>
@@ -332,134 +338,134 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1086" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591448550538" />
-    <state width="560" height="385" key="DebuggerActiveHint" timestamp="1591632025403">
-      <screen x="0" y="0" width="1920" height="1160" />
+    <state width="410" height="464" key="DebuggerActiveHint" timestamp="1591655183863">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="402" height="464" key="DebuggerActiveHint/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591309149233" />
+    <state width="410" height="464" key="DebuggerActiveHint/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655183863" />
     <state width="560" height="385" key="DebuggerActiveHint/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632025403" />
     <state x="949" y="478" key="EditFileWatcherDialog" timestamp="1591436999391">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="949" y="478" key="EditFileWatcherDialog/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591436999391" />
-    <state width="1877" height="275" key="GridCell.Tab.0.bottom" timestamp="1591645942465">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.0.bottom" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591645942465" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591563205293" />
+    <state width="2517" height="426" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.0.bottom/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078434" />
-    <state width="1877" height="275" key="GridCell.Tab.0.center" timestamp="1591645942465">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.0.center" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591645942465" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591563205293" />
+    <state width="2517" height="426" key="GridCell.Tab.0.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.0.center/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078434" />
-    <state width="1877" height="275" key="GridCell.Tab.0.left" timestamp="1591645942465">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.0.left" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591645942465" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591563205293" />
+    <state width="2517" height="426" key="GridCell.Tab.0.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.0.left/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078433" />
-    <state width="1877" height="275" key="GridCell.Tab.0.right" timestamp="1591645942465">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.0.right" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591645942465" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591563205293" />
+    <state width="2517" height="426" key="GridCell.Tab.0.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.0.right/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078434" />
-    <state width="1877" height="371" key="GridCell.Tab.1.bottom" timestamp="1591644338396">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.1.bottom" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338396" />
-    <state width="2517" height="399" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
+    <state width="2517" height="426" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.1.bottom/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078434" />
-    <state width="1877" height="371" key="GridCell.Tab.1.center" timestamp="1591644338396">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.1.center" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338396" />
-    <state width="2517" height="399" key="GridCell.Tab.1.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
+    <state width="2517" height="426" key="GridCell.Tab.1.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.1.center/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078434" />
-    <state width="1877" height="371" key="GridCell.Tab.1.left" timestamp="1591644338396">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.1.left" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338396" />
-    <state width="2517" height="399" key="GridCell.Tab.1.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
+    <state width="2517" height="426" key="GridCell.Tab.1.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.1.left/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078434" />
-    <state width="1877" height="371" key="GridCell.Tab.1.right" timestamp="1591644338396">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.1.right" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338396" />
-    <state width="2517" height="399" key="GridCell.Tab.1.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
+    <state width="2517" height="426" key="GridCell.Tab.1.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.1.right/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078434" />
-    <state width="1877" height="371" key="GridCell.Tab.2.bottom" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.2.bottom" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
+    <state width="2517" height="426" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.2.bottom/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
-    <state width="1877" height="371" key="GridCell.Tab.2.center" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.2.center" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.2.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
+    <state width="2517" height="426" key="GridCell.Tab.2.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.2.center/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078434" />
-    <state width="1877" height="371" key="GridCell.Tab.2.left" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.2.left" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.2.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
+    <state width="2517" height="426" key="GridCell.Tab.2.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.2.left/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078434" />
-    <state width="1877" height="371" key="GridCell.Tab.2.right" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.2.right" timestamp="1591655396972">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.2.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906716" />
+    <state width="2517" height="426" key="GridCell.Tab.2.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396972" />
     <state width="1877" height="371" key="GridCell.Tab.2.right/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
-    <state width="1877" height="371" key="GridCell.Tab.3.bottom" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.3.bottom" timestamp="1591655396973">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.3.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906718" />
+    <state width="2517" height="426" key="GridCell.Tab.3.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396973" />
     <state width="1877" height="371" key="GridCell.Tab.3.bottom/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
-    <state width="1877" height="371" key="GridCell.Tab.3.center" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.3.center" timestamp="1591655396973">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.3.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906717" />
+    <state width="2517" height="426" key="GridCell.Tab.3.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396973" />
     <state width="1877" height="371" key="GridCell.Tab.3.center/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
-    <state width="1877" height="371" key="GridCell.Tab.3.left" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.3.left" timestamp="1591655396973">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.3.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906717" />
+    <state width="2517" height="426" key="GridCell.Tab.3.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396973" />
     <state width="1877" height="371" key="GridCell.Tab.3.left/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
-    <state width="1877" height="371" key="GridCell.Tab.3.right" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.3.right" timestamp="1591655396973">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.3.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906718" />
+    <state width="2517" height="426" key="GridCell.Tab.3.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396973" />
     <state width="1877" height="371" key="GridCell.Tab.3.right/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
-    <state width="1877" height="371" key="GridCell.Tab.4.bottom" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.4.bottom" timestamp="1591655396973">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.4.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.4.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906718" />
+    <state width="2517" height="426" key="GridCell.Tab.4.bottom/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396973" />
     <state width="1877" height="371" key="GridCell.Tab.4.bottom/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
-    <state width="1877" height="371" key="GridCell.Tab.4.center" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.4.center" timestamp="1591655396973">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.4.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.4.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906718" />
+    <state width="2517" height="426" key="GridCell.Tab.4.center/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396973" />
     <state width="1877" height="371" key="GridCell.Tab.4.center/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
-    <state width="1877" height="371" key="GridCell.Tab.4.left" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.4.left" timestamp="1591655396973">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.4.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.4.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906718" />
+    <state width="2517" height="426" key="GridCell.Tab.4.left/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396973" />
     <state width="1877" height="371" key="GridCell.Tab.4.left/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
-    <state width="1877" height="371" key="GridCell.Tab.4.right" timestamp="1591644338397">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="2517" height="426" key="GridCell.Tab.4.right" timestamp="1591655396973">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="371" key="GridCell.Tab.4.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591644338397" />
-    <state width="2517" height="399" key="GridCell.Tab.4.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591491906718" />
+    <state width="2517" height="426" key="GridCell.Tab.4.right/0.0.2560.1400/2560.-491.1152.2008/-2560.0.2560.1400@0.0.2560.1400" timestamp="1591655396973" />
     <state width="1877" height="371" key="GridCell.Tab.4.right/1920.379.1920.1040/0.0.1920.1160/-1920.0.1920.1160@0.0.1920.1160" timestamp="1591632078435" />
     <state x="872" y="432" key="Rider.ProjectTemplateDialog.Size" timestamp="1591304146066">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -519,6 +525,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/WritableOptions.cs</url>
+          <line>43</line>
+          <properties documentPath="$PROJECT_DIR$/SpiritTime.Frontend/Infrastructure/Config/WriteOptions/WritableOptions.cs" initialLine="41">
+            <startOffsets>
+              <option value="1573" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1658" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

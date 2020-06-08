@@ -38,6 +38,8 @@ namespace SpiritTime.Frontend.Infrastructure.Config.WriteOptions
             var fileProvider = _environment.ContentRootFileProvider;
             var fileInfo     = fileProvider.GetFileInfo(_file);
             var physicalPath = fileInfo.PhysicalPath;
+            if (string.IsNullOrEmpty(physicalPath))
+                physicalPath = fileInfo.Name;
 
             var jObject = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(physicalPath));
             var sectionObject = jObject.TryGetValue(_section, out JToken section) ?

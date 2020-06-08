@@ -5,12 +5,49 @@ using System.Threading.Tasks;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using SpiritTime.Frontend.Infrastructure.Config;
 
 namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
 {
     public static class ElectronConfiguration
     {
+        public static (IConfiguration, string) SetAppSettings()
+        {
+            try
+            {
+                var homePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                Console.WriteLine("APPSETTINGS: " + homePath);
+                if (homePath.ToLower().Contains("appdata"))
+                {
+                    var appPath = homePath + "\\SpiritTime";
+                    Console.WriteLine("CreateDirectory");
+                    Directory.CreateDirectory(appPath);
+                    Console.WriteLine("File Exists");
+                    if (!File.Exists(appPath + "\\appsettings.json"))
+                    {
+                        Console.WriteLine("File Copy");
+                        File.Copy(Directory.GetCurrentDirectory() +"\\appsettings.json", appPath + "\\appsettings.json" );
+                    }
+                    Console.WriteLine("Build");
+                    var builder = new ConfigurationBuilder()
+                        .SetBasePath(appPath)
+                        .AddJsonFile("appsettings.json", true ,  true)
+                        .AddEnvironmentVariables();
+                    Console.WriteLine("Return");
+                    return (builder.Build(), appPath);
+                }
+
+                return (null, "");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return (null, "");
+            }
+        }
+        
+        
         public static void SetGlobalKeyboardShortcuts(ShortcutsConfig shortcutsConfig, ProxyConfig proxyConfig)
         {
             SetGlobalKeyboardShortcuts(shortcutsConfig, GetMainWindow(), proxyConfig);
@@ -226,7 +263,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                 //     }
                 // };
                 
-                Electron.Tray.Show(Path.Combine(env.ContentRootPath, "Assets/icon_120x120.png"), menu);
+                Electron.Tray.Show(Path.Combine(env.ContentRootPath, "Assets/icon32.png"), menu);
                 Electron.Tray.SetToolTip("SpiritTime");
             }
             else
