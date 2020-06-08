@@ -65,12 +65,31 @@ namespace SpiritTime.Frontend
             // services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.ConfigureWritable<ShortcutsConfig>(Configuration.GetSection("Shortcuts"));
             services.ConfigureWritable<ElectronProxyConfig>(Configuration.GetSection("Proxy"));
+            services.ConfigureWritable<ProxyAuth>(Configuration.GetSection("ProxyAuth"));
             services.Configure<AppSettings>(Configuration.GetSection("Settings"));
             services.AddTransient<ValidateHeaderHandler>();
 
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            var proxyEnabled = Convert.ToBoolean(config["ProxyAuth:Enabled"]);
+            if (proxyEnabled)
+            {
+                services.AddHttpClient<IAuthService, AuthService>()
+                    .ConfigurePrimaryHttpMessageHandler(() => { return ProxySettings.GetClientHandler(config); });
+            
+                var client = new HttpClient(ProxySettings.GetClientHandler(config));
+                services.AddSingleton(client);
+            }
+            else
+            {
+                services.AddHttpClient<IAuthService, AuthService>();
+                services.AddSingleton<HttpClient>();
+            }
+            
+            
             services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             services.AddBlazoredLocalStorage();
-            services.AddHttpClient<IAuthService, AuthService>();
             services.AddScoped<IToastService, ToastService>();
             services.AddScoped<IOptionService, OptionService>();
             services.AddScoped<IOverlayModalService, OverlayModalService>();
@@ -81,7 +100,7 @@ namespace SpiritTime.Frontend
 
             services.AddScoped(typeof(ITableService<>), typeof(TableService<>));
 
-            services.AddSingleton<HttpClient>();
+
             services.AddSingleton<SelectState>();
 
             services.AddBlazorContextMenu(options =>
@@ -172,7 +191,11 @@ namespace SpiritTime.Frontend
             browserWindow.SetTitle("SpiritTime");
             Electron.Menu.SetApplicationMenu(ElectronMenu.Get());
 
-            Electron.App.WillQuit += (args) => Task.Run(() => Electron.GlobalShortcut.UnregisterAll());
+            Electron.App.WillQuit += (args) => Task.Run(() =>
+            {
+                Electron.GlobalShortcut.UnregisterAll();
+                Electron.Tray.Destroy();
+            });
             ElectronConfiguration.CreateTray(env, shortcutConfig);
         }
     }
