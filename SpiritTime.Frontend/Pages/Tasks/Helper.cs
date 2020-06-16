@@ -34,6 +34,8 @@ namespace SpiritTime.Frontend.Pages.Tasks
             }
         }
 
+
+
         public static string GetTimSpanByTimeSpan(TimeSpan span, bool includeSecs)
         {
             var timeSpanString = "";

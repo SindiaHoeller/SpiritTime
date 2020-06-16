@@ -251,6 +251,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 ValueChanged = false;
                 try
                 {
+                    GeneralHelper.TrimTask(item);
                     // Update the task
                     var result = await Service.Edit(item);
                     if (result.Successful)
@@ -301,6 +302,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 }
 
                 StopTimer();
+                GeneralHelper.TrimTask(item);
                 var result = await Service.Add(item);
                 if (result.Successful)
                 {
