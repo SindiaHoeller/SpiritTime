@@ -136,7 +136,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
         {
             // Selects the currently running task, if available - selected by the Datetime not being specified
             CurrentItem = TaskDailyLists
-                .Select(x => x.ItemList.FirstOrDefault(x => x.EndDate == DateTime.MinValue)).FirstOrDefault(taskDto => taskDto != null);
+                .Select(x => x.ItemList.FirstOrDefault(dto => dto.EndDate == DateTime.MinValue)).FirstOrDefault(taskDto => taskDto != null);
             if (CurrentItem != null)
             {
                 TaskDailyLists.ForEach(x => x.ItemList.Remove(CurrentItem));
@@ -273,7 +273,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                         }
                         StateHasChanged();
 
-                        ToastService.ShowSuccess(SuccessMsg.SuccessedUpdate);
+                        // ToastService.ShowSuccess(SuccessMsg.SuccessedUpdate);
                         IsDisabled = false;
                     }
                     else
@@ -313,7 +313,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                         NewItem = new TaskDto();
 
                         StartTimer();
-                        ToastService.ShowSuccess(SuccessMsg.TimerStarted);
+                        // ToastService.ShowSuccess(SuccessMsg.TimerStarted);
                         StateHasChanged();
                     });
                 }
@@ -347,7 +347,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                         CurrentItem = null;
                         NewItem     = new TaskDto();
 
-                        ToastService.ShowSuccess(SuccessMsg.TimerStopped);
+                        // ToastService.ShowSuccess(SuccessMsg.TimerStopped);
                         StateHasChanged();
                     });
                 }
@@ -429,7 +429,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
                 var result = await Service.UpdateTags(item);
                 if (result.Successful)
                 {
-                    ToastService.ShowSuccess(SuccessMsg.TaskEdited + item.Name);
+                    // ToastService.ShowSuccess(SuccessMsg.TaskEdited + item.Name);
                     foreach (var tag in item.TagList)
                     {
                         Console.WriteLine(tag.Name);

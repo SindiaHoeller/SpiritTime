@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
@@ -262,8 +263,9 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                 //         });
                 //     }
                 // };
-                
-                Electron.Tray.Show(Path.Combine(env.ContentRootPath, "Assets/icon32.png"), menu);
+                var trayIcon = OperatingSystem.IsWindows() ? "Assets/icon64.png" : "Assets/icon32.png";
+                Electron.Tray.Show(Path.Combine(env.ContentRootPath, trayIcon), menu);
+
                 Electron.Tray.SetToolTip("SpiritTime");
             }
             else
