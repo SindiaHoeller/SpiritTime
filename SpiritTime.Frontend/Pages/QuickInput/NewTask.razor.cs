@@ -63,6 +63,7 @@ namespace SpiritTime.Frontend.Pages.QuickInput
                 case "Enter":
                 {
                     await newTask.Focus(JsRuntime);
+                    GeneralHelper.TrimTask(TaskDto);
                     var result = TaskDto.Id == 0 ? await Service.Add(TaskDto) : await Service.Edit(TaskDto);
                     NotificationOptions options;
                     if (result.Successful)

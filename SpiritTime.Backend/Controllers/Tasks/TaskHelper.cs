@@ -328,5 +328,11 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 .Select(x=> x?.Trim())
                 .ToList();
         }
+
+        public void TrimTask(Core.Entities.Tasks task)
+        {
+            task.Name = task.Name.Trim();
+            task.Description = task.Description.Trim();
+        }
     }
 }

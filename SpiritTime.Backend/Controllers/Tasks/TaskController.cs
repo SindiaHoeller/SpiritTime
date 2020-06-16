@@ -208,6 +208,7 @@ namespace SpiritTime.Backend.Controllers.Tasks
                         {Error = ErrorMsg.NotAuthorizedForAction, Successful = false});
 
                 var item = _mapper.Map<Core.Entities.Tasks>(resource);
+                Helper.TrimTask(item);
                 await _unitOfWork.TaskRepository.AddAsync(item);
                 await _unitOfWork.SaveAsync();
                 var resultItem = _mapper.Map<TaskDto>(item);
@@ -263,8 +264,8 @@ namespace SpiritTime.Backend.Controllers.Tasks
 
                 resource = await Helper.FindTagsByTrigger(resource);
 
-                item.Description = resource.Description;
-                item.Name = resource.Name;
+                item.Description = resource.Description.Trim();
+                item.Name = resource.Name.Trim();
                 item.EndDate = resource.EndDate;
                 item.StartDate = resource.StartDate;
                 item.IsBooked = resource.IsBooked;
