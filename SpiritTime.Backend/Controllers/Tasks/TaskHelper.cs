@@ -139,7 +139,8 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// </summary>
         /// <param name="tagInfoList"></param>
         /// <param name="taskId"></param>
-        public async Task AddRangeOfTagsToTask(List<TagInfo> tagInfoList, int taskId)
+        /// <param name="removePrevious"></param>
+        public async Task AddRangeOfTagsToTask(List<TagInfo> tagInfoList, int taskId, bool removePrevious = true)
         {
             var list = await GetAllCurrentlyLinkedTags(taskId);
             if (tagInfoList != null)
@@ -153,9 +154,12 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 }
             }
 
-            foreach (var item in list)
+            if (removePrevious)
             {
-                await RemoveTagFromTask(taskId, item.Id);
+                foreach (var item in list)
+                {
+                    await RemoveTagFromTask(taskId, item.Id);
+                }
             }
         }
 
@@ -177,8 +181,9 @@ namespace SpiritTime.Backend.Controllers.Tasks
         /// <returns></returns>
         private async Task<List<Core.Entities.TaskTagRules>> GetAllRulesForWorkspace(int workspaceId)
         {
-            return await _unitOfWork.TaskTagRuleRepository
+            var rules =  await _unitOfWork.TaskTagRuleRepository
                     .GetMultipleByAsync(x => x.Tag.WorkspaceId == workspaceId);
+            return rules.OrderByDescending(x=>x.TriggerText).ToList();
         }
 
         /// <summary>

@@ -4,7 +4,7 @@
 
 
 <div class="center-and-highlight task-main-view">
-<input style="opacity: 0; width: 0; height: 100%" @ref="focusHelper"/>
+<input style="opacity: 0; width: 0; position: absolute; top: 0;" @ref="focusHelper"/>
 <div class="col-12 custom-background">
 
 <div class="d-flex justify-content-end ">
@@ -50,7 +50,7 @@
             </div>
             <div class="flex-grow-1">
                 <Tooltip Text="Description" Placement="Placement.Top">
-                    <input @bind-value="@CurrentItem.Description" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control"
+                    <input @bind-value="@CurrentItem.Description" @onfocusin="@(() => ToActualDate(CurrentItem.StartDate))" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="text" class="form-control"
                             placeholder="Description"/>
                 </Tooltip>
             </div>
@@ -58,7 +58,7 @@
                 <Tooltip Text="Start Date" Placement="Placement.Top" Class="d-flex justify-content-start">
                     <input @bind-value="@valueDateTime" @onfocusin="@(() => ToActualDate(CurrentItem.StartDate))" @oninput="@(OnValueChangedFocusOut)" @onfocusout="@(() => WriteBackStartDate(CurrentItem))"
                             type="date" class="form-control hide-date"/>
-                    <input @bind-value="@CurrentItem.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(CurrentItem))" type="time" class="form-control hide-date" placeholder="StartTime"/>
+                    <input @bind-value="@CurrentItem.StartDate" @onfocusin="@(() => ToActualDate(CurrentItem.StartDate))" @oninput="@(OnValueChanged)" @onfocusout="@(() => WriteBackStartDate(CurrentItem))" type="time" class="form-control hide-date" placeholder="StartTime"/>
                 </Tooltip>
             </div>
 
@@ -173,7 +173,7 @@
 
                                             <input @bind-value="@valueDateTime" @onfocusin="@(() => ToActualDate(task.StartDate))" @oninput="@(OnValueChangedFocusOut)"
                                                     @onfocusout="@(() => WriteBackStartDate(task))" type="date" class="form-control hide-date"/>
-                                            <input @bind-value="@task.StartDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="time" class="form-control hide-date"/>
+                                            <input @bind-value="@task.StartDate" @onfocusin="@(() => ToActualDate(task.StartDate))" @oninput="@(OnValueChanged)" @onfocusout="@(() => WriteBackStartDate(task))" type="time" class="form-control hide-date"/>
                                             <label class="form-control small-separator">&nbsp;-&nbsp;</label>
                                         </div>
                                     </Tooltip>
@@ -181,7 +181,7 @@
                                         <Tooltip Text="End Date" Placement="Placement.Top" Class="d-flex justify-content-start">
                                             <input @bind-value="@valueDateTime" @onfocusin="@(() => ToActualDate(task.EndDate))" @oninput="@(OnValueChangedFocusOut)"
                                                     @onfocusout="@(() => WriteBackEndDate(task))" type="date" class="form-control hide-date"/>
-                                            <input @bind-value="@task.EndDate" @oninput="@(OnValueChanged)" @onfocusout="@(async () => await Update(task))" type="time" class="form-control  hide-date"/>
+                                            <input @bind-value="@task.EndDate" @onfocusin="@(() => ToActualDate(task.EndDate))" @oninput="@(OnValueChanged)" @onfocusout="@(() => WriteBackEndDate(task))" type="time" class="form-control  hide-date"/>
                                         </Tooltip>
                                     </div>
                                 </div>
