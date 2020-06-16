@@ -10,7 +10,7 @@
     "appId": "com.SpiritTime.Frontend.app",
     "productName": "SpiritTime",
     "copyright": "Copyright ©SpiritTime 2020",
-    "buildVersion": "1.0.0",
+    "buildVersion": "0.0.1",
     "compression": "maximum",
     "directories": {
       "output": "../../../bin/Desktop"
