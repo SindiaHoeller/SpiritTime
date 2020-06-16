@@ -81,16 +81,13 @@ namespace SpiritTime.Frontend
 
             services.AddTransient<ValidateHeaderHandler>();
 
-            IConfiguration config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
-            var proxyEnabled = Convert.ToBoolean(config["ProxyAuth:Enabled"]);
+            var proxyEnabled = Convert.ToBoolean(Configuration["ProxyAuth:Enabled"]);
             if (proxyEnabled)
             {
                 services.AddHttpClient<IAuthService, AuthService>()
-                    .ConfigurePrimaryHttpMessageHandler(() => { return ProxySettings.GetClientHandler(config); });
+                    .ConfigurePrimaryHttpMessageHandler(() => { return ProxySettings.GetClientHandler(Configuration); });
             
-                var client = new HttpClient(ProxySettings.GetClientHandler(config));
+                var client = new HttpClient(ProxySettings.GetClientHandler(Configuration));
                 services.AddSingleton(client);
             }
             else
