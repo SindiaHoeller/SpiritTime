@@ -34,10 +34,10 @@ namespace SpiritTime.Backend
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseKestrel();
-                    // webBuilder.ConfigureKestrel(options =>
-                    // {
-                    //     options.Listen(IPAddress.Loopback, 5002);
-                    // });
+                    webBuilder.ConfigureKestrel(options =>
+                    {
+                        options.Listen(IPAddress.Loopback, 5002);
+                    });
                     webBuilder.UseStartup<Startup>();
                 });
     }

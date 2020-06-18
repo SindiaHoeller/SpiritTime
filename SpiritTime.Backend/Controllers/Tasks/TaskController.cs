@@ -264,12 +264,13 @@ namespace SpiritTime.Backend.Controllers.Tasks
 
                 resource = await Helper.FindTagsByTrigger(resource);
 
-                item.Description = resource.Description.Trim();
-                item.Name = resource.Name.Trim();
+                item.Description = resource.Description;
+                item.Name = resource.Name;
                 item.EndDate = resource.EndDate;
                 item.StartDate = resource.StartDate;
                 item.IsBooked = resource.IsBooked;
                 item.WorkspaceId = resource.WorkspaceId;
+                Helper.TrimTask(item);
                 _unitOfWork.TaskRepository.Update(item);
 
                 await Helper.AddRangeOfTagsToTask(resource.TagList, item.Id);
