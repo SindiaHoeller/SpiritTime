@@ -329,10 +329,16 @@ namespace SpiritTime.Backend.Controllers.Tasks
                 .ToList();
         }
 
+        /// <summary>
+        /// Trim Task
+        /// </summary>
+        /// <param name="task"></param>
         public void TrimTask(Core.Entities.Tasks task)
         {
-            task.Name = task.Name.Trim();
-            task.Description = task.Description.Trim();
+            if (task == null) return;
+            task.Name        = !string.IsNullOrEmpty(task.Name) ? task.Name.Trim() : "";
+            task.Description = !string.IsNullOrEmpty(task.Description) ? task.Description.Trim() : "";
+
         }
     }
 }

@@ -133,11 +133,10 @@ namespace SpiritTime.Backend.Controllers.TaskTags
                 return new JsonResult(new ResultModel { Error = ex.Message, Successful = false });
             }
         }
-        
+
         /// <summary>
         /// Remove Tags to Tasks
         /// </summary>
-        /// <param name="tasktag"></param>
         /// <returns></returns>
         [HttpPost(ApiMethod.CompareTags)]
         public async Task<IActionResult> CompareTags(TaskDto task)
