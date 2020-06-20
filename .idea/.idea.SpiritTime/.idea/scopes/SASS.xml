@@ -1,0 +1,3 @@
+﻿<component name="DependencyValidationManager">
+  <scope name="SASS" pattern="file[riderModule]:SpiritTime.Frontend/wwwroot//*" />
+</component>
