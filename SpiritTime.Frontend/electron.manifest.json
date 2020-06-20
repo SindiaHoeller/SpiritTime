@@ -3,7 +3,7 @@
   "splashscreen": {
     "imageFile": "Assets/icon_120x120.png"
   },
-  "name": "SpiritTime",
+  "name": "Spirittime",
   "author": "Sindia Höller",
   "singleInstance": false,
   "build": {
@@ -34,19 +34,20 @@
       "oneClick": false,
       "perMachine": true,
       "allowElevation": true,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "include": "bin/ElectronResources/nsisExtra.nsh"
     },
     "win": {
       "target": "NSIS",
-      "icon": "bin/Assets/icon.ico"
+      "icon": "bin/Assets/icon.ico",
+      "publish": [{
+        "provider": "github",
+        "owner": "Akiriki",
+        "repo": "SpiritTime_Test"
+      }]
     },
     "linux": {
       "icon": "bin/Assets/icon_120x120.png"
-    },
-    "publish": [{
-      "provider": "github",
-      "owner": "Akiriki",
-      "repo": "SpiritTime_Test"
-    }]
+    }
   }
 }

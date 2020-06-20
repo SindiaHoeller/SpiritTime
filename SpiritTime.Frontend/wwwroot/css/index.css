@@ -17,6 +17,20 @@ h1 {
   font-family: "Roboto", sans-serif;
 }
 
+body, app {
+  height: 100vh;
+}
+
+div.footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #313131;
+  width: 100%;
+  align-content: start;
+  text-align: right;
+}
+
 #components-reconnect-modal {
   background-color: #313131 !important;
 }
@@ -138,6 +152,13 @@ table th span.oi:hover {
   padding: 2em;
   border-radius: 1em;
   box-shadow: rgba(213, 213, 213, 0.1) 0.3rem 0.3rem;
+}
+
+.login-nav-menu {
+  justify-content: space-between;
+  background: transparent;
+  display: flex;
+  align-items: center;
 }
 
 label.form-control {
@@ -324,7 +345,6 @@ a.custom-navbar-brand p {
 .sidebar {
   z-index: 5;
   background: #313131;
-  border-radius: 5px 10px 10px 10px;
 }
 .sidebar li.nav-item a {
   border-bottom: solid 1px #7b7b7b;
@@ -506,6 +526,7 @@ a.custom-navbar-brand p {
     position: absolute;
     top: 12px;
     left: 12px;
+    border-radius: 5px 10px 10px 10px;
   }
 
   .menu-placeholder {
@@ -527,13 +548,10 @@ a.custom-navbar-brand p {
 
   .sidebar {
     width: 250px;
-    height: 100vh;
-    position: absolute;
-    top: 50px;
-  }
-
-  .content:not(.full-width) {
-    margin-left: 280px;
+    height: 100%;
+    position: sticky;
+    top: 3.5rem;
+    border-bottom-right-radius: 5px;
   }
 
   .main .top-row {

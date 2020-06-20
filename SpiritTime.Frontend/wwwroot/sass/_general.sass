@@ -11,6 +11,18 @@ body
 h1
   color: $color1
   font-family: $font1
+  
+body, app
+  height: 100vh
+
+div.footer
+  position: fixed
+  bottom: 0
+  right: 0
+  background-color: $color5
+  width: 100%
+  align-content: start
+  text-align: right
 
 #components-reconnect-modal
   background-color: $color5 !important
@@ -57,6 +69,8 @@ table
   justify-content: center
   align-items: center
 
+
+  
 .custom-top-row
   a
     color: $color4
@@ -111,8 +125,11 @@ table
     border-radius: 1em
     box-shadow: $shadow-color 0.3rem 0.3rem
 
-
-  
+.login-nav-menu
+  justify-content: space-between
+  background: transparent
+  display: flex
+  align-items: center
 
 label.form-control
   background-color: transparent
