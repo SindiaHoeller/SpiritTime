@@ -202,6 +202,7 @@ namespace SpiritTime.Frontend
                 Electron.Tray.Destroy();
             });
             ElectronConfiguration.CreateTray(env, shortcutConfig);
+            await ElectronUpdater.Init();
         }
     }
 }

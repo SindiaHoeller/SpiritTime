@@ -1,6 +1,6 @@
-﻿<component name="ProjectRunConfigurationManager">
+<component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Publish Backend to Server" type="DotNetPublishAndUpload" factoryName="Publish to custom server">
-    <riderPublish runtime="linux-x64" server_id="c4446c03-166c-44c9-a8f8-fdacf7e72e16" target_framework="netcoreapp3.1" uuid_high="-6772679263814793458" uuid_low="-7124678128480756447" />
+    <riderPublish server_id="c4446c03-166c-44c9-a8f8-fdacf7e72e16" target_framework="netcoreapp3.1" uuid_high="-6772679263814793458" uuid_low="-7124678128480756447" />
     <method v="2" />
   </configuration>
 </component>

@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using ElectronNET.API;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -16,5 +17,6 @@ namespace SpiritTime.Frontend.Pages
         {
             await jsRuntime.InvokeVoidAsync("jsInterop.closeWindow");
         }
+
     }
 }
