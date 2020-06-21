@@ -1,12 +1,12 @@
 ﻿!macro customUnInstall
-  MessageBox MB_YESNO "Delete app config and log folder?" \
+  MessageBox MB_YESNO "Delete app config folder?" \
     /SD IDNO IDNO Skipped IDYES Accepted
-
+    
   Accepted:
-    RMDir /r "$APPDATA\${APP_FILENAME}"
-    !ifdef APP_PRODUCT_FILENAME
-      RMDir /r "$APPDATA\${APP_PRODUCT_FILENAME}"
-    !endif
+    SetShellVarContext current
+    RMDir /r "$APPDATA\spirittime"
+    RMDir /r "LOCALAPPDATA\spirittime-updater"
+    
     Goto done
   Skipped:
     Goto done
