@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -8,6 +9,7 @@ using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using SpiritTime.Frontend.Infrastructure.Config;
+using WebSocket4Net.Command;
 
 namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
 {
@@ -21,7 +23,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                 Console.WriteLine("APPSETTINGS: " + homePath);
                 if (homePath.ToLower().Contains("appdata"))
                 {
-                    var appPath = homePath + "\\SpiritTime";
+                    var appPath = homePath + "\\spirittime";
                     Console.WriteLine("CreateDirectory");
                     Directory.CreateDirectory(appPath);
                     Console.WriteLine("File Exists");
@@ -233,12 +235,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                         Label = "Close",
                         Icon = Path.Combine(env.ContentRootPath, "Assets/close.png"),
                         Accelerator = "CmdOrCtrl+Q",
-                        Click = () =>
-                        {
-                            Console.WriteLine("Remove on: " + windowManager.FirstOrDefault()?.Id);
-                            Electron.Tray.Destroy();
-                            windowManager.ForEach(x=>x.Close());
-                        }
+                        Click = CloseApp
                     },
                 };
 
@@ -273,6 +270,13 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
             {
                 Electron.Tray.Destroy();
             }
+        }
+
+        public static void CloseApp()
+        {
+            var windowManager = Electron.WindowManager.BrowserWindows.ToList();
+            Electron.Tray.Destroy();
+            windowManager.ForEach(x=>x.Close());
         }
 
         public static MessageBoxOptions GetMessageBoxOptions(string title, string details = "")

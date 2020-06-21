@@ -3,6 +3,7 @@
     public class AppSettings
     {
         public string BackendBaseAddress { get; set; }
+        public string Version { get; set; }
     }
 }
 
