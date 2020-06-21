@@ -71,7 +71,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
         public void Dispose()
         {
             SelectState.OnChange          -= StateHasChanged;
-            SelectState.OnSaveAndCloseAll -= StateHasChanged;
+            SelectState.OnSaveAndCloseAll -= AddTags;
         }
 
         private async Task GetFilter()

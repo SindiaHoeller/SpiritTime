@@ -37,36 +37,7 @@ namespace SpiritTime.Frontend.Pages.Tasks
             Id = SelectState.ShowTagLists.Count -1;
             //ShowTagList = false;
         }
-        
-        // private async Task AddTags(TaskDto item)
-        // {
-        //     SelectState.ShowTagLists[Id] = false;
-        //     if (ValueChanged)
-        //     {
-        //         ValueChanged = false;
-        //         try
-        //         {
-        //             var result = await Service.UpdateTags(item);
-        //             if (result.Successful)
-        //             {
-        //                 ToastService.ShowSuccess(SuccessMsg.TagsForTaskEdited);
-        //                 foreach (var tag in item.TagList)
-        //                 {
-        //                     Console.WriteLine(tag.Name);
-        //                 }
-        //             }
-        //             else
-        //             {
-        //                 ToastService.ShowError(result.Error);
-        //             }
-        //         }
-        //         catch (Exception exception)
-        //         {
-        //             ToastService.ShowError(exception.Message);
-        //         }
-        //     }
-        // }
-        
+
         private void CheckboxChanged(ChangeEventArgs e, string key)
         {
             SelectState.ValueChanged = true;

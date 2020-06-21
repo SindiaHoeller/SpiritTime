@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Publish Frontend to Server" type="DotNetPublishAndUpload" factoryName="Publish to custom server">
-    <riderPublish server_id="24975043-6e42-4c00-87ce-dfabdf8cea27" target_framework="netcoreapp3.1" uuid_high="-6772679263814793458" uuid_low="-7124678128480756447" />
+    <riderPublish server_id="24975043-6e42-4c00-87ce-dfabdf8cea27" target_framework="netcoreapp3.1" uuid_high="-5567255260718086058" uuid_low="-7422382152925386568" />
     <method v="2" />
   </configuration>
 </component>
