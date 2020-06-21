@@ -43,7 +43,8 @@
       "publish": [{
         "provider": "github",
         "owner": "Akiriki",
-        "repo": "SpiritTime_Test"
+        "repo": "SpiritTime",
+        "token": "b12ef1f02d672e2f16095f21cc08d3ad87406611"
       }]
     },
     "linux": {

@@ -40,6 +40,9 @@
     <None Update="Assets\*.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="ELectronResources\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
 <!--    <None Update="Assets\favicon32.png">-->
 <!--      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>-->
 <!--    </None>-->

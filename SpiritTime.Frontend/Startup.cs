@@ -77,8 +77,6 @@ namespace SpiritTime.Frontend
             services.ConfigureWritable<ProxyAuth>(Configuration.GetSection("ProxyAuth"), appSettings);
             services.Configure<AppSettings>(Configuration.GetSection("Settings"));
 
-            // services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-
             services.AddTransient<ValidateHeaderHandler>();
 
             var proxyEnabled = Convert.ToBoolean(Configuration["ProxyAuth:Enabled"]);
@@ -158,13 +156,10 @@ namespace SpiritTime.Frontend
             });
             
             // Open the Electron-Window here
-
             if (HybridSupport.IsElectronActive)
             {
                 ElectronBootstrap(env);
-                
             }
-            // Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
 
         private async void ElectronBootstrap(IWebHostEnvironment env)
@@ -184,7 +179,6 @@ namespace SpiritTime.Frontend
                 StopCurrentTask = Configuration["Shortcuts:StopCurrentTask"]
             };
             
-
             // await browserWindow.WebContents.Session.ClearCacheAsync();
             var proxyConfig = new ProxyConfig(Configuration["Proxy:PacScript"], 
                 Configuration["Proxy:PacScript"], 
@@ -195,14 +189,12 @@ namespace SpiritTime.Frontend
             browserWindow.OnReadyToShow += () => browserWindow.Show();
             browserWindow.SetTitle("SpiritTime");
             Electron.Menu.SetApplicationMenu(ElectronMenu.Get());
-
+            ElectronConfiguration.CreateTray(env, shortcutConfig);
             Electron.App.WillQuit += (args) => Task.Run(() =>
             {
                 Electron.GlobalShortcut.UnregisterAll();
                 Electron.Tray.Destroy();
             });
-            ElectronConfiguration.CreateTray(env, shortcutConfig);
-            await ElectronUpdater.Init();
         }
     }
 }
