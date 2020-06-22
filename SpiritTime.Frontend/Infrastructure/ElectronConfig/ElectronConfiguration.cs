@@ -79,8 +79,8 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
         {
             var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask";
             var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
-            var primaryScreen = await Electron.Screen.GetPrimaryDisplayAsync();
-            secondaryWindow.SetBounds(primaryScreen.WorkArea);
+            // var primaryScreen = await Electron.Screen.GetPrimaryDisplayAsync();
+            // secondaryWindow.SetBounds(primaryScreen.WorkArea);
             if(proxyConfig != null)
                 await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
             secondaryWindow.OnClose += mainWindow.Reload;

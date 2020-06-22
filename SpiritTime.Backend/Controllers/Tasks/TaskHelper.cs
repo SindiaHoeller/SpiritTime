@@ -336,8 +336,8 @@ namespace SpiritTime.Backend.Controllers.Tasks
         public void TrimTask(Core.Entities.Tasks task)
         {
             if (task == null) return;
-            task.Name        = !string.IsNullOrEmpty(task.Name) ? task.Name.Trim() : "";
-            task.Description = !string.IsNullOrEmpty(task.Description) ? task.Description.Trim() : "";
+            task.Name        = !string.IsNullOrEmpty(task.Name) ? task.Name.Trim() : task.Name;
+            task.Description = !string.IsNullOrEmpty(task.Description) ? task.Description.Trim() : task.Description;
 
         }
     }

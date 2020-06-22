@@ -31,6 +31,10 @@ namespace SpiritTime.Frontend.Shared
                     Version = "Checking for Updates...";
                     await InvokeAsync(StateHasChanged);
                 };
+                Electron.AutoUpdater.OnUpdateNotAvailable += (info) =>
+                {
+                    Version = "Version: " +  version;
+                };
                 Electron.AutoUpdater.OnUpdateAvailable += async (info) =>
                 {
                     Version = "Update available" + info.Version;
