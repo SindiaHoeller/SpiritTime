@@ -38,7 +38,7 @@
         @ErrorMessage
     </div>
 }
-<div class="custom-task-background mb-4 task-list">
+<div class="custom-task-background task-list">
     @if (CurrentItem != null)
     {
         <div class="d-flex">
@@ -118,7 +118,7 @@
     {
         if (item.ItemList.Any())
         {
-            <div class="custom-task-background mb-4 task-list">
+            <div class="custom-task-background task-list">
                 <div class="d-flex justify-content-between task-header">
                     <h3>@item.Date.ToString("dd.MM.yyyy")</h3>
                     <h4>@item.TimeSpanText</h4>
@@ -129,7 +129,7 @@
                     // if (task != CurrentItem)
                     // {
                     <ContextMenuTrigger Data="task" WrapperTag="tr" MenuId="contextMenu">
-                        <div class=" mb-1">
+                        <div class="">
                             <div class="d-flex">
                                 @if (!HideBookingOptions)
                                 {

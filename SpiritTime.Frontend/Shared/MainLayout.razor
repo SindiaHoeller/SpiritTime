@@ -17,7 +17,7 @@
 
 <div class="main">
     <div class="top-row">
-        
+
         <div class="small-size menu-placeholder"></div>
         <div class="">
             <a class="custom-navbar-brand" href="">
@@ -37,11 +37,17 @@
         </div>
     </div>
 
-    <div class="d-flex">
+    <div class="d-flex ">
         <AuthorizeView>
             <Authorized>
-                <div class="sidebar">
-                    <NavMenu/>
+                <div class="sidebar @NavMenuCssClass">
+                    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <div class="@NavMenuCssClass">
+                        <NavMenu/>
+                    </div>
                 </div>
                 <div class="content">
                     @Body
@@ -58,3 +64,15 @@
 <div class="footer">
     <div class="version">@Version</div>
 </div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+}

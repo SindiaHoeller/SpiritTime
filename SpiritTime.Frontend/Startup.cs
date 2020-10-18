@@ -192,9 +192,9 @@ namespace SpiritTime.Frontend
             ElectronConfiguration.CreateTray(env, shortcutConfig);
             Electron.App.WillQuit += (args) => Task.Run(() =>
             {
-                Electron.GlobalShortcut.UnregisterAll();
-                Electron.Tray.Destroy();
+                ElectronConfiguration.CloseApp();
             });
+            ElectronConfiguration.SecureHangedProcesses(browserWindow);
         }
     }
 }

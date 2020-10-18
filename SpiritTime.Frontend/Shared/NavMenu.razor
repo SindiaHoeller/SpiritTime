@@ -1,48 +1,33 @@
-﻿<button class="navbar-toggler" @onclick="ToggleNavMenu">
-    <i class="fas fa-bars"></i>
-</button>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+﻿
     <ul class="nav flex-column">
-        <li class="nav-item px-3">
+        <li class="nav-item">
             <NavLink class="nav-link" href="tasks/overview">
-                <i class="fas fa-tasks"></i>&nbsp;&nbsp; Tasks
+                <i class="fas fa-tasks"></i>&nbsp;&nbsp; <p>Tasks</p>
             </NavLink>
         </li>
-        <li class="nav-item px-3">
+        <li class="nav-item">
             <NavLink class="nav-link" href="tags/overview">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp; Tags
+                <i class="fas fa-tags"></i>&nbsp;&nbsp; <p>Tags</p>
             </NavLink>
         </li>
-        <li class="nav-item px-3">
+        <li class="nav-item">
             <NavLink class="nav-link" href="rules/overview">
-                <i class="fas fa-check-double"></i>&nbsp;&nbsp; Rules
+                <i class="fas fa-check-double"></i>&nbsp;&nbsp; <p>Rules</p>
             </NavLink>
         </li>
-        <li class="nav-item px-3">
+        <li class="nav-item">
             <NavLink class="nav-link" href="workspace/overview">
-                <i class="fas fa-store-alt"></i>&nbsp;&nbsp; Workspaces
+                <i class="fas fa-store-alt"></i>&nbsp;&nbsp; <p>Workspaces</p>
             </NavLink>
         </li>
         <hr/>
-        <li class="nav-item px-3">
+        <li class="nav-item">
             <NavLink class="nav-link" href="options/overview">
-                <i class="fas fa-cogs"></i>&nbsp;&nbsp; Options
+                <i class="fas fa-cogs"></i>&nbsp;&nbsp; <p>Options</p>
             </NavLink>
         </li>
         <hr/>
     </ul>
-</div>
 
 
-@code {
-    private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-}

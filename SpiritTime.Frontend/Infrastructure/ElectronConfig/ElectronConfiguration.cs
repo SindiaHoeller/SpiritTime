@@ -30,12 +30,13 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                     if (!File.Exists(appPath + "\\appsettings.json"))
                     {
                         Console.WriteLine("File Copy");
-                        File.Copy(Directory.GetCurrentDirectory() +"\\appsettings.json", appPath + "\\appsettings.json" );
+                        File.Copy(Directory.GetCurrentDirectory() + "\\appsettings.json", appPath + "\\appsettings.json");
                     }
+
                     Console.WriteLine("Build");
                     var builder = new ConfigurationBuilder()
                         .SetBasePath(appPath)
-                        .AddJsonFile("appsettings.json", true ,  true)
+                        .AddJsonFile("appsettings.json", true, true)
                         .AddEnvironmentVariables();
                     Console.WriteLine("Return");
                     return (builder.Build(), appPath);
@@ -49,30 +50,22 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                 return (null, "");
             }
         }
-        
-        
+
+
         public static void SetGlobalKeyboardShortcuts(ShortcutsConfig shortcutsConfig, ProxyConfig proxyConfig)
         {
             SetGlobalKeyboardShortcuts(shortcutsConfig, GetMainWindow(), proxyConfig);
         }
+
         public static void SetGlobalKeyboardShortcuts(
             ShortcutsConfig shortcutsConfig,
-            BrowserWindow mainWindow,
-            ProxyConfig proxyConfig)
+            BrowserWindow   mainWindow,
+            ProxyConfig     proxyConfig)
         {
             Electron.GlobalShortcut.UnregisterAll();
-            Electron.GlobalShortcut.Register(shortcutsConfig.NewTask, async () =>
-            {
-                await CreateNewTaskWindow(mainWindow, proxyConfig);
-            });
-            Electron.GlobalShortcut.Register(shortcutsConfig.CurrentTask, async () =>
-            {
-                await CreateCurrentTaskWindow(mainWindow, proxyConfig);
-            });
-            Electron.GlobalShortcut.Register(shortcutsConfig.StopCurrentTask, async () =>
-            {
-                await CreateStopTasksWindow(mainWindow, proxyConfig);
-            });
+            Electron.GlobalShortcut.Register(shortcutsConfig.NewTask,         async () => { await CreateNewTaskWindow(mainWindow, proxyConfig); });
+            Electron.GlobalShortcut.Register(shortcutsConfig.CurrentTask,     async () => { await CreateCurrentTaskWindow(mainWindow, proxyConfig); });
+            Electron.GlobalShortcut.Register(shortcutsConfig.StopCurrentTask, async () => { await CreateStopTasksWindow(mainWindow, proxyConfig); });
         }
 
         private static async Task CreateNewTaskWindow(BrowserWindow mainWindow, ProxyConfig proxyConfig = null)
@@ -81,26 +74,30 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
             var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
             // var primaryScreen = await Electron.Screen.GetPrimaryDisplayAsync();
             // secondaryWindow.SetBounds(primaryScreen.WorkArea);
-            if(proxyConfig != null)
+            if (proxyConfig != null)
                 await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
             secondaryWindow.OnClose += mainWindow.Reload;
+            SecureHangedProcesses(secondaryWindow);
         }
 
         private static async Task CreateCurrentTaskWindow(BrowserWindow mainWindow, ProxyConfig proxyConfig = null)
         {
             var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/newtask/current";
             var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetMiniWindowOptions(), viewPath);
-            if(proxyConfig != null)
+            if (proxyConfig != null)
                 await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
             secondaryWindow.OnClose += mainWindow.Reload;
+            SecureHangedProcesses(secondaryWindow);
         }
+
         private static async Task CreateStopTasksWindow(BrowserWindow mainWindow, ProxyConfig proxyConfig = null)
         {
             var viewPath        = $"http://localhost:{BridgeSettings.WebPort}/stoptasks";
             var secondaryWindow = await Electron.WindowManager.CreateWindowAsync(GetHiddenWindowOptions(), viewPath);
-            if(proxyConfig != null)
+            if (proxyConfig != null)
                 await secondaryWindow.WebContents.Session.SetProxyAsync(proxyConfig);
             secondaryWindow.OnClose += mainWindow.Reload;
+            SecureHangedProcesses(secondaryWindow);
         }
 
         public static async Task<string> SetProxy(ProxyConfig proxyConfig, string serverUrl)
@@ -122,7 +119,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
         {
             return Electron.WindowManager.BrowserWindows.FirstOrDefault();
         }
-        
+
         public static BrowserWindowOptions GetMiniWindowOptions()
         {
             return new BrowserWindowOptions
@@ -139,6 +136,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                 AutoHideMenuBar  = true
             };
         }
+
         public static BrowserWindowOptions GetHiddenWindowOptions()
         {
             return new BrowserWindowOptions
@@ -150,7 +148,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                 Movable     = false,
                 Maximizable = false,
                 Frame       = false,
-                Closable = false
+                Closable    = false
             };
         }
 
@@ -159,13 +157,12 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
             var windowManager = Electron.WindowManager.BrowserWindows.ToList();
             if (Electron.Tray.MenuItems.Count == 0)
             {
-
                 var menu = new[]
                 {
                     new MenuItem
                     {
                         Label = "Open SpiritTime",
-                        Icon = Path.Combine(env.ContentRootPath, "Assets/icon24.png"),
+                        Icon  = Path.Combine(env.ContentRootPath, "Assets/icon24.png"),
                         Click = () =>
                         {
                             Console.WriteLine("Focused on: " + windowManager.FirstOrDefault()?.Id);
@@ -174,10 +171,10 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                     },
                     new MenuItem
                     {
-                        Label = "Add new Task",
+                        Label       = "Add new Task",
                         Accelerator = shortcutsConfig.NewTask,
-                        Icon = Path.Combine(env.ContentRootPath, "Assets/add.png"),
-                        Click = async ()  =>
+                        Icon        = Path.Combine(env.ContentRootPath, "Assets/add.png"),
+                        Click = async () =>
                         {
                             Console.WriteLine("Creating new task window.");
                             await CreateNewTaskWindow(windowManager.FirstOrDefault());
@@ -185,9 +182,9 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                     },
                     new MenuItem
                     {
-                        Label = "Edit current Task",
+                        Label       = "Edit current Task",
                         Accelerator = shortcutsConfig.CurrentTask,
-                        Icon = Path.Combine(env.ContentRootPath, "Assets/edit.png"),
+                        Icon        = Path.Combine(env.ContentRootPath, "Assets/edit.png"),
                         Click = async () =>
                         {
                             Console.WriteLine("Creating current task window.");
@@ -196,9 +193,9 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                     },
                     new MenuItem
                     {
-                        Label = "Stop current Task",
+                        Label       = "Stop current Task",
                         Accelerator = shortcutsConfig.StopCurrentTask,
-                        Icon = Path.Combine(env.ContentRootPath, "Assets/stop.png"),
+                        Icon        = Path.Combine(env.ContentRootPath, "Assets/stop.png"),
                         Click = async () =>
                         {
                             Console.WriteLine("Stopping current task.");
@@ -209,7 +206,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                     new MenuItem
                     {
                         Label       = "Reload",
-                        Icon = Path.Combine(env.ContentRootPath, "Assets/renew.png"),
+                        Icon        = Path.Combine(env.ContentRootPath, "Assets/renew.png"),
                         Accelerator = "CmdOrCtrl+R",
                         Click = () =>
                         {
@@ -232,10 +229,10 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                     },
                     new MenuItem
                     {
-                        Label = "Close",
-                        Icon = Path.Combine(env.ContentRootPath, "Assets/close.png"),
+                        Label       = "Close",
+                        Icon        = Path.Combine(env.ContentRootPath, "Assets/close.png"),
                         Accelerator = "CmdOrCtrl+Q",
-                        Click = CloseApp
+                        Click       = CloseApp
                     },
                 };
 
@@ -274,18 +271,19 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
 
         public static void CloseApp()
         {
+            Electron.GlobalShortcut.UnregisterAll();
             var windowManager = Electron.WindowManager.BrowserWindows.ToList();
             Electron.Tray.Destroy();
-            windowManager.ForEach(x=>x.Close());
+            windowManager.ForEach(x => x.Close());
         }
 
         public static MessageBoxOptions GetMessageBoxOptions(string title, string details = "")
         {
             return new MessageBoxOptions(title)
             {
-                Title = title,
+                Title  = title,
                 Detail = details,
-                Icon = Path.Combine("/img/icon24.png"),
+                Icon   = Path.Combine("/img/icon24.png"),
             };
         }
 
@@ -294,7 +292,7 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
             return new NotificationOptions(title, details)
             {
                 OnClick = () => Electron.WindowManager.BrowserWindows.FirstOrDefault()?.Focus(),
-                Icon = Path.Combine(env.ContentRootPath, "Assets/icon32.png")
+                Icon    = Path.Combine(env.ContentRootPath, "Assets/icon32.png")
             };
         }
 
@@ -302,6 +300,39 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
         {
             Electron.App.Relaunch();
             Electron.App.Quit();
+        }
+
+        public static void SecureHangedProcesses(BrowserWindow browserWindow)
+        {
+            browserWindow.WebContents.OnCrashed += async (killed) =>
+            {
+                MessageForHangCrash(browserWindow, "Renderer Process Crashed", "This process has crashed.");
+            };
+
+            browserWindow.OnUnresponsive += async () =>
+            {
+                MessageForHangCrash(browserWindow, "Renderer Process Hanging", "This process is hanging.");
+            };
+        }
+
+        private static async void MessageForHangCrash(BrowserWindow browserWindow, string title, string message)
+        {
+            var options = new MessageBoxOptions(message)
+            {
+                Type    = MessageBoxType.info,
+                Title   = title,
+                Buttons = new string[] {"Reload", "Close"}
+            };
+            var result = await Electron.Dialog.ShowMessageBoxAsync(options);
+
+            if (result.Response == 0)
+            {
+                browserWindow.Reload();
+            }
+            else
+            {
+                browserWindow.Close();
+            }
         }
     }
 }

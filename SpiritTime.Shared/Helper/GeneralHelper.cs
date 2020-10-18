@@ -7,13 +7,17 @@ namespace SpiritTime.Shared.Helper
     {
         public static void TrimTask(TaskDto item)
         {
-            item.Name = item.Name.Trim();
-            item.Description = item.Description.Trim();
+            if(!string.IsNullOrEmpty(item.Name))
+                item.Name = item.Name.Trim();
+            if(!string.IsNullOrEmpty(item.Description))
+                item.Description = item.Description.Trim();
         }
         public static void TrimTask(Tasks item)
         {
-            item.Name = item.Name.Trim();
-            item.Description = item.Description.Trim();
+            if(!string.IsNullOrEmpty(item.Name))
+                item.Name = item.Name.Trim();
+            if(!string.IsNullOrEmpty(item.Description))
+                item.Description = item.Description.Trim();
         }
     }
 }

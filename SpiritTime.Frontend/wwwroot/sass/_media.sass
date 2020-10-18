@@ -40,6 +40,7 @@
     top: 12px
     left: 12px
     border-radius: 5px 10px 10px 10px
+
   .menu-placeholder
     width: 95px
 
@@ -50,25 +51,52 @@
     flex-direction: row
   .custom-top-row
     display: none
-
+  .sidebar:not(.collapse)
+    width: 260px
+    ul
+      li
+        a
+          margin-left: 1em
+  .sidebar.collapse
+    width: 50px
+    ul
+      li
+        a
+          justify-content: center
+          i
+            padding-left: 10px
+          p
+            display: none
+          &:hover
+            p
+              width: 150px
+              display: block
+              position: absolute
+              padding-left: 110px
   .sidebar
-    width: 250px
+    display: block !important
     height: 100%
     position: sticky
     top: 3.5rem
     border-bottom-right-radius: 5px
-    
-  //.content:not(.full-width)
-  //  margin-left: 280px
 
+    
   .main
     .top-row
       position: sticky
       top: 0
-
-  .navbar-toggler
-    display: none
-
   .sidebar .collapse
     /* Never collapse the sidebar for wide screens
     display: block
+    
+.sidebar
+  ul
+    li
+      a
+        padding: 0 !important
+        display: flex
+        justify-content: start
+        align-content: center
+        align-items: center
+        p
+          margin: 0 !important
