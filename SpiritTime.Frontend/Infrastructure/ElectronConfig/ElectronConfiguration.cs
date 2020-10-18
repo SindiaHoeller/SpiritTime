@@ -272,9 +272,9 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
         public static void CloseApp()
         {
             Electron.GlobalShortcut.UnregisterAll();
-            var windowManager = Electron.WindowManager.BrowserWindows.ToList();
             Electron.Tray.Destroy();
-            windowManager.ForEach(x => x.Close());
+            var windowManager = Electron.WindowManager.BrowserWindows.ToList();
+            windowManager.ForEach(x => x?.Close());
         }
 
         public static MessageBoxOptions GetMessageBoxOptions(string title, string details = "")

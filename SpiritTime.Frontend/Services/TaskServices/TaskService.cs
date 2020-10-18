@@ -151,6 +151,7 @@ namespace SpiritTime.Frontend.Services.TaskServices
                 var result =  await _httpClient.GetJsonAsync<TaskListResult>(_path.TaskGetAllByWorkspace + "?id=" + workspaceId);
                 if (result.Successful)
                 {
+                    result.ItemList = result.ItemList.Where(x => x.StartDate > DateTime.Today.AddDays(-14)).ToList();
                     var dailyList = FullyPrepareList(result.ItemList);
                     return (dailyList, new ResultModel{Successful = true});
                 }
