@@ -269,12 +269,17 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
             }
         }
 
-        public static void CloseApp()
+        public static async void CloseApp()
         {
             Electron.GlobalShortcut.UnregisterAll();
-            Electron.Tray.Destroy();
             var windowManager = Electron.WindowManager.BrowserWindows.ToList();
-            windowManager.ForEach(x => x?.Close());
+            foreach (var x in windowManager)
+            {
+                Console.WriteLine("This is a window: " + x.Id);
+                if(x != windowManager.FirstOrDefault())
+                    x.Close();
+            }
+            Electron.Tray.Destroy();
         }
 
         public static MessageBoxOptions GetMessageBoxOptions(string title, string details = "")
@@ -304,15 +309,9 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
 
         public static void SecureHangedProcesses(BrowserWindow browserWindow)
         {
-            browserWindow.WebContents.OnCrashed += async (killed) =>
-            {
-                MessageForHangCrash(browserWindow, "Renderer Process Crashed", "This process has crashed.");
-            };
+            browserWindow.WebContents.OnCrashed += async (killed) => { MessageForHangCrash(browserWindow, "Renderer Process Crashed", "This process has crashed."); };
 
-            browserWindow.OnUnresponsive += async () =>
-            {
-                MessageForHangCrash(browserWindow, "Renderer Process Hanging", "This process is hanging.");
-            };
+            browserWindow.OnUnresponsive += async () => { MessageForHangCrash(browserWindow, "Renderer Process Hanging", "This process is hanging."); };
         }
 
         private static async void MessageForHangCrash(BrowserWindow browserWindow, string title, string message)

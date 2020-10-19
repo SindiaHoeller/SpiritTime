@@ -190,11 +190,8 @@ namespace SpiritTime.Frontend
             browserWindow.SetTitle("SpiritTime");
             Electron.Menu.SetApplicationMenu(ElectronMenu.Get());
             ElectronConfiguration.CreateTray(env, shortcutConfig);
-            Electron.App.WillQuit += (args) => Task.Run(() =>
-            {
-                ElectronConfiguration.CloseApp();
-            });
-            ElectronConfiguration.SecureHangedProcesses(browserWindow);
+            Electron.App.WillQuit += (args) => Task.Run(ElectronConfiguration.CloseApp);
+            // ElectronConfiguration.SecureHangedProcesses(browserWindow);
         }
     }
 }
