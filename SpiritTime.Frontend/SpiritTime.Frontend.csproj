@@ -5,7 +5,7 @@
   <ItemGroup>
     <PackageReference Include="Blazor.ContextMenu" Version="1.8.0" />
     <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
-    <PackageReference Include="Blazored.Typeahead" Version="4.4.0" />
+    <PackageReference Include="Blazored.Typeahead" Version="4.4.1" />
     <PackageReference Include="Blazorise" Version="0.9.1.2" />
     <PackageReference Include="Blazorise.Bootstrap" Version="0.9.1.2" />
     <PackageReference Include="Blazorise.Components" Version="0.9.1.2" />
