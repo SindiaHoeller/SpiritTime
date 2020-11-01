@@ -1,12 +1,13 @@
 using System.Linq;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
+using SpiritTime.Frontend.Infrastructure.Config;
 
 namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
 {
     public static class ElectronMenu
     {
-        public static MenuItem[] Get()
+        public static MenuItem[] Get(ShortcutsConfig shortcutsConfig, ProxyConfig proxyConfig)
         {
             var menu = new[]
             {
@@ -46,6 +47,15 @@ namespace SpiritTime.Frontend.Infrastructure.ElectronConfig
                                         browserWindow.Reload();
                                     }
                                 });
+                            }
+                        },
+                        new MenuItem
+                        {
+                            Label       = "Reload Global Shortcuts",
+                            Accelerator = "CmdOrCtrl+G",
+                            Click = async () =>
+                            {
+                                ElectronConfiguration.SetGlobalKeyboardShortcuts(shortcutsConfig, proxyConfig);
                             }
                         },
                         new MenuItem

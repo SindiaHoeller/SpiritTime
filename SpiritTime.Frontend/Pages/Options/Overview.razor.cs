@@ -77,7 +77,6 @@ namespace SpiritTime.Frontend.Pages.Options
             {
                 Console.WriteLine("ShortcutsConfig.CurrentTask" + ShortcutsConfig.CurrentTask);
                 Console.WriteLine("ShortcutsConfig.NewTask"+ ShortcutsConfig.NewTask);
-                Console.WriteLine("ShortcutsConfig.NewTask"+ ShortcutsConfig.NewTask);
                 Console.WriteLine("WritableConfig" + WritableConfig.Value.CurrentTask);
                 WritableConfig.Update(opt =>
                 {

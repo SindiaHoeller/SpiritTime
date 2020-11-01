@@ -188,8 +188,8 @@ namespace SpiritTime.Frontend
 
             browserWindow.OnReadyToShow += () => browserWindow.Show();
             browserWindow.SetTitle("SpiritTime");
-            Electron.Menu.SetApplicationMenu(ElectronMenu.Get());
-            ElectronConfiguration.CreateTray(env, shortcutConfig);
+            Electron.Menu.SetApplicationMenu(ElectronMenu.Get(shortcutConfig, proxyConfig));
+            // ElectronConfiguration.CreateTray(env, shortcutConfig);
             Electron.App.WillQuit += (args) => Task.Run(ElectronConfiguration.CloseApp);
             // ElectronConfiguration.SecureHangedProcesses(browserWindow);
         }
